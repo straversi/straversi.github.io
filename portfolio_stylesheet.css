@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Roboto Normal';
+    src: url('roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url('roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Italic';
+    src: url('roboto/Roboto-Italic.ttf');
+}
+
+table {
+	margin: 0 auto;
+	font-family: 'Roboto Normal', sans-serif;
+}
+
+td {
+	height: 100px;
+	width: 100px;
+	background-color: #F9DDA4;
+	color: black;
+	margin: 100px;
+	padding: 10px 100px 10px 10px;
+	vertical-align: top;
+	box-shadow: 0 8px 6px -6px #888888;
+}
+
+td:hover {
+	background-color: #A1AFD0;
+	color: white;
+}

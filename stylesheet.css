@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'Roboto Normal';
+    src: url('roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url('roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Italic';
+    src: url('roboto/Roboto-Italic.ttf');
+}
+
+body {
+    font-family: 'Roboto Normal', sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    background: #F5F5F5;
+    color: black;
+    margin: 0 auto;
+    width: 500px;
+    /* padding: 15px 260px 10px 260px; */
+    text-align: left;
+}
+
+#first {
+    background: #F2EFE6;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 0 8px 6px -6px #888888;
+    position: relative;
+}
+
+#second {
+    background: #E6F2F0;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 0 8px 6px -6px #888888;
+    position: relative;
+}
+
+#third {
+    background: white;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    box-shadow: 0 8px 6px -6px #888888;
+    position: relative;
+}
+
+h1 {
+    color: #024E68;
+    font-size: 2em;
+    font-family: 'Roboto-Bold', sans-serif;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+#funfooter {
+    position: fixed;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #F2EFE6;
+    left: 0px;
+    bottom: 0px;
+    height: 0px auto;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 0px auto;
+    margin: 0px;
+    z-index: 1000;
+}
+
+#footerlinks {
+    margin:0 auto;
+    width: 81px;
+}
+
+#panel,#flip {
+    text-align:center;
+    font-family: 'Roboto Italic', sans-serif;
+    background-color: black;
+    border:solid 1px black;
+}
+
+#panel {
+    display:none;
+}
+
+.panel {
+    width:200px;
+    height:200px;
+    float:left;
+    background:#F2EFE6;
+    position:absolute;
+    left:300px;
+    top:-228px;
+    box-shadow: -6px 6px 6px -6px #888888;
+    z-index:-1;
+}
+
+.slider-arrow {
+    padding:5px;
+    width:10px;
+    float:left;
+    background:#F2EFE6;
+    font:400 12px Arial, Helvetica, sans-serif;
+    color:#000;
+    text-decoration:none;
+    position:absolute;
+    left:500px;
+    top:-228px;
+    box-shadow: -6px 6px 6px -6px #888888;
+    z-index:-2;
+}
+
+#insliderpanel {
+    position:absolute;
+    top:-17px;
+    padding: 10px 10px 10px 10px;
+
+}
