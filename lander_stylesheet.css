@@ -1,0 +1,95 @@
+@font-face {
+    font-family: 'Roboto Thin';
+    src: url('roboto/Roboto-Thin.ttf');
+}
+
+html {
+    background: url(DowntownSF.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+#bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: .6;
+    background-color: rgba(158, 199, 211, 100);
+    -webkit-transition: background-color 2s;
+    -moz-transition: background-color 2s;
+}
+
+body {
+	font-family: 'Roboto Thin', sans-serif;
+    font-size: 16px;
+    color: white;
+	padding: 10%;
+}
+
+h1 {
+	text-align: center;
+    font-size: 3em;
+}
+
+nav {
+    width: 100%;
+    height: 0 auto;
+    text-align: center;
+    position: fixed;
+    z-index: 500;
+    left: 0;
+    bottom: 0;
+}
+
+nav ul{
+    height: auto;
+    padding: 7px 0px;
+    margin: 0px;
+}
+
+nav ul li{
+    display: inline;
+    padding: 10px;
+    position: relative;
+    z-index: 502;
+}
+
+#me:hover ~ #bg{
+    background: #68B4DD;
+    -webkit-transition: background-color 0.7s;
+    -moz-transition: background-color 0.7s;
+}
+#resume:hover ~ #bg{
+    background: #9EE162;
+    -webkit-transition: background-color 0.7s;
+    -moz-transition: background-color 0.7s;
+}
+#email:hover ~ #bg{
+    background: #FFE06B;
+    -webkit-transition: background-color 0.7s;
+    -moz-transition: background-color 0.7s;
+}
+#LI:hover ~ #bg{
+    background: #FEC179;
+    -webkit-transition: background-color 0.7s;
+    -moz-transition: background-color 0.7s;
+}
+#GH:hover ~ #bg{
+    background: #FC6263;
+    -webkit-transition: background-color 0.7s;
+    -moz-transition: background-color 0.7s;
+}
+
+
+
+
+
+
+
+
