@@ -3,22 +3,44 @@
 <head>
 	<title>Steven's Portfolio</title>
 	<link rel="stylesheet" href="portfolio_stylesheet.css">
+	<script>
+	$(document).ready(function() {
+        var imageLinks = $('a[href$=".png"], a[href$=".jpg"], a[href$=".gif"], a[href$=".bmp"]');
+        if (imageLinks.children('img').length) {
+            imageLinks.children('img').each(function() {
+                var currentTitle = $(this).attr('title');
+                $(this).attr('title', currentTitle + ' (click to enlarge image)');
+            });
+            imageLinks.click(function(e) {
+                e.preventDefault();
+                $(this).children('img').toggleClass('expanded');
+            });
+        }
+    });
+    </script>
 </head>
 <body>
-	<h1>Coding + Design</h1>
+	<h1>Code + Design</h1>
 	<h2>Two Disciplines in Harmony</h2>
 	<table>
 		<tr>
-			<td>Hello, how are you doing this fine Friday</td>
-			<td>Suppers</td>
+			<td><a href="#CommandLine" style="text-decoration: none;">Command Line To-Do App</a></td>
+			<td>Second Portfolio Piece</td>
 		</tr>
 		<tr>
-			<td>This will be my portfolio</td>
-			<td>I wonder what will it contain in one year's time</td>
+			<td>Third Portfolio Piece</td>
+			<td>Fourth Portfolio Piece</td>
 		</tr>
 		<tr>
-			<td>SO Alone</td>
+			<td>Lone cell</td>
 		</tr>
 	</table>
+	<br><br>
+	<h2 id="CommandLine">Command Line To-Do App</h2>
+		<p>Computer super-users sometimes enjoy controlling their machines through the terminal. It's the perfect way to warn the plebs that you're a hax0r and that they shouldn't mess with you. It's a pity when you have to leave the command line to use an application.</p>
+		<p>I made it my goal to allow super-users to do even more without leaving the comfort of their terminals. And I started simple, with a command-line To-Do list 'app'.</p>
+		<h3>The Idea</h3>
+		<p>Entering the To-Do list command should clear the window and display the days of the week. Those days with items added to them should display those items. The prompt should now ask you what you want to do. Something like --help should display possible commands.</p>
+		<p style="text-align: center;"><a href="Portfolio_Pics/p_8.jpg"><img class="folio_image" src="Portfolio_Pics/p_8.jpg" alt="Initial Idea"></a></p>
 </body>
 </html>

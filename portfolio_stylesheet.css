@@ -25,6 +25,7 @@ body {
 	font-family: 'Roboto Regular';
 	font-size: 14px;
 	width: 70%;
+	max-width: 700px;
 	margin: 0 auto;
 	background: #FFFFFF;
 }
@@ -41,22 +42,30 @@ h2 {
 	text-align: center;
 }
 
+h3 {
+	font-family: 'Roboto Regular', sans-serif;
+	font-size: 1.3em;
+	text-align: left;
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+
 table {
 	margin: 0 auto;
 	border-spacing: 10px;
 	font-family: 'Roboto Regular', sans-serif;
+	width: 100%;
 }
 
 td {
 	height: 100px;
-	width: 50%;
 	background: #8F6CD7;
+	width: 50%;
 	-webkit-transition: background 0.7s;
 	-moz-transition: background 0.7s;
 	-o-transition: background 0.7s;
 	color: black;
 	border: 5px black solid;
-	margin: 100px;
 	padding: 10px 10px 10px 10px;
 	vertical-align: top;
 }
@@ -68,6 +77,11 @@ td:hover {
     -o-transition: background 0.7s;
 }
 
-#wide {
+.folio_image {
+	border: 5px black solid;
 	width: 100%;
+}
+
+.folio_image.expanded {
+	max-width: none;
 }
