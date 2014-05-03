@@ -1,37 +1,61 @@
 @font-face {
-    font-family: 'Roboto Normal';
-    src: url('roboto/Roboto-Regular.ttf');
+    font-family: 'Roboto Regular';
+    src: url('fonts/Roboto_Regular/Roboto-Regular-webfont.eot');
+    src: url('fonts/Roboto_Regular/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Roboto_Regular/Roboto-Regular-webfont.woff') format('woff'),
+         url('fonts/Roboto_Regular/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('fonts/Roboto_Regular/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roboto Bold';
-    src: url('roboto/Roboto-Bold.ttf');
+    font-family: 'Roboto Thin';
+    src: url('fonts/Roboto_Thin/Roboto-Thin-webfont.eot');
+    src: url('fonts/Roboto_Thin/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Roboto_Thin/Roboto-Thin-webfont.woff') format('woff'),
+         url('fonts/Roboto_Thin/Roboto-Thin-webfont.ttf') format('truetype'),
+         url('fonts/Roboto_Thin/Roboto-Thin-webfont.svg#robotothin') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
-@font-face {
-    font-family: 'Roboto Italic';
-    src: url('roboto/Roboto-Italic.ttf');
-}
 
 body {
-	width: 500px;
+	font-family: 'Roboto Regular';
+	font-size: 14px;
+	width: 70%;
 	margin: 0 auto;
-	background: #F2EFE6;
+	background: #FFFFFF;
+}
+
+h1 {
+	font-family: 'Roboto Thin', sans-serif;
+	font-size: 3em;
+	text-align: center;
+}
+
+h2 {
+	font-family: 'Roboto Thin', sans-serif;
+	font-size: 2em;
+	text-align: center;
 }
 
 table {
 	margin: 0 auto;
 	border-spacing: 10px;
-	font-family: 'Roboto Normal', sans-serif;
+	font-family: 'Roboto Regular', sans-serif;
 }
 
 td {
 	height: 100px;
-	width: 46%;
-	box-shadow: 0 8px 6px -6px #888888;
+	width: 50%;
 	background: #8F6CD7;
-	-webkit-transition: background 1s;
+	-webkit-transition: background 0.7s;
+	-moz-transition: background 0.7s;
+	-o-transition: background 0.7s;
 	color: black;
+	border: 5px black solid;
 	margin: 100px;
 	padding: 10px 10px 10px 10px;
 	vertical-align: top;
@@ -39,5 +63,11 @@ td {
 
 td:hover {
 	background: #6F81D6;
-    -webkit-transition: background 1s;
+    -webkit-transition: background 0.7s;
+    -moz-transition: background 0.7s;
+    -o-transition: background 0.7s;
+}
+
+#wide {
+	width: 100%;
 }
