@@ -48,6 +48,7 @@ h3 {
 	text-align: left;
 	margin-top: 0em;
 	margin-bottom: 0em;
+	color: #6F81D6;
 }
 
 table {
@@ -77,11 +78,55 @@ td:hover {
     -o-transition: background 0.7s;
 }
 
+.fade {
+	opacity: .5;
+	transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+}
+
+.fade:hover {
+	opacity: 0.2;
+}
+
 .folio_image {
 	border: 5px black solid;
 	width: 100%;
+	margin-bottom: 1em;
+	float: center;
 }
 
-.folio_image.expanded {
-	max-width: none;
+.folio_image2 {
+	border: 5px #6F81D6 solid;
+	width: 100%;
+	margin-bottom: 1em;
+	float: center;
+}
+
+.folio_double_left {
+	border: 5px black solid;
+	width: 45%;
+	margin-left: 2%;
+	margin-right: .6%;
+	float: left;
+	margin-bottom: 1em;
+}
+
+.folio_double_right {
+	border: 5px black solid;
+	width: 45%;
+	margin-left: .6%;
+	margin-right: 2%;
+	float: right;
+	margin-bottom: 1em;
+}
+
+.prompt {
+	margin: .5em 30px .5em 30px;
+	color: blue;
+}
+
+.user {
+	margin: .5em 30px .5em 30px;
+	color: red;
 }
