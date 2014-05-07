@@ -76,14 +76,14 @@ nav ul li {
     display: inline;
     padding: 10px;
     position: relative;
-    z-index: 502;
+    z-index: 506;
 }
 
 /********** Opacity problem begin **********/
 
 nav ul li ul {
     position: absolute;
-    z-index: 1000;
+    z-index: 504;
     font-size: 1.5em;
     bottom: 100%;
     /** !Comment to try opacity! **/
