@@ -1,4 +1,15 @@
 @font-face {
+    font-family: 'Roboto Regular';
+    src: url('fonts/Roboto_Regular/Roboto-Regular-webfont.eot');
+    src: url('fonts/Roboto_Regular/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Roboto_Regular/Roboto-Regular-webfont.woff') format('woff'),
+         url('fonts/Roboto_Regular/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('fonts/Roboto_Regular/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'Roboto Thin';
     src: url('fonts/Roboto_Thin/Roboto-Thin-webfont.eot');
     src: url('fonts/Roboto_Thin/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
@@ -8,7 +19,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 
 html {
     background: url(DowntownSF.jpg) no-repeat center center fixed;
@@ -29,17 +39,9 @@ html {
     opacity: .5;
     background-color: rgba(158, 199, 211, 100);
     /*background-color: white;*/
-    -webkit-transition: background-color 2s;
-    -moz-transition: background-color 2s;
-    -o-transition: background-color 2s;
-}
-
-#showemail {
-    position: relative;
-    top: -30px;
-    color: white;
-    opacity: 1;
-    display: none;
+    -webkit-transition: background-color 1.5s;
+    -moz-transition: background-color 1.5s;
+    -o-transition: background-color 1.5s;
 }
 
 body {
@@ -56,7 +58,7 @@ h1 {
 
 nav {
     width: 100%;
-    height: 0 auto;
+    height: auto;
     text-align: center;
     position: fixed;
     z-index: 500;
@@ -66,53 +68,157 @@ nav {
 
 nav ul{
     height: auto;
-    padding: 7px 0px;
+    padding: 7px 0px 2px 0px;
     margin: 0px;
 }
 
-nav ul li{
+nav ul li {
     display: inline;
     padding: 10px;
     position: relative;
     z-index: 502;
 }
 
+/********** Opacity problem begin **********/
+
+nav ul li ul {
+    position: absolute;
+    z-index: 1000;
+    font-size: 1.5em;
+    bottom: 100%;
+    /** !Comment to try opacity! **/
+    display: none;
+    /** !Uncomment to try opacity! **/
+    /*transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+    opacity: 0;*/
+}
+
+nav ul li ul li {
+    position: relative;
+    top: 8px;
+}
+
+/** !Comment to try opacity! **/
+nav:hover ul li:hover ul{
+    display: block;
+}
+
+/** !Uncomment to try opacity! **/
+/*nav ul li img:hover ~ ul {
+    opacity: 1;
+}
+
+nav ul li a:hover ~ ul {
+    opacity: 1;
+}*/
+
+/**********Opacity problem end**********/
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    margin: 0 auto;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #171814;
+}
+
+.speechbox {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    padding: 3px 5px 3px 5px;
+
+    white-space: nowrap;
+    font-size: .69em;
+    font-family: 'Roboto Regular', sans-serif;
+
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border: 0px solid #000000;
+    /* Fallback (could use .jpg/.png alternatively) */
+    background-color: black;
+    /* Safari 4, Chrome 1-9, iOS 3.2-4.3, Android 2.1-3.0 */
+    background-image: -webkit-gradient(linear, from(#272822), to(#171814));
+    /* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+    background-image: -webkit-linear-gradient(#272822, #171814);
+    /* Firefox 3.6 - 15 */
+    background-image: -moz-linear-gradient(#272822, #171814);
+    /* Opera 11.1 - 12 */
+    background-image: -o-linear-gradient(#272822, #171814);
+    /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+    background-image: linear-gradient(#272822, #171814);
+}
+
+.me_popup {
+    position: relative;
+    left: 15px;
+}
+
+.port_popup {
+    position: relative;
+    left: -3px;
+}
+
+.resume_popup {
+    position: relative;
+    left: -1px;
+}
+
+.mail_popup {
+    position: relative;
+    left: -53px;
+}
+
+.linkedin_popup {
+    position: relative;
+    left: -3px;
+}
+
+.github_popup {
+    position: relative;
+    left: 2px;
+}
+
 #me:hover ~ #bg{
     background: #68B4DD;
-    -webkit-transition: background-color 0.7s;
-    -moz-transition: background-color 0.7s;
-    -o-transition: background-color 0.7s;
+    -webkit-transition: background-color 0.6s;
+    -moz-transition: background-color 0.6s;
+    -o-transition: background-color 0.6s;
 }
 #resume:hover ~ #bg{
     background: #9EE162;
-    -webkit-transition: background-color 0.7s;
-    -moz-transition: background-color 0.7s;
-    -o-transition: background-color 0.7s;
+    -webkit-transition: background-color 0.6s;
+    -moz-transition: background-color 0.6s;
+    -o-transition: background-color 0.6s;
 }
 #email:hover ~ #bg{
     background: #FFE06B;
-    -webkit-transition: background-color 0.7s;
-    -moz-transition: background-color 0.7s;
-    -o-transition: background-color 0.7s;
+    -webkit-transition: background-color 0.6s;
+    -moz-transition: background-color 0.6s;
+    -o-transition: background-color 0.6s;
 }
 #LI:hover ~ #bg{
     background: #FEC179;
-    -webkit-transition: background-color 0.7s;
-    -moz-transition: background-color 0.7s;
-    -o-transition: background-color 0.7s;
+    -webkit-transition: background-color 0.6s;
+    -moz-transition: background-color 0.6s;
+    -o-transition: background-color 0.6s;
 }
 #GH:hover ~ #bg{
     background: #FC6263;
-    -webkit-transition: background-color 0.7s;
-    -moz-transition: background-color 0.7s;
-    -o-transition: background-color 0.7s;
+    -webkit-transition: background-color 0.6s;
+    -moz-transition: background-color 0.6s;
+    -o-transition: background-color 0.6s;
 }
 
 #portfolio:hover ~ #bg{
     background: #D363F6;
-    -webkit-transition: background-color 0.7s;
-    -moz-transition: background-color 0.7s;
-    -o-transition: background-color 0.7s;
+    -webkit-transition: background-color 0.6s;
+    -moz-transition: background-color 0.6s;
+    -o-transition: background-color 0.6s;
 }
 
 
