@@ -46,8 +46,7 @@ h1 {
     margin: 0 auto;
     position: relative;
     z-index: 20;
-    top: 45px;
-    width: 40%;
+    top: 18px;
     display: none;
 }
 
@@ -283,6 +282,8 @@ input[type=checkbox]:checked ~ #rotup {
     }
     .headingpic0 {
         display: inline;
+        width: 40%;
+        top: 50px;
     }
     hr {
         display: none;
