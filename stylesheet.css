@@ -46,7 +46,8 @@ h1 {
     margin: 0 auto;
     position: relative;
     z-index: 20;
-    top: 18px;
+    top: 45px;
+    width: 40%;
     display: none;
 }
 
@@ -266,7 +267,7 @@ input[type=checkbox]:checked ~ #rotup {
 
 /* yayyy, media queries */
 
-/* Mobile, not tablet */
+/* Mobile, iPHONE! */
 @media only screen and (max-device-width: 500px) {
     body {
         width: 100%;
@@ -282,8 +283,6 @@ input[type=checkbox]:checked ~ #rotup {
     }
     .headingpic0 {
         display: inline;
-        width: 40%;
-        margin-bottom: 25px;
     }
     hr {
         display: none;
