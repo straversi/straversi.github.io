@@ -1,123 +1,310 @@
+/* Style = Classic Red */
+
 @font-face {
-    font-family: 'Roboto Normal';
-    src: url('roboto/Roboto-Regular.ttf');
+    font-family: 'Quicksand Regular';
+    src: url('quicksand/Quicksand-Regular.otf');
 }
 
 @font-face {
-    font-family: 'Roboto Bold';
-    src: url('roboto/Roboto-Bold.ttf');
+    font-family: 'Quicksand Bold';
+    src: url('quicksand/Quicksand-Bold.otf');
 }
 
 @font-face {
-    font-family: 'Roboto Italic';
-    src: url('roboto/Roboto-Italic.ttf');
+    font-family: 'Fjord';
+    src: url('fjord/FjordOne-Regular.otf');
 }
 
 body {
-    font-family: 'Roboto Normal', sans-serif;
-    font-style: normal;
-    font-size: 14px;
-    background: #F5F5F5;
-    color: black;
-    margin: 0 auto;
-    width: 500px;
-    /* padding: 15px 260px 10px 260px; */
-    text-align: left;
-}
-
-#first {
-    background: #F2EFE6;
-    padding: 10px 10px 10px 10px;
-    box-shadow: 0 8px 6px -6px #888888;
-    position: relative;
-}
-
-#second {
-    background: #E6F2F0;
-    padding: 10px 10px 10px 10px;
-    box-shadow: 0 8px 6px -6px #888888;
-    position: relative;
-}
-
-#third {
-    background: white;
-    padding: 10px 10px 10px 10px;
+	font-family: 'Fjord', serif;
+	font-size: 14px;
+	color: white;
+	background: linear-gradient(to right, rgba(0, 0, 0, .5), rgba(42, 69, 92, .4), rgba(0, 0, 0, .5)), url(images/subtle_backgrounds/congruent_outline/congruent_outline.png);
     text-align: center;
-    box-shadow: 0 8px 6px -6px #888888;
+	width: 500px;
+	margin: 0 auto;
     position: relative;
+    top: -40px;
 }
 
 h1 {
-    color: #024E68;
-    font-size: 2em;
-    font-family: 'Roboto-Bold', sans-serif;
-    margin: 0;
-    padding: 10px;
+	font-family: 'Fjord', serif;
+	font-size: 3em;
+	color: white;
+	text-align: center;
+    margin-bottom: 45px
+}
+
+.headingpic {
+    margin: 0 auto;
+    position: relative;
+    z-index: 20;
+    top: 40px;
+}
+
+.headingpic0 {
+    margin: 0 auto;
+    position: relative;
+    z-index: 20;
+    top: 18px;
+    display: none;
+}
+
+.bolded {
+    font-family: 'Quicksand Bold', sans-serif;
+}
+
+.underlined {
+    font-family: 'Quicksand Regular', sans-serif;
+    text-decoration: underline;
+}
+
+.dropcap {
+    font-family: 'Quicksand Regular', sans-serif;
+    float: left;
+    font-size: 2.9em;
+    position: relative;
+    top: -5px;
+}
+
+nav {
+    font-family: 'Quicksand Regular';
+    width: 100%;
+    height: auto;
     text-align: center;
 }
 
-#funfooter {
-    position: fixed;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    border-bottom-color: #F2EFE6;
-    left: 0px;
-    bottom: 0px;
-    height: 0px auto;
-    width: 100%;
-    background: #000;
-    color: #fff;
-    padding: 0px auto;
+nav ul{
+    height: auto;
+    padding: 1px 1px 1px 1px;
     margin: 0px;
-    z-index: 1000;
 }
 
-#footerlinks {
-    margin:0 auto;
-    width: 81px;
+nav ul li {
+    display: inline;
+    padding: 2px;
+    position: relative;
 }
 
-#panel,#flip {
-    text-align:center;
-    font-family: 'Roboto Italic', sans-serif;
-    background-color: black;
-    border:solid 1px black;
+a:visited, a:link, a:active {
+    color: white;
+    text-decoration: none;
 }
 
-#panel {
-    display:none;
+a:hover {
+    color: #64CE83;
 }
 
-.panel {
-    width:200px;
-    height:200px;
-    float:left;
-    background:#F2EFE6;
-    position:absolute;
-    left:300px;
-    top:-228px;
-    box-shadow: -6px 6px 6px -6px #888888;
-    z-index:-1;
+#rest {
+    position: relative;
+    top: 0px;
+    transition: all .5s ease-in-out;
 }
 
-.slider-arrow {
-    padding:5px;
-    width:10px;
-    float:left;
-    background:#F2EFE6;
-    font:400 12px Arial, Helvetica, sans-serif;
-    color:#000;
-    text-decoration:none;
-    position:absolute;
-    left:500px;
-    top:-228px;
-    box-shadow: -6px 6px 6px -6px #888888;
-    z-index:-2;
+.aboutbox {
+    border-top: 3px solid #398DAD;
+    background: #0A445C;
+    float: left;
+    text-align: left;
+    padding: 6px;
+    width: 45%;
+    margin: 6px 3px 6px 3px;
 }
 
-#insliderpanel {
-    position:absolute;
-    top:-17px;
-    padding: 10px 10px 10px 10px;
+.expbox {
+    border-top: 3px solid #C9853C;
+    background: #92510A;
+    float: right;
+    text-align: left;
+    padding: 6px;
+    width: 45%;
+    margin: 6px 3px 6px 3px;
+}
 
+.paninibox {
+    border-top: 3px solid #37B74E;
+    background: #08701A;
+    float: left;
+    text-align: left;
+    padding: 6px;
+    width: 45%;
+    margin: 6px 3px 6px 3px;
+}
+
+.mapbox {
+    font-size: 2em;
+    border-top: 3px solid white;
+    background: #0A445C;
+    float: left;
+    text-align: left;
+    padding: 6px;
+    width: 95%;
+    margin: 6px 3px 6px 3px;
+}
+
+hr.fancy {
+	border: 0;
+    height: 3px;
+    background-image: -webkit-linear-gradient(left, rgba(255,255,255,.35), rgba(255,255,255,1), rgba(255,255,255,.35)); 
+    background-image:    -moz-linear-gradient(left, rgba(255,255,255,.35), rgba(255,255,255,1), rgba(255,255,255,.35)); 
+    background-image:     -ms-linear-gradient(left, rgba(255,255,255,.35), rgba(255,255,255,1), rgba(255,255,255,.35)); 
+    background-image:      -o-linear-gradient(left, rgba(255,255,255,.35), rgba(255,255,255,1), rgba(255,255,255,.35)); 
+}
+
+.backtonormal {
+    font-family: 'Quicksand Regular', sans-serif;
+}
+
+footer {
+    font-family: 'Quicksand Regular', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: .6em;
+    padding-top: 3px;
+    margin-bottom: 5px;
+}
+
+/* SLIDE BAR FOR MOBILE */
+input[type=checkbox] {
+    position: absolute;
+    top:1px;
+    left:1px;
+    display: none;
+}
+
+#boxlabel {
+    color: black;
+    background: #398DAD;
+    border: 3px solid white;
+    padding: 3px;
+    float: left;
+    margin: 6px;
+    cursor: pointer;
+    position: fixed;
+    top: 1px;
+    left: -1px;
+    width: 28px;
+    height: 22px;
+    z-index: 9;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px black;
+    transition: all .2s ease-in-out;
+    display: none;
+}
+
+.slide1, .slide2, .slide3, .slide4, .slide5 {
+    font-family: 'Quicksand Regular', sans-serif;
+    top: -20px;
+    margin-left: 11px;
+    text-align: left;
+    padding: 2px;
+    position: fixed;
+    z-index: 10;
+    transition: all .2s ease-in-out;
+    display: none;
+}
+
+#rotdown {
+    position: fixed;
+    z-index: 150;
+    left: 12px;
+    top: 5px;
+    transition: all .2s ease-in-out;
+    display: none;
+}
+
+#rotup {
+    position: fixed;
+    z-index: 150;
+    left: 12px;
+    top: 18px;
+    transition: all .2s ease-in-out;
+    display: none;
+}
+
+input[type=checkbox]:checked ~ .slide1 {
+    top: 39px;
+}
+input[type=checkbox]:checked ~ .slide2 {
+    top: 64px;
+}
+input[type=checkbox]:checked ~ .slide3 {
+    top: 88px;
+}
+input[type=checkbox]:checked ~ .slide4 {
+    top: 114px;
+}
+input[type=checkbox]:checked ~ .slide5 {
+    top: 139px;
+}
+input[type=checkbox]:checked ~ #boxlabel {
+    background: #0A445C;
+    height: 151px;
+    width: 144px;
+}
+input[type=checkbox]:checked ~ #rotdown {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    left: 13px;
+    top: 13px;
+}
+input[type=checkbox]:checked ~ #rotup {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    left:8px;
+    top: 13px;
+}
+
+/* ------------- */
+
+/* yayyy, media queries */
+
+/* Mobile, not tablet */
+@media only screen and (max-width: 500px) {
+    body {
+        width: 100%;
+        font-size: 16px;
+        top: 0px;
+    }
+    h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+    .headingpic {
+        display: none;
+    }
+    .headingpic0 {
+        display: inline;
+    }
+    hr {
+        display: none;
+    }
+    nav {
+        display: none;
+    }
+    #boxlabel {
+        display: inline;
+    }
+    .slide1, .slide2, .slide3, .slide4, .slide5, .sideslide, .hider, #rotdown, #rotup {
+        display: block;
+    }
+    .aboutbox, .expbox, .paninibox, .mapbox {
+        width: 93%;
+        float: center;
+        margin: 0 auto;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+}
+
+/* Portrait Mobile */
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    
 }
