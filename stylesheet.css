@@ -19,6 +19,7 @@ body {
 	font-family: 'Fjord', serif;
 	font-size: 14px;
 	color: white;
+    background: url(images/subtle_backgrounds/congruent_outline/congruent_outline.png);
 	background: linear-gradient(to right, rgba(0, 0, 0, .5), rgba(42, 69, 92, .4), rgba(0, 0, 0, .5)), url(images/subtle_backgrounds/congruent_outline/congruent_outline.png);
     text-align: center;
 	width: 500px;
