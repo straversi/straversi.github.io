@@ -283,6 +283,7 @@ input[type=checkbox]:checked ~ #rotup {
     .headingpic0 {
         display: inline;
         width: 40%;
+        margin-bottom: 25px;
     }
     hr {
         display: none;
