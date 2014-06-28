@@ -270,7 +270,7 @@ input[type=checkbox]:checked ~ #rotup {
 @media only screen and (max-device-width: 500px) {
     body {
         width: 100%;
-        font-size: 6vw;
+        font-size: 5.5vw;
         top: 0px;
     }
     h1 {
