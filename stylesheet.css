@@ -267,6 +267,44 @@ input[type=checkbox]:checked ~ #rotup {
 /* yayyy, media queries */
 
 /* Mobile, not tablet */
+@media only screen and (max-device-width: 500px) {
+    body {
+        width: 100%;
+        font-size: 16px;
+        top: 0px;
+    }
+    h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+    .headingpic {
+        display: none;
+    }
+    .headingpic0 {
+        display: inline;
+    }
+    hr {
+        display: none;
+    }
+    nav {
+        display: none;
+    }
+    #boxlabel {
+        display: inline;
+    }
+    .slide1, .slide2, .slide3, .slide4, .slide5, .sideslide, .hider, #rotdown, #rotup {
+        display: block;
+    }
+    .aboutbox, .expbox, .paninibox, .mapbox {
+        width: 93%;
+        float: center;
+        margin: 0 auto;
+        margin-top: 3px;
+        margin-bottom: 3px;
+    }
+}
+
+/* Size catch for Desktop screens */
 @media only screen and (max-width: 500px) {
     body {
         width: 100%;
