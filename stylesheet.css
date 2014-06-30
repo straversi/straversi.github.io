@@ -320,8 +320,8 @@ input[type=checkbox]:checked ~ #rotup {
     }
 }
 
-/* Size catch for Desktop screens */ 
-/*@media only screen and (max-width: 500px) {
+/* Size catch for Desktop (and mobile??) screens */ 
+@media only screen and (max-width: 500px) {
     body {
         width: 100%;
         font-size: 16px;
@@ -356,7 +356,7 @@ input[type=checkbox]:checked ~ #rotup {
         margin-top: 3px;
         margin-bottom: 3px;
     }
-}*/
+}
 
 /* Portrait Mobile */
 @media only screen and (max-width: 767px) and (orientation: portrait) {
