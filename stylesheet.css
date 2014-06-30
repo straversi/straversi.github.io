@@ -294,9 +294,17 @@ input[type=checkbox]:checked ~ #rotup {
     }
     #boxlabel {
         display: inline;
+        width: 3vw;
+        height: 3vw;
+    }
+    input[type=checkbox]:checked ~ #boxlabel {
+    background: #0A445C;
+    height: 6vw;
+    width: 6vw;
     }
     .slide1, .slide2, .slide3, .slide4, .slide5, .sideslide, .hider, #rotdown, #rotup {
         display: block;
+        font-size: 5vw;
     }
     .aboutbox, .expbox, .paninibox, .mapbox {
         width: 93%;
@@ -304,6 +312,7 @@ input[type=checkbox]:checked ~ #rotup {
         margin: 0 auto;
         margin-top: 3px;
         margin-bottom: 6px;
+        padding: 3vw;
     }
 }
 
