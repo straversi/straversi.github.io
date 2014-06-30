@@ -276,7 +276,7 @@ input[type=checkbox]:checked ~ #rotup {
         width: 100%;
         font-size: 7vw;
         top: 0px;
-        background: url(images/subtle_backgrounds/congruent_outline/congruent_outline.png);
+        /*background: url(images/subtle_backgrounds/congruent_outline/congruent_outline.png);*/
     }
 /*    h1 {
         font-size: 2em;
