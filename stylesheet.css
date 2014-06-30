@@ -276,6 +276,7 @@ input[type=checkbox]:checked ~ #rotup {
         width: 100%;
         font-size: 5.5vw;
         top: 0px;
+        background: url(images/subtle_backgrounds/congruent_outline/congruent_outline.png);
     }
 /*    h1 {
         font-size: 2em;
@@ -319,8 +320,9 @@ input[type=checkbox]:checked ~ #rotup {
     }
 }
 
-/* Size catch for Desktop screens */
+/* Size catch for Desktop screens */ 
 @media only screen and (max-width: 500px) {
+    /* NOT NOW!!!!!! */
     body {
         width: 100%;
         font-size: 16px;
