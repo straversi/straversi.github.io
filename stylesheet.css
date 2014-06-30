@@ -269,12 +269,12 @@ input[type=checkbox]:checked ~ #rotup {
 
 /* Mobile, iPHONE! */
 @media only screen and (max-device-width: 500px) {
-    /*body {
+    body {
         width: 100%;
         font-size: 5.5vw;
         top: 0px;
     }
-    h1 {
+/*    h1 {
         font-size: 2em;
         margin-bottom: 10px;
     }
