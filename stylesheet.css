@@ -294,8 +294,8 @@ input[type=checkbox]:checked ~ #rotup {
     }
     #boxlabel {
         display: inline;
-        width: 3vw;
-        height: 3vw;
+        width: 10vw;
+        height: 10vw;
     }
     input[type=checkbox]:checked ~ #boxlabel {
     background: #0A445C;
