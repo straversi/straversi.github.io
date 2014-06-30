@@ -305,7 +305,7 @@ input[type=checkbox]:checked ~ #rotup {
     .slide1, .slide2, .slide3, .slide4, .slide5, .sideslide, .hider, #rotdown, #rotup {
         display: block;
         font-size: 5vw;
-    }
+    }*/
     .aboutbox, .expbox, .paninibox, .mapbox {
         width: 93%;
         float: center;
@@ -313,7 +313,7 @@ input[type=checkbox]:checked ~ #rotup {
         margin-top: 3px;
         margin-bottom: 6px;
         padding: 3vw;
-    }*/
+    }
 }
 
 /* Size catch for Desktop screens */
