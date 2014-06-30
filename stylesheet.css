@@ -269,7 +269,7 @@ input[type=checkbox]:checked ~ #rotup {
 
 /* Mobile, iPHONE! */
 @media only screen and (max-device-width: 500px) {
-    body {
+    /*body {
         width: 100%;
         font-size: 5.5vw;
         top: 0px;
@@ -313,7 +313,7 @@ input[type=checkbox]:checked ~ #rotup {
         margin-top: 3px;
         margin-bottom: 6px;
         padding: 3vw;
-    }
+    }*/
 }
 
 /* Size catch for Desktop screens */
