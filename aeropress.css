@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Fjord';
+    src: url('fjord/FjordOne-Regular.otf');
+}
+
+body {
+	font-family: 'Fjord', serif;
+}
