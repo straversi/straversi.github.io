@@ -1,0 +1,273 @@
+@font-face {
+    font-family: 'Fjord';
+    src: url('fjord/FjordOne-Regular.otf');
+}
+
+@font-face {
+	font-family: 'Exo-Light';
+	src: url('exo/Exo-Light.otf');
+}
+
+@font-face {
+	font-family: 'Exo-ExtraBold';
+	src: url('exo/Exo-ExtraBold.otf');
+}
+
+@-webkit-keyframes Spin-Move {
+	0% { -webkit-transform: rotate(180deg);}
+	78% { -webkit-transform: rotate(-197deg);}
+	90% { -webkit-transform: rotate(-173deg);}
+	100% { -webkit-transform: rotate(-180deg);}
+}
+
+@-moz-keyframes Spin-Move {
+	0% { -moz-transform: rotate(180deg);}
+	78% { -moz-transform: rotate(-197deg);}
+	90% { -moz-transform: rotate(-173deg);}
+	100% { -moz-transform: rotate(-180deg);}
+}
+
+@-ms-keyframes Spin-Move {
+	0% { -ms-transform: rotate(180deg);}
+	78% { -ms-transform: rotate(-197deg);}
+	90% { -ms-transform: rotate(-173deg);}
+	100% { -ms-transform: rotate(-180deg);}
+}
+
+@-o-keyframes Spin-Move {
+	0% { -o-transform: rotate(180deg);}
+	78% { -o-transform: rotate(-197deg);}
+	90% { -o-transform: rotate(-173deg);}
+	100% { -o-transform: rotate(-180deg);}
+}
+
+@keyframes Spin-Move {
+	0% { transform: rotate(180deg);}
+	78% { transform: rotate(-197deg);}
+	90% { transform: rotate(-173deg);}
+	100% { transform: rotate(-180deg);}
+}
+
+@-webkit-keyframes Fade {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@-moz-keyframes Fade {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@-ms-keyframes Fade {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@-o-keyframes Fade {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@keyframes Fade {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+body {
+	background: url(images/snow_texture.png)
+}
+
+h1 {
+	font-family: 'Fjord', serif;
+	font-size: 34px;
+	white-space: nowrap;
+	height: 40px;
+	margin: auto;
+	position: absolute;
+	top: 0; left: 325px; bottom: 0;
+	z-index: 150;
+}
+
+a {text-decoration: none; color: black;}
+a:hover {color: orange;}
+
+.options {
+	position: absolute;
+	height: 55px;
+	width: 150px;
+	text-align: right;
+	margin: 0px 0px 0px 0px;
+	z-index: 100;
+	font-family: 'Exo-Light', sans-serif;
+	font-size: 20px;
+	color: black;
+	/*border: solid black 1px;*/
+}
+
+#a {
+	left: -40px;
+	top: 30px;
+}
+
+#b {
+	left: -60px;
+	top: 85px;
+}
+
+#c {
+	left: -40px;
+	top: 140px;
+}
+
+#a:hover ~ #needle {
+	transition: all .2s ease-in-out;
+	-webkit-transform: rotate(25deg);
+	-moz-transform: rotate(25deg);
+	-ms-transform: rotate(25deg);
+	-o-transform: rotate(25deg);
+	transform: rotate(25deg);
+}
+
+#b:hover ~ #needle {
+	transition: all .2s ease-in-out;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+#c:hover ~ #needle {
+	transition: all .2s ease-in-out;
+	-webkit-transform: rotate(-25deg);
+	-moz-transform: rotate(-25deg);
+	-ms-transform: rotate(-25deg);
+	-o-transform: rotate(-25deg);
+	transform: rotate(-25deg);
+}
+
+h1:hover ~ #needle {
+	-webkit-animation: Spin-Move .5s ease-in-out;
+	-moz-animation: Spin-Move .5s ease-in-out;
+	-ms-animation: Spin-Move .5s ease-in-out;
+	-o-animation: Spin-Move .5s ease-in-out;
+	animation: Spin-Move .5s ease-in-out;
+}
+
+#needle {
+	position: absolute;
+	z-index: 50;
+	left: 95px;
+	top: 0px;
+	transition: all .4s ease-in-out;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+#revver {
+	position: absolute;
+	z-index: 48;
+	left: 123px;
+	top: 27px;
+}
+
+#wrapper {
+	height: 200px;
+	width: 200px;
+	margin: auto;
+	position: absolute;
+	top: 0; right: 55%; bottom: 0;
+	/*border: solid black 1px;*/
+}
+
+#gearbox {
+	height: 50px;
+	width: 150px;
+	position: absolute;
+	margin: auto;
+	bottom: 10px; left: 0; right: 0;
+	/*border: solid black 1px;*/
+}
+
+.gear {
+	font-family: 'Exo-ExtraBold', sans-serif;
+	font-size: 40px;
+	position: absolute;
+	z-index: 25;
+	height: 50px;
+}
+
+#selector {
+	position: relative;
+	z-index: 10;
+	height: 38px;
+	width: 38px;
+	border-radius: 10px;
+    border: 3px solid #989898;
+    top: 3px;
+    left: -11px;
+    transition: all .2s ease-in-out 50s;
+}
+
+#park:hover ~ #selector {
+	transition: all .2s ease-in-out;
+	left: -10px;
+}
+#reverse:hover ~ #selector {
+	transition: all .2s ease-in-out;
+	left: 28px;
+}
+#neutral:hover ~ #selector {
+	transition: all .2s ease-in-out;
+	left: 70px;
+}
+#drive:hover ~ #selector {
+	transition: all .2s ease-in-out;
+	left: 112px;
+}
+
+[id^=gear-display] {
+	position: absolute;
+	left: 170px;
+	top: 15px;
+	font-size: 15px;
+	color: black;
+	font-family: 'Exo-Light', sans-serif;
+	opacity: 0;
+}
+
+#park:hover ~ #gear-display-1 {
+	/*transition: all .4s ease-out;*/
+	-webkit-animation: Fade .5s ease-out;
+	-moz-animation: Fade .5s ease-out;
+	-ms-animation: Fade .5s ease-out;
+	-o-animation: Fade .5s ease-out;
+	animation: Fade .5s ease-out;
+}
+#reverse:hover ~ #gear-display-2 {
+	/*transition: all .4s ease-out;*/
+	-webkit-animation: Fade .5s ease-out;
+	-moz-animation: Fade .5s ease-out;
+	-ms-animation: Fade .5s ease-out;
+	-o-animation: Fade .5s ease-out;
+	animation: Fade .5s ease-out;
+}
+#neutral:hover ~ #gear-display-3 {
+	/*transition: all .4s ease-out;*/
+	-webkit-animation: Fade .5s ease-out;
+	-moz-animation: Fade .5s ease-out;
+	-ms-animation: Fade .5s ease-out;
+	-o-animation: Fade .5s ease-out;
+	animation: Fade .5s ease-out;
+}
+#drive:hover ~ #gear-display-4 {
+	/*transition: all .4s ease-out;*/
+	-webkit-animation: Fade .5s ease-out;
+	-moz-animation: Fade .5s ease-out;
+	-ms-animation: Fade .5s ease-out;
+	-o-animation: Fade .5s ease-out;
+	animation: Fade .5s ease-out;
+}
