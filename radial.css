@@ -179,7 +179,7 @@ h1:hover ~ #needle {
 	width: 200px;
 	margin: auto;
 	position: absolute;
-	top: 0; right: 55%; bottom: 0;
+	top: 0; right: 40%; bottom: 0;
 	/*border: solid black 1px;*/
 }
 
