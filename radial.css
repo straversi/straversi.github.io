@@ -272,7 +272,7 @@ h1:hover ~ #needle {
 	animation: Fade .5s ease-out;
 }
 
-@media only screen and (max-device-width: 500px) {
+@media only screen and (max-width: 500px) {
 	body {
 		width: 100%;
 	}
