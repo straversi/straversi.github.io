@@ -77,7 +77,7 @@ body {
 	background: url(images/snow_texture.png)
 }
 
-h1 {
+#name {
 	font-family: 'Fjord', serif;
 	font-size: 34px;
 	white-space: nowrap;
@@ -271,3 +271,11 @@ h1:hover ~ #needle {
 	-o-animation: Fade .5s ease-out;
 	animation: Fade .5s ease-out;
 }
+
+@media only screen and (max-device-width: 500px) {
+	body {
+		width: 100%;
+	}
+	#name {
+		top: -240px; left: 80px;
+	}
