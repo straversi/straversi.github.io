@@ -277,7 +277,7 @@ h1:hover ~ #needle {
 		width: 100%;
 	}
 	#name {
-		top: -240px; left: 80px;
+		top: -240px; left: 10px;
 	}
 	#wrapper {
 		top: 0; right: 30%; bottom: 0;
