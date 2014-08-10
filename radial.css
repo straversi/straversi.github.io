@@ -198,6 +198,9 @@ h1:hover ~ #needle {
 	position: absolute;
 	z-index: 25;
 	height: 50px;
+	width: 31px;
+	/*border: 1px solid #989898;*/ /* For hitbox testing */
+	padding-left: 10px;
 }
 
 #selector {
@@ -209,25 +212,42 @@ h1:hover ~ #needle {
     border: 3px solid #989898;
     top: 3px;
     left: -11px;
-    transition: all .2s ease-in-out 50s;
+    transition: all .15s ease-in-out 50s;
 }
 
 #park:hover ~ #selector {
-	transition: all .2s ease-in-out;
+	transition: all .15s ease-in-out;
 	left: -10px;
 }
 #reverse:hover ~ #selector {
-	transition: all .2s ease-in-out;
+	transition: all .15s ease-in-out;
 	left: 28px;
 }
 #neutral:hover ~ #selector {
-	transition: all .2s ease-in-out;
+	transition: all .15s ease-in-out;
 	left: 70px;
 }
 #drive:hover ~ #selector {
-	transition: all .2s ease-in-out;
+	transition: all .15s ease-in-out;
 	left: 112px;
 }
+
+/*.parkhovered {
+	transition: all .2s ease-in-out;
+	left: -10px;
+}
+.reversehovered {
+	transition: all .2s ease-in-out;
+	left: 28px;
+}
+.neutralhovered {
+	transition: all .2s ease-in-out;
+	left: 70px;
+}
+.drivehovered {
+	transition: all .2s ease-in-out;
+	left: 112px;
+}*/
 
 [id^=gear-display] {
 	position: absolute;
