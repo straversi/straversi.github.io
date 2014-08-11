@@ -215,6 +215,7 @@ h1:hover ~ #needle {
     top: 3px;
     left: -11px;
     transition: all .15s ease-in-out 50s;
+    opacity: 1;
 }
 
 #park:hover ~ #selector {
