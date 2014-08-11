@@ -84,7 +84,7 @@ body {
 	height: 40px;
 	margin: auto;
 	position: absolute;
-	top: 0; left: 325px; bottom: 0;
+	top: 0; left: 322px; bottom: 0;
 	z-index: 150;
 }
 
@@ -175,11 +175,13 @@ h1:hover ~ #needle {
 }
 
 #wrapper {
+	width: 560px;
 	height: 200px;
-	width: 200px;
-	margin: auto;
 	position: absolute;
-	top: 0; right: 55%; bottom: 0;
+	left: 50%;
+	top: 50%;
+	margin-left: -280px;
+	margin-top: -100px;
 	/*border: solid black 1px;*/
 }
 
@@ -292,7 +294,7 @@ h1:hover ~ #needle {
 	animation: Fade .5s ease-out;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 580px) {
 	body {
 		width: 100%;
 	}
@@ -300,5 +302,7 @@ h1:hover ~ #needle {
 		top: -240px; left: 10px;
 	}
 	#wrapper {
-		top: 0; right: 30%; bottom: 0;
+		width: 280px;
+		margin-left: -140px;
+		margin-top: -100px;
 	}
