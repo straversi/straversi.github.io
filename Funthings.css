@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'Fjord';
+    src: url('fjord/FjordOne-Regular.otf');
+}
+
+@font-face {
+	font-family: 'Exo-Light';
+	src: url('exo/Exo-Light.otf');
+}
+
+@font-face {
+	font-family: 'Exo-ExtraBold';
+	src: url('exo/Exo-ExtraBold.otf');
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+	height: 12px;
+	border: none;
+	background-color: #85EDEC;
+}
+
+h1 {
+	font-family: 'Fjord', serif;
+	font-size: 3em;
+	padding: 20px 0 0 20px;
+	color: white;
+	margin-top: 0;
+}
+
+#banner {
+	width: 100%;
+	min-width: 431px;
+	position: fixed;
+	z-index: -100;
+}
+
+#wrapper {
+	border-top: 12px solid #85EDEC;
+	background-color: white;
+}
+
+h2 {
+	font-family: 'Fjord', serif;
+	font-size: 2em;
+	padding-left: 10px;
+}
+
+body {
+	font-family: 'Exo-Light', sans-serif;
+	font-size: 14px;
+}
+
+p {
+	padding-left: 10px;
+}
+
+a {
+	text-decoration: none;
+	color: orange;
+}

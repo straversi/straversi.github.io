@@ -205,7 +205,7 @@ h1:hover ~ #needle {
 
 #selector {
 	position: relative;
-	z-index: 10;
+	z-index: 100;
 	height: 38px;
 	width: 38px;
 	border-radius: 10px;
