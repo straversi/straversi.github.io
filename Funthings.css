@@ -24,12 +24,27 @@ hr {
 	background-color: #85EDEC;
 }
 
-h1 {
+h1, #back, #back2 {
 	font-family: 'Fjord', serif;
 	font-size: 3em;
 	padding: 20px 0 0 20px;
 	color: white;
 	margin-top: 0;
+}
+
+#back, #back2 {
+	position: fixed;
+	right: 30px;
+	top: 10px;
+	font-size: 2em;
+	z-index: 5
+}
+
+#back2 {
+	font-size: 2.6em;
+	z-index: 4;
+	top: 5px;
+	color: #353D4E;
 }
 
 #banner {
@@ -41,7 +56,7 @@ h1 {
 
 #wrapper {
 	border-top: 12px solid #85EDEC;
-	background-color: white;
+	background: url(images/snow_texture.png);
 }
 
 h2 {

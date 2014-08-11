@@ -201,13 +201,13 @@ h1:hover ~ #needle {
 	z-index: 25;
 	height: 50px;
 	width: 31px;
-	/*border: 1px solid #989898;*/ /* For hitbox testing */
+	/*border: 1px solid #989898; /* For hitbox testing */*/
 	padding-left: 10px;
 }
 
 #selector {
 	position: relative;
-	z-index: 100;
+	z-index: 24;
 	height: 38px;
 	width: 38px;
 	border-radius: 10px;
