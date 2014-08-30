@@ -214,49 +214,16 @@ h1:hover ~ #needle {
     border: 3px solid #989898;
     top: 3px;
     left: -11px;
-    transition: all .15s ease-in-out 50s;
+    transition: all .15s ease-in-out; /* add 50s for old ways... */
     opacity: 1;
 }
-
-#park:hover ~ #selector {
-	transition: all .15s ease-in-out;
-	left: -10px;
-}
-#reverse:hover ~ #selector {
-	transition: all .15s ease-in-out;
-	left: 28px;
-}
-#neutral:hover ~ #selector {
-	transition: all .15s ease-in-out;
-	left: 70px;
-}
-#drive:hover ~ #selector {
-	transition: all .15s ease-in-out;
-	left: 112px;
-}
-
-/*.parkhovered {
-	transition: all .2s ease-in-out;
-	left: -10px;
-}
-.reversehovered {
-	transition: all .2s ease-in-out;
-	left: 28px;
-}
-.neutralhovered {
-	transition: all .2s ease-in-out;
-	left: 70px;
-}
-.drivehovered {
-	transition: all .2s ease-in-out;
-	left: 112px;
-}*/
 
 [id^=gear-display] {
 	position: absolute;
 	left: 170px;
 	top: 15px;
 	font-size: 15px;
+	white-space: nowrap;
 	color: black;
 	font-family: 'Exo-Light', sans-serif;
 	opacity: 0;

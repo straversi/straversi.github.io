@@ -18,11 +18,44 @@ html, body {
     padding: 0;
 }
 
+/* The Basics */
+
 hr {
 	height: 12px;
 	border: none;
 	background-color: #85EDEC;
 }
+h1 {
+	position: relative;
+}
+h2, h3 {
+	font-family: 'Fjord', serif;
+	font-size: 2em;
+	padding-left: 10px;
+}
+h3 {
+	font-size: 1.5em;
+}
+body {
+	font-family: 'Exo-Light', sans-serif;
+	font-size: 14px;
+}
+p {
+	padding-left: 10px;
+}
+a {
+	text-decoration: none;
+	color: orange;
+}
+.code {
+	background: white;
+	padding: 10px 10px 10px 10px;
+	border: 1px solid gray;
+	border-radius: 3px;
+	box-shadow: 0 8px 6px -6px black;
+}
+
+/* Back Button */
 
 h1, #back, #back2 {
 	font-family: 'Fjord', serif;
@@ -31,7 +64,6 @@ h1, #back, #back2 {
 	color: white;
 	margin-top: 0;
 }
-
 #back, #back2 {
 	position: fixed;
 	right: 30px;
@@ -39,7 +71,6 @@ h1, #back, #back2 {
 	font-size: 2em;
 	z-index: 5
 }
-
 #back2 {
 	font-size: 2.6em;
 	z-index: 4;
@@ -47,34 +78,61 @@ h1, #back, #back2 {
 	color: #353D4E;
 }
 
+/* Banner and Content */
+
 #banner {
 	width: 100%;
 	min-width: 431px;
 	position: fixed;
 	z-index: -100;
 }
-
 #wrapper {
 	border-top: 12px solid #85EDEC;
 	background: url(images/snow_texture.png);
 }
 
-h2 {
-	font-family: 'Fjord', serif;
-	font-size: 2em;
-	padding-left: 10px;
+/* EXTRAS!!! */
+#coffee_mug_wrapper {
+	position: relative;
+	width: 30px;
+	height: 30px;
+	top: 3px;
+	margin-left: 30px;
 }
-
-body {
-	font-family: 'Exo-Light', sans-serif;
-	font-size: 14px;
+#coffee_mug {
+	transition: all .5s;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	background: white;
+	border-radius: 5px;
+	border: 2px white solid;
 }
-
-p {
-	padding-left: 10px;
+#coffee_mug:before {
+	content: '';
+	position: absolute;
+	left: -15px;
+	top: 1px;
+	height: 18px;
+	width: 18px;
+	border-radius: 50%;
+	border: 5px solid white;
 }
-
-a {
-	text-decoration: none;
-	color: orange;
+#coffee_spill {
+	transition: height 2s, left .5s, top .5s;
+	position: absolute;
+	background: #352614;
+	left: 23px;
+	top: -1px;
+	height: 2px;
+	width: 4px;
+}
+#coffee_mug:hover {
+	-webkit-transform: rotate(60deg);
+}
+#coffee_mug:hover ~ #coffee_spill {
+	transition: height 5s, left .5s, top .5s;
+	left: 39px;
+	top: 18px;
+	height: 1000px;
 }

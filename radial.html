@@ -2,43 +2,8 @@
 <head>
 	<title>Radial Chooser</title>
 	<link rel="stylesheet" href="radial.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0," />
-	<!--<style>
-	.parkhovered {
-		transition: all .2s ease-in-out;
-		left: -10px;
-	}
-	.reversehovered {
-		transition: all .2s ease-in-out;
-		border: 6px solid #989898;
-		left: 28px;
-	}
-	.neutralhovered {
-		transition: all .2s ease-in-out;
-		left: 70px;
-	}
-	.drivehovered {
-		transition: all .2s ease-in-out;
-		left: 112px;
-	}
-	</style>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
-	<script>
-		$('#park').hover(function() {
-  			$('#selector').addClass("parkhovered");
-		});
-		$('#reverse').hover(function() {
-  			$('#selector').addClass("reversehovered");
-		});
-		$('#neutral').hover(function() {
-  			$('#selector').addClass("neutralhovered");
-		});
-		$('#drive').hover(function() {
-  			$('#selector').addClass("drivehovered");
-		});
-	</script>-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 	<p>Hello</p>
@@ -51,16 +16,34 @@
 		<img id="revver" src="images/Dial3.png" height="145" alt="circle chooser3"/>
 	</div>
 	<div id="gearbox">
-		<div class="gear" id="park" style="left: -10px;"><a href="http://www.google.com">F</a></div>
-		<div class="gear" id="reverse" style="left: 28px;"><a href="http://www.google.com">T</a></div>
+		<div class="gear" id="park" style="left: -10px;"><a href="cs10.html">C</a></div>
+		<div class="gear" id="reverse" style="left: 28px;"><a href="http://www.linkedin.com">L</a></div>
 		<div class="gear" id="neutral" style="left: 68px;"><a href="http://www.google.com">N</a></div>
-		<div class="gear" id="drive" style="left: 111px;"><a href="http://www.google.com">G</a></div>
+		<div class="gear" id="drive" style="left: 111px;"><a href="http://www.github.com">G</a></div>
 
 		<div id="selector"></div>
-		<div id="gear-display-1">Facebook</div>
-		<div id="gear-display-2">Twitter</div>
+		<div id="gear-display-1">CS10 Berkeley</div>
+		<div id="gear-display-2">Linked In</div>
 		<div id="gear-display-3">Neutral</div>
 		<div id="gear-display-4">Github</div>
 	</div>
 </body>
+<script>
+	$("#park").mouseover(function() {
+		$("#selector").css("left", "-10px");
+		console.log(1);
+	});
+	$("#reverse").mouseover(function() {
+		$("#selector").css("left", "28px");
+		console.log(2);
+	});
+	$("#neutral").mouseover(function() {
+		$("#selector").css("left", "70px");
+		console.log(3);
+	});
+	$("#drive").mouseover(function() {
+		$("#selector").css("left", "112px");
+		console.log(4);
+	});
+</script>
 </html>

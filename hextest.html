@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+	<title>Test</title>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<style>
+	.background {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	vertical-align: middle;
+	}
+	#hex {
+	color: black;
+	font-family: 'Lato', Helvetiva, Arial, sans-serif;
+	text-align: center;
+	font-size: 4.5em;
+	display: block;
+	min-width: 200px;
+	font-weight: 100;
+	}
+	</style>
+</head>
+<body>
+	<div class="background">
+		<p id="hex"></p>
+	</div>
+	<div class="weather">!</div>
+</body>
+<script>
+	$.ajax({
+  	  url: 'http://weather.yahooapis.com/forecastrss?w=2502265',
+  	  success:function(data){
+  	  	$(".weather").text(data.getElementsByName('title'));
+  	  }
+	});
+</script>
+<script>
+function refresh()
+{
+    x = 1;  // x = 1/1000 seconds
+ 	var d = new Date()
+ 	var h = d.getHours();
+ 	var m = d.getMinutes();
+ 	var s = d.getSeconds();
+ 	var number = 1 + Math.floor(Math.random() * 100);
+ 	s = s + number;
+
+ 	if (h<=9) {h = '0'+h};
+ 	if (m<=9) {m = '0'+m};
+	if (s<=9) {s = '0'+s};
+	
+ 	var	color = '#'+h+m+s;
+ 	
+    $("div.background").css("background-color", color );
+    $("p#hex").text(color);
+     
+    setTimeout(refresh, 50);
+}
+  
+// refresh(); // execute function
+
+function adjectives(last) {
+	var words = ["credentialed", "javascript", "Go Bears!", "Leaf me alone, I'm bushed!"];
+	var current = last;
+	while (last === current) {
+		var current = 1 + Math.floor(Math.random() * words.length);
+	}
+	$("p#hex").text(words[current - 1]);
+	$("p#hex").fadeIn(1)
+	$("p#hex").fadeOut(1000)
+	setTimeout(adjectives, 2000, current);
+}
+
+adjectives(1); // Go!
+
+</script>
+</html>

@@ -1,0 +1,56 @@
+/* TAB STRUCTURE */
+
+.taboo {
+  position: relative;   
+  min-height: 100px;
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.tab {
+  display: table-row; /* Allows the .taboo class to have big width */
+                      /* and content to inherit from body          */
+  width: 100px;
+}
+.tab label {
+  display: inline-block;
+  width: 80px;
+  background: #eee; 
+  padding: 10px; 
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;  
+  margin-left: -1px; 
+  position: relative;
+  left: 1px; 
+}
+.tab [type=radio] {
+  display: none;   
+}
+.content {
+  position: absolute;
+  min-width: 100px;
+  min-height: 400px;
+  top: 0px;
+  left: 100px;
+  background: white;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-left: 1px solid white;
+}
+.content .taboo {
+  margin-left: 0;
+  margin-top: 0;
+}
+.content h3 {
+  padding-left: 0px;
+}
+[type=radio]:checked + label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+[type=radio]:checked + label ~ .content {
+  z-index: 3;
+}
