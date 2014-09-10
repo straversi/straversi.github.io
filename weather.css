@@ -84,6 +84,15 @@ li div:not(.sun):not(.cloud):not(.rain):not(.snow):not(.thunder):not(.hail):not(
 	-moz-animation: Cloud 2s ease-in-out infinite infinite;
 }
 
+circle, line, path, polygon {
+	stroke: black;
+	stroke-width: 3;
+}
+
+path {
+	fill: none;
+}
+
 @-webkit-keyframes Bounce {
 	50% { -webkit-transform: scale(1.1); }
 }
