@@ -19,55 +19,46 @@
 	90% { -webkit-transform: rotate(-173deg);}
 	100% { -webkit-transform: rotate(-180deg);}
 }
-
 @-moz-keyframes Spin-Move {
 	0% { -moz-transform: rotate(180deg);}
 	78% { -moz-transform: rotate(-197deg);}
 	90% { -moz-transform: rotate(-173deg);}
 	100% { -moz-transform: rotate(-180deg);}
 }
-
 @-ms-keyframes Spin-Move {
 	0% { -ms-transform: rotate(180deg);}
 	78% { -ms-transform: rotate(-197deg);}
 	90% { -ms-transform: rotate(-173deg);}
 	100% { -ms-transform: rotate(-180deg);}
 }
-
 @-o-keyframes Spin-Move {
 	0% { -o-transform: rotate(180deg);}
 	78% { -o-transform: rotate(-197deg);}
 	90% { -o-transform: rotate(-173deg);}
 	100% { -o-transform: rotate(-180deg);}
 }
-
 @keyframes Spin-Move {
 	0% { transform: rotate(180deg);}
 	78% { transform: rotate(-197deg);}
 	90% { transform: rotate(-173deg);}
 	100% { transform: rotate(-180deg);}
 }
-
 @-webkit-keyframes Fade {
 	0% { opacity: 1; }
 	100% { opacity: 0; }
 }
-
 @-moz-keyframes Fade {
 	0% { opacity: 1; }
 	100% { opacity: 0; }
 }
-
 @-ms-keyframes Fade {
 	0% { opacity: 1; }
 	100% { opacity: 0; }
 }
-
 @-o-keyframes Fade {
 	0% { opacity: 1; }
 	100% { opacity: 0; }
 }
-
 @keyframes Fade {
 	0% { opacity: 1; }
 	100% { opacity: 0; }
@@ -108,12 +99,10 @@ a:hover {color: orange;}
 	left: -40px;
 	top: 30px;
 }
-
 #b {
 	left: -60px;
 	top: 85px;
 }
-
 #c {
 	left: -40px;
 	top: 140px;
@@ -127,7 +116,6 @@ a:hover {color: orange;}
 	-o-transform: rotate(25deg);
 	transform: rotate(25deg);
 }
-
 #b:hover ~ #needle {
 	transition: all .2s ease-in-out;
 	-webkit-transform: rotate(0deg);
@@ -136,7 +124,6 @@ a:hover {color: orange;}
 	-o-transform: rotate(0deg);
 	transform: rotate(0deg);
 }
-
 #c:hover ~ #needle {
 	transition: all .2s ease-in-out;
 	-webkit-transform: rotate(-25deg);

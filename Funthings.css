@@ -16,6 +16,10 @@
 html, body {
     margin: 0;
     padding: 0;
+    font-family: 'Exo-Light', sans-serif;
+	font-size: 16px;
+	text-align: center;
+	height: 100%;
 }
 
 /* The Basics */
@@ -26,6 +30,7 @@ hr {
 	background-color: #85EDEC;
 }
 h1 {
+	text-align: left;
 	position: relative;
 }
 h2, h3 {
@@ -33,26 +38,28 @@ h2, h3 {
 	font-size: 2em;
 	padding-left: 10px;
 }
+h2.coffee {
+	margin: 0 auto;
+	display: inline-block;
+	padding: 5px;
+	border: 4px solid black;
+	border-radius: 3px;
+	text-align: center;
+}
 h3 {
+	text-align: left;
 	font-size: 1.5em;
 }
-body {
-	font-family: 'Exo-Light', sans-serif;
-	font-size: 14px;
-}
 p {
+	text-align: left;
 	padding-left: 10px;
 }
 a {
 	text-decoration: none;
 	color: orange;
 }
-.code {
-	background: white;
-	padding: 10px 10px 10px 10px;
-	border: 1px solid gray;
-	border-radius: 3px;
-	box-shadow: 0 8px 6px -6px black;
+li {
+	text-align: left;
 }
 
 /* Back Button */
@@ -74,13 +81,14 @@ h1, #back, #back2 {
 #back2 {
 	font-size: 2.6em;
 	z-index: 4;
-	top: 5px;
+	top: 3px;
 	color: #353D4E;
 }
 
 /* Banner and Content */
 
 #banner {
+	display: block;
 	width: 100%;
 	min-width: 431px;
 	position: fixed;

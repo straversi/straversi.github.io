@@ -4,46 +4,73 @@
    <link rel="stylesheet" href="Funthings.css">
 	<link rel="stylesheet" href="cs10.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <script src="http://code.jquery.com/jquery-latest.js"></script>
 	<!-- Biiiiiiig shoutout to CSS Tricks and Chris Coyier for the basis of the tabbed structure. I appropriated it for sideways-use and tree-like function. -->
 </head>
 <body>
    <img id="banner" src="images/latias_banner.png" alt="banner goes here"/>
-   <a href="radial.html"><div id="back">&#60;</div></a>
-   <a href="radial.html"><div id="back2">&#60;</div></a>
-	<h1>CS10 Practice and Notes / </h1>
+   <a href="index.html"><div id="back">&#60;</div></a>
+   <a href="index.html"><div id="back2">&#60;</div></a>
+	<h1>CS10 Practice / </h1>
 <div id="wrapper">
-	<p>Work on perfecting the skills you've learned in CS10. If you need extra help, stop by any TA's <a href="http://www.steven.education">office hours</a>, including mine at 11:00am Monday mornings in 651 Soda. If you need answers NOW, make a post on <a href="http://www.piazza.com">Piazza</a>!</p>
+	<p id="blurb" style="width:120px; display: inline-block; margin-bottom: 0;">Work on perfecting the skills you've learned in CS10.</p>
+   <div id="help" style="float: right; margin-right: 20px">
+   <p style="margin-bottom: 0;">If you need extra help:</p>
+   <ul style="margin-top: 0;">
+      <li>Stop by any TA's <a href="https://inst.eecs.berkeley.edu/~cs10/fa14/#weekly">office hours</a></li><li>My office hours are: 11:00am Monday mornings in 651 Soda.</li>
+      <li>If you need answers NOW, make a post on <a href="http://www.piazza.com">Piazza</a>!</li>
+   </ul>
+   </div>
+   <hr style="clear: both;">
 	<div class="taboo">
-		<!-- FIRST TAB -->
+         <!-- FIRST TAB -->
    		<div class="tab">
-   		    <input type="radio" id="tab-01" name="group 0" checked>
-   		    <label for="tab-01">BYOB</label>
-   		    <div class="content" style="padding-top:0px; padding-left: 10px;">
+            <input type="radio" id="tab-01" name="group 0" checked>
+            <label for="tab-01">BYOB</label>
+            <div class="content" style="padding-top:0px; padding-left: 10px;">
    		    	<!-- inner -->
    		    	<div class="taboo">
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
-   					    <input type="radio" id="tab-11" name="group 1">
-   					    <label for="tab-11">Problem 1 One</label>
-   					    <div class="content">
-   					        <h3>CODE Problem UNOFICATION</h3>
-                          <p>Whaddup. This is where we preface the problem. Blah blah blah. Hoop-dee-hoo. La la la la la la la la la la SNAP! Lorem ipsum spaghetti sit amet. Blurb lub lkjdl dd d dd dd d sjsjs Copy pasta copu casops asodjkfl;tiuo;j ckl;v s. Filler text filer txt filler text txet rellif.</p>
-                          <p class="code">CODE GOES HERE DURRRRR<br> LA LA LA LAKJSFL AL A ALLA AL A<br> more code durrrrr</p>
-                          <p> more paragraphs here bloo bloo blu blub lub eeep epepe peeeep eeeepie eipeie e dkl fdjsl. Thanks for watching</p>
-   					    </div> 
+                     <input type="radio" id="tab-11" name="group 1">
+                     <label for="tab-11">One</label>
+                     <div class="content">
+   			            <h3>Making a Block</h3>
+                        <p>Snap! comes with lots of pre-made blocks, but often it is necessary to make your own. You should raise your block properly so that it can be a functioning part of programs someday.</p>
+                        <p class="code">CODE GOES HERE DURRRRR<br> LA LA LA LAKJSFL AL A ALLA AL A<br> more code durrrrr</p>
+                        <p>Questions:</p>
+                        <ol>
+                           <li>What is the domain of our block?
+                              <button class="Question"></button>
+                              <p class="Answer">Hello</p>
+                           </li>
+                           <li>What is the range of our block?
+                              <button class="Question"></button>
+                              <p class="Answer">WHADDUP</p>
+                           </li>
+                        </ol>
+                     </div> 
    					</div>
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
-   					    <input type="radio" id="tab-12" name="group 1">
-   					    <label for="tab-12">Problem 1 Two</label>
-   					    <div class="content">
-   					        stuff inner 2
-   					    </div> 
+                     <input type="radio" id="tab-12" name="group 1">
+                     <label for="tab-12">Two</label>
+                     <div class="content">
+                        <h3>Simple Block</h3>
+                        <p>Let's practice a simple building a simple block with these guidelines:</p>
+                        <ol>
+                           <li>Input type: String (word)</li>
+                           <li>Output type: Number</li>
+                        </ol>
+                        <p>Our block will except nothing but words and report nothing but numbers. Keep in mind-- there is an infinite amount of solutions, though many may be long and convoluted.</p>
+                        <button class="Question"></button>
+                        <p class="Answer">LE ANSWER GOES HERE</p>
+                     </div> 
    					</div>
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-13" name="group 1">
-   					    <label for="tab-13">The 1 Third Problem</label>
+   					    <label for="tab-13">Three</label>
    					  	<div class="content">
    					        stuff inner 3
    					    </div> 
@@ -67,16 +94,41 @@
    		    	<div class="taboo">
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
-   					    <input type="radio" id="tab-21" name="group 1">
-   					    <label for="tab-21">Problem 2 One</label>
-   					    <div class="content">
-   					        stuff inner 21
+                     <input type="radio" id="tab-21" name="group 1">
+                     <label for="tab-21">One</label>
+                     <div class="content">
+                        <h3>Eight Six Six Three-eeee</h3>
+                        <p>"If" statements execute code in them if their given condition is true. "If else" statements do the same thing, except they also have code that is executed only if their given condition is false.</p>
+                        <p>Take a look at the following bunch of "If else" statements. Fill in the conditions appropriately to reach each of the "say" commands!</p>
+                        <p class="code"><img width="400" src="images/Conditionals1.png"></p>
+                        <p>How can you reach:</p>
+                        <ol>
+                           <li>Apple</li>
+                              <button class="Question"></button>
+                              <p class="Answer">1: True</p>
+                           </li>
+                           <li>Orchard</li>
+                              <button class="Question"></button>
+                              <p class="Answer">1: False, 2: True, 3: True</p>
+                           </li>
+                           <li>Banana</li>
+                              <button class="Question"></button>
+                              <p class="Answer">1: False, 2: True, 3: False</p>
+                           </li>
+                           <li>Cat</li>
+                              <button class="Question"></button>
+                              <p class="Answer">1: False, 2: False, 4: True</p>
+                           </li>
+                           <li>Dance</li>
+                              <button class="Question"></button>
+                              <p class="Answer">1: False, 2: False, 4: False</p>
+                           </li>
    					    </div> 
    					</div>
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-22" name="group 1">
-   					    <label for="tab-22">Problem 2 Two</label>
+   					    <label for="tab-22">Two</label>
    					    <div class="content">
    					        stuff inner 22
    					    </div> 
@@ -84,7 +136,7 @@
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-23" name="group 1">
-   					    <label for="tab-23">The 2 Third Problem</label>
+   					    <label for="tab-23">Three</label>
    					  	<div class="content">
    					        stuff inner 23
    					    </div> 
@@ -107,7 +159,7 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-31" name="group 1">
-   					    <label for="tab-31">Problem 3 One</label>
+   					    <label for="tab-31">One</label>
    					    <div class="content">
    					        stuff inner 31
    					    </div> 
@@ -115,7 +167,7 @@
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-32" name="group 1">
-   					    <label for="tab-32">Problem 3 Two</label>
+   					    <label for="tab-32">Two</label>
    					    <div class="content">
    					        stuff inner 32
    					    </div> 
@@ -123,7 +175,7 @@
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-33" name="group 1">
-   					    <label for="tab-33">The 3 Third Problem</label>
+   					    <label for="tab-33">Three</label>
    					  	<div class="content">
    					        stuff inner 33
    					    </div> 
@@ -146,7 +198,7 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-41" name="group 1">
-   					    <label for="tab-41">Problem 4 One</label>
+   					    <label for="tab-41">One</label>
    					    <div class="content">
    					        stuff inner 41
    					    </div> 
@@ -154,7 +206,7 @@
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-42" name="group 1">
-   					    <label for="tab-42">Problem 4 Two</label>
+   					    <label for="tab-42">Two</label>
    					    <div class="content">
    					        stuff inner 42
    					    </div> 
@@ -162,7 +214,7 @@
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-43" name="group 1">
-   					    <label for="tab-43">The 4 Third Problem</label>
+   					    <label for="tab-43">Three</label>
    					  	<div class="content">
    					        stuff inner 43
    					    </div> 
@@ -185,7 +237,7 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-51" name="group 1">
-   					    <label for="tab-51">Problem 5 One</label>
+   					    <label for="tab-51">One</label>
    					    <div class="content">
    					        stuff inner 51
    					    </div> 
@@ -193,7 +245,7 @@
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-52" name="group 1">
-   					    <label for="tab-52">Problem 5 Two</label>
+   					    <label for="tab-52">Two</label>
    					    <div class="content">
    					        stuff inner 52
    					    </div> 
@@ -201,7 +253,7 @@
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-53" name="group 1">
-   					    <label for="tab-53">The 5 Third Problem</label>
+   					    <label for="tab-53">Three</label>
    					  	<div class="content">
    					        stuff inner 53
    					    </div> 
@@ -224,7 +276,7 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-61" name="group 1">
-   					    <label for="tab-61">Problem 6 One</label>
+   					    <label for="tab-61">One</label>
    					    <div class="content">
    					        stuff inner 61
    					    </div> 
@@ -232,7 +284,7 @@
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-62" name="group 1">
-   					    <label for="tab-62">Problem 6 Two</label>
+   					    <label for="tab-62">Two</label>
    					    <div class="content">
    					        stuff inner 62
    					    </div> 
@@ -240,7 +292,7 @@
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-63" name="group 1">
-   					    <label for="tab-63">The 6 Third Problem</label>
+   					    <label for="tab-63">Three</label>
    					  	<div class="content">
    					        stuff inner 63
    					    </div> 
@@ -256,14 +308,14 @@
    		<!-- SEVENTH TAB -->
    		<div class="tab">
    		    <input type="radio" id="tab-07" name="group 0">
-   		    <label for="tab-07">Recursive Reporters</label>
+   		    <label for="tab-07">Recursion</label>
    		  	<div class="content" style="padding-top:0px; padding-left: 10px;">
    		        <!-- inner -->
    		    	<div class="taboo">
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-71" name="group 1">
-   					    <label for="tab-71">Problem 7 One</label>
+   					    <label for="tab-71">One</label>
    					    <div class="content">
    					        stuff inner 71
    					    </div> 
@@ -271,7 +323,7 @@
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-72" name="group 1">
-   					    <label for="tab-72">Problem 7 Two</label>
+   					    <label for="tab-72">Two</label>
    					    <div class="content">
    					        stuff inner 72
    					    </div> 
@@ -279,7 +331,7 @@
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-73" name="group 1">
-   					    <label for="tab-73">The 7 Third Problem</label>
+   					    <label for="tab-73">Three</label>
    					  	<div class="content">
    					        stuff inner 73
    					    </div> 
@@ -302,7 +354,7 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-81" name="group 1">
-   					    <label for="tab-81">Problem 8 One</label>
+   					    <label for="tab-81">One</label>
    					    <div class="content">
    					        stuff inner 81
    					    </div> 
@@ -310,7 +362,7 @@
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-82" name="group 1">
-   					    <label for="tab-82">Problem 8 Two</label>
+   					    <label for="tab-82">Two</label>
    					    <div class="content">
    					        stuff inner 82
    					    </div> 
@@ -318,7 +370,7 @@
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-83" name="group 1">
-   					    <label for="tab-83">The 8 Third Problem</label>
+   					    <label for="tab-83">Three</label>
    					  	<div class="content">
    					        stuff inner 83
    					    </div> 
@@ -341,7 +393,7 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-91" name="group 1">
-   					    <label for="tab-91">Problem 9 One</label>
+   					    <label for="tab-91">One</label>
    					    <div class="content">
    					        stuff inner 91
    					    </div> 
@@ -349,7 +401,7 @@
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-92" name="group 1">
-   					    <label for="tab-92">Problem 9 Two</label>
+   					    <label for="tab-92">Two</label>
    					    <div class="content">
    					        stuff inner 92
    					    </div> 
@@ -357,7 +409,7 @@
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-93" name="group 1">
-   					    <label for="tab-93">The 9 Third Problem</label>
+   					    <label for="tab-93">Three</label>
    					  	<div class="content">
    					        stuff inner 93
    					    </div> 
@@ -380,7 +432,7 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-101" name="group 1">
-   					    <label for="tab-101">Problem 10 One</label>
+   					    <label for="tab-101">One</label>
    					    <div class="content">
    					        stuff inner 101
    					    </div> 
@@ -388,7 +440,7 @@
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-102" name="group 1">
-   					    <label for="tab-102">Problem 10 Two</label>
+   					    <label for="tab-102">Two</label>
    					    <div class="content">
    					        stuff inner 102
    					    </div> 
@@ -396,7 +448,7 @@
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-103" name="group 1">
-   					    <label for="tab-103">The 10 Third Problem</label>
+   					    <label for="tab-103">Three</label>
    					  	<div class="content">
    					        stuff inner 103
    					    </div> 
@@ -412,5 +464,6 @@
    		<!-- End of Top-Level Tabs. -->
     </div>
 </div>
+<script src="toggle.js"></script>
 </body>
 </html>
