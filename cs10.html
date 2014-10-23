@@ -5,13 +5,13 @@
 	<link rel="stylesheet" href="cs10.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <script src="http://code.jquery.com/jquery-latest.js"></script>
-	<!-- Biiiiiiig shoutout to CSS Tricks and Chris Coyier for the basis of the tabbed structure. I appropriated it for sideways-use and tree-like function. -->
+   <title>CS10 @ Berkeley | Practice</title>
 </head>
 <body>
    <img id="banner" src="images/latias_banner.png" alt="banner goes here"/>
    <a href="index.html"><div id="back">&#60;</div></a>
    <a href="index.html"><div id="back2">&#60;</div></a>
-	<h1>CS10 Practice / </h1>
+	<h1>CS10 Practice</h1>
 <div id="wrapper">
 	<p id="blurb" style="width:120px; display: inline-block; margin-bottom: 0;">Work on perfecting the skills you've learned in CS10.</p>
    <div id="help" style="float: right; margin-right: 20px">
@@ -23,7 +23,7 @@
    </div>
    <hr style="clear: both;">
 	<div class="taboo">
-         <!-- FIRST TAB -->
+         <!-- FIRST TAB (BYOB) -->
    		<div class="tab">
             <input type="radio" id="tab-01" name="group 0" checked>
             <label for="tab-01">BYOB</label>
@@ -33,28 +33,29 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
                      <input type="radio" id="tab-11" name="group 1">
-                     <label for="tab-11">One</label>
+                     <label for="tab-11">Making a Block</label>
                      <div class="content">
-   			            <h3>Making a Block</h3>
-                        <p>Snap! comes with lots of pre-made blocks, but often it is necessary to make your own. You should raise your block properly so that it can be a functioning part of programs someday.</p>
-                        <p class="code">CODE GOES HERE DURRRRR<br> LA LA LA LAKJSFL AL A ALLA AL A<br> more code durrrrr</p>
-                        <p>Questions:</p>
-                        <ol>
-                           <li>What is the domain of our block?
-                              <button class="Question"></button>
-                              <p class="Answer">Hello</p>
-                           </li>
-                           <li>What is the range of our block?
-                              <button class="Question"></button>
-                              <p class="Answer">WHADDUP</p>
-                           </li>
-                        </ol>
+                        <h3>Making a Block</h3>
+                           <p>Snap! comes with lots of pre-made blocks, but often it is necessary to make your own. You should raise your block properly so that it can be a functioning part of programs someday.</p>
+                           <p class='code'>CODE GOES HERE DURRRRR<br> LA LA LA LAKJSFL AL A LLA
+                            AL A<br> more code durrrrr</p>
+                           <p>Questions:</p>
+                           <ol>
+                              <li>What is the domain of our block?
+                                 <button class='Question'></button>
+                                 <p class='Answer'>Hello</p>
+                              </li>
+                              <li>What is the range of our block?
+                                 <button class='Question'></button>
+                                 <p class='Answer'>WHADDUP</p>
+                              </li>
+                           </ol>
                      </div> 
    					</div>
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
                      <input type="radio" id="tab-12" name="group 1">
-                     <label for="tab-12">Two</label>
+                     <label for="tab-12">Input / Output</label>
                      <div class="content">
                         <h3>Simple Block</h3>
                         <p>Let's practice a simple building a simple block with these guidelines:</p>
@@ -62,30 +63,29 @@
                            <li>Input type: String (word)</li>
                            <li>Output type: Number</li>
                         </ol>
-                        <p>Our block will except nothing but words and report nothing but numbers. Keep in mind-- there is an infinite amount of solutions, though many may be long and convoluted.</p>
+                        <p>Our block will except nothing but words and report nothing but numbers. Keep in mind-- there is an infinite amount of solutions.</p>
                         <button class="Question"></button>
-                        <p class="Answer">LE ANSWER GOES HERE</p>
+                        <p class="Answer"><img width="400" class="code" src="images/Input.png" /></p>
                      </div> 
    					</div>
    					<!-- 1: THIRD TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-13" name="group 1">
-   					    <label for="tab-13">Three</label>
+   					    <label for="tab-13">Lowercase</label>
    					  	<div class="content">
-   					        stuff inner 3
-   					    </div> 
+                        <h3>Lowercase Block</h3>
+                        <p>Take a look at the following statement:</p>
+                        <img width="400" class="code" src="images/Lowercase.png" />
+                        <p>Write a block with a text input that returns whether the text is a lowercase letter or not. Hint: think about how unicode is used in the picture above.</p>
+                        <button class="Question"></button>
+                        <p class="Answer"><img width="400" class="code" src="images/LowercaseSol.png" /></p>
+                     </div> 
    					</div>
-   					<!-- THE TITLE -->
-   					<!-- This is rendered last, so it appears first.   -->
-   					<!-- Once you select a tab, it is not recoverable. -->
-   					<div class="content">
-   					    Build Your Own Blocks!
-   					</div> 
     			</div>
     			<!-- end of inner -->
    		    </div> 
    		</div>
-   		<!-- SECOND TAB -->
+   		<!-- SECOND TAB (CONDITIONALS) -->
    		<div class="tab">
    		    <input type="radio" id="tab-02" name="group 0">
    		    <label for="tab-02">Conditionals</label>
@@ -95,12 +95,12 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
                      <input type="radio" id="tab-21" name="group 1">
-                     <label for="tab-21">One</label>
+                     <label for="tab-21">If/Else Puzzle</label>
                      <div class="content">
                         <h3>Eight Six Six Three-eeee</h3>
                         <p>"If" statements execute code in them if their given condition is true. "If else" statements do the same thing, except they also have code that is executed only if their given condition is false.</p>
                         <p>Take a look at the following bunch of "If else" statements. Fill in the conditions appropriately to reach each of the "say" commands!</p>
-                        <p class="code"><img width="400" src="images/Conditionals1.png"></p>
+                        <img width="400" class="code" src="images/Conditionals1.png">
                         <p>How can you reach:</p>
                         <ol>
                            <li>Apple</li>
@@ -123,14 +123,27 @@
                               <button class="Question"></button>
                               <p class="Answer">1: False, 2: False, 4: False</p>
                            </li>
+                        </ol>
    					    </div> 
    					</div>
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-22" name="group 1">
-   					    <label for="tab-22">Two</label>
+   					    <label for="tab-22">Flip Flop</label>
    					    <div class="content">
-   					        stuff inner 22
+                        <h3>Flip Flop</h3>
+                        <a href="http://snap.berkeley.edu/snapsource/snap.html#present:Username=straversi&ProjectName=flipflop">&#60; Code for this problem available here &#62;</a>
+                        <p>Take a look at the following script:</p>
+                        <img width="400" class="code" src="images/flipflop.png" />
+                        <p>Decipher what it does.</p>
+                        <p>Here is the result:</p>
+                        <Button class="Question"></button>
+                        <p class="Answer">The sprite moves 10 steps at a time, saying "flip, flop, flip, ..." forever. Each time it moves it beeps (not heard here).
+                        <video width="400" controls>
+                           <source src="images/flipflop.mp4" type="video/mp4">
+                        Update your browser to see sweet HTML5 video.
+                        </video>
+                        </p>
    					    </div> 
    					</div>
    					<!-- 1: THIRD TAB -->
@@ -141,15 +154,11 @@
    					        stuff inner 23
    					    </div> 
    					</div>
-   					<!-- THE TITLE -->
-   					<div class="content">
-   					    Conditionals
-   					</div> 
     			</div>
     			<!-- end of inner -->
    		    </div> 
    		</div>
-   		<!-- THIRD TAB -->
+   		<!-- THIRD TAB (FUNCTIONS) -->
    		<div class="tab">
    		    <input type="radio" id="tab-03" name="group 0">
    		    <label for="tab-03">Functions</label>
@@ -188,7 +197,7 @@
     			<!-- end of inner -->
    		    </div> 
    		</div>
-   		<!-- FOURTH TAB -->
+   		<!-- FOURTH TAB (LISTS) -->
    		<div class="tab">
    		    <input type="radio" id="tab-04" name="group 0">
    		    <label for="tab-04">Lists</label>
@@ -227,7 +236,7 @@
     			<!-- end of inner -->
    		    </div> 
    		</div>
-   		<!-- FIFTH TAB -->
+   		<!-- FIFTH TAB (ALGORITHMS) -->
    		<div class="tab">
    		    <input type="radio" id="tab-05" name="group 0">
    		    <label for="tab-05">Algorithms</label>
@@ -266,7 +275,7 @@
     			<!-- end of inner -->
    		    </div> 
    		</div>
-   		<!-- SIXTH TAB -->
+   		<!-- SIXTH TAB (FRACTALS) -->
    		<div class="tab">
    		    <input type="radio" id="tab-06" name="group 0">
    		    <label for="tab-06">Fractals</label>
@@ -305,7 +314,7 @@
     			<!-- end of inner -->
    		    </div> 
    		</div>
-   		<!-- SEVENTH TAB -->
+   		<!-- SEVENTH TAB (RECURSION) -->
    		<div class="tab">
    		    <input type="radio" id="tab-07" name="group 0">
    		    <label for="tab-07">Recursion</label>
@@ -315,17 +324,25 @@
    		    		<!-- 1: FIRST TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-71" name="group 1">
-   					    <label for="tab-71">One</label>
+   					    <label for="tab-71">Sum of 1 to N</label>
    					    <div class="content">
-   					        stuff inner 71
+   					      <h3>Sum of 1 to N</h3>
+                        <p>Write a recursive function that sums the natural numbers (0, 1, 2, ...) up to and including n.</p>
+                        <p><img width="400" class="code" src="images/sum1toN.png"></p>
+                        <button class="Question"></button>
+                        <p class="Answer"><img width="400" class="code" src="images/sum1toNSol.png"></p>
    					    </div> 
    					</div>
    					<!-- 1: SECOND TAB -->
    					<div class="tab">
    					    <input type="radio" id="tab-72" name="group 1">
-   					    <label for="tab-72">Two</label>
+   					    <label for="tab-72">Every Other</label>
    					    <div class="content">
-   					        stuff inner 72
+                        <h3>Every Other</h3>
+                        <p>Write a recursive block that takes in a list and reports back a list that contains every other item from the first list, starting with the first item.</p>
+                        <p><img width="400" class="code" src="images/EveryOther.png" /></p>
+                        <button class="Question"></button>
+                        <p class="Answer"><img width="400" class="code" src="images/EveryOtherSol.png" /></p>
    					    </div> 
    					</div>
    					<!-- 1: THIRD TAB -->
@@ -344,7 +361,7 @@
     			<!-- end of inner -->
    		    </div> 
    		</div>
-   		<!-- EIGHTH TAB -->
+   		<!-- EIGHTH TAB (CONCURRENCY) -->
    		<div class="tab">
    		    <input type="radio" id="tab-08" name="group 0">
    		    <label for="tab-08">Concurrency</label>
@@ -383,7 +400,7 @@
     			<!-- end of inner -->
    		    </div> 
    		</div>
-   		<!-- NINTH TAB -->
+   		<!-- NINTH TAB (HOF'S) -->
    		<div class="tab">
    		    <input type="radio" id="tab-09" name="group 0">
    		    <label for="tab-09">HOF's</label>
@@ -422,7 +439,7 @@
     			<!-- end of inner -->
    		    </div> 
    		</div>
-   		<!-- TENTH TAB -->
+   		<!-- TENTH TAB (PYTHON) -->
    		<div class="tab">
    		    <input type="radio" id="tab-010" name="group 0">
    		    <label for="tab-010">Python</label>
@@ -464,6 +481,6 @@
    		<!-- End of Top-Level Tabs. -->
     </div>
 </div>
-<script src="toggle.js"></script>
+<script src="content.js"></script>
 </body>
 </html>

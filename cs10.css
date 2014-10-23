@@ -15,7 +15,7 @@ body {
 }
 .code {
   background: white;
-  padding: 10px 2px 10px 10px;
+  padding: 10px 10px 10px 10px;
   border: 1px solid gray;
   border-radius: 3px;
   box-shadow: 0 8px 6px -6px black;
@@ -40,7 +40,7 @@ body {
 .tab label {
   display: inline-block;
   z-index: 1;
-  width: 100px;
+  min-width: 100px;
   background: #eee; 
   padding: 10px;
   position: relative; 
@@ -68,11 +68,14 @@ body {
   border-left: 1px solid #85EDEC;
 }
 .content .taboo .tab label {
-  width: 40px;
+  min-width: 40px;
 }
 .content .taboo .tab .content {
   margin-top: 30px;
   border-left: 1px solid orange;
+}
+.content .taboo .tab [type=radio]:checked + label {
+  color: orange;
 }
 .content .taboo {
   margin-top: 45px;
@@ -81,6 +84,7 @@ body {
   padding-left: 0px;
 }
 [type=radio]:checked + label {
+  color: #2B9A9A;
   background: white;
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
