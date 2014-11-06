@@ -32,11 +32,11 @@ $("document").ready(function() {
   console.log(iframes);
   for (i = 0; i < iframes.length; i++) {
     var current = iframes[i];
-    current.onload=function(){
-      console.log(iframes[i]);
-      console.log(iframes[i].contentDocument.body.style.height);
-      iframes[i].height = iframes[i].contentDocument.body.style.height;
-    };
+    $(current).load(function(){
+      console.log($(this));
+      console.log($(this).contentDocument.body.style.height);
+      $(this).height = $(this).contentDocument.body.style.height;
+    });
   }
   console.log("---");
   // console.log($(".tab > iframe").contents());
