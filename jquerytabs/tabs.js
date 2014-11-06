@@ -19,9 +19,12 @@ $("document").ready(function() {
     $(this).css("border-bottom", "1px solid #ccc");
 
   	$(this).parent().next().find(".tab").hide();
-    $(this).parent().next().find("#" + strId).show();
+    var problem = $(this).parent().next().find("#" + strId);
+    problem.show();
+    var newH = problem.height();
 
-    var outerContentHeight = $(this).parent().next().height() + 100;
+    $(this).parent().next().css("height", newH);
+    var outerContentHeight = newH + 100;
     $(this).parents(".content").css("height", outerContentHeight);
   });
 });
