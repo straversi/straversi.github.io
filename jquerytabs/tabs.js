@@ -31,12 +31,11 @@ $("document").ready(function() {
 
 $("document").ready(function() {
   var iframes = $(".tab > iframe");
-  console.log(iframes.length);
-  console.log(iframes);
   for (i = 0; i < iframes.length; i++) {
     var current = iframes[i];
     $(current).load(function(){
       console.log($(this));
+      console.log($(this).get(0).contentDocument.body.offsetHeight);
       $(this).css("height", $(this).get(0).contentDocument.body.offsetHeight + 50);
     });
   }
