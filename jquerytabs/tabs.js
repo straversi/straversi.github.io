@@ -24,7 +24,7 @@ $("document").ready(function() {
     var newH = problem.height();
 
     $(this).parent().next().css("height", newH + 50);
-    var outerContentHeight = newH + 70;
+    var outerContentHeight = newH + 120;
     $(this).parents(".content").css("height", outerContentHeight);
   });
 });
