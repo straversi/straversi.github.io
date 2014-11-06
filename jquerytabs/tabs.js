@@ -30,6 +30,7 @@ $("document").ready(function() {
   var iframes = $(".tab > iframe");
   console.log(iframes.length);
   console.log(iframes);
+  var iframe;
   for (iframe in iframes) {
     console.log(iframe);
     iframe.height = iframe.get(0).contentDocument.body.style.height;
