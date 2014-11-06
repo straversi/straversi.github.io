@@ -31,6 +31,7 @@ $("document").ready(function() {
   console.log(iframes.length);
   console.log(iframes);
   for (iframe in iframes) {
+    console.log(iframe);
     iframe.height = iframe.get(0).contentDocument.body.style.height;
     console.log(iframe.height);
   }
