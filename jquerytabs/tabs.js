@@ -23,8 +23,8 @@ $("document").ready(function() {
     problem.show();
     var newH = problem.height();
 
-    $(this).parent().next().css("height", newH);
-    var outerContentHeight = newH + 100;
+    $(this).parent().next().css("height", newH + 50);
+    var outerContentHeight = newH + 70;
     $(this).parents(".content").css("height", outerContentHeight);
   });
 });
