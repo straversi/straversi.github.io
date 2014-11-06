@@ -65,6 +65,7 @@ hr {
 /* Content */
 iframe {
 	width: 100%;
+	margin-top: -20px;
 }
 .code {
 	background: white;
@@ -109,14 +110,14 @@ h3 {
 	width: 95%;
 	min-height: 400px;
 	border: 1px black solid;
-	border-left: 1px orange solid;
+	border-left: 3px orange solid;
 	background: white;
 }
 .content .tab .content {
 	position: relative;
 	margin-left: 20px;
 	width: 95%;
-	border-left: 1px #85EDEC solid;
+	border-left: 3px #85EDEC solid;
 }
 .tab {
 	position: absolute;

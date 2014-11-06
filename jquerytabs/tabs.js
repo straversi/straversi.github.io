@@ -29,18 +29,54 @@ $("document").ready(function() {
   });
 });
 
-$("document").ready(function() {
-  var iframes = $(".tab > iframe");
-  console.log(iframes);
-  for (i = 0; i < iframes.length; i++) {
-    var current = iframes[i];
-    $(current).load(function(){
-      console.log($(this));
-      console.log($(this).get(0).contentDocument.body.offsetHeight);
-      $(this).css("height", $(this).get(0).contentDocument.body.offsetHeight + 50);
-    });
-  }
-  console.log("---");
-  // console.log($(".tab > iframe").contents());
-  // console.log($(".tab > iframe").get(0).contentDocument.body.style.height);
-});
+function renderHeight(name) {
+  var obj = document.getElementById(name).firstElementChild;
+  var newHeight = obj.contentDocument.body.style.height;
+  var newHeightNum = Number(newHeight.substring(0, newHeight.length - 2)) + 50;
+  obj.height = newHeightNum.toString() + "px";
+}
+
+
+// $("document").ready(function() {
+//   $("h1").click(function() {
+//     var iframes = $(".tab > iframe");
+//     console.log(iframes);
+//     for (i = 0; i < iframes.length; i++) {
+//         console.log($(iframes[i]));
+//         console.log($(iframes[i]).get(0).contentDocument.body.offsetHeight);
+//         $(iframes[i]).css("height", $(iframes[i]).get(0).contentDocument.body.offsetHeight);
+//     }
+//     console.log("-?-");
+//   });
+// });
+
+// $("document").ready(function() {
+//   var iframes = $(".tab > iframe");
+//   console.log(iframes);
+//   $(iframes[0]).load(function(){
+//     console.log($(this));
+//     console.log($(this).get(0).contentDocument.body.offsetHeight);
+//     $(this).css("height", $(this).get(0).contentDocument.body.offsetHeight);
+//   });
+//   $(iframes[1]).load(function(){
+//     console.log($(this));
+//     console.log($(this).get(0).contentDocument.body.offsetHeight);
+//     $(this).css("height", $(this).get(0).contentDocument.body.offsetHeight);
+//   });
+//   $(iframes[2]).load(function(){
+//     console.log($(this));
+//     console.log($(this).get(0).contentDocument.body.offsetHeight);
+//     $(this).css("height", $(this).get(0).contentDocument.body.offsetHeight);
+//   });
+//   $(iframes[3]).load(function(){
+//     console.log($(this));
+//     console.log($(this).get(0).contentDocument.body.offsetHeight);
+//     $(this).css("height", $(this).get(0).contentDocument.body.offsetHeight);
+//   });
+//   $(iframes[4]).load(function(){
+//     console.log($(this));
+//     console.log($(this).get(0).contentDocument.body.offsetHeight);
+//     $(this).css("height", $(this).get(0).contentDocument.body.offsetHeight);
+//   });
+//   console.log("---");
+// });
