@@ -35,6 +35,7 @@ $("document").ready(function() {
     $(current).load(function(){
       console.log($(this));
       console.log($(this).get(0).contentDocument.body.style.height);
+      console.log($(this).get(0).contentDocument.body.scrollHeight);
       $(this).css("height", $(this).get(0).contentDocument.body.style.height);
     });
   }
