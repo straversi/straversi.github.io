@@ -29,6 +29,6 @@ $("document").ready(function() {
 $("document").ready(function() {
   thing = $(".tab > iframe");
   console.log($(".tab > iframe").contents());
-  console.log($(".tab > iframe").get(0).contentDocument);
+  console.log($(".tab > iframe").get(0).contentDocument.body.style.height);
   console.log($(".tab > iframe").get(0).contentDocument.body.style.getPropertyValue('height'));
 });
