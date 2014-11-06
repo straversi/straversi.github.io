@@ -33,7 +33,6 @@ $("document").ready(function() {
   for (i = 0; i < iframes.length; i++) {
     console.log(iframes[i]);
     console.log(iframes[i].contentDocument.body.style.height);
-    console.log(iframes[i].get(0).contentDocument.body.style.height);
     iframes[i].height = iframes[i].contentDocument.body.style.height;
   }
   console.log("---");
