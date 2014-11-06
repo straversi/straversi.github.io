@@ -32,13 +32,10 @@ $("document").ready(function() {
   console.log(iframes);
   for (i = 0; i < iframes.length; i++) {
     console.log(iframes[i]);
-  }
-  console.log("---");
-  for (iframe in iframes) {
-    console.log(iframe);
     iframe.height = iframe.get(0).contentDocument.body.style.height;
     console.log(iframe.height);
   }
+  console.log("---");
   // console.log($(".tab > iframe").contents());
   // console.log($(".tab > iframe").get(0).contentDocument.body.style.height);
 });
