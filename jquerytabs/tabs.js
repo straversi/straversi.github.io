@@ -30,9 +30,8 @@ $("document").ready(function() {
   var iframes = $(".tab > iframe");
   console.log(iframes.length);
   console.log(iframes);
-  var iframe;
   for (i = 0; i < iframes.length; i++) {
-    console.log(iframe);
+    console.log(iframes[i]);
   }
   console.log("---");
   for (iframe in iframes) {
