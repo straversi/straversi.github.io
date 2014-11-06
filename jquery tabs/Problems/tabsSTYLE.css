@@ -1,0 +1,125 @@
+/* Administravia */
+body {
+	margin: 0 auto;
+	font-family: 'Exo-Light', sans-serif;
+	text-align: left;
+	font-size: 16px;
+}
+#banner {
+	display: block;
+	width: 100%;
+	min-width: 431px;
+	position: fixed;
+	z-index: -1;
+}
+h1 {
+	text-align: left;
+	position: relative;
+}
+@font-face {
+    font-family: 'Fjord';
+    src: url('fjord/FjordOne-Regular.otf');
+}
+@font-face {
+	font-family: 'Exo-Light';
+	src: url('exo/Exo-Light.otf');
+}
+@font-face {
+	font-family: 'Exo-ExtraBold';
+	src: url('exo/Exo-ExtraBold.otf');
+}
+/* Back Button */
+h1, #back, #back2 {
+	font-family: 'Fjord', serif;
+	font-size: 3em;
+	padding: 20px 0 0 10px;
+	color: white;
+	margin-top: 0;
+}
+#back, #back2 {
+	position: fixed;
+	right: 30px;
+	top: 10px;
+	font-size: 2em;
+	z-index: 5
+}
+#back2 {
+	font-size: 2.6em;
+	z-index: 4;
+	top: 3px;
+	color: #353D4E;
+}
+#wrapper {
+	position: relative;
+	z-index: 1;
+	background: white;
+	top: -20px;
+}
+hr {
+	height: 12px;
+	border: none;
+	background-color: #85EDEC;
+	margin: 0;
+}
+
+/* Content */
+.code {
+	background: white;
+	padding: 10px 10px 10px 10px;
+	border: 1px solid gray;
+	border-radius: 3px;
+	box-shadow: 0 8px 6px -6px black;
+}
+h3 {
+	font-family: 'Fjord', serif;
+	font-size: 2em;
+	padding-left: 10px;
+}
+.Question::after {
+	content: "Toggle Answer";
+}
+.Answer {
+	display: none;
+	color: green;
+}
+
+
+/* Tabs */
+.tabs {
+	position: static;
+	margin: 5px;
+}
+.tabs li {
+	display: inline-block;
+	cursor: pointer;
+	min-width: 100px;
+	background: #eee; 
+	padding: 7px;
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+.content {
+	position: relative;
+	margin: 0 auto;
+	width: 95%;
+	min-height: 400px;
+	border: 1px black solid;
+	border-left: 1px orange solid;
+	background: white;
+}
+.content .tab .content {
+	position: relative;
+	margin-left: 20px;
+	width: 95%;
+	border-left: 1px #85EDEC solid;
+}
+.tab {
+	position: absolute;
+	width: inherit;
+}
+.content .tab .content .tab {
+	padding: 20px;
+}
+/* End of Tabs */
