@@ -37,8 +37,8 @@ $("document").ready(function() {
     var current = iframes[i];
     $(current).load(function(){
       console.log($(this));
-      console.log($(this).get(0).contentDocument.body.style.height);
       console.log($(this).get(0).contentDocument.body.clientHeight);
+      console.log($(this).get(0).contentDocument.body.height);
       console.log($(this).get(0).contentDocument.body.scrollHeight);
       console.log($(this).get(0).contentDocument.body.offsetHeight);
       $(this).css("height", $(this).get(0).contentDocument.body.clientHeight + 50);
