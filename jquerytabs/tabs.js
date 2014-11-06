@@ -32,8 +32,8 @@ $("document").ready(function() {
   console.log(iframes);
   for (i = 0; i < iframes.length; i++) {
     console.log(iframes[i]);
-    iframe.height = iframe.get(0).contentDocument.body.style.height;
-    console.log(iframe.height);
+    iframes[i].height = iframes[i].get(0).contentDocument.body.style.height;
+    console.log(iframes[i].height);
   }
   console.log("---");
   // console.log($(".tab > iframe").contents());
