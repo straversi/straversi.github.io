@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Fjord';
-    src: url('fjord/FjordOne-Regular.otf');
+    src: url('../fjord/FjordOne-Regular.otf');
 }
 body, html {
 	position: fixed;
