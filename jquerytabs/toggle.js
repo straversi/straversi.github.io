@@ -1,5 +1,5 @@
 $('document').ready(function() {
   $('button').click(function() {
-    $(this).next().toggle();
+    $(this).next().fadeToggle(100);
   });
 });

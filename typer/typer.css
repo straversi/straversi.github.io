@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'Fjord';
+    src: url('fjord/FjordOne-Regular.otf');
+}
+body, html {
+	position: fixed;
+	font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
+	/*color: #66D0EF;*/
+    color: #2B9A9A;
+    font-size: 16px;
+}
+a {
+	text-decoration: none;
+}
+h1 {
+    /*white-space: nowrap;*/
+    font-family: 'Fjord', sans-serif;
+    font-size: 2em;
+    z-index: 5;
+    position: relative;
+    text-align: center;
+    top: -12px;
+}
+ul {
+	position: relative;
+	bottom: 0;
+	padding-left: 0;
+}
+li {
+	display: inline;
+	position: relative;
+	padding: 10px;
+	transition: top .15s linear;
+}
+li:hover {
+	top: -5px;
+	transition: top .15s ease-out;
+}
+#container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: 5px;
+    width: 280px;
+    height: 50px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: black;
+}
+#middler {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	/*border: 1px solid black;*/
+}
+#bar {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    width: 200px;
+    height: 3px;
+    top: -85px;
+    background-color: orange;
+}
+.triangle {
+	position: relative;
+	z-index: 1;
+	margin: 0 auto;
+	width: 0;
+	height: 0;
+}
+#bigT {
+	border-left: 13px solid transparent;
+	border-right: 13px solid transparent;
+	border-top: 13px solid orange;
+	top: -88px;
+}
+#littleT {
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 8px solid white;
+	top: -101px;
+}
+#bigBox {
+	margin: 0 auto;
+	position: relative;
+	z-index: -2;
+	border: 3px solid orange;
+	height: 50px;
+	width: 65%;
+	top: -82px;
+	left: -3px;
+	background: white;
+}
+#hiderWrapper {
+	width: 105%;
+	position: absolute;
+	top: -23.5px;
+	left: -8px;
+	height: 56px;
+	/*border: 1px dotted green;*/
+}
+#hiderBox {
+	margin: 0 auto;
+	position: relative;
+	z-index: -1;
+	background: white;
+	/*border: 1px solid black;*/
+	height: 56px;
+	width: 67%;
+	left: -1px;
+	background-position: 0px 7px;
+}
+#typeGrounds {
+    position: relative;
+    margin: 0 auto;
+	text-align: center;
+    top: -88px;
+}
+#typer {
+	color: #2B9A9A;
+}
+#cursor {
+	opacity: 1;
+	font-weight: 100;
+	vertical-align: 0px;
+	-webkit-animation: blink 0.75s infinite;
+	-moz-animation: blink 0.75s infinite;
+	-o-animation: blink 0.75s infinite;
+	animation: blink 0.75s infinite;
+}
+@-webkit-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@-moz-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@-o-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 1; }
+}
