@@ -3,6 +3,7 @@
 
 $(document).ready(function() {
 	var toDo = 0;
+	var h1 = $("h1");
 	function animateBubble() {
 		if (toDo == 0) {
 			toDo = 0.5;
@@ -12,7 +13,6 @@ $(document).ready(function() {
 				.animate({ width: "0px" }, 300, 
 					function() {
 						toDo = 1;
-						var h1 = $("h1");
 						if (!h1.is(":hover")) {
 							animateBubble();
 						}
@@ -29,6 +29,9 @@ $(document).ready(function() {
 				.animate({ width: "65%" }, 300,
 					function() {
 						toDo = 0;
+						if (h1.is(":hover")) {
+							animateBubble();
+						}
 				});
 		}
 		return;
