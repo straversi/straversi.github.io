@@ -1,9 +1,9 @@
 $(".tab").hide();
 
 $("document").ready(function() {
-  $("li").click(function() {
+  $(".tabs li").click(function() {
   	var str = $(this).text();
-  	var strId = str.replace(" ", "-");
+  	var strId = str.replace(/ /g, "-");
 
   	$(this).siblings().css("color", "black");
   	$(this).siblings().css("background", "#eee");
@@ -23,18 +23,29 @@ $("document").ready(function() {
     problem.show();
     var newH = problem.height();
 
-    $(this).parent().next().css("height", newH + 50);
-    var outerContentHeight = newH + 120;
+    $(this).parent().next().css("height", newH + 30);
+    var outerContentHeight = newH + 100;
     $(this).parents(".content").css("height", outerContentHeight);
+  });
+
+  $("Button").click(function(){
+    $(this).next().toggle();
+    
+    var problem = $(this).closest(".tab");
+    var newH = problem.height();
+
+    $(this).closest(".content").css("height", newH + 30);
+    var outerContentHeight = newH + 100;
+    $(this).closest(".content").parents(".content").css("height", outerContentHeight);
   });
 });
 
-function renderHeight(name) {
-  var obj = document.getElementById(name).firstElementChild;
-  var newHeight = obj.contentDocument.body.style.height;
-  var newHeightNum = Number(newHeight.substring(0, newHeight.length - 2)) + 50;
-  obj.height = newHeightNum.toString() + "px";
-}
+// function renderHeight(name) {
+//   var obj = document.getElementById(name).firstElementChild;
+//   var newHeight = obj.contentDocument.body.style.height;
+//   var newHeightNum = Number(newHeight.substring(0, newHeight.length - 2)) + 50;
+//   obj.height = newHeightNum.toString() + "px";
+// }
 
 
 // $("document").ready(function() {

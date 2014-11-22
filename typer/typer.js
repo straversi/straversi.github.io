@@ -11,7 +11,7 @@ $(document).ready(function() {
 			toDo = 0.5;
 			$("#hiderBox")
 				.animate({ width: "100%" }, 250)
-				.animate({ height: "6px" }, 400)
+				.animate({ height: "7px" }, 400)
 				.animate({ width: "0px" }, 300, 
 					function() {
 						toDo = 1;

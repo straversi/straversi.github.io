@@ -1,7 +1,7 @@
 /* Administravia */
 body {
 	margin: 0 auto;
-	font-family: 'Exo-Light', sans-serif;
+	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
 	text-align: left;
 	font-size: 16px;
 }
@@ -73,11 +73,17 @@ iframe {
 	border: 1px solid gray;
 	border-radius: 3px;
 	box-shadow: 0 8px 6px -6px black;
+	font-family: 'Monaco', 'Inconsolata', 'Courier', Serif;
+}
+.cem {
+	color: blue;
+	font-family: 'Monaco', 'Inconsolata', 'Courier' Serif;
 }
 h3 {
 	font-family: 'Fjord', serif;
-	font-size: 2em;
-	padding-left: 10px;
+	font-size: 1.7em;
+	/*padding-left: 10px;*/
+	margin: 0px;
 }
 .Question::after {
 	content: "Toggle Answer";
@@ -103,12 +109,13 @@ h3 {
 	border-bottom: 1px solid #eee;
 	margin-top: 2px;
 	margin-bottom: 2px;
+	font-family: 'Exo-Light', sans-serif;
 }
 .content {
 	position: relative;
 	margin: 0 auto;
 	width: 95%;
-	min-height: 400px;
+	min-height: 200px;
 	border: 1px black solid;
 	border-left: 3px orange solid;
 	background: white;
