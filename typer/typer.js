@@ -25,7 +25,7 @@ $(document).ready(function() {
 			toDo = -0.5;
 			$("#hiderBox")
 				.animate({ width: "100%" }, 250)
-				.animate({ height: "57px" }, 400)
+				.animate({ height: "56px" }, 400)
 				.animate({ width: "67%" }, 300);
 			$("#bigBox").delay(650)
 				.animate({ width: "65%" }, 300,
