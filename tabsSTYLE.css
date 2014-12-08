@@ -47,7 +47,7 @@ h1, #back, #back2 {
 	font-size: 2.6em;
 	z-index: 4;
 	top: 3px;
-	color: #353D4E;
+	color: #7CCAF7;
 }
 #wrapper {
 	position: relative;
@@ -77,7 +77,7 @@ iframe {
 }
 .cem {
 	color: blue;
-	font-family: 'Monaco', 'Inconsolata', 'Courier' Serif;
+	font-family: 'Monaco', 'Inconsolata', 'Courier', Serif;
 }
 h3 {
 	font-family: 'Fjord', serif;
