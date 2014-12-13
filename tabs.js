@@ -1,5 +1,6 @@
 $(".tab").hide();
 
+// DON'T JUDGE ME, I WAS YOUNG AND UNEDUCATED
 $("document").ready(function() {
   $(".tabs li").click(function() {
   	var str = $(this).text();

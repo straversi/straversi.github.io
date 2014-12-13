@@ -1,8 +1,8 @@
 // A script for ghostly typing words.
-// (c) 2014, by Steven Traversi.
+// (c) 2014 Steven Traversi.
 // Add the words you want to the array WORDS.
 
-// A separate script for animation the speech bubble.
+// A separate script for a janky animation of the speech bubble.
 $(document).ready(function() {
 	var toDo = 0;
 	var h1 = $("h1");
