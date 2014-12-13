@@ -1,3 +1,7 @@
+// A basic way to graph things. Will be improved.
+// (c) 2014 Steven Traversi
+//
+
 var commits = [{revision:"r49004", message:"First commit.", y:0},
 	{revision:"r49005", message:"update to 3-2", y:0},
 	{revision:"r49035", message:"Wrote an Edge class, edge and vertex storage, vertexSize(), maxVertex(), and add().", y:15},
