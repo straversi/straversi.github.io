@@ -98,8 +98,8 @@ $(document).ready(function() {
 	// Lay down some scalable vector graphics
 	for (var i = 0; i < commits.length - 1; i++) {
 		top = -1.5 * commits[i].y;
-		y1 = (top + 200)
-		y2 = (commits[i + 1].y * -1.5 + 200)
+		y1 = (top + 200);
+		y2 = (commits[i + 1].y * -1.5 + 200);
 		if (y1 >= y2) {
 			color = "#0D6A2A";
 		} else {
