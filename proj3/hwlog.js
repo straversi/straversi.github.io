@@ -95,11 +95,15 @@ $(document).ready(function() {
 	var y1;
 	var y2;
 	var color;
+	var nodeSize = 4;
+	var shift = 200;
+	var scaleY = 1.5;
+	var scaleX = 13;
 	// Lay down some scalable vector graphics
 	for (var i = 0; i < commits.length - 1; i++) {
-		top = -1.5 * commits[i].y;
-		y1 = (top + 200);
-		y2 = (commits[i + 1].y * -1.5 + 200);
+		top = -scaleY * commits[i].y;
+		y1 = (top + shift);
+		y2 = (commits[i + 1].y * -scaleY + shift);
 		if (y1 >= y2) {
 			color = "#0D6A2A";
 		} else {
@@ -107,16 +111,17 @@ $(document).ready(function() {
 		}
 		$("#graph").append(
 			"<svg width='" + 1500 + "px' height='" + 2000 + "px' xmlns='http://www.w3.org/2000/svg'>"
-			+ "<line x1='" + i * 13 + "' y1='" + (top + 200) + "' "
-			+ "x2='" + (i + 1) * 13 + "' y2='" + (commits[i + 1].y * -1.5 + 200) + "' "
+			+ "<line x1='" + i * scaleX + "' y1='" + (top + shift) + "' "
+			+ "x2='" + (i + 1) * scaleX + "' y2='" + (commits[i + 1].y * -scaleY + shift) + "' "
 			+ "stroke-width='" + 2 + "' stroke='" + color + "'/>"
 			+ "/svg>"
 			);
 	}
 	// Rub up some nodes and slap em on top
+	// Kept separate for layering, would need z-index loop anyway (can't z-index added element live) 
 	for (var i = 0; i < commits.length; i++) {
-		top = -1.5 * commits[i].y;
-		$("#graph").append("<div class='node' style='position: absolute;top: " + (top + 196) + "px;left: " + i * 13 + "px;'>"
+		top = -scaleY * commits[i].y;
+		$("#graph").append("<div class='node' style='position: absolute;top: " + (top + shift - nodeSize) + "px;left: " + i * scaleX + "px;'>"
 			+ "<div class='box'>"
 			+ "<span class='revision'>"
 			+ commits[i].revision
