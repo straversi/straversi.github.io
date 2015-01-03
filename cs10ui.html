@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<head>
+	<title>Testing</title>
+	<link rel="stylesheet" href="tabsSTYLE.css">
+	<script type="text/javascript" src="jquery-2.1.1.js"></script>
+	<script type="text/javascript" src="scrollfade.js"></script>
+	<link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+</head>
+<!-- So... You wanna add content. Here's what you need to do:
+   - 1: Find the major tab with the topic that you want to add something to.
+   - 2: Add the name of your content to the ul "tabs".
+   - 3: Look down to the CONTENT div
+   - 4: Add a new div id="your-exact-title-with-dashes-not-spaces"
+   - 5: Add your content to the tab div.
+   - 6: You're done! Thanks! -->
+<body>
+	<img id="banner" src="images/blue_rect.png" alt="banner goes here"/>
+	<a href="index.html"><div id="back">&#60;</div></a>
+	<a href="index.html"><div id="back2">&#60;</div></a>
+	<h1>CS10 Practice</h1>
+	<div id="wrapper">
+	<hr>
+	<p style="margin-left:20px;">This site is under construction. Nov 25 '14</p>
+   	<p style="margin-bottom:0; margin-left:20px;">If you need extra help:</p>
+   	<ul style="margin-top: 0;">
+    	<li>Stop by any TA's <a href="https://inst.eecs.berkeley.edu/~cs10/fa14/#weekly">office hours</a></li><li>My office hours are: 11:00am Monday mornings in 651 Soda.</li>
+      	<li>If you need answers NOW, make a post on <a href="http://www.piazza.com">Piazza</a>!</li>
+   	</ul>
+	<hr>
+
+	<div class="tabs">
+	<ul>
+		<li><a href="#tabs-1">BYOB</a></li>
+		<li><a href="#tabs-1">Conditionals</a></li>
+		<li><a href="#tabs-1">Functions</a></li>
+	</ul>
+	<!-- Topic Tabs -->
+		<!-- Topic 1 -->
+		<div id="tabs-1">
+			<div class="tabs">
+			<ul>
+				<li><a href="#tabs-11">Making a Block</a></li>
+				<li><a href="#tabs-12">Input Output</a></li>
+				<li><a href="#tabs-13">Lowercase</a></li>
+			</ul>
+			<!-- Specific Tabs -->
+				<!-- Specific 0 -->
+				<div id="tabs-11">
+                    <h3>Making a Block</h3>
+                    <p>Snap! comes with lots of pre-made blocks, but often it is necessary to make your own. You should raise your block properly so that it can be a functioning part of programs someday.</p>
+                    <p class='code'>EXAMPLE CODE SPACE<br>Hello, World!
+                 	<br>If you're here, consider sending Steven a practice problem!</p>
+                    <p>Questions:</p>
+                    <ol>
+                        <li>What is the domain of our block?
+                            <button class='Question'></button>
+                            <p class='Answer'>Test</p>
+                        </li>
+                        <li>What is the range of our block?
+                            <button class='Question'></button>
+                            <p class='Answer'>Test</p>
+                         </li>
+                    </ol>
+				</div>
+				<!-- Specific 1 -->
+				<div id="tabs-12">
+                    <h3>Simple Block</h3>
+                    <p>Let's practice a simple building a simple block with these guidelines:</p>
+                    <ol>
+                        <li>Input type: String (word)</li>
+                        <li>Output type: Number</li>
+                    </ol>
+                    <p>Our block will except nothing but words and report nothing but numbers. Keep in mind-- there is an infinite amount of solutions.</p>
+                    <button class="Question"></button>
+                    <p class="Answer"><img width="400" class="code" src="ProblemImages/Input.png"/></p>
+				</div>
+				<!-- Specific 2 -->
+				<div id="tabs-13">
+                    <h3>Lowercase Block</h3>
+                    <p>Take a look at the following statement:</p>
+                    <img width="400" class="code" src="ProblemImages/Lowercase.png" />
+                    <p>Write a block with a text input that returns whether the text is a lowercase letter or not. Hint: think about how unicode is used in the picture above.</p>
+                    <button class="Question"></button>
+                    <p class="Answer"><img width="400" class="code" src="ProblemImages/LowercaseSol.png"/></p>
+				</div>
+			</div>
+		</div>
+		<!-- Topic 2 -->
+		<div id="tabs-2">
+			<div class="tabs">
+			<ul>
+				<li><a href="#tabs-21">Eight Six Six Three</a></li>
+				<li><a href="#tabs-22">Flip-Flop</a></li>
+				<li><a href="#tabs-23">Boolean Operator</a></li>
+			</ul>
+				<!-- Specific 1 -->
+				<div id="tabs-21">
+                    <h3>Eight Six Six Three-eeee</h3>
+                    <p>"If" statements execute code in them if their given condition is true. "If else" statements do the same thing, except they also have code that is executed only if their given condition is false.</p>
+                    <p>Take a look at the following bunch of "If else" statements. Fill in the conditions appropriately to reach each of the "say" commands!</p>
+                    <img width="400" class="code" src="ProblemImages/Conditionals1.png"/>
+                    <p>How can you reach:</p>
+                    <ol>
+                        <li>Apple</li>
+                           <button class="Question"></button>
+                           <p class="Answer">1: True</p>
+                        </li>
+                        <li>Orchard</li>
+                           <button class="Question"></button>
+                           <p class="Answer">1: False, 2: True, 3: True</p>
+                        </li>
+                        <li>Banana</li>
+                           <button class="Question"></button>
+                           <p class="Answer">1: False, 2: True, 3: False</p>
+                        </li>
+                        <li>Cat</li>
+                           <button class="Question"></button>
+                           <p class="Answer">1: False, 2: False, 4: True</p>
+                        </li>
+                        <li>Dance</li>
+                           <button class="Question"></button>
+                           <p class="Answer">1: False, 2: False, 4: False</p>
+                        </li>
+                    </ol>
+				</div>
+				<!-- Specific 2 -->
+				<div id="tabs-22">
+                    <h3>Flip Flop</h3>
+                    <br>
+                    <a href="http://snap.berkeley.edu/snapsource/snap.html#present:Username=straversi&ProjectName=flipflop">&#60; Code for this problem available here &#62;</a>
+                    <p>Take a look at the following script:</p>
+                    <img width="400" class="code" src="ProblemImages/flipflop.png" />
+                    <p>Decipher what it does.</p>
+                    <p>Here is the result:</p>
+                    <Button class="Question"></button>
+                    <p class="Answer">The sprite moves 10 steps at a time, saying "flip, flop, flip, ..." forever. Each time it moves it beeps (not heard here).
+                    	<video width="400" controls preload="metadata">
+                        	<source src="ProblemImages/flipflop.mp4" type="video/mp4">
+                        	Update your browser to see sweet HTML5 video.
+                    	</video>
+                    </p>
+				</div>
+				<!-- Specific 3 -->
+				<div id="tabs-23">
+					<h3>Boolean Operator</h3>
+					<p>Did you know the addition operator can add boolean values? <span class="cem">true</span> has a value of <span class="cem">1</span>; <span class="cem">false</span>, <span class="cem">0</span>.</p>
+					<img class="code" with="400" src="ProblemImages/FTPlus.png"/>
+					<p>Recreate this functionality WITHOUT using the addition operator. Hint: consider boolean operators at your service.</p>
+					<img class="code" width="250" src="ProblemImages/TT.png"/>
+					<img class="code" width="250" src="ProblemImages/FT.png"/>
+					<img class="code" width="250" src="ProblemImages/FF.png"/>
+					<br><br>
+					<Button class="Question"></Button>
+					<p class="Answer">
+						<img class="code" width="300" src="ProblemImages/BooleanOperatorSol.png"/>
+				</div>
+			</div>
+		</div>
+		<!-- Topic 3 -->
+		<div id="tabs-3">
+			<div class="tabs">
+			<ul>
+				<li><a href="#tabs-31">Mississippi</a></li>
+				<li><a href="#tabs-32">Coming Soon</a></li>
+				<li><a href="#tabs-33">Coming Soon 2</a></li>
+			</ul>
+				<div id="tabs-31">
+					<h3>Mississippi</h3>
+					<p>Take a look at the following script:</p>
+					<img width="400" class="code" src="ProblemImages/Mississippi.png"/>
+					<p>What will be said after running this script?</p>
+					<p>What is happening with the "for each item" loop?</p>
+					<Button class="Question"></button>
+					<p class="Answer">The script counts how many times "i" appears in the word. The for loop iterates through the word "Mississippi", which has been split into a list by letter. The answer is 4.<br>The for loop iterates through the items of the list created by <span class="cem">split Mississippi by letter</span>. With each iteration of the loop, the variable <span class="cem">item</span> becomes the next letter of the list.</p>
+					<p class="cite">Problem code by Arielle Spencer</p>
+				</div>
+				<!-- Specific 2 -->
+				<div id="tabs-32">
+					Coming Soon
+				</div>
+				<!-- Specific 3 -->
+				<div id="tabs-33">
+					Coming Soon
+				</div>
+		</div>
+		</div>
+	</div>
+</div>
+<!-- <script src="tabs.js"></script> -->
+<!-- <script src="toggle.js"></script> -->
+<script src="jquery-ui/external/jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script>
+	$( "#tabs" ).tabs();
+</script>
+</body>
+</html>
