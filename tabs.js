@@ -1,17 +1,18 @@
 $(".tab").hide();
 
-// DON'T JUDGE ME, I WAS YOUNG AND UNEDUCATED
+strictTabStructure = true;
+
 $("document").ready(function() {
   $(".tabs > li").addClass("off");
-  $(".tabs li").click(function() {
-  	var str = $(this).text();
-  	var strId = str.replace(/ /g, "-");
 
-  	// $(this).siblings().css("color", "black");
-  	// $(this).siblings().css("background", "#eee");
-   //  $(this).siblings().css("border-right", "1px solid #eee");
-   //  $(this).siblings().css("border-bottom", "1px solid #eee");
-   $(this).siblings().removeClass("on").addClass("off").css("color", "black");
+  // Apply on/off styles and show content
+  $(".tabs > li").click(function() {
+    if (!strictTabStructure) {
+      var str = $(this).text();
+      var strId = str.replace(/ /g, "-");
+    }
+
+    $(this).siblings().removeClass("on").addClass("off").css("color", "black");
     $(this).removeClass("off");
     $(this).addClass("on");
     if ($(this).parent().parent().attr("class") == "tab") {
@@ -19,12 +20,15 @@ $("document").ready(function() {
     } else {
       $(this).css("color", "orange");
     }
-  	// $(this).css("background", "white");
-   //  $(this).css("border-right", "1px solid #ccc");
-   //  $(this).css("border-bottom", "1px solid #ccc");
 
-  	$(this).parent().next().find(".tab").hide();
-    var problem = $(this).parent().next().find("#" + strId);
+    $(this).parent().next().find(".tab").hide();
+    var problem;
+    if (!strictTabStructure) {
+      problem = $(this).parent().next().find("#" + strId);
+    } else {
+      var me = $(this).index();
+      problem = $(this).parent().next().children(".tab:eq(" + me + ")");
+    }
     problem.show();
     var newH = problem.height();
 
@@ -33,11 +37,9 @@ $("document").ready(function() {
     $(this).parents(".content").css("height", outerContentHeight);
   });
 
+  // Unselect secondary tabs
   $("#wrapper > .tabs > li").click(function() {
     $(this).parent().next().find(".tabs > li").removeClass("on").addClass("off").css("color", "black");
-    // $(this).parent().next().find(".tabs > li").css("background", "#eee");
-    // $(this).parent().next().find(".tabs > li").css("border-right", "1px solid #eee");
-    // $(this).parent().next().find(".tabs > li").css("border-bottom", "1px solid #eee");
   });
 
   $("Button").click(function(){
