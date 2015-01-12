@@ -1,8 +1,7 @@
-$(".tab").hide();
-
 strictTabStructure = true;
 
 $("document").ready(function() {
+  $(".tab").hide();
   $(".tabs > li").addClass("off");
 
   // Apply on/off styles and show content

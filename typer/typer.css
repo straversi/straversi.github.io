@@ -103,6 +103,11 @@ li:hover {
 	height: 56px;
 	/*border: 1px dotted green;*/
 }
+@-moz-document url-prefix() { 
+  #hiderWrapper {
+     top: -23px;
+  }
+}
 #hiderBox {
 	margin: 0 auto;
 	position: relative;
