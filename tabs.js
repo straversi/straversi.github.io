@@ -29,16 +29,26 @@ $("document").ready(function() {
       problem = $(this).parent().next().children(".tab:eq(" + me + ")");
     }
     problem.show();
-    var newH = problem.height();
+    // Image Loading
+    $(problem).find(".image").each(function() {
+      imageCount = $(this).children().length;
+      if (imageCount < 1) {
+        console.log("fire");
+        $(this).append("<image style='width:100%' src='" + this.dataset.src + "' alt='img load failed'/>");
+      }
+    });
 
+    var newH = problem.height();
     $(this).parent().next().css("height", newH + 30);
     var outerContentHeight = newH + 100;
     $(this).parents(".content").css("height", outerContentHeight);
   });
 
   // Unselect secondary tabs
-  $("#wrapper > .tabs > li").click(function() {
+  $("body > .tabs > li").click(function() {
     $(this).parent().next().find(".tabs > li").removeClass("on").addClass("off").css("color", "black");
+    $(this).parent().next().find(".content").css("height", "200px");
+    $(this).parent().next().css("height", "280px");
   });
 
   $("Button").click(function(){
@@ -50,6 +60,16 @@ $("document").ready(function() {
     $(this).closest(".content").css("height", newH + 30);
     var outerContentHeight = newH + 100;
     $(this).closest(".content").parents(".content").css("height", outerContentHeight);
+  });
+
+  $("#load-button").click(function () {
+    $(".image").each(function() {
+      imageCount = $(this).children().length;
+      if (imageCount < 1) {
+        console.log("fire");
+        $(this).append("<image style='width:100%' src='" + this.dataset.src + "' alt='img load failed'/>");
+      }
+    });
   });
 });
 

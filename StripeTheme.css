@@ -32,7 +32,6 @@ body {
 h1, #back, #back2 {
 	font-family: 'Roboto-Regular', 'Lucida Grande', 'Helvetica', sans-serif;
 	font-size: 3em;
-	/*padding: 20px 0 0 20px;*/
 	padding: 10px 0px 10px 30px;
 	color: white;
 	margin-top: 0;
@@ -44,6 +43,7 @@ h1 {
 }
 .stripes {
 	background: -webkit-repeating-linear-gradient(135deg, #06537D, #06537D 12px, #4E94B9 12px, #4E94B9 24px);
+    background: -moz-repeating-linear-gradient(135deg, #06537D, #06537D 12px, #4E94B9 12px, #4E94B9 24px);
   	background: repeating-linear-gradient(135deg, #06537D, #06537D 12px, #4E94B9 12px, #4E94B9 24px);
 }
 #back, #back2 {
@@ -59,23 +59,22 @@ h1 {
 	top: 3px;
 	color: #06537D;
 }
-#wrapper {
-	position: relative;
-	z-index: 1;
-	background: white;
-}
 hr {
 	height: 12px;
 	border: none;
 	background-color: #85EDEC;
 	margin: 0;
 }
-/* Content */
-iframe {
-	width: 100%;
-	margin-top: -20px;
+#load-button {
+	float: right;
+	margin-left: 10px;
+	margin-right: 20px;
 }
-.code {
+#load-button:hover:before {
+	content: "load all images ";
+}
+/* Content - CS10 Practice */
+.code, .image {
 	background: white;
 	padding: 10px 10px 10px 10px;
 	border: 1px solid gray;
@@ -100,51 +99,51 @@ h3 {
 	display: none;
 	color: green;
 }
-/* Tabs */
-.tabs {
-	position: static;
-	margin: 5px;
-}
-.tabs li {
+/* Content - Web Design Samples */
+.showcase {
+	position: relative;
 	display: inline-block;
-	cursor: pointer;
-	min-width: 100px;
-	padding: 7px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	font-family: 'Roboto-Regular', 'Exo-Light', sans-serif;
+	width: 20vw;
+	height: 20vw;
+	min-width: 220px;
+	min-height: 220px;
+	overflow: hidden;
+	margin: 10px 10px 10px 10px;
+	border-bottom: 5px solid black;
+	background: black;
 }
-.content {
+.showcase iframe {
 	position: relative;
-	margin: 0 auto;
-	width: 95%;
-	min-height: 200px;
-	/*border: 1px black solid;*/
-	border-left: 3px orange solid;
+	display: block;
+	height: 100%;
+	width: 100%;
+	transition: all .2s ease;
+	border: none;
 	background: white;
 }
-.content .tab .content {
+.showcase:hover iframe {
+	-webkit-transform: translateY(-30px);
+	transform: translateY(-30px);
+	opacity: 0.5;
+}
+.showcase div:not(.linkdummy):not(.unvisited) {
 	position: relative;
-	margin-left: 20px;
-	width: 95%;
-	border-left: 3px #85EDEC solid;
+	display: block;
+	width: 100%;
+	height: 50px;
+	transition: .2s ease;
+	padding: 2px 0px 0px 5px;
+	font-family: 'Roboto-Regular', 'Lucida Grande', sans-serif;
+	font-size: 32px;
+	color: white;
 }
-.tab {
-	position: absolute;
-	width: inherit;
+.showcase:hover div {
+	-webkit-transform: translateY(-50px);
+	transform: translateY(-50px);
 }
-.content .tab .content .tab {
-	padding: 20px;
+a {
+	text-decoration: none;
 }
-.on {
-	background: white;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+.linkdummy {
+	position:absolute;top:0;left:0;width:100%;height:100%;z-index:50;
 }
-.off {
-	color: black;
-	background: #eee;
-	border-right: 1px solid #eee;
-	border-bottom: 1px solid #eee;
-}
-/* End of Tabs */

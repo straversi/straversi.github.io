@@ -1,0 +1,48 @@
+/* Tabs */
+.tabs {
+	position: static;
+	margin: 5px;
+}
+.tabs li {
+	display: inline-block;
+	cursor: pointer;
+	min-width: 100px;
+	padding: 7px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	font-family: 'Roboto-Regular', 'Exo-Light', sans-serif;
+}
+.content {
+	position: relative;
+	margin: 0 auto;
+	width: 95%;
+	min-height: 200px;
+	/*border: 1px black solid;*/
+	border-left: 3px orange solid;
+	background: white;
+}
+.content .tab .content {
+	position: relative;
+	margin-left: 20px;
+	width: 95%;
+	border-left: 3px #85EDEC solid;
+}
+.tab {
+	position: absolute;
+	width: inherit;
+}
+.content .tab .content .tab {
+	padding: 20px;
+}
+.on {
+	background: white;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.off {
+	color: black;
+	background: #eee;
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+/* End of Tabs */
