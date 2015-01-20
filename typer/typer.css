@@ -9,9 +9,6 @@ body, html {
     color: #2B9A9A;
     font-size: 16px;
 }
-a {
-	text-decoration: none;
-}
 h1 {
     /*white-space: nowrap;*/
     font-family: 'Fjord', sans-serif;
@@ -21,21 +18,64 @@ h1 {
     text-align: center;
     top: -12px;
 }
+/* Nav Bar */
 ul {
+    list-style-type: none;
+}
+.nav {
 	position: relative;
 	bottom: 0;
 	padding-left: 0;
 }
-li {
+.nav > li {
 	display: inline;
 	position: relative;
 	padding: 10px;
 	transition: top .15s linear;
 }
-li:hover {
-	top: -5px;
-	transition: top .15s ease-out;
+.nav > li:hover .menu {
+    opacity: 1;
 }
+.nav > li:hover .arrow {
+    opacity: 1;
+}
+a {
+	text-decoration: none;
+    color: #67A09D;
+}
+a:visited {
+    color: #67A09D;
+}
+a::before {
+    content: ">";
+}
+.menu {
+    position: absolute;
+    text-align: left;
+    white-space: nowrap;
+    bottom: 100%;
+    padding: 5px;
+    border: 2px inset grey;
+    opacity: 0;
+    transition: opacity .15s linear;
+}
+.label {
+    color: grey;
+}
+.arrow {
+    position: absolute;
+    bottom: calc(100% - 4px);
+    left: 10px;
+	width: 0; 
+	height: 0; 
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 4px solid grey;
+    opacity: 0;
+    transition: opacity .15s linear;
+}
+
+/* End Nav Bar */
 #container {
     position: fixed;
     top: 50%;
