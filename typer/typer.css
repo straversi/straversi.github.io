@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Fjord';
-    src: url('../fjord/FjordOne-Regular.otf');
+    src: url('../fonts/fjord/FjordOne-Regular.otf');
 }
 body, html {
 	position: fixed;
@@ -54,7 +54,7 @@ a::before {
     text-align: left;
     white-space: nowrap;
     bottom: 100%;
-    padding: 5px;
+    padding: 5px 10px 5px 5px;
     border: 2px inset grey;
     opacity: 0;
     transition: opacity .15s linear;

@@ -9,7 +9,6 @@
 </head>
 <body>
 	<script src="typer/typer.js"></script>
-	This page under construction Jan 19 2014
 	<div id="container">
 		<div id="middler"> <!-- Puts certain things in the middle -->
 			<div id="hiderWrapper">
@@ -43,7 +42,15 @@
             </ul>
             <div class="arrow"></div>
         </li>
-		<li>Email</li>
+		<li>
+            Email
+            <ul class="menu">
+                <li><span class="label">Work</span></li>
+                <li><a id="workEM"></a></li>
+                <li><span class="label">Personal</span></li>
+                <li><a id="personalEM"></a></li>
+            </ul>
+        </li>
 		<li>
             Portfolio
             <ul class="menu">
@@ -53,5 +60,15 @@
         </li>
 	</ul>
 	</div>
+    <script>
+        function whatMightThisBe(me, domain1, domain2, targetID) {
+            var target = document.getElementById(targetID);
+            var hmmm = me + "&#64;" + domain1 + "&#46;" + domain2;
+            target.innerHTML = hmmm;
+            target.setAttribute("href", "mailto:" + me + "@" + domain1 + "." + domain2);
+        }
+        whatMightThisBe("steven", "cs10", "org", "workEM");
+        whatMightThisBe("straversi", "berkeley", "edu", "personalEM");
+    </script>
 </body>
 </html>

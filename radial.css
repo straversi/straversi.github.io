@@ -1,16 +1,16 @@
 @font-face {
     font-family: 'Fjord';
-    src: url('fjord/FjordOne-Regular.otf');
+    src: url('fonts/fjord/FjordOne-Regular.otf');
 }
 
 @font-face {
 	font-family: 'Exo-Light';
-	src: url('exo/Exo-Light.otf');
+	src: url('fonts/exo/Exo-Light.otf');
 }
 
 @font-face {
 	font-family: 'Exo-ExtraBold';
-	src: url('exo/Exo-ExtraBold.otf');
+	src: url('fonts/exo/Exo-ExtraBold.otf');
 }
 
 @-webkit-keyframes Spin-Move {

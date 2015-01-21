@@ -11,11 +11,11 @@ body {
 }
 @font-face {
 	font-family: 'Roboto-Regular';
-	src: url('roboto/Roboto-Regular.ttf');
+	src: url('../fonts/roboto/Roboto-Regular.ttf');
 }
 @font-face {
 	font-family: 'Roboto-Italic';
-	src: url('roboto/Roboto-Italic.ttf');
+	src: url('../fonts/roboto/Roboto-Italic.ttf');
 }
 /* /Graph/ stuff, haha! */
 #graph {

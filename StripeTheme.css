@@ -7,19 +7,19 @@ body {
 }
 @font-face {
     font-family: 'Fjord';
-    src: url('fjord/FjordOne-Regular.otf');
+    src: url('fonts/fjord/FjordOne-Regular.otf');
 }
 @font-face {
 	font-family: 'Roboto-Regular';
-	src: url('roboto/Roboto-Regular.ttf');
+	src: url('fonts/roboto/Roboto-Regular.ttf');
 }
 @font-face {
 	font-family: 'Exo-Light';
-	src: url('exo/Exo-Light.otf');
+	src: url('fonts/exo/Exo-Light.otf');
 }
 @font-face {
 	font-family: 'Exo-ExtraBold';
-	src: url('exo/Exo-ExtraBold.otf');
+	src: url('fonts/exo/Exo-ExtraBold.otf');
 }
 /* HEADER -- Back Button, Headline, Horizontal Rules */
 #banner {
