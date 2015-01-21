@@ -25,10 +25,10 @@ h1 {
 
 .parallax {
 	position: relative;
-	z-index: 10;
+/*	z-index: ;*/
 	height: 545px;
 	width: 100%;
-	border-bottom: 5px solid black;
+	border-bottom: 3.5px solid black;
 	overflow: hidden;
 }
 .scene {
