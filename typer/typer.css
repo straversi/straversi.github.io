@@ -35,6 +35,11 @@ ul {
 }
 .nav > li:hover .menu {
     opacity: 1;
+    visibility: visible;
+}
+.nav > li:hover .twitter-timeline-wrapper {
+    opacity: 1;
+    visibility: visible;
 }
 .nav > li:hover .arrow {
     opacity: 1;
@@ -49,6 +54,18 @@ a:visited {
 a::before {
     content: ">";
 }
+.twitter-timeline-wrapper {
+    position: absolute;
+    bottom: 100%;
+    height: 200px;
+    left: -50%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .15s linear;
+}
+.twitter-timeline {
+    height: 100%;
+}
 .menu {
     position: absolute;
     text-align: left;
@@ -57,7 +74,8 @@ a::before {
     padding: 5px 10px 5px 5px;
     border: 2px inset grey;
     opacity: 0;
-    transition: opacity .15s linear;
+    visibility: hidden;
+    transition: all .15s linear;
 }
 .label {
     color: grey;
