@@ -51,7 +51,6 @@ a:visited {
     color: #67A09D;
 }
 .twitter-timeline-wrapper {
-    height: 200px;
     width: calc(100% - 10px);
 }
 .twitter-timeline {
