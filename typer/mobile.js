@@ -1,7 +1,3 @@
-$(document).ready(function() {
-    if ((/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent)) {
-        $("nav > li").click(function() {
-            $(this).child(".menu").toggleClass("mobile-menu-on");
-        });
-    }
-});
+if ((/iPhone|iPod|Android|BlackBerry/).test(navigator.userAgent)) {
+    document.location = "cs10.html";
+}
