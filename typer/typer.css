@@ -224,3 +224,8 @@ a::before {
 	50% { opacity: 0; }
 	100% { opacity: 1; }
 }
+/* Mobile Handling */
+.mobile-menu-on {
+    visibility: visible;
+    opacity: 1;
+}
