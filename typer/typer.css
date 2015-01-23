@@ -67,6 +67,7 @@ a::before {
 }
 .menu {
     position: absolute;
+    left: 0;
     text-align: left;
     white-space: nowrap;
     bottom: 100%;
