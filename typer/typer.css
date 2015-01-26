@@ -48,11 +48,6 @@ a {
 a:visited {
     color: #67A09D;
 }
-/*
-a::before {
-    content: ">";
-}
-*/
 .twitter-timeline-wrapper {
     position: absolute;
     bottom: 100%;
