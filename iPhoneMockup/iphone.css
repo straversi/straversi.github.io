@@ -1,0 +1,128 @@
+.iPhone-6-wrapper {
+    position: relative;
+	width: 300px;
+    border-radius: 14%/6.7%;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 20px 6px -6px black;
+    box-shadow: 0 10px 10px -10px black;
+}
+.iPhone-6-wrapper::before {
+    content: "";
+    display: block;
+    padding-top: 206%;
+}
+#outer-shell {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 14%/6.7%; /* Proportional to the height and width of the iPhone!. */
+    background-image: linear-gradient(-45deg, grey, white);
+}
+#inner-shell {
+    position: absolute;
+    bottom: calc(1% - 1px); /* Half height subtract the border size */
+    left: calc(2.5% - 1px); /* ..? */
+    width: 95%;
+    height: 98%;
+    border: 1px solid #CCCECF;
+    background: white;
+    border-radius: 12%/5.8%; /* Proportional to iPhone, smaller values than outer shell. */
+}
+
+#screen {
+    position: absolute;
+    bottom: calc(12.5% - 1px); /* Half height subtract my border size */
+    left: calc(5% - 1px);
+    width: 90%;
+    border: 1px solid #575858;
+    border-radius: 2%/2%;
+    background: #2A2A2A;
+}
+#screen::before {
+    content: "";
+    display: block;
+    padding-top: 177.7%
+}
+#screen-holder {
+    position: absolute;
+    height: 99.5%;
+    width: 99%;
+    margin: -2px 1px 1px 1px;
+}
+#camera {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    width: 3%;
+    border-radius: 50%/50%;
+    background: black;
+}
+
+#camera::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+#brightness-sensor {
+    position: absolute;
+    left: 36%;
+    top: 8%;
+    width: 2.5%;
+    border-radius: 50%;
+    background: black;
+}
+
+#brightness-sensor::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+#speaker {
+    position: absolute;
+    top: 8%;
+    left: 43%;
+    width: 18%;
+    border-radius: 50%/200%;
+    background: black;
+}
+
+#speaker::before {
+    content: "";
+    display: block;
+    padding-top: 15%;
+}
+
+#home-button-outer {
+    position: absolute;
+    left: 41%;
+    bottom: 2%;
+    width: 17%;
+    border-radius: 50%;
+    background-image: linear-gradient(45deg, #4F4F4F, white);
+}
+
+#home-button-outer::after {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+#home-button-inner {
+    position: absolute;
+    left: 10%;
+    top: 9%;
+    width: 82%;
+    height: 82%;
+    border-radius: 50%;
+    background: white;
+}
+
+.twitter-timeline {
+    position: relative;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+}
