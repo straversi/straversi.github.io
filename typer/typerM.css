@@ -43,6 +43,7 @@ h1 {
 }
 .nav > li {
     font-family: 'Roboto-Bold', 'Helvetica', sans-serif;
+    font-size: 1.15em;
 	position: relative;
     width: calc(100% - 10px);
     color: black;
@@ -63,6 +64,7 @@ a:visited {
 }
 .menu {
     font-family: 'Roboto-Regular', 'Helvetica', sans-serif;
+    font-size: 1.1em;
     width: calc(100% - 10px);
     white-space: nowrap;
     margin: 10px 0px 0px -10px;
