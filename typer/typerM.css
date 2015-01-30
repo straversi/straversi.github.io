@@ -15,7 +15,7 @@ body, html {
 	/*color: #66D0EF;*/
     color: #2B9A9A;
     font-size: 16px;
-    font-size: 5.4vmin;
+    font-size: 5.6vmin;
     width: 100%;
     margin: 0;
 }
@@ -74,6 +74,9 @@ a:visited {
 /*    border-bottom: 2px solid black;*/
     background-color: #FFFFFF;
 }
+.menu > li {
+    margin-bottom: 4px;
+}
 .label {
     color: black;
 }
@@ -82,6 +85,12 @@ a:visited {
     border-style: solid;
     margin: 3px -10px 2px -5px;
     border-width: .5px;
+}
+.link-image {
+    position: absolute;
+    right: 7px;
+    float: right;
+    width: 10vmin;
 }
 /* End Nav Bar */
 #container {

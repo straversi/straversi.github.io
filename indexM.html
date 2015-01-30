@@ -20,34 +20,34 @@
 		<li>
             CS10
             <ul class="menu">
-                <li><a href="cs10.html">More Practice</a></li>
+                <li><a href="cs10.html">More Practice<image class="link-image" src="images/ikons/graph_rise.png"</image></a></li>
                 <li><br><span class="label">External</span><hr></li>
-                <li><a href="http://cs10.org/sp15">Class Page</a></li>
+                <li><a href="http://cs10.org/sp15">Class Page<image class="link-image" src="images/ikons/macbook.png"</image></a></li>
             </ul>
             <div class="arrow"></div>
         </li>
 		<li>
             Experience
             <ul class="menu">
-                <li><a href="StevenTraversiResume.pdf" target="_blank">Resume</a></li>
+                <li><a href="StevenTraversiResume.pdf" target="_blank">Resume<image class="link-image" src="images/ikons/clip.png"</image></a></li>
                 <li><br><span class="label">External</span><hr></li>
-                <li><a href="https://www.linkedin.com/in/straversi">Linked In</a></li>
-                <li><a href="https://www.github.com/straversi">Github</a></li>
+                <li><a href="https://www.linkedin.com/in/straversi">Linked In<image class="link-image" src="images/ikons/link.png"</image></a></li>
+                <li><a href="https://www.github.com/straversi">Github<image class="link-image" src="images/ikons/terminal.png"</image></a></li>
             </ul>
         </li>
 		<li>
             Email
             <ul class="menu">
                 <li><span class="label">Work</span><hr></li>
-                <li><a id="workEM"></a></li>
+                <li><a id="workEM"><image class="link-image" src="images/ikons/mail_outgoing.png"</image></a></li>
                 <li><br><span class="label">Personal</span><hr></li>
-                <li><a id="personalEM"></a></li>
+                <li><a id="personalEM"><image class="link-image" src="images/ikons/mail_outgoing.png"</image></a></li>
             </ul>
         </li>
 		<li>
             Portfolio
             <ul class="menu">
-                <li><a href="WebDesign.html">Web Design</a></li>
+                <li><a href="WebDesign.html">Web Design<image class="link-image" src="images/ikons/code.png"</image></a></li>
             </ul>
         </li>
         <li>
@@ -60,7 +60,7 @@
         function whatMightThisBe(me, domain1, domain2, targetID) {
             var target = document.getElementById(targetID);
             var hmmm = me + "&#64;" + domain1 + "&#46;" + domain2;
-            target.innerHTML = hmmm;
+            $(target).append(hmmm);
             target.setAttribute("href", "mailto:" + me + "@" + domain1 + "." + domain2);
         }
         whatMightThisBe("steven", "cs10", "org", "workEM");
