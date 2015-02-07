@@ -14,24 +14,25 @@
 }
 .content {
 	position: relative;
-	width: 95%;
 	min-height: 200px;
 	margin-left: 10px;
-	/*border: 1px black solid;*/
+	margin-right: 10px;
+	padding: 0px 10px 0px 10px;
 	border-left: 3px orange solid;
 	background: white;
+	box-shadow: 0px 2px 3px 2px #DEDEDE;
 }
 .content .tab .content {
 	position: relative;
-	margin-left: 10px;
 	border-left: 3px #329A99 solid;
 }
 .tab {
 	position: absolute;
-	width: inherit;
+	width: calc(100% - 20px);
+	/*border: 1px black solid;*/
 }
 .content .tab .content .tab {
-	padding: 20px;
+	padding-top: 10px;
 }
 .on {
 	background: white;

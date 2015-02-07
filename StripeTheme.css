@@ -1,25 +1,13 @@
 /* Administravia */
 body {
 	margin: 0 auto;
-	font-family: 'Lucida Grande', 'Roboto-Regular', 'Helvetica', sans-serif;
+	font-family: 'Open Sans', 'Roboto-Regular', 'Helvetica', sans-serif;
 	text-align: left;
 	font-size: 16px;
 }
 @font-face {
-    font-family: 'Fjord';
-    src: url('fonts/fjord/FjordOne-Regular.otf');
-}
-@font-face {
 	font-family: 'Roboto-Regular';
 	src: url('fonts/roboto/Roboto-Regular.ttf');
-}
-@font-face {
-	font-family: 'Exo-Light';
-	src: url('fonts/exo/Exo-Light.otf');
-}
-@font-face {
-	font-family: 'Exo-ExtraBold';
-	src: url('fonts/exo/Exo-ExtraBold.otf');
 }
 /* HEADER -- Back Button, Headline, Horizontal Rules */
 #banner {
@@ -30,7 +18,7 @@ body {
 	z-index: -1;
 }
 h1, #back, #back2 {
-	font-family: 'Roboto-Regular', 'Lucida Grande', 'Helvetica', sans-serif;
+	font-family: 'Open Sans', 'Roboto-Regular', 'Helvetica', sans-serif;
 	font-size: 3em;
 	padding: 10px 0px 10px 30px;
 	color: white;
@@ -87,8 +75,9 @@ hr {
 	font-family: 'Monaco', 'Inconsolata', 'Courier', Serif;
 }
 h3 {
-	font-family: 'Fjord', serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 1.7em;
+	font-weight: 700;
 	/*padding-left: 10px;*/
 	margin: 0px;
 }
@@ -133,7 +122,8 @@ h3 {
 	height: 50px;
 	transition: .2s ease;
 	padding: 2px 0px 0px 5px;
-	font-family: 'Roboto-Regular', 'Lucida Grande', sans-serif;
+	font-family: 'Open Sans', 'Roboto-Regular', sans-serif;
+	font-weight: 700;
 	font-size: 32px;
 	color: white;
 }
