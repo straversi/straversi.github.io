@@ -14,18 +14,17 @@
 }
 .content {
 	position: relative;
-	margin: 0 auto;
 	width: 95%;
 	min-height: 200px;
+	margin-left: 10px;
 	/*border: 1px black solid;*/
 	border-left: 3px orange solid;
 	background: white;
 }
 .content .tab .content {
 	position: relative;
-	margin-left: 20px;
-	width: 95%;
-	border-left: 3px #85EDEC solid;
+	margin-left: 10px;
+	border-left: 3px #329A99 solid;
 }
 .tab {
 	position: absolute;
