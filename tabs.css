@@ -34,6 +34,17 @@
 .content .tab .content .tab {
 	padding-top: 10px;
 }
+button {
+	font-family: 'Roboto-Regular';
+	color: white;
+	font-size: .8em;
+	background-color: #FB5050;
+	border: none;
+	padding: 5px;
+}
+button:active {
+	background-color: #E14848;
+}
 .on {
 	background: white;
 	border-right: 1px solid #ccc;
