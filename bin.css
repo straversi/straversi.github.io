@@ -14,7 +14,7 @@
 	margin-bottom: 5px;
 	padding: 5px;
 	border-left: 3px solid;
-	box-shadow: 2px 2px 3px 2px #DEDEDE;
+	box-shadow: 0px 2px 3px 1px #DEDEDE;
 }
 #DecimalArea, #BinaryArea, #HexArea {
 	float: right;
