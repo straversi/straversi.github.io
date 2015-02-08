@@ -1,4 +1,4 @@
-strictTabStructure = true;
+strictTabStructure = true; // true = assume tabs are in correct order.
 
 $("document").ready(function() {
   $(".tab").hide();
@@ -51,7 +51,8 @@ $("document").ready(function() {
     $(this).parent().next().css("height", "280px");
   });
 
-  $("Button").click(function(){
+  // Toggle Answer and re-adjust height
+  $("Button.Question").click(function(){
     $(this).next().toggle();
     
     var problem = $(this).closest(".tab");
