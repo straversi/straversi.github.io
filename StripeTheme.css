@@ -30,9 +30,10 @@ h1 {
 	margin-bottom: 0px;
 }
 .stripes {
-	background: -webkit-repeating-linear-gradient(135deg, #06537D, #06537D 12px, #4E94B9 12px, #4E94B9 24px);
+/*	background: -webkit-repeating-linear-gradient(135deg, #06537D, #06537D 12px, #4E94B9 12px, #4E94B9 24px);
     background: -moz-repeating-linear-gradient(135deg, #06537D, #06537D 12px, #4E94B9 12px, #4E94B9 24px);
-  	background: repeating-linear-gradient(135deg, #06537D, #06537D 12px, #4E94B9 12px, #4E94B9 24px);
+  	background: repeating-linear-gradient(135deg, #06537D, #06537D 12px, #4E94B9 12px, #4E94B9 24px);*/
+  	background: #06537D;
 }
 #back, #back2 {
 	position: fixed;
