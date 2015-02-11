@@ -55,12 +55,17 @@ hr {
 	margin: 0;
 }
 #load-button {
+	font-size: .9em;
 	float: right;
 	margin-left: 10px;
 	margin-right: 20px;
 }
 #load-button:hover:before {
 	content: "load all images ";
+}
+#load-button img {
+	position: relative;
+	top: 7px;
 }
 /* Content - CS10 Practice */
 .code, .image {
