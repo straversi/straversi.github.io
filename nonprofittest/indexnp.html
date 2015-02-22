@@ -114,7 +114,7 @@ $("#foo").submit(function(event){
     request.done(function (response, textStatus, jqXHR){
         // Log a message to the console
         console.log("Hooray, it worked!");
-        document.getElementById("foo").reset();
+//        document.getElementById("foo").reset();
     });
 
     // Callback handler that will be called on failure
@@ -124,6 +124,7 @@ $("#foo").submit(function(event){
             "The following error occurred: "+
             textStatus, errorThrown
         );
+        // It always goes wrong. Except it doesn't actually. Don't worry.
     });
 
     // Callback handler that will be called regardless
@@ -131,6 +132,7 @@ $("#foo").submit(function(event){
     request.always(function () {
         // Reenable the inputs
         $inputs.prop("disabled", false);
+        document.getElementById("foo").reset();
     });
 
     // Prevent default posting of form

@@ -66,10 +66,11 @@
                 'The following error occurred: '+
                 textStatus, errorThrown
             );
-            $("h1").text("Something went wrong.");
+//            $("h1").text("Something --went-- always goes wrong.");
         });
         request.always(function () {
           $inputs.prop('disabled', false);
+          $("h1").text("Your email has been confirmed. Thanks!");
         });
         })();
     </script>
