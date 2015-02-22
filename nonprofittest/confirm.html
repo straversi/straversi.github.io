@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <script type="text/javascript" src="jquery-2.1.1.js"></script>
+    <style>
+        body {position: relative;}
+        div {position: fixed; max-width: 300px; background: #1976D2; border: 2px #0D47A1 solid;
+                padding: 8px 8px 10px 8px; text-align: center; font-family: sans-serif;
+                top: 50%; left: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                -o-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                box-shadow: -2px 2px 3px #ADAEAE;}
+        h1 {margin: 0px; font-size: 30px; color: white;}
+        a {color: white;}
+        a:visited {color: white;}
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Please wait...</h1><br>
+        <a href="">Higher Teaching Foundation</a>
+    </div>
+    <script>
+        var qs = (function(a) {
+            if (a == "") return {};
+            var b = {};
+            for (var i = 0; i < a.length; ++i)
+            {
+                var p=a[i].split('=', 2);
+                if (p.length == 1)
+                    b[p[0]] = "";
+                else
+                    b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+            }
+                return b;
+        })(window.location.search.substr(1).split('&'));
+    </script>
+    <script>
+        var request;
+        (function(){
+        if (request) {
+         request.abort();
+        }
+        if (!qs.code) {
+            $("h1").text("Please open this page from a link in your email.");
+            return;
+        }
+        var $form = $(this);
+        var $inputs = $form.find('input, select, button, textarea');
+        var serializedData = $form.serialize();
+        $inputs.prop('disabled', true);
+        request = $.ajax({
+                    url: 'https://script.google.com/macros/s/AKfycbxayh9KqdXJ5OSgKHFzl2nF9MMK5k6bqTYtfStEpwrSa4fqF8G0/exec',
+                    type: 'post',
+                    //data: serializedData
+                    data: {"Key": qs.code}
+        });
+        request.done(function (response, textStatus, jqXHR){
+           console.log('Hooray, it worked!');
+           $("h1").text("Your email has been confirmed. Thanks!");
+        });
+        request.fail(function (jqXHR, textStatus, errorThrown){
+            console.error(
+                'The following error occurred: '+
+                textStatus, errorThrown
+            );
+            $("h1").text("Something went wrong.");
+        });
+        request.always(function () {
+          $inputs.prop('disabled', false);
+        });
+        })();
+    </script>
+</body>

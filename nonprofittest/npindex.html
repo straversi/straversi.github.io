@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<head>
+	<title>Higher Teaching Foundation | Home</title>
+	<link rel="stylesheet" type="text/css" href="Nineties.css">
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Tinos:400,400italic' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="jquery-2.1.1.js"></script>
+</head>
+<body>
+    <h1>HIGHER TEACHING FOUNDATION <span>Improving education at the university level</span></h1>
+    <ul class="nav">
+        <li>
+            <a href="">Home</a>
+        </li>
+        <li>
+            <a href="under-construction.html">About Us</a>
+            <ul class="menu">
+                <li><a href="">Leadership</a></li>
+                <li><a href="">Advisory Board</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="under-construction.html">News</a>
+        </li>
+        <li>
+            <a href="under-construction.html">Testimonials</a>
+        </li>
+        <li>
+            <a href="under-construction.html">Contact</a>
+            <ul class="menu">
+                <li><a href="">Join Our Mailing List</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="hook-wrapper">
+        <img class="hook" src="images/hook.jpg"/>
+        <div class="secret-div">Oops... No video yet.</div>
+        <div class="hook-main">
+            <img src="images/video.jpg"/>
+            <h3>The Hook</h3>
+            <p>Pasta ipsum dolor sit amet tortellini gomito pici bavette fusilli taglierini bavette timpano tripoline capunti spiralini stringozzi trofie tagliatelle spaghetti alla chitarra ditalini.</p>
+        </div>
+    </div>
+    <div class="content">
+    <div class="featured">
+        <h3>Upcoming Events</h3>
+        <h4>Featured 1</h4>
+        <p>Pasta ipsum dolor sit amet tortellini gomito pici bavette fusilli taglierini bavette timpano tripoline capunti spiralini stringozzi trofie tagliatelle spaghetti alla chitarra ditalini. Lasagnotte sagnarelli trenette pennette calamarata corzetti manicotti maltagliati gramigna orecchiette fiori tortelloni.</p>
+        <hr>
+        <h4>Featured 2</h4>
+        <p>Pasta ipsum dolor sit amet tortellini gomito pici bavette fusilli taglierini bavette timpano tripoline capunti spiralini stringozzi trofie tagliatelle spaghetti alla chitarra ditalini. Lasagnotte sagnarelli trenette pennette calamarata corzetti manicotti maltagliati gramigna orecchiette fiori tortelloni.</p>
+    </div>
+
+    <h2>Welcome to Site - We Have Things</h2>
+    <p>Pasta ipsum dolor sit amet foglie d'ulivo marziani bavette calamaretti capellini timpano fedelini farfalle. Mezzi bombardoni pennette bucatini acini di pepe agnolotti radiatori gigli sagne 'ncannulate ricciutelle pillus cavatappi trofie occhi di lupo conchiglioni lasagnette fedelini. Lagane lagane penne lisce pappardelle fiorentine sorprese lisce tortellini pappardelle. Farfalle agnolotti ciriole sorprese maccheroncelli pasta al ceppo garganelli ravioli linguine maltagliati creste di galli vermicelloni capellini. Chifferi cannelloni casarecce casarecce taglierini. Tripoline sorprese lisce foglie d'ulivo mezzelune mafalde pasta al ceppo gomito fiorentine taglierini.</p>
+    <p>Linguine conchiglie lasagnotte mezzani pasta ricciutelle. Campanelle maltagliati linguine trenette mezzelune pastina lasagnotte conchiglioni farfalle zitoni perciatelli cencioni pizzoccheri sagne 'ncannulate. Sagne 'ncannulate pastina spirali bavettine fiori taglierini pizzoccheri spaghettoni mafaldine lasagne. Campanelle sacchettini campanelle conchiglie gnocchi.</p>
+    <p>Spaghettoni pillus farfalline strozzapreti radiatori gigli cellentani mezze penne sagne 'ncannulate acini di pepe rigatoncini bucatini penne vermicelloni vermicelloni. Trenette sagne 'ncannulate tripoline rigatoncini capunti spaghettoni. Fiorentine bavettine spaghettoni tortiglioni ricciutelle timpano vermicelli zitoni fiori taglierini orzo timpano taglierini penne rigate fedelini. Scialatelli occhi di lupo acini di pepe conchiglie rotelle mezzelune. Garganelli timpano foglie d'ulivo torchio fettucelle pennoni occhi di lupo farfalle trennette fiori maltagliati lumache.</p>
+    </div>
+    <div class="author">
+        <img src="images/logo.jpg"/>
+        <h3>Alexander Coward</h3>
+        Mathematics professor at the University of California. Etc.
+    </div>
+    <div class="join">
+        <h3>Keep up with us!</h3>
+        <form id="foo">
+            <label for="firstlast">Name</label>
+            <input class="input-text" id="firstlast" name="Name" type="text" value="" placeholder="First Last">
+            <label for="email">Email</label>
+            <input class="input-text" id="email" name="Email" type="text" value="" placeholder="example@berkeley.edu">
+            <input class="submit-button" type="submit" value="Join Us!" />
+        </form>
+        <script>
+            $(document).ready(function() {
+                $(".submit-button").click(function() {
+                    $(this).css("background", "#F1B837");
+                    this.value = "Thank you.";
+                });
+            });
+        </script>
+        <script>
+            // Variable to hold request
+var request;
+
+// Bind to the submit event of our form
+$("#foo").submit(function(event){
+    
+    // Abort any pending request
+    if (request) {
+        request.abort();
+    }
+    // setup some local variables
+    var $form = $(this);
+
+    // Let's select and cache all the fields
+    var $inputs = $form.find("input, select, button, textarea");
+
+    // Serialize the data in the form
+    var serializedData = $form.serialize();
+    
+    // Let's disable the inputs for the duration of the Ajax request.
+    // Note: we disable elements AFTER the form data has been serialized.
+    // Disabled form elements will not be serialized.
+    $inputs.prop("disabled", true);
+
+    // Fire off the request to /form.php
+    request = $.ajax({
+        url: "https://script.google.com/macros/s/AKfycbxayh9KqdXJ5OSgKHFzl2nF9MMK5k6bqTYtfStEpwrSa4fqF8G0/exec",
+        type: "post",
+        data: serializedData
+    });
+
+    // Callback handler that will be called on success
+    request.done(function (response, textStatus, jqXHR){
+        // Log a message to the console
+        console.log("Hooray, it worked!");
+        document.getElementById("foo").reset();
+    });
+
+    // Callback handler that will be called on failure
+    request.fail(function (jqXHR, textStatus, errorThrown){
+        // Log the error to the console
+        console.error(
+            "The following error occurred: "+
+            textStatus, errorThrown
+        );
+    });
+
+    // Callback handler that will be called regardless
+    // if the request failed or succeeded
+    request.always(function () {
+        // Reenable the inputs
+        $inputs.prop("disabled", false);
+    });
+
+    // Prevent default posting of form
+    event.preventDefault();
+});
+        </script>
+    </div>
+    <footer>
+        <img class="logo" src="images/logo.jpg"/>
+        <div>
+            <p class="mini-hr">Contact Us</p>
+            <p><br>(123) 456-7890<br>(000) 000-0000<br>email@example.com</p>
+        </div>
+        <div>
+            <p class="mini-hr">Support Us</p>
+            <p><br>PayPal<br>Venmo<br>Other</p>
+        </div>
+        <div>
+            <p class="mini-hr">Organization Name</p>
+            <p><br>1234 Road Street<br>12345 Anytown, USA<br>PO Box 010101</p>
+        </div>
+    </footer>
+    <script type="text/javascript" src="secret.js"></script>
+</body>
