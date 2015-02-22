@@ -3,7 +3,7 @@ $("document").ready(function() {
 	var binary;
 	var hex;
 	$("#GO").click(function() {
-		decimal = Math.floor((Math.random() * 2000) + 1).toString();
+		decimal = Math.floor((Math.random() * 400) + 1).toString();
 		binary = Number(decimal).toString(2);
 		hex = Number(decimal).toString(16);
 		$("#DecimalArea, #BinaryArea, #HexArea").unbind("click");
