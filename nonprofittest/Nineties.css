@@ -4,6 +4,7 @@ body {
     margin: 7px 8px 8px 8px;
     min-width: 550px;
     color: #444;
+    line-height: 18px;
 }
 h1, h2, h3, h4 {
     font-family: 'Tinos';
@@ -18,7 +19,7 @@ h1 {
 }
 h1 span {
     display: block;
-    margin: 0px 0px 5px 1px;
+    margin: 5px 0px 5px 1px;
     font-size: .5em;
     font-style: italic;
     white-space: nowrap;
