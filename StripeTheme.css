@@ -70,14 +70,20 @@ hr {
 /* Content - CS10 Practice */
 .code, .image {
 	background: white;
-	padding: 10px 10px 10px 10px;
+	padding: 5px 5px 5px 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	border: 1px solid gray;
 	border-radius: 3px;
-	box-shadow: 0 8px 6px -6px black;
+	box-shadow: 0px 2px 3px 2px #DEDEDE;
 	font-family: 'Monaco', 'Inconsolata', 'Courier', Serif;
 }
 .cem {
-	color: blue;
+    padding: 2px 4px;
+    font-size: 95%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px
 	font-family: 'Monaco', 'Inconsolata', 'Courier', Serif;
 }
 h3 {

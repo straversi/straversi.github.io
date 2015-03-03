@@ -71,6 +71,7 @@ $("document").ready(function() {
         $(this).append("<image style='width:100%' src='" + this.dataset.src + "' alt='img load failed'/>");
       }
     });
+    $(this).html("<img width='22' src='images/ikons/cloud_ok.svg' alt='done loading icon'/>");
   });
 });
 
