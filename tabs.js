@@ -34,7 +34,7 @@ $("document").ready(function() {
       imageCount = $(this).children().length;
       if (imageCount < 1) {
         console.log("fire");
-        $(this).append("<image style='width:100%' src='" + this.dataset.src + "' alt='img load failed'/>");
+        $(this).append("<image style='width:100%;display:block;' src='" + this.dataset.src + "' alt='img load failed'/>");
       }
     });
 
@@ -66,9 +66,9 @@ $("document").ready(function() {
   $("#load-button").click(function () {
     $(".image").each(function() {
       imageCount = $(this).children().length;
-      if (imageCount < 1) {
+      if (imageCount < 1) { // Prevents loading multiple times
         console.log("fire");
-        $(this).append("<image style='width:100%' src='" + this.dataset.src + "' alt='img load failed'/>");
+        $(this).append("<image style='width:100%;display:block;' src='" + this.dataset.src + "' alt='img load failed'/>");
       }
     });
     $(this).html("<img width='22' src='images/ikons/cloud_ok.svg' alt='done loading icon'/>");
