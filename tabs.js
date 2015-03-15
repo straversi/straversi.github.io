@@ -38,9 +38,11 @@ $("document").ready(function() {
       }
     });
 
+    // Content resizing. Shitty.
     var newH = problem.height();
+    console.log(problem.parent().prev().height());
     $(this).parent().next().css("height", newH + 30);
-    var outerContentHeight = newH + 100;
+    var outerContentHeight = newH + 50 + problem.parent().prev().height();
     $(this).parents(".content").css("height", outerContentHeight);
   });
 
