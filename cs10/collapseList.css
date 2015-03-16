@@ -1,0 +1,71 @@
+body {
+	font-family: sans-serif;
+}
+.toggler {
+	width: 14px;
+	vertical-align: -1px;
+	-webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear; 
+}
+.rotated {
+	-webkit-transform: rotate(-135deg);
+	-moz-transform:    rotate(-135deg);
+	-ms-transform:     rotate(-135deg);
+	-o-transform:      rotate(-135deg);
+	transform:         rotate(-135deg);
+}
+.collapsible {
+	display: inline-block;
+	margin: 0 10px 10px 0;
+	vertical-align: top;
+	font-family: 'Roboto-Regular', 'Helvetica Neue', 'Helvetica';
+	border-left: 4px solid #03A9F4;
+	padding-left: 5px;
+}
+.collapsible li {
+	display: block;
+	margin-bottom: 4px;
+	cursor: pointer;
+}
+.collapsible > ul, .collapsible > ol {
+	display: none;
+	padding-left: 20px;
+}
+.collapsible ul, .collapsible ol {
+	list-style-type: none;
+}
+a:visited {
+	color: black;
+}
+.menu .toggler {
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -10px 0 0 -10px;
+	opacity: 0;
+}
+.menu {
+	/*display: none;*/
+	position: relative;
+	top: -26px;
+	margin-bottom: -26px;
+	left: -20px;
+	width: 30px;
+	height: 30px;
+	background-color: white;
+	border-radius: 50%;
+	border: 5px solid white;
+	box-shadow: 0px 2px 3px #DEDEDE;
+	-webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear; 
+}
+
+/* SHOULD BE DIFF FILE! */

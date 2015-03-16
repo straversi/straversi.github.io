@@ -1,0 +1,101 @@
+/* Administravia */
+body {
+	margin: 0 auto;
+	font-family: 'Roboto-Regular', 'Helvetica', sans-serif;
+	font-size: 16px;
+}
+@font-face {
+	font-family: 'Roboto-Regular';
+	src: url('../fonts/roboto/Roboto-Regular.ttf');
+}
+@font-face {
+	font-family: 'Roboto-Medium';
+	src: url('../fonts/roboto/Roboto-Medium.ttf');
+}
+/* HEADER -- Back Button, Headline, Horizontal Rules */
+hr {
+	height: 12px;
+	border: none;
+	background-color: #01579B;
+	margin: 0;
+}
+/* Content - CS10 Practice */
+.code {
+	background: white;
+	padding: 5px 5px 5px 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid gray;
+	border-radius: 3px;
+	box-shadow: 0px 2px 3px 2px #DEDEDE;
+	font-family: 'Monaco', 'Inconsolata', 'Courier', Serif;
+}
+.cem {
+    padding: 2px 4px;
+    font-size: 95%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    white-space: nowrap;
+	font-family: 'Monaco', 'Inconsolata', 'Courier', Serif;
+}
+h3 {
+	font-family: 'Roboto-Medium', 'Helvetica', sans-serif;
+	font-size: 1.7em;
+	font-weight: 700;
+	margin: 0px;
+}
+.header {
+  	background: #01579B;
+}
+h1 {
+	font-family: 'Roboto-Regular', 'Helvetica Neue', sans-serif;
+	font-size: 3em;
+	padding: 10px 0px 10px 20px;
+	color: white;
+	margin-top: 0;
+	margin-bottom: 0px;
+}
+.Question::after {
+	content: "Answer";
+}
+.Answer {
+	margin-top: 5px;
+	display: none;
+	color: green;
+}
+.Answer {
+	margin: 5px;
+}
+button {
+	font-family: 'Roboto-Regular', 'Helvetica Neue', 'Helvetica';
+	color: white;
+	font-size: .8em;
+	background-color: #FB5050;
+	border: none;
+	padding: 5px;
+	margin: 2px;
+}
+button:active {
+	background-color: #E14848;
+}
+#view {
+	display: inline-block;
+	vertical-align: top;
+	max-width: 65%;
+	padding: 10px;
+}
+@media (max-width: 680px) {
+	#view {
+		max-width: 100%;
+	}
+	.collapsible {
+		display: none;
+	}
+	.menu {
+		left: 10px;
+	}
+	.menu .toggler {
+		opacity: 1;
+	}
+}

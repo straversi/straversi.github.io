@@ -1,0 +1,15 @@
+<h3>Mystery Utility</h3>
+<p>ANOTHER case to solve: pictured below is a list utility. It appears to be recursive. It's input is a list.</p>
+<img src="Images/Problems/ListSumMystery.png" width="400">
+<ol>
+	<li>Identify the base case. What is happening?</li>
+	<li>Identify the recursive case. What is going on?</li>
+	<li>Finally, what is the function doing?</li>
+</ol>
+<Button class="Question"></Button>
+<ol class="Answer">
+	<li>The base case is: If the length of the list is 1, return its first item.</li>
+	<li>The recursive case is the "else" case. It returns the result of adding the first item of the list to the result of this function with all items but the first of the list.</li>
+	<li>All together, this function returns the sum of a list's items! Remind you of a particular Higher Order Function? This same result could be achieved by <span class="cem">combine with (_+_) item of (list)</span>.</li>
+</ol>
+<p class="cite">Problem code by Carlos Flores</p>
