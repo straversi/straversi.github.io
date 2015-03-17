@@ -19,6 +19,13 @@ hr {
 	background-color: #01579B;
 	margin: 0;
 }
+hr.var {
+	height: 2px;
+	border: none;
+	background-color: #BDBDBD;
+	margin: 0 auto;
+	width: 35px;
+}
 /* Content - CS10 Practice */
 .code {
 	background: white;
@@ -60,12 +67,13 @@ h1 {
 	content: "Answer";
 }
 .Answer {
-	margin-top: 5px;
 	display: none;
 	color: green;
+	margin: 0px;
 }
-.Answer {
-	margin: 5px;
+#view img {
+	display: block;
+	max-width: 90%;
 }
 button {
 	font-family: 'Roboto-Regular', 'Helvetica Neue', 'Helvetica';
@@ -74,7 +82,7 @@ button {
 	background-color: #FB5050;
 	border: none;
 	padding: 5px;
-	margin: 2px;
+	margin: 5px;
 }
 button:active {
 	background-color: #E14848;
