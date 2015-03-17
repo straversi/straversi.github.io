@@ -46,6 +46,10 @@ hr.var {
     white-space: nowrap;
 	font-family: 'Monaco', 'Inconsolata', 'Courier', Serif;
 }
+.alert {
+	font-family: 'Roboto-Medium', 'Roboto-Regular';
+	color: #c7254e;
+}
 h3 {
 	font-family: 'Roboto-Medium', 'Helvetica', sans-serif;
 	font-size: 1.7em;
