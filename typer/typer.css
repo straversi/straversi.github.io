@@ -3,10 +3,13 @@
     src: url('../fonts/fjord/FjordOne-Regular.otf');
 }
 body, html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
 	position: fixed;
 	font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
 	/*color: #66D0EF;*/
-    color: #2B9A9A;
+    color: #1B5E20;
     font-size: 16px;
 }
 h1 {
@@ -28,7 +31,7 @@ h1 {
 	display: inline;
 	position: relative;
 	padding: 10px;
-	transition: top .15s linear;
+	transition: all .15s linear;
 }
 .nav > li:hover .menu {
     opacity: 1;
@@ -38,15 +41,18 @@ h1 {
     opacity: 1;
     visibility: visible;
 }
+.nav > li:hover .twitter-timeline {
+    pointer-events: auto;
+}
 .nav > li:hover .arrow {
     opacity: 1;
 }
 a {
 	text-decoration: none;
-    color: #67A09D;
+    color: #2E7D32;
 }
 a:visited {
-    color: #67A09D;
+    color: #2E7D32;
 }
 .twitter-timeline-wrapper {
     position: absolute;
@@ -59,6 +65,7 @@ a:visited {
 }
 .twitter-timeline {
     height: 100%;
+    pointer-events:none;
 }
 .menu {
     position: absolute;
@@ -104,19 +111,34 @@ a:visited {
     left: 50%;
     margin: 5px;
     width: 280px;
-    height: 50px;
+    height: 75px;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: black;
+    z-index:100;
 }
 #middler {
-	position: relative;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	/*border: 1px solid black;*/
+}
+button {
+	background-color: #4CAF50;
+	color: white;
+	border-radius: 1px;
+	border: 1px solid #4CAF50;
+	padding: 4px 6px 4px 6px;
+	transition: border-color .15s linear;
+}
+button:hover {
+	border-color: #455A64;
+}
+button:active {
+	background-color: #43A047;
 }
 #bar {
     position: relative;

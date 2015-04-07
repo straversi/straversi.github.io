@@ -4,7 +4,6 @@
 	<title>Steven Traversi | The Programmer</title>
 	<link rel="stylesheet" href="typer/typer.css">
 	<script type="text/javascript" src="jquery-2.1.1.js"></script>
-
 	<link rel="icon" href="/favicon.ico" type="image/icon">
 	<meta name="google-site-verification" content="sVmtxidWk9pEnbbzF4JxMJwDo9ogFxXm5pztovrf8lM" />
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
@@ -12,17 +11,19 @@
 <body>
     <script src="typer/mobile.js"></script>
 	<script src="typer/typer.js"></script>
-    <svg id="edges" style="position:absolute;width:100%;height:68%;top:16%;"></svg>
-    <div id="net" style="overflow:hidden;position:absolute;width:100%;height:68%;top:16%;">
-        <!-- Note: Unfortunately, this container must be in the net so that the button can be clickable. -->
-        <div id="container" style="background-color:rgba(255,255,255,0.7);"><div id="middler">
-        <h1 style="margin:18px 0px 0px 0px;">Steven Traversi</h1>
-        <button style="display:block;margin:0 auto;position:relative;top:-12px;" type="button" onclick="clearAll();drawDefaults();">Generate</button>
-        </div></div>
-    </div>
-    <script src="net/net.js"></script>
-
-	<div style="position: fixed;width: 100%; text-align: center; bottom: 0;">
+	<div id="container">
+		<div id="middler"> <!-- Puts certain things in the middle -->
+			<div id="hiderWrapper">
+				<div id="hiderBox"></div>
+			</div>
+			<h1>Steven Traversi</h1>
+			<div id="bigBox"></div>
+			<div id="bar"></div>
+			<div class="triangle" id="bigT"></div><div class="triangle" id="littleT"></div>
+			<p id="typeGrounds">that guy does: <span id="typer"></span><span id="cursor">|</span></p>
+		</div>
+	</div>
+	<div style="position: fixed; width: 100%; text-align: center; bottom: 0;">
 	<ul class="nav">
 		<li>
             CS10
