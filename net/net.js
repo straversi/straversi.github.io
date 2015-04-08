@@ -109,8 +109,8 @@ function oppose(refX, refY, mouseX, mouseY) {
     var mYN = parseFloat(refY) - mouseY; // mouseY normalized
     var mXNS = Math.pow(mXN, 2);
     var mYNS = Math.pow(mYN, 2);
-    offsetX = -1 * Math.sqrt(-(s*2) * Math.sqrt(mXNS + mYNS) + mXNS + mYNS + Math.pow(s, 2)) / Math.sqrt(mYNS / mXNS + 1);
-    offsetY = -1 * mYN * Math.sqrt(-(s*2) * Math.sqrt(mXNS + mYNS) + mXNS + mYNS + Math.pow(s, 2)) / (mXN * Math.sqrt(mYNS / mXNS + 1));
+    offsetX = -1 * Math.sqrt(-(s*2) * Math.sqrt(mXNS + mYNS) + mXNS + mYNS + Math.pow(s, 2)) / (2 * Math.sqrt(mYNS / mXNS + 1));
+    offsetY = -1 * mYN * Math.sqrt(-(s*2) * Math.sqrt(mXNS + mYNS) + mXNS + mYNS + Math.pow(s, 2)) / (2 * mXN * Math.sqrt(mYNS / mXNS + 1));
     if (mXN > 0) {
         offsetY = -1 * offsetY;
         offsetX = -1 * offsetX;
