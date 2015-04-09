@@ -8,6 +8,12 @@ var nodeDestination = "net";
 var edgeColor = "#43A047";
 var sensitivity = 75;
 var maxDistance = 100;
+                 // 900           // 600         // 900          // 800            // 500
+colors = [{ nodes:"#1B5E20", edges:"#43A047", nav:"#1B5E20", menu:"#2E7D32", button:"#4CAF50" },
+         { nodes:"#0D47A1", edges:"#1E88E5", nav:"#0D47A1", menu:"#1565C0", button:"#2196F3" },
+         { nodes:"#311B92", edges:"#7E57C2", nav:"#311B92", menu:"#4527A0", button:"#673AB7" },
+         { nodes:"#B71C1C", edges:"#E57373", nav:"#B71C1C", menu:"#C62828", button:"#F44336" }];
+myScheme = 0;
 
 // Please name the svg element "#edges".
 
@@ -157,17 +163,96 @@ function drawEdge(x0, y0, x1, y1, id) {
 
 drawEdges(maxDistance);
 
-function clearAll() {
+// HTML hookups below //
+
+function redrawAll() {
+    preserveInputValues();
     $("#edges").empty();
     nodes = [];
     $(".node").each(function() {
         $(this).remove();
     })
+    setColors();
+    drawInputs();
 }
 
 function drawDefaults() {
     width = $("#" + nodeDestination).width();
     height = $("#" + nodeDestination).height();
+    s = 100;
     drawNodes(width, height, nodeCount, nodeDestination);
     drawEdges(maxDistance);
+}
+function drawInputs() {
+    width = $("#" + nodeDestination).width();
+    height = $("#" + nodeDestination).height();
+    nodeColor = colors[myScheme].nodes;
+    edgeColor = colors[myScheme].edges;
+    drawNodes(width, height, nodeCountInput, nodeDestination);
+    drawEdges(maxDistanceInput);
+    bindAll();
+    setInputValuesFromPreserved();
+}
+
+nodeCountInput = $("#slider1").val();
+maxDistanceInput = $("#slider3").val();
+
+$(document).ready(function() {
+    bindAll();
+})
+// ELEMENT is a jquery object
+function bindAll() {
+    $("#toggleSettings").off();
+    bindInputs();
+    bindSettings();
+}
+function bindInputs() {
+    $("input[type=range]").on("change mousemove", function() {
+        var me = $(this);
+        if (idCheck(me, "slider1")) {
+            $("#value1").html(me.val());
+        } else if (idCheck(me, "slider2")) {
+            $("#value2").html(me.val());
+        } else if (idCheck(me, "slider3")) {
+            $("#value3").html(me.val());
+        }
+    })
+}
+function idCheck(element, id) {
+    return element.attr("id") == id;
+}
+function preserveInputValues() {
+    nodeCountInput = $("#slider1").val();
+    s = $("#slider2").val();
+    maxDistanceInput = $("#slider3").val();
+    var color = $("input[name=colorScheme]:checked").val();
+    myScheme = parseInt(color);
+}
+function setInputValuesFromPreserved() {
+    document.getElementById("slider1").value = nodeCountInput;
+    document.getElementById("slider2").value = s;
+    document.getElementById("slider3").value = maxDistanceInput;
+    document.getElementById("radio" + String(myScheme)).checked = true;
+}
+var settingsState = false;
+function bindSettings() {
+    $("#toggleSettings").click(function() {
+        $("#settings").slideToggle(100);
+        settingsState = !settingsState;
+        var settingsImg = document.getElementById("toggleSettings");
+        if (settingsState) {
+            settingsImg.src = "images/equalizerOn.png";
+        } else {
+            settingsImg.src = "images/equalizer.png";
+        }
+    })
+    // $("input[type=radio] + label").click(function() {
+    //     var color = $("input[name=colorScheme]:checked").val();
+    //     myScheme = parseInt(color);
+    // })
+}
+function setColors() {
+    $(".nav").css("color", colors[myScheme].nav);
+    $("button").css({"background-color": colors[myScheme].button, "border-color": colors[myScheme].button});
+    $("a, a:visited").css("color", colors[myScheme].menu);
 }

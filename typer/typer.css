@@ -8,8 +8,6 @@ body, html {
 	margin: 0;
 	position: fixed;
 	font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
-	/*color: #66D0EF;*/
-    color: #1B5E20;
     font-size: 16px;
 }
 h1 {
@@ -26,6 +24,7 @@ h1 {
 	position: relative;
 	bottom: 0;
 	padding-left: 0;
+	color: #1B5E20;
 }
 .nav > li {
 	display: inline;
@@ -66,6 +65,7 @@ a:visited {
 .twitter-timeline {
     height: 100%;
     pointer-events:none;
+    z-index: 50;
 }
 .menu {
     position: absolute;
@@ -124,6 +124,7 @@ a:visited {
 	position: absolute;
 	width: 100%;
 	height: 100%;
+	text-align: center;
 	/*border: 1px solid black;*/
 }
 button {
@@ -139,6 +140,33 @@ button:hover {
 }
 button:active {
 	background-color: #43A047;
+}
+#settings {
+	text-align: left;
+	background-color: rgba(255,255,255,0.7);
+	border: 1px solid #E8E8E8;
+    border-radius: 2px;
+    font-size: .9em;
+    display: none;
+    position: relative;
+}
+input[type=range] {
+	width: 90px;
+}
+input[type=radio] {
+	display: none;
+}
+input[type=radio] + label {
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	background-color: blue;
+	margin: 2px 5px 2px 5px;
+	border: none;
+}
+input[type=radio]:checked + label {
+	margin: 0px 3px 0px 3px;
+	border: 2px solid black;
 }
 #bar {
     position: relative;

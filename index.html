@@ -17,7 +17,39 @@
         <!-- Note: Unfortunately, this container must be in the net so that the button can be clickable. -->
         <div id="container" style="background-color:rgba(255,255,255,0.7);"><div id="middler">
         <h1 style="margin:18px 0px 0px 0px;">Steven Traversi</h1>
-        <button style="display:block;margin:0 auto;position:relative;top:-12px;" type="button" onclick="clearAll();drawDefaults();">Generate</button>
+        <div style="display:inline-block;width:20px">
+            <!-- same width as settings button -->
+        </div>
+        <button style="display:inline-block;text-align:center;position:relative;top:-12px;" type="button" onclick="redrawAll();">Generate</button>
+        <img id="toggleSettings" style="display:inline-block;vertical-align:middle;position:relative;top:-12px" src="Images/equalizer.png" width="20"/>
+        <div id="settings">
+            <table style="width:100%;">
+            <tr>
+                <td>Number of nodes</td>
+                <td><input type="range" id="slider1" value="100" min="50" max="200"></td>
+                <td id="value1" style="text-align:left">100</td>
+            </tr>
+                <td>Force of cursor</td>
+                <td><input type="range" id="slider2" value="75" min="40" max="100"></td>
+                <td id="value2" style="text-align:left">75</td>
+            <tr>
+                <td>Edge try distance</td>
+                <td><input type="range" id="slider3" value="100" min="50" max="110"></td>
+                <td id="value3" style="text-align:left">100</td>
+            <tr>
+            <tr>
+                <td colspan="3" style="color:grey;font-size:.9em;text-align:center">
+                    <input type="radio" value="0" id="radio0" name="colorScheme" checked><label for="radio0" style="background-color:#4CAF50"></label>
+                    <input type="radio" value="1" id="radio1" name="colorScheme"><label for="radio1" style="background-color:#2196F3"></label>
+                    <input type="radio" value="2" id="radio2" name="colorScheme"><label for="radio2" style="background-color:#673AB7"></label>
+                    <input type="radio" value="3" id="radio3" name="colorScheme"><label for="radio3" style="background-color:#F44336"></label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="color:grey;font-size:.9em;">Generate to apply changes.</td>
+            </tr>
+            </table>
+        </div>
         </div></div>
     </div>
     <script src="net/net.js"></script>
