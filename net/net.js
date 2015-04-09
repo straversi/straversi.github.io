@@ -241,9 +241,9 @@ function bindSettings() {
         settingsState = !settingsState;
         var settingsImg = document.getElementById("toggleSettings");
         if (settingsState) {
-            settingsImg.src = "images/equalizerOn.png";
+            settingsImg.src = "Images/equalizerOn.png";
         } else {
-            settingsImg.src = "images/equalizer.png";
+            settingsImg.src = "Images/equalizer.png";
         }
     })
     // $("input[type=radio] + label").click(function() {
