@@ -252,7 +252,7 @@ function bindSettings() {
     // })
 }
 function setColors() {
-    $(".nav").css("color", colors[myScheme].nav);
+    // $(".nav").css("color", colors[myScheme].nav);
     $("button").css({"background-color": colors[myScheme].button, "border-color": colors[myScheme].button});
     $("a, a:visited").css("color", colors[myScheme].menu);
 }
