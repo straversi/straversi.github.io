@@ -50,7 +50,7 @@ h1 {
     padding: 10px 0px 0px 10px;
 }
 a {
-	text-decoration: none;
+	 /*text-decoration: none;*/
     color: #67A09D;
 }
 a:visited {

@@ -12,7 +12,7 @@ $(document).ready(function() {
 			$("#hiderBox")
 				.animate({ width: "100%" }, 250)
 				.animate({ height: "7px" }, 400)
-				.animate({ width: "0px" }, 300, 
+				.animate({ width: "0px" }, 300,
 					function() {
 						toDo = 1;
 						if (!h1.is(":hover")) {
@@ -49,7 +49,7 @@ $(document).ready(function() {
 })
 
 $(document).ready(function() {
-	var typedWords = ["python", "java", "jquery", "javascript", "html5", "css3", "whatever you want, baby."];
+	var typedWords = ["python", "swift", "java", "javascript", "rails", "css3", "whatever you want, baby."];
 	var typedWordsLength = typedWords.length;
 	type(typedWords[0], 0, typedWords, 0);
 	function type(word, letterIndex, list, wordIndex){
