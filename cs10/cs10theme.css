@@ -80,7 +80,7 @@ h1 {
 	max-width: 90%;
 }
 button {
-	font-family: 'Roboto-Regular', 'Helvetica Neue', 'Helvetica';
+	font-family: 'Roboto-Regular', 'Helvetica Neue', 'Helvetica', sans-serif;
 	color: white;
 	font-size: .8em;
 	background-color: #FB5050;
