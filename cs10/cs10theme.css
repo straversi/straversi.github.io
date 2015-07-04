@@ -38,12 +38,12 @@ hr.var {
 	font-family: 'Monaco', 'Consolas', 'Courier', serif;
 }
 .cem {
-    padding: 2px 4px;
-    font-size: 95%;
-    color: #c7254e;
-    background-color: #f9f2f4;
-    border-radius: 4px;
-    white-space: nowrap;
+  padding: 2px 4px;
+  font-size: 95%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+  white-space: nowrap;
 	font-family: 'Monaco', 'Consolas', 'Courier', serif;
 }
 .alert {
