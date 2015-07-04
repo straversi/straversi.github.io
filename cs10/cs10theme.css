@@ -33,7 +33,7 @@ hr.var {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	border: 1px solid gray;
-	border-radius: 3px;
+	border-radius: 2px;
 	box-shadow: 0px 2px 3px 2px #DEDEDE;
 	font-family: 'Monaco', 'Consolas', 'Courier', serif;
 }
@@ -42,7 +42,7 @@ hr.var {
   font-size: 95%;
   color: #c7254e;
   background-color: #f9f2f4;
-  border-radius: 4px;
+  border-radius: 2px;
   white-space: nowrap;
 	font-family: 'Monaco', 'Consolas', 'Courier', serif;
 }
