@@ -1,7 +1,7 @@
 var collapseWidth = 680
 
 $("document").ready(function() {
-	$(".collapsible > li").append("<image class='toggler' src='Images/plus.svg'>");
+	$(".collapsible > li").append("<image class='toggler' src='../Images/plus.svg'>");
 
 	$(".collapsible > li").click(function() {
 		$(this).find(".toggler").toggleClass("rotated");
@@ -27,7 +27,7 @@ $("document").ready(function() {
 		title = title.replace(/ /g, "-");
 		var topic = $(this).parent().prev().text();
 		topic = topic.replace(/ /g, "-");
-		$("#view").load("cs10/Problems/" + topic + "/" + title + ".html", function() {
+		$("#view").load("Problems/" + topic + "/" + title + ".html", function() {
 			$("button.Question").unbind("click", false);
 			$("button.Question").bind("click", function() {
 				$(this).next().toggle()
