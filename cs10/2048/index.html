@@ -20,6 +20,10 @@
 <h3>Basic Slide</h3>
 
 <p>Let's start with the case of a single tile.</p>
+<p><span class="important">Note:</span> Throughout this exploration, we will
+   only ever be considering a single column. This is because in a true 2048
+   board with 4 columns, each column is independent from the rest when it
+   comes to merging tiles upward.</p>
 <p>What happens when we press the UP arrow? The tile should move up until it
    hits an edge.</p>
 
@@ -158,8 +162,8 @@
           <li>Different value? Do nothing.</li>
           <li>Same value?
             <ul>
-              <li>Already merged that row this turn? Do nothing.</li>
-              <li>Haven't merged that row this turn? Merge with it.</li>
+              <li>Already merged that tile? Do nothing.</li>
+              <li>Haven't merged that tile yet? Merge with it.</li>
             </ul>
           </li>
         </ul>
