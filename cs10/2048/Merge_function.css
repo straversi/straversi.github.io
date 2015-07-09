@@ -12,6 +12,7 @@ body {
   line-height: 22px;
   font-family: 'Georgia', serif;
   color: rgb(34, 34, 34);
+  width: 100%;
 }
 article {
   display: inline-block;
