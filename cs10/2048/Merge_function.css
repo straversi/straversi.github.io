@@ -6,13 +6,20 @@ h1 {
 h1, h3 {
   font-family: 'Helvetica', sans-serif;
 }
+html {
+  margin: 0;
+  padding: 0;
+}
 body {
   text-align: center;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 22px;
   font-family: 'Georgia', serif;
   color: rgb(34, 34, 34);
-  width: 100%;
+  margin: 0;
+  width: calc(100% - 10px);
+  padding: 5px;
+  overflow-x: hidden;
 }
 article {
   display: inline-block;
