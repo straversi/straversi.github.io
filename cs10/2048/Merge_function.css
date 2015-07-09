@@ -17,8 +17,8 @@ body {
   font-family: 'Georgia', serif;
   color: rgb(34, 34, 34);
   margin: 0;
-  width: calc(100% - 10px);
-  padding: 5px;
+  width: calc(100% - 18px);
+  padding: 9px;
   overflow-x: hidden;
 }
 article {
