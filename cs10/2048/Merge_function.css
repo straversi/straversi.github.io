@@ -16,6 +16,7 @@ body {
 article {
   display: inline-block;
   text-align: left;
+  width: 100%;
   max-width: 600px;
 }
 .board-wrapper {
