@@ -10,20 +10,22 @@
 		h1,h2,h3,h4,h5,h6 { margin:5px; font-family:'Helvetica','Arial',sans-serif; }
 		h1 { margin-top:15px; }
 		h1,h5 { text-align:center; }
-		h2 { display:inline-block; }
+		h2 { display:inline-block; font-size:1.3em; }
 		h5 { font-weight:400; }
 		.under-headline { text-align:center }
 		.infobox { display:inline-block; padding:5px; width:calc(100% - 10px); }
-		.icon-tiny { width:18px; }
-		.icon-small { vertical-align:bottom; width:25px; }
-		.icon-medium { vertical-align:top; width:50px; }
-		ul { list-style-type:none; padding-left:10px; margin:5px 10px 10px 10px; }
+		.icon-small { vertical-align:middle; width:18px; width:8vmin; }
+		.icon-medium { vertical-align:top; width:50px; width:16vmin; }
+		ul { list-style-type:none; padding-left:0; margin:5px 10px 10px 10px; }
 		a { color:inherit; }
 		table { border-spacing:0 10px; margin:0; }
 		td { vertical-align:top; padding:0 5px 0 5px; }
 		td:first-of-type { text-align:center; }
-		.toggle-button {
-			vertical-align: -2px;
+		.toggle-button {}
+		.toggle-icon {
+			vertical-align: -3px;
+			width:50px;
+			width:6vmin;
 			-webkit-transition: all .1s linear;
 		  -moz-transition: 		all .1s linear;
 		  -ms-transition: 		all .1s linear;
@@ -38,6 +40,7 @@
 			transform:         rotate(-135deg);
 		}
 		*[id^='more-'],*[id*=' more-'] {
+			overflow:hidden;
 			-webkit-transition: all .1s linear;
 		  -moz-transition: 		all .1s linear;
 		  -ms-transition: 		all .1s linear;
@@ -51,6 +54,19 @@
 		  -o-transition: none !important;
 			transition: none !important;
 		}
+		.open {
+			box-shadow:inset 0 8px 6px -8px rgba(0, 0, 0, 0.5),
+								 inset 0 -8px 6px -8px rgba(0, 0, 0, 0.5);
+		}
+		.closed {
+			margin: 0 !important;
+			padding: 0 0 0 20px !important;
+		}
+		.drawer {
+			padding:5px 5px 5px 20px;
+			margin:0;
+			list-style-type:disc;
+		}
 	</style>
 </head>
 <body class="preload" onload="document.body.className = ''">
@@ -62,9 +78,17 @@
 		<ul>
 			<li><img class="icon-small" src="assets/icons/js.svg" alt="javascript icon"> JavaScript</li>
 			<li><img class="icon-small" src="assets/icons/swift.svg" alt="swift icon"> Swift</li>
-			<li><img class="icon-small" src="assets/icons/python.svg" alt="python icon"> Python</li>
-			<li>More... <img class="toggle-button icon-tiny" src="assets/icons/plus.svg" data-for="more-code">
-				<p id="more-code" style="overflow:hidden;">Look, more stuff!</p>
+			<li><img class="icon-small" src="assets/icons/python.svg" alt="python icon"> Python
+				<img class="toggle-icon" src="assets/icons/plus.svg" data-for="more-python">
+				<ul id="more-python" class="drawer">
+					<li>Search Engine Intern at Fanatics</li>
+					<li>Teach introductory Python for Cal's CS10</li>
+				</ul>
+			</li>
+			<li class="toggle-button">More...<img src="assets/icons/plus.svg" data-for="more-code" class="toggle-icon">
+				<ul id="more-code" class="drawer">
+					<li>Look, more stuff!</li>
+				</ul>
 			</li>
 		</ul>
 	</div>
@@ -109,26 +133,25 @@
     ga('send', 'pageview');
 </script>
 <script>
-	togglers = document.getElementsByClassName('toggle-button');
-	function hide(element) {
-		element.style.height = 0;
-		element.style.margin = 0;
-	}
-	function show(element) {
-		element.style.height = element.scrollHeight.toString() + "px";
-		element.style.margin = "initial";
-	}
+	togglers = document.getElementsByClassName('toggle-icon');
+	function hide(element) { element.style.height = 0; }
+	function show(element) { element.style.height = element.scrollHeight.toString() + "px"; }
 	for (var i = 0, e; e = togglers[i++];) {
 		var target = document.getElementById(e.dataset.for);
 		hide(target);
+		target.className = target.className + " closed";
 		e.onclick = function() {
 			var target = document.getElementById(this.dataset.for);
 			if (this.dataset.rotated == "true") {
 				this.className = this.className.replace(" rotated","");
+				target.className = target.className.replace(" open","");
+				target.className = target.className + " closed";
 				this.dataset.rotated = "false";
 				hide(target);
 			} else {
 				this.className = this.className + " rotated";
+				target.className = target.className + " open";
+				target.className = target.className.replace(" closed","");
 				this.dataset.rotated = "true";
 				show(target);
 			}
