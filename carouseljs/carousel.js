@@ -31,6 +31,8 @@ var Carousel = function(element) {
   var myself = this;
   this.hammer.on('panmove', function(e) {
     updateActiveThreePositions(myself, e.deltaX, false);
+    console.log(myself.offsetWidth);
+    updatePosition(myself.trackerSelector, -1 * (e.deltaX / myself.element.offsetWidth) * myself.trackerStep + myself.currentPiece * myself.trackerStep, false, true);
   });
   this.hammer.on('panend', function(e) {
     if (Math.abs(e.velocityX) > 0.2) {
