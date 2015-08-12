@@ -19,8 +19,8 @@
       text-align: center;
       background-color: white;
       overflow: hidden;
-      -webkit-filter: contrast(20);
-      filter: contrast(20);
+      -webkit-filter: contrast(20) brightness(1.4);
+      filter: contrast(20) brightness(1.4);
     }
     .carousel-dot {
       display: inline-block;
@@ -31,12 +31,14 @@
       border-radius: 5px;
       -webkit-filter: blur(3px);
       filter: blur(3px);
+      /*transform: translate3d(0,0,0);*/
+      /*-webkit-transform: translate3d(0,0,0);*/
     }
     .carousel-select {
       display: inline-block;
       vertical-align: middle;
       position: absolute;
-      background-color: grey;
+      background-color: black;
       width: 10px;
       height: 10px;
       border-radius: 5px;

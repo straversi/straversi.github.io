@@ -22,7 +22,7 @@ var Carousel = function(element) {
   this.trackerDots = childrenWithClass(this.tracker, 'carousel-dot');
   this.trackerStep = this.trackerDots[1].getBoundingClientRect().left - this.trackerDots[0].getBoundingClientRect().left;
   this.trackerSelector = childrenWithClass(this.tracker, 'carousel-select')[0];
-  this.trackerSelector.style.left = this.trackerSelector.getBoundingClientRect().left.toString() + "px"; // initialize for transitions
+  // this.trackerSelector.style.left = this.trackerSelector.getBoundingClientRect().left.toString() + "px"; // initialize for transitions
   for (var i = 0; i < this.pieces.length; i++) {
     this.pieces[i].childNumber = i;
   }
@@ -48,29 +48,30 @@ Carousel.prototype.cycle = function(n) {
   if (this.currentPiece < 0) { this.currentPiece = 0; }
   else if (this.currentPiece > this.pieces.length - 1) { this.currentPiece = this.pieces.length - 1; }
   updateActiveThreePositions(this, 0, true);
-  updatePosition(this.trackerSelector, this.trackerDots[0].getBoundingClientRect().left + this.currentPiece * this.trackerStep, true);
+  updatePosition(this.trackerSelector, this.currentPiece * this.trackerStep, true, true);
 }
 function updateActiveThreePositions(carousel, leftOffset, smooth) {
   leftOffset += -1 * carousel.container.offsetWidth * carousel.currentPiece;
   var active = carousel.currentPiece;
-  updatePosition(carousel.pieces[carousel.currentPiece], leftOffset, smooth);
+  updatePosition(carousel.pieces[carousel.currentPiece], leftOffset, smooth, false);
   if (carousel.currentPiece > 0) {
     var previousNumber = active - 1;
-    updatePosition(carousel.pieces[previousNumber], leftOffset, smooth);
+    updatePosition(carousel.pieces[previousNumber], leftOffset, smooth, false);
   }
   if (carousel.currentPiece < carousel.pieces.length - 1) {
     var nextNumber = active + 1;
-    updatePosition(carousel.pieces[nextNumber], leftOffset, smooth);
+    updatePosition(carousel.pieces[nextNumber], leftOffset, smooth, false);
   }
 }
-function updatePosition(element, leftOffset, smooth) {
+function updatePosition(element, leftOffset, smooth, isDot) {
   if (smooth) {
-    element.style.setProperty("-webkit-transition", "left .13s linear");
-    element.style.setProperty("-moz-transition", "left .13s linear");
-    element.style.setProperty("-o-transition", "left .13s linear");
-    element.style.setProperty("transition", "left .13s linear");
+    element.style.setProperty("-webkit-transition", "all .13s linear");
+    element.style.setProperty("-moz-transition", "all .13s linear");
+    element.style.setProperty("-o-transition", "all .13s linear");
+    element.style.setProperty("transition", "all .13s linear");
   }
-  element.style.left = leftOffset.toString() + "px";
+  // element.style.left = leftOffset.toString() + "px";
+  element.style.setProperty("-webkit-transform", "translateX(" + leftOffset.toString() + "px)")
   if (smooth) {
     window.setTimeout(function() {
       element.style.setProperty("-webkit-transition", "none");
