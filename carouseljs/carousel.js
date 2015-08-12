@@ -31,11 +31,10 @@ var Carousel = function(element) {
   var myself = this;
   this.hammer.on('panmove', function(e) {
     updateActiveThreePositions(myself, e.deltaX, false);
-    console.log(myself.offsetWidth);
-    updatePosition(myself.trackerSelector, -1 * (e.deltaX / myself.element.offsetWidth) * myself.trackerStep + myself.currentPiece * myself.trackerStep, false, true);
+    updatePosition(myself.trackerSelector, -1 * (e.deltaX / myself.element.offsetWidth) * myself.trackerStep + myself.currentPiece * myself.trackerStep, false);
   });
   this.hammer.on('panend', function(e) {
-    if (Math.abs(e.velocityX) > 0.2) {
+    if (Math.abs(e.velocityX) > 0.1) {
       myself.cycle(e.velocityX > 0 ? 1 : -1);
     } else if (Math.abs(e.deltaX) > myself.container.offsetWidth / 2) {
       myself.cycle(e.deltaX > 0 ? -1 : 1);
@@ -50,30 +49,29 @@ Carousel.prototype.cycle = function(n) {
   if (this.currentPiece < 0) { this.currentPiece = 0; }
   else if (this.currentPiece > this.pieces.length - 1) { this.currentPiece = this.pieces.length - 1; }
   updateActiveThreePositions(this, 0, true);
-  updatePosition(this.trackerSelector, this.currentPiece * this.trackerStep, true, true);
+  updatePosition(this.trackerSelector, this.currentPiece * this.trackerStep, true);
 }
 function updateActiveThreePositions(carousel, leftOffset, smooth) {
   leftOffset += -1 * carousel.container.offsetWidth * carousel.currentPiece;
   var active = carousel.currentPiece;
-  updatePosition(carousel.pieces[carousel.currentPiece], leftOffset, smooth, false);
+  updatePosition(carousel.pieces[carousel.currentPiece], leftOffset, smooth);
   if (carousel.currentPiece > 0) {
     var previousNumber = active - 1;
-    updatePosition(carousel.pieces[previousNumber], leftOffset, smooth, false);
+    updatePosition(carousel.pieces[previousNumber], leftOffset, smooth);
   }
   if (carousel.currentPiece < carousel.pieces.length - 1) {
     var nextNumber = active + 1;
-    updatePosition(carousel.pieces[nextNumber], leftOffset, smooth, false);
+    updatePosition(carousel.pieces[nextNumber], leftOffset, smooth);
   }
 }
-function updatePosition(element, leftOffset, smooth, isDot) {
+function updatePosition(element, leftOffset, smooth) {
   if (smooth) {
     element.style.setProperty("-webkit-transition", "all .13s linear");
     element.style.setProperty("-moz-transition", "all .13s linear");
     element.style.setProperty("-o-transition", "all .13s linear");
     element.style.setProperty("transition", "all .13s linear");
   }
-  // element.style.left = leftOffset.toString() + "px";
-  element.style.setProperty("-webkit-transform", "translateX(" + leftOffset.toString() + "px)")
+  element.style.setProperty("-webkit-transform", "translate3d(" + leftOffset.toString() + "px,0,0)")
   if (smooth) {
     window.setTimeout(function() {
       element.style.setProperty("-webkit-transition", "none");
