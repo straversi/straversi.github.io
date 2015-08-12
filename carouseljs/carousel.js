@@ -20,9 +20,9 @@ var Carousel = function(element) {
   this.totalWidth = this.pieces.length * this.element.offsetWidth;
   this.tracker = childrenWithClass(this.element, 'carousel-tracker')[0];
   this.trackerDots = childrenWithClass(this.tracker, 'carousel-dot');
-  this.trackerStep = this.trackerDots[1].offsetLeft - this.trackerDots[0].offsetLeft;
+  this.trackerStep = this.trackerDots[1].getBoundingClientRect().left - this.trackerDots[0].getBoundingClientRect().left;
   this.trackerSelector = childrenWithClass(this.tracker, 'carousel-select')[0];
-  this.trackerSelector.style.left = this.trackerSelector.offsetLeft.toString() + "px"; // initialize for transitions
+  this.trackerSelector.style.left = this.trackerSelector.getBoundingClientRect().left.toString() + "px"; // initialize for transitions
   for (var i = 0; i < this.pieces.length; i++) {
     this.pieces[i].childNumber = i;
   }
@@ -48,7 +48,7 @@ Carousel.prototype.cycle = function(n) {
   if (this.currentPiece < 0) { this.currentPiece = 0; }
   else if (this.currentPiece > this.pieces.length - 1) { this.currentPiece = this.pieces.length - 1; }
   updateActiveThreePositions(this, 0, true);
-  updatePosition(this.trackerSelector, this.trackerDots[0].offsetLeft + this.currentPiece * this.trackerStep, true);
+  updatePosition(this.trackerSelector, this.trackerDots[0].getBoundingClientRect().left + this.currentPiece * this.trackerStep, true);
 }
 function updateActiveThreePositions(carousel, leftOffset, smooth) {
   leftOffset += -1 * carousel.container.offsetWidth * carousel.currentPiece;
