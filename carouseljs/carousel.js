@@ -71,7 +71,7 @@ function updatePosition(element, leftOffset, smooth) {
     element.style.setProperty("-o-transition", "all .13s linear");
     element.style.setProperty("transition", "all .13s linear");
   }
-  element.style.setProperty("-webkit-transform", "translate3d(" + leftOffset.toString() + "px,0,0)")
+  element.style.setProperty("-webkit-transform", "translateX(" + leftOffset.toString() + "px)")
   if (smooth) {
     window.setTimeout(function() {
       element.style.setProperty("-webkit-transition", "none");
