@@ -22,6 +22,8 @@
       -webkit-filter: contrast(20) brightness(1);
       filter: contrast(20) brightness(1);
       position: relative;
+      padding: 0;
+      margin: 0;
     }
     .carousel-dot {
       display: inline-block;
@@ -36,8 +38,8 @@
     }
     .carousel-select {
       display: inline-block;
-      position: absolute;
-      top: 6px;
+      position: relative;
+      top: 1px;
       background-color: #434343;
       width: 10px;
       height: 10px;
@@ -45,6 +47,13 @@
       -webkit-filter: blur(3px);
       filter: blur(3px);
       z-index: 1;
+    }
+    .carousel-spacer {
+      display: inline-block;
+      background-color: white;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -56,13 +65,14 @@
    --><div class="carousel-piece">Neat</div><!--
    --><div class="carousel-piece">SKDJFLD</div>
    </div>
-   <div class="carousel-tracker">
-     <div class="carousel-select"></div>
-     <div class="carousel-dot"></div>
-     <div class="carousel-dot"></div>
-     <div class="carousel-dot"></div>
-     <div class="carousel-dot"></div>
-   </div>
+   <ul class="carousel-tracker">
+     <li class="carousel-select"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-spacer"></li>
+   </ul>
  </div>
   <div class="carousel">
     <div class="carousel-container">

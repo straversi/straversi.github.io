@@ -23,6 +23,7 @@ var Carousel = function(element) {
   this.trackerStep = this.trackerDots[1].getBoundingClientRect().left - this.trackerDots[0].getBoundingClientRect().left;
   this.trackerSelector = childrenWithClass(this.tracker, 'carousel-select')[0];
   // this.trackerSelector.style.left = this.trackerSelector.getBoundingClientRect().left.toString() + "px"; // initialize for transitions
+  this.trackerSelector.style.setProperty("-webkit-transform", "translate3d(" + this.trackerStep.toString() + "px,0,0)") // THIS is with spacer dot...
   for (var i = 0; i < this.pieces.length; i++) {
     this.pieces[i].childNumber = i;
   }
@@ -31,7 +32,7 @@ var Carousel = function(element) {
   var myself = this;
   this.hammer.on('panmove', function(e) {
     updateActiveThreePositions(myself, e.deltaX, false);
-    updatePosition(myself.trackerSelector, -1 * (e.deltaX / myself.element.offsetWidth) * myself.trackerStep + myself.currentPiece * myself.trackerStep, false);
+    updatePosition(myself.trackerSelector, -1 * (e.deltaX / myself.element.offsetWidth) * myself.trackerStep + myself.currentPiece * myself.trackerStep + myself.trackerStep, false); // ...in conjunction with + myself.trackerStep
   });
   this.hammer.on('panend', function(e) {
     if (Math.abs(e.velocityX) > 0.1) {
@@ -49,7 +50,7 @@ Carousel.prototype.cycle = function(n) {
   if (this.currentPiece < 0) { this.currentPiece = 0; }
   else if (this.currentPiece > this.pieces.length - 1) { this.currentPiece = this.pieces.length - 1; }
   updateActiveThreePositions(this, 0, true);
-  updatePosition(this.trackerSelector, this.currentPiece * this.trackerStep, true);
+  updatePosition(this.trackerSelector, this.currentPiece * this.trackerStep + this.trackerStep, true);
 }
 function updateActiveThreePositions(carousel, leftOffset, smooth) {
   leftOffset += -1 * carousel.container.offsetWidth * carousel.currentPiece;
