@@ -81,6 +81,7 @@ a:visited {
     opacity: 0;
     visibility: hidden;
     transition: all .15s linear;
+    z-index: 100;
 }
 .label {
     color: black;
@@ -95,8 +96,8 @@ a:visited {
     position: absolute;
     bottom: calc(100% - 4px);
     left: 10px;
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	border-left: 4px solid transparent;
 	border-right: 4px solid transparent;
 	border-top: 4px solid #E8E8E8;
@@ -118,7 +119,7 @@ a:visited {
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: black;
-    z-index:100;
+    z-index:50;
 }
 #middler {
 	position: absolute;
@@ -215,7 +216,7 @@ input[type=radio]:checked + label {
 	height: 56px;
 	/*border: 1px dotted green;*/
 }
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   #hiderWrapper {
      top: -23px;
   }
