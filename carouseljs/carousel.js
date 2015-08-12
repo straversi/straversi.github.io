@@ -3,8 +3,9 @@
 //
 //    Element Structure:
 //    div.carousel
-//    |- div.carousel-piece
-//    |- div.carousel-piece
+//    |- div.carousel-container
+//       |- div.carousel-piece
+//       |- ...
 //    |- div.carousel-tracker
 //    |- img.carousel-left
 //    |- img.carousel-right
@@ -13,13 +14,20 @@
 
 // Class
 var Carousel = function(element) {
-  this.element = element;
-  this.pieces = childrenWithClass(this.element, 'carousel-piece');
+  this.element = element; // The highest element
+  this.container = childrenWithClass(this.element, 'carousel-container')[0]; // Holds the pieces
+  this.pieces = childrenWithClass(this.container, 'carousel-piece');
+  this.totalWidth = this.pieces.length * this.element.offsetWidth;
+  this.tracker = childrenWithClass(this.element, 'carousel-tracker')[0];
+  this.trackerDots = childrenWithClass(this.tracker, 'carousel-dot');
+  this.trackerStep = this.trackerDots[1].offsetLeft - this.trackerDots[0].offsetLeft;
+  this.trackerSelector = childrenWithClass(this.tracker, 'carousel-select')[0];
+  this.trackerSelector.style.left = this.trackerSelector.offsetLeft.toString() + "px"; // initialize for transitions
   for (var i = 0; i < this.pieces.length; i++) {
     this.pieces[i].childNumber = i;
   }
   this.currentPiece = 0;
-  this.hammer = new Hammer(this.element, {velocity:0.001,threshold:0});
+  this.hammer = new Hammer(this.container, {velocity:0.001,threshold:0});
   var myself = this;
   this.hammer.on('panmove', function(e) {
     updateActiveThreePositions(myself, e.deltaX, false);
@@ -27,7 +35,7 @@ var Carousel = function(element) {
   this.hammer.on('panend', function(e) {
     if (Math.abs(e.velocityX) > 0.2) {
       myself.cycle(e.velocityX > 0 ? 1 : -1);
-    } else if (Math.abs(e.deltaX) > myself.element.offsetWidth / 2) {
+    } else if (Math.abs(e.deltaX) > myself.container.offsetWidth / 2) {
       myself.cycle(e.deltaX > 0 ? -1 : 1);
     } else {
       myself.cycle(0);
@@ -40,25 +48,27 @@ Carousel.prototype.cycle = function(n) {
   if (this.currentPiece < 0) { this.currentPiece = 0; }
   else if (this.currentPiece > this.pieces.length - 1) { this.currentPiece = this.pieces.length - 1; }
   updateActiveThreePositions(this, 0, true);
+  updatePosition(this.trackerSelector, this.trackerDots[0].offsetLeft + this.currentPiece * this.trackerStep, true);
 }
 function updateActiveThreePositions(carousel, leftOffset, smooth) {
-  leftOffset += -1 * carousel.element.offsetWidth * carousel.currentPiece;
+  leftOffset += -1 * carousel.container.offsetWidth * carousel.currentPiece;
   var active = carousel.currentPiece;
   updatePosition(carousel.pieces[carousel.currentPiece], leftOffset, smooth);
   if (carousel.currentPiece > 0) {
     var previousNumber = active - 1;
     updatePosition(carousel.pieces[previousNumber], leftOffset, smooth);
-  } else if (carousel.currentPiece < carousel.pieces.length - 1) {
+  }
+  if (carousel.currentPiece < carousel.pieces.length - 1) {
     var nextNumber = active + 1;
     updatePosition(carousel.pieces[nextNumber], leftOffset, smooth);
   }
 }
 function updatePosition(element, leftOffset, smooth) {
   if (smooth) {
-    element.style.setProperty("-webkit-transition", "left .1s linear");
-    element.style.setProperty("-moz-transition", "left .1s linear");
-    element.style.setProperty("-o-transition", "left .1s linear");
-    element.style.setProperty("transition", "left .1s linear");
+    element.style.setProperty("-webkit-transition", "left .13s linear");
+    element.style.setProperty("-moz-transition", "left .13s linear");
+    element.style.setProperty("-o-transition", "left .13s linear");
+    element.style.setProperty("transition", "left .13s linear");
   }
   element.style.left = leftOffset.toString() + "px";
   if (smooth) {
@@ -67,7 +77,7 @@ function updatePosition(element, leftOffset, smooth) {
       element.style.setProperty("-moz-transition", "none");
       element.style.setProperty("-o-transition", "none");
       element.style.setProperty("transition", "none");
-    }, 100);
+    }, 130); // 100ms = transition time
   }
 }
 

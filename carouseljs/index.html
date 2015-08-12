@@ -5,23 +5,66 @@
   <title>Carousel Testing</title>
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
   <style>
-    .carousel { height:200px; position:relative; white-space: nowrap; }
+    body, html { margin:0; padding: 0; }
+    .carousel { height:200px; position: relative; }
+    .carousel-container { height:90%; position:relative; white-space: nowrap; overflow:hidden;}
     .carousel-piece {
       display:inline-block;
       position:relative;
-      height: 100%;
-      width: 100%;
+      height: calc(100% - 2px);
+      width: calc(100% - 2px);
       border: 1px solid black;
+    }
+    .carousel-tracker {
+      text-align: center;
+      background-color: white;
+      overflow: hidden;
+      -webkit-filter: contrast(20);
+    }
+    .carousel-dot {
+      display: inline-block;
+      vertical-align: top;
+      background-color: black;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      -webkit-filter:  blur(3px);
+    }
+    .carousel-select {
+      display: inline-block;
+      vertical-align: middle;
+      position: absolute;
+      background-color: grey;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      -webkit-filter:  blur(3px);
     }
   </style>
 </head>
 <body>
   <div class="carousel">
-    <div class="carousel-piece">Hello</div>
-    <div class="carousel-piece">There</div>
-  </div>
+    <div class="carousel-container">
+      <div class="carousel-piece">Hello</div><!--
+   --><div class="carousel-piece">There</div><!--
+   --><div class="carousel-piece">Neat</div>
+   </div>
+   <div class="carousel-tracker">
+     <div class="carousel-select"></div>
+     <div class="carousel-dot"></div>
+     <div class="carousel-dot"></div>
+     <div class="carousel-dot"></div>
+   </div>
+ </div>
   <div class="carousel">
-    <div class="carousel-piece">Second</div>
+    <div class="carousel-container">
+      <div class="carousel-piece">Second</div>
+    </div>
+    <div class="carousel-tracker">
+      <div class="carousel-select"></div>
+      <div class="carousel-dot"></div>
+      <div class="carousel-dot"></div>
+    </div>
   </div>
 </div>
   <script src="assets/hammer.min.js"></script>
