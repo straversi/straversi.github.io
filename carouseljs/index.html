@@ -19,16 +19,17 @@
       text-align: center;
       background-color: white;
       overflow: hidden;
-      -webkit-filter: contrast(20) brightness(1.4);
-      filter: contrast(20) brightness(1.4);
+      -webkit-filter: contrast(20) brightness(1);
+      filter: contrast(20) brightness(1);
+      position: relative;
     }
     .carousel-dot {
       display: inline-block;
-      vertical-align: top;
+      vertical-align: middle;
       background-color: black;
-      width: 10px;
-      height: 10px;
-      border-radius: 5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 4px;
       -webkit-filter: blur(3px);
       filter: blur(3px);
       transform: translate3d(0,0,0);
@@ -36,14 +37,15 @@
     }
     .carousel-select {
       display: inline-block;
-      vertical-align: middle;
       position: absolute;
-      background-color: black;
+      top: 5px;
+      background-color: #434343;
       width: 10px;
       height: 10px;
       border-radius: 5px;
       -webkit-filter: blur(3px);
       filter: blur(3px);
+      z-index: 1;
     }
   </style>
 </head>
