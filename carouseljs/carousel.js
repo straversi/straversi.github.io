@@ -18,6 +18,7 @@ var Carousel = function(element) {
   this.container = childrenWithClass(this.element, 'carousel-container')[0]; // Holds the pieces
   this.pieces = childrenWithClass(this.container, 'carousel-piece');
   this.totalWidth = this.pieces.length * this.element.offsetWidth;
+  this.parallaxImages = childrenWithClass(this.container, 'carousel-parallax');
   this.tracker = childrenWithClass(this.element, 'carousel-tracker')[0];
   this.trackerDots = childrenWithClass(this.tracker, 'carousel-dot');
   this.trackerStep = this.trackerDots[1].getBoundingClientRect().left - this.trackerDots[0].getBoundingClientRect().left;
@@ -32,7 +33,10 @@ var Carousel = function(element) {
   var myself = this;
   this.hammer.on('panmove', function(e) {
     updateActiveThreePositions(myself, e.deltaX, false);
-    updatePosition(myself.trackerSelector, -1 * (e.deltaX / myself.element.offsetWidth) * myself.trackerStep + myself.currentPiece * myself.trackerStep + myself.trackerStep, false); // ...in conjunction with + myself.trackerStep
+    updatePosition(myself.trackerSelector, -1 * (e.deltaX / myself.element.offsetWidth) * myself.trackerStep + myself.currentPiece * myself.trackerStep + myself.trackerStep, 0, false); // ...in conjunction with + myself.trackerStep
+    for (var i = 0, img; img = myself.parallaxImages[i++];) {
+      updatePosition(img, e.deltaX / parseFloat(img.dataset.z) + -1 * myself.element.offsetWidth / parseFloat(img.dataset.z) * myself.currentPiece, '-50%', false);
+    }
   });
   this.hammer.on('panend', function(e) {
     if (Math.abs(e.velocityX) > 0.1) {
@@ -50,29 +54,32 @@ Carousel.prototype.cycle = function(n) {
   if (this.currentPiece < 0) { this.currentPiece = 0; }
   else if (this.currentPiece > this.pieces.length - 1) { this.currentPiece = this.pieces.length - 1; }
   updateActiveThreePositions(this, 0, true);
-  updatePosition(this.trackerSelector, this.currentPiece * this.trackerStep + this.trackerStep, true);
+  updatePosition(this.trackerSelector, this.currentPiece * this.trackerStep + this.trackerStep, 0, true);
+  for (var i = 0, img; img = this.parallaxImages[i++];) {
+    updatePosition(img, -1 * this.element.offsetWidth / parseFloat(img.dataset.z) * this.currentPiece, '-50%', true);
+  }
 }
 function updateActiveThreePositions(carousel, leftOffset, smooth) {
   leftOffset += -1 * carousel.container.offsetWidth * carousel.currentPiece;
   var active = carousel.currentPiece;
-  updatePosition(carousel.pieces[carousel.currentPiece], leftOffset, smooth);
+  updatePosition(carousel.pieces[carousel.currentPiece], leftOffset, 0, smooth);
   if (carousel.currentPiece > 0) {
     var previousNumber = active - 1;
-    updatePosition(carousel.pieces[previousNumber], leftOffset, smooth);
+    updatePosition(carousel.pieces[previousNumber], leftOffset, 0, smooth);
   }
   if (carousel.currentPiece < carousel.pieces.length - 1) {
     var nextNumber = active + 1;
-    updatePosition(carousel.pieces[nextNumber], leftOffset, smooth);
+    updatePosition(carousel.pieces[nextNumber], leftOffset, 0, smooth);
   }
 }
-function updatePosition(element, leftOffset, smooth) {
+function updatePosition(element, leftOffset, topOffset, smooth) {
   if (smooth) {
     element.style.setProperty("-webkit-transition", "all .13s linear");
     element.style.setProperty("-moz-transition", "all .13s linear");
     element.style.setProperty("-o-transition", "all .13s linear");
     element.style.setProperty("transition", "all .13s linear");
   }
-  element.style.setProperty("-webkit-transform", "translate3d(" + leftOffset.toString() + "px,0,0)")
+  element.style.setProperty("-webkit-transform", "translate3d(" + leftOffset.toString() + "px," + topOffset + ",0)")
   if (smooth) {
     window.setTimeout(function() {
       element.style.setProperty("-webkit-transition", "none");

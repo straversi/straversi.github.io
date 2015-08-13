@@ -55,11 +55,25 @@
       height: 10px;
       border-radius: 5px;
     }
+    .bg-image {
+      height: 100%;
+      min-height: 300px;
+      position: absolute;
+      -webkit-transform: translate(0%, -50%);
+      -moz-transform: translate(0%, -50%);
+      -ms-transform: translate(0%, -50%);
+      -o-transform: translate(0%, -50%);
+      transform: translate(0%, -50%);
+      top:50%;
+      right: -20%;
+      opacity: .2;
+    }
   </style>
 </head>
 <body>
   <div class="carousel">
     <div class="carousel-container">
+      <img class="bg-image carousel-parallax" data-z="20" src="../assets/icons/python.svg">
       <div class="carousel-piece">Hello</div><!--
    --><div class="carousel-piece">There</div><!--
    --><div class="carousel-piece">Neat</div><!--
