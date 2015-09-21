@@ -45,42 +45,7 @@
     .translucent-bg {
       background-image:linear-gradient(200deg, rgba(0, 0, 0, .1) 10%, rgba(0, 0, 0, .3) 100%);
     }
-    .overlay {
-      display: none;
-      position: fixed;
-      z-index: 100;
-      background-color: white;
-      height: 80%;
-      width: 100%;
-      top: 10%;
-    }
-    .carousel-piece {
-      position: absolute;
-      top: 20px; /* 20px = height of close overlay button */
-      width: calc(100% - 16px);
-      height: calc(100% - 20px);
-      /*background-color: grey;*/
-      padding: 8px;
-      transition: left .1s ease-out;
-    }
-    .close-button {
-      background: url("assets/icons/close.svg") no-repeat;
-      background-size: 30px 30px;
-      height:30px;
-      width:30px;
-      position: absolute;
-      right: 0;
-      margin: 5px 5px 0 0;
-    }
-    .carousel-tracker {
-      width: 100%;
-      text-align: center;
-      position: absolute;
-      bottom: 0;
-    }
-    .carousel-tracker div {
-      display: inline;
-    }
+
     p { margin: 5px 0px 5px 0px; }
     .sub-paragraph { font-size: .9em; }
     table.title { font-size: .67em; font-weight: 700; width:100%; border-spacing: 0; }
@@ -90,35 +55,24 @@
     .test-left {
       left:calc(-100%);
     }
+
+    /* Carousel specifics */
+    /*.carousel { height: 200px; }*/
   </style>
+  <link href="carouseljs/carousel.css" rel="stylesheet">
 </head>
 <body>
+
+  <!-- Title -->
   <div class="center-inline-content">
     <h1>Steven Traversi</h1>
     <h2>CS Student and TA at UC Berkeley</h2>
   </div>
-  <div class="overlay material-shadow">
-    <div class="close-button" onclick="document.getElementsByClassName('overlay')[0].style.display='none';document.body.style.overflow='auto';"></div>
-    <div class="carousel">
-      <div class="carousel-piece">
-        <p> Mobile... </p>
-      </div>
-      <div class="carousel-piece">
-        <p> Testing... </p>
-      </div>
-      <div class="carousel-piece">
-        <p> Thanks! </p>
-      </div>
-    </div>
-    <div class="carousel-tracker">
-      <div>o</div>
-      <div>o</div>
-      <div>o</div>
-    </div>
-  </div>
+
+  <!-- Languages -->
   <table class="title material-shadow flat-outline-top">
     <tr>
-      <td onclick="document.getElementsByClassName('overlay')[0].style.display='block';document.body.style.overflow='hidden';"><img src="assets/icons/view.svg" class="quick-look-image"> <span style="text-decoration:underline;">QuickLook</span></td>
+      <td><img src="assets/icons/view.svg" class="quick-look-image"> <span style="text-decoration:underline;">QuickLook</span></td>
       <td>language experience</td>
     </tr>
   </table>
@@ -151,6 +105,8 @@
       - Net.js
     </p>
   </div>
+
+  <!-- Experience -->
   <table class="title material-shadow flat-outline-top">
     <tr>
       <td><img src="assets/icons/view.svg" class="quick-look-image"> QuickLook</td>
@@ -185,48 +141,35 @@
       - Intern with the search engine team at the sports retail company Fanatics<br>
     </p>
   </div>
+  <!-- Testing -->
+  <div class="carousel">
+    <div class="carousel-container material-shadow">
+      <img class="bg-image carousel-parallax" data-z="20" src="assets/icons/python.svg">
+      <div class="carousel-piece">
+        ** Testing Pagination **<br>
+        - Python multi-threaded web scrapers<br>
+        - Data processing
+      </div><!--
+   --><div class="carousel-piece">
+        CS10 Student Instructor<br>
+        - Teach introductory Python<br>
+        - Develop course material
+      </div>
+   </div>
+   <ul class="carousel-tracker">
+     <li class="carousel-select"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-spacer"></li>
+   </ul>
+ </div>
+
+  <!-- Footers -->
   <h5 style="color:rgb(215, 23, 13);text-align:center;margin-bottom:15px;">Under construction! Aug 11</h5>
   <p style="text-align:center">
     <a href="https://github.com/straversi"><img src="assets/icons/github.png" width="22%"></a>
   </p>
   <script src="assets/scripts/hammer.min.js"></script>
-  <script>
-    var carousel = document.getElementsByClassName("carousel")[0];
-    var hammer = new Hammer(carousel, {velocity:0.001,threshold:0});
-    hammer.carouselSize = carousel.children.length;
-    hammer.carouselActivePiece = 0;
-    hammer.element.children[hammer.carouselActivePiece].style.left = 0;
-    if (hammer.carouselSize > 1) {
-      for (var i = hammer.carouselActivePiece + 1, e; e = hammer.element.children[i++];) {
-        e.style.left = "100%";
-      }
-    }
-    hammer.on('swipe', function(e) {
-      console.log(hammer);
-      var headline = document.getElementById("hammertarget");
-      if (e.deltaX < 0) {
-        // Swipe left
-        if (hammer.carouselActivePiece < hammer.carouselSize - 1) {
-          hammer.carouselActivePiece += 1;
-          hammer.element.children[hammer.carouselActivePiece].style.left = "0%";
-          if (hammer.carouselActivePiece < hammer.carouselSize - 1) {
-            hammer.element.children[hammer.carouselActivePiece + 1].style.left = "100%";
-          }
-          hammer.element.children[hammer.carouselActivePiece - 1].style.left = "-100%";
-        }
-      } else {
-        // Swipe right
-        if (hammer.carouselActivePiece > 0) {
-          hammer.carouselActivePiece -= 1;
-          hammer.element.children[hammer.carouselActivePiece].style.left = "0%";
-          if (hammer.carouselActivePiece > 0) {
-            hammer.element.children[hammer.carouselActivePiece - 1].style.left = "-100%";
-          }
-          hammer.element.children[hammer.carouselActivePiece + 1].style.left = "100%";
-        }
-      }
-    });
-
-  </script>
+  <script src="carouseljs/carousel.js"></script>
 </body>
 </html>
