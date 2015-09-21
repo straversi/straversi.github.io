@@ -32,8 +32,10 @@
   border-radius: 4px;
   -webkit-filter: blur(3px);
   filter: blur(3px);
-  transform: translate3d(0,0,0);
-  -webkit-transform: translate3d(0,0,0);
+  /*transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);*/
+  transform: translateX(0);
+  -webkit-transform: translateX(0);
 }
 .carousel-select {
   display: inline-block;

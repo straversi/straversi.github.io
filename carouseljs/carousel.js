@@ -39,7 +39,6 @@ var Carousel = function(element) {
   this.hammer.on('panmove', function(e) {
     updateActiveThreePositions(myself, e.deltaX, false);
     myself.tracker.panSelector(e.deltaX);
-    console.log("registered panmove");
     // updatePosition(myself.trackerSelector, -1 * (e.deltaX / myself.element.offsetWidth) * myself.trackerStep + myself.currentPiece * myself.trackerStep + myself.trackerStep, 0, false); // ...in conjunction with + myself.trackerStep
     for (var i = 0, img; img = myself.parallaxImages[i++];) {
       updatePosition(img, e.deltaX / parseFloat(img.dataset.z) + -1 * myself.element.offsetWidth / parseFloat(img.dataset.z) * myself.currentPiece, '-50%', false);
@@ -79,7 +78,8 @@ var Tracker = function(element, owner) {
   this.selectorDot = childrenWithClass(this.element, 'carousel-select')[0];
   this.step = this.pageDots[1].getBoundingClientRect().left - this.pageDots[0].getBoundingClientRect().left;
 
-  this.selectorDot.style.setProperty("-webkit-transform", "translate3d(" + this.step.toString() + "px,0,0)") // THIS is with spacer dot...
+  // this.selectorDot.style.setProperty("-webkit-transform", "translate3d(" + this.step.toString() + "px,0,0)") // THIS is with spacer dot...
+  this.selectorDot.style.setProperty("-webkit-transform", "translateX(" + this.step.toString() + "px)") // THIS is with spacer dot...
 }
 Tracker.prototype.panSelector = function(netChange) {
   var c = this.carousel;
@@ -122,8 +122,10 @@ function updatePosition(element, leftOffset, topOffset, smooth) {
     element.style.setProperty("-o-transition", "all .13s linear");
     element.style.setProperty("transition", "all .13s linear");
   }
-  element.style.setProperty("-webkit-transform", "translate3d(" + leftOffset.toString() + "px," + topOffset.toString() + ",0)")
-  element.style.setProperty("transform", "translate3d(" + leftOffset.toString() + "px," + topOffset.toString() + ",0)")
+  // element.style.setProperty("-webkit-transform", "translate3d(" + leftOffset.toString() + "px," + topOffset.toString() + ",0)");
+  // element.style.setProperty("transform", "translate3d(" + leftOffset.toString() + "px," + topOffset.toString() + ",0)");
+  element.style.setProperty("-webkit-transform", "translate(" + leftOffset.toString() + "px," + topOffset.toString() + ")");
+  element.style.setProperty("transform", "translate(" + leftOffset.toString() + "px," + topOffset.toString() + ")");
   if (smooth) {
     window.setTimeout(function() {
       element.style.setProperty("-webkit-transition", "none");
