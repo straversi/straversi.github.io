@@ -17,7 +17,7 @@
     .information { margin:0 auto; max-width:800px; }
     .information td { padding:10px; vertical-align:middle; }
     .information img { width:40px; }
-    .title-area { height:50vh; max-height:400px; position:relative; }
+    .title-area { height:50vh; max-height:400px; min-height:220px; position:relative; }
     .titles { width:calc(100% - 0px); margin:0px; position:absolute; top:50%; -webkit-transform:translate3d(0,-50%,0); transform:translate3d(0,-50%,0); }
     .titles h1 { white-space:pre-line; }
     .titles h1,.titles p { text-align:center; position:relative; }
@@ -37,6 +37,9 @@
     .information-area { color:black; background-color:rgba(244, 244, 249, 1.0); padding:20px; }
     .information-area h3 { margin: 0; }
     .information-area p { color:rgb(60, 60, 60); }
+    .section { margin:0; padding:20px; text-align:center; font-size:0; }
+    .section h2 { font-size:25px; }
+    .section .infoblock { display:inline-block; font-size:17px; max-width:225px; width:calc(25%); background-color: green; margin:0; }
   </style>
 </head>
 <body>
@@ -48,7 +51,7 @@
         <li><a class="button" href="playground.html">Examples</a></li>
         <li><a class="button" href="typer.js" target="_blank" download>Download</a></li>
       </ul>
-      <a href="https://github.com/straversi/Typer.js"><img id="gitLink" style="display:inline-block;float:right;height:30px;" src="assets/github.png" alt="github"></a>
+      <a id="gitLink" href="https://github.com/straversi/Typer.js"><img style="display:inline-block;float:right;height:30px;" src="assets/github.png" alt="github"></a>
     </header>
     <div class="titles">
       <h1>Typer.js is <span class="special-break"></span><span class="typer" id="main" data-words="great,fun,lightweight,easy" data-colors="white" data-delay="100" data-deleteDelay="1000"></span><span class="cursor" data-owner="main"></span></h1>
@@ -108,6 +111,21 @@
   </tr>
   </table>
   </div>
+  <!-- <div class="section gradient-bg-1">
+    <h2>Full Control</h2>
+    <div class="infoblock">
+
+    </div>
+    <div class="infoblock">
+
+    </div>
+    <div class="infoblock">
+
+    </div>
+    <div class="infoblock">
+
+    </div>
+  </div> -->
   <script src='typer.js'></script>
 </body>
 </html>
