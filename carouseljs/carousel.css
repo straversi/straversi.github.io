@@ -1,6 +1,6 @@
 /* Unspecify and move to JavaScript.
  */
-.carousel { position: relative; }
+.carousel { position: relative; z-index: 1; }
 .carousel-container { height:100%; position:relative; white-space: nowrap; overflow:hidden; z-index: 1; }
 .carousel-piece {
   vertical-align: top;

@@ -39,6 +39,7 @@ var Carousel = function(element) {
   this.hammer.on('panmove', function(e) {
     updateActiveThreePositions(myself, e.deltaX, false);
     myself.tracker.panSelector(e.deltaX);
+    console.log("registered panmove");
     // updatePosition(myself.trackerSelector, -1 * (e.deltaX / myself.element.offsetWidth) * myself.trackerStep + myself.currentPiece * myself.trackerStep + myself.trackerStep, 0, false); // ...in conjunction with + myself.trackerStep
     for (var i = 0, img; img = myself.parallaxImages[i++];) {
       updatePosition(img, e.deltaX / parseFloat(img.dataset.z) + -1 * myself.element.offsetWidth / parseFloat(img.dataset.z) * myself.currentPiece, '-50%', false);
@@ -54,10 +55,26 @@ var Carousel = function(element) {
     }
   });
 }
+
+function createElementWithClass(type, theClass) {
+  var result = document.createElement(type);
+  result.className = theClass;
+  return result;
+}
+
 // Return a tracker object for a given element ELEMENT and Carousel object OWNER.
 var Tracker = function(element, owner) {
   this.carousel = owner;
   this.element = element;
+
+  // this.element.appendChild(createElementWithClass("li", "carousel-select"));
+  // for (var _ = 0; _ < this.carousel.pieces.length; _++) {
+  //   var dot = createElementWithClass("li", "carousel-dot");
+  //   this.element.appendChild(dot);
+  //   console.log("added dot");
+  // }
+  // this.element.appendChild(createElementWithClass("li", "carousel-spacer"));
+
   this.pageDots = childrenWithClass(this.element, 'carousel-dot');
   this.selectorDot = childrenWithClass(this.element, 'carousel-select')[0];
   this.step = this.pageDots[1].getBoundingClientRect().left - this.pageDots[0].getBoundingClientRect().left;

@@ -6,14 +6,16 @@
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
   <style>
     body, html { margin:0; padding: 0; }
-    .carousel { height:200px; position: relative; }
-    .carousel-container { height:90%; position:relative; white-space: nowrap; overflow:hidden;}
+    .carousel { height:200px; position: relative; z-index:1; }
+    .carousel-container { height:100%; position:relative; white-space: nowrap; overflow:hidden; z-index: 1; }
     .carousel-piece {
       display:inline-block;
+      vertical-align: top;
       position:relative;
-      height: calc(100% - 2px);
-      width: calc(100% - 2px);
-      border: 1px solid black;
+      height: calc(100% - 16px);
+      width: calc(100% - 16px);
+      padding: 8px 8px 16px 8px;
+      /*border: 1px solid black;*/
     }
     .carousel-tracker {
       text-align: center;
@@ -21,7 +23,9 @@
       overflow: hidden;
       -webkit-filter: contrast(20) brightness(1);
       filter: contrast(20) brightness(1);
-      position: relative;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
       padding: 0;
       margin: 0;
     }
