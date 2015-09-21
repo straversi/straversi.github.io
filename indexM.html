@@ -9,6 +9,13 @@
     body { font-size:7vmin; font-family:sans-serif; position: relative; }
     h1 { font-size: 1.5em; text-align: center; margin: 15px 0px 5px 0px; }
     h2 { font-size: .8em; text-align: center; font-weight: 400; margin: 5px 0px 5px 0px; }
+    /* Carousel */
+    .carousel-piece { font-size:.9em; }
+    .carousel-piece p { margin:0; }
+    .carousel-piece ul { margin:0; padding:0 0 0 8px; list-style-type:none; color:rgb(50,50,50); font-size:0.95em;}
+    .carousel-piece ul > li::before { content:'- '; }
+    h3 { font-size:1em; margin:0; padding:0; }
+
     h6 { margin: 0; }
     .vr { display: inline-block; height:100%; border:1px solid black; vertical-align: top; }
     .quick-look-image { height:1.1em; vertical-align: top; }
@@ -56,8 +63,6 @@
       left:calc(-100%);
     }
 
-    /* Carousel specifics */
-    /*.carousel { height: 200px; }*/
   </style>
   <link href="carouseljs/carousel.css" rel="stylesheet">
 </head>
@@ -81,14 +86,18 @@
     <div class="carousel-container material-shadow">
       <img class="bg-image carousel-parallax" data-z="20" src="assets/icons/python.svg">
       <div class="carousel-piece">
-        Search Engine Intern<br>
-        - Python multi-threaded web scrapers<br>
-        - Data processing
+        <h3>Search Engine Intern</h3>
+        <ul>
+          <li>Python multi-threaded web scrapers</li>
+          <li>Data processing</li>
+        </ul>
       </div><!--
    --><div class="carousel-piece">
-        CS10 Student Instructor<br>
-        - Teach introductory Python<br>
-        - Develop course material
+        <h3>CS10 Student Instructor</h3>
+        <ul>
+          <li>Teach introductory Python</li>
+          <li>Develop course material</li>
+        </ul>
       </div>
     </div>
     <ul class="carousel-tracker">
@@ -103,13 +112,25 @@
     <div class="carousel-container material-shadow">
       <img class="bg-image carousel-parallax" data-z="20" src="assets/icons/swift.svg">
       <div class="carousel-piece">
-        Packd App<br>
-        - Interface with RESTful API<br>
-        - Designed UI
+        <h3>Packd App</h3>
+        <ul>
+          <li>Interface with RESTful API</li>
+          <li>Designed UI</li>
+          <li>
+            <span onclick="if ((/Android/).test(navigator.userAgent)) {
+                document.location = 'https://play.google.com/store/apps/details?id=com.packd.packd';
+              } else {
+                document.location = 'https://itunes.apple.com/us/app/packd/id1024333170?ls=1&mt=8';
+              }" style="text-decoration:underline;" >Available on the App Store</span>
+          </li>
+        </ul>
       </div><!--
    --><div class="carousel-piece">
-        GifGifGif<br>
-        - Search and copy Gifs
+        <h3>GifGifGif</h3>
+        <ul>
+          <li>Search Google for Gifs</li>
+          <li>Copy them the clipboard easily</li>
+        </ul>
       </div>
    </div>
    <ul class="carousel-tracker">
@@ -124,19 +145,25 @@
    <div class="carousel-container material-shadow">
      <img class="bg-image carousel-parallax" data-z="20" src="assets/icons/js.svg">
      <div class="carousel-piece">
-       Carousel.js<br>
-       - Exhibited here<br>
-       - Object Oriented
+       <h3>Carousel.js</h3>
+       <ul>
+         <li>Exhibited here</li>
+         <li>Object Oriented</li>
+       </ul>
      </div><!--
   --><div class="carousel-piece">
-       Typer.js<br>
-       - <a href="http://steven.codes/typerjs">steven.codes/typerjs</a><br>
-       - Interface for typing effect
+       <h3>Typer.js</h3>
+       <ul>
+         <li><a href="http://steven.codes/typerjs">steven.codes/typerjs</a></li>
+         <li>Interface for typing effect</li>
+       </ul>
      </div><!--
   --><div class="carousel-piece">
-       Net.js<br>
-       - Small graphics library<br>
-       - Reactive nodes and edges
+       <h3>Net.js</h3>
+       <ul>
+         <li>Small graphics library</li>
+         <li>Reactive nodes and edges</li>
+       </ul>
      </div>
   </div>
   <ul class="carousel-tracker">
