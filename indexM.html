@@ -63,6 +63,9 @@
       left:calc(-100%);
     }
 
+    /* Drop-down specifics */
+    .drop-down { position:fixed; z-index:10; background-color:white; top:0; left:0; width:100%; transform:translate3d(0,-100%,0); webkit-transform:translate3d(0,-100%,0); transition:all 0.1s linear;}
+    .close-button { width:20px; }
   </style>
   <link href="carouseljs/carousel.css" rel="stylesheet">
 </head>
@@ -207,15 +210,50 @@
       <li>Intern with the search engine team at the sports retail company Fanatics</li>
     </ul>
   </div>
-  <!-- Testing -->
-
+  <!-- TESTING -->
+  <!-- Drop-down -->
+  <div class="drop-down" id="drop-down-1">
+    <img src="assets/icons/close.svg" alt="Close button" class="close-button" id="drop-down-1-close">
+    <h3>Languages</h3>
+    <ul>
+      <li>Python</li>
+      <li>Swift</li>
+      <li>JavaScript</li>
+      <li>Java</li>
+    </ul>
+    <h3>Familiar Frameworks</h3>
+    <ul>
+      <li>Django</li>
+      <li>Ruby on Rails</li>
+    </ul>
+    <h3>Web extras</h3>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3</li>
+    </ul>
+  </div>
+  <p id="drop-down-1-open">Drop down test. Coming soon.</p>
 
   <!-- Footers -->
   <h5 style="color:rgb(215, 23, 13);text-align:center;margin-bottom:15px;">Under construction! Aug 11</h5>
   <p style="text-align:center">
     <a href="https://github.com/straversi"><img src="assets/icons/github.png" width="22%"></a>
   </p>
+
+  <!-- Scripts -->
   <script src="assets/scripts/hammer.min.js"></script>
   <script src="carouseljs/carousel.js"></script>
+  <script>
+    document.getElementById("drop-down-1-open").addEventListener("click", function() {
+      var element = document.getElementById("drop-down-1")
+      element.style.setProperty("-webkit-transform", "translate3d(0,0,0)");
+      element.style.setProperty("transform", "translate3d(0,0,0)");
+    });
+    document.getElementById("drop-down-1-close").addEventListener("click", function() {
+      var element = document.getElementById("drop-down-1")
+      element.style.setProperty("-webkit-transform", "translate3d(0,-100%,0)");
+      element.style.setProperty("transform", "translate3d(0,-100%,0)");
+    });
+  </script>
 </body>
 </html>
