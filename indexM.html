@@ -64,7 +64,7 @@
     }
 
     /* Drop-down specifics */
-    .drop-down { position:fixed; z-index:10; background-color:white; top:0; left:0; width:100%; transform:translate3d(0,-100%,0); webkit-transform:translate3d(0,-100%,0); transition:all 0.1s linear;}
+    .drop-down { position:fixed; z-index:10; background-color:white; top:0; left:0; width:100%; -webkit-transform:translate3d(0,-100%,0); transform:translate3d(0,-100%,0); transition:all 0.1s linear;}
     .close-button { width:20px; }
   </style>
   <link href="carouseljs/carousel.css" rel="stylesheet">
@@ -248,12 +248,12 @@
       var element = document.getElementById("drop-down-1")
       element.style.setProperty("-webkit-transform", "translate3d(0,0,0)");
       element.style.setProperty("transform", "translate3d(0,0,0)");
-    });
+    }, false);
     document.getElementById("drop-down-1-close").addEventListener("click", function() {
       var element = document.getElementById("drop-down-1")
       element.style.setProperty("-webkit-transform", "translate3d(0,-100%,0)");
       element.style.setProperty("transform", "translate3d(0,-100%,0)");
-    });
+    }, false);
   </script>
 </body>
 </html>
