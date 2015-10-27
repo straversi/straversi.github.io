@@ -45,7 +45,7 @@ var Carousel = function(element) {
     }
   });
   this.hammer.on('panend', function(e) {
-    if (Math.abs(e.velocityX) > 0.1) {
+    if (Math.abs(e.velocityX) > 1.0) {
       myself.cycle(e.velocityX > 0 ? 1 : -1);
     } else if (Math.abs(e.deltaX) > myself.container.offsetWidth / 2) {
       myself.cycle(e.deltaX > 0 ? -1 : 1);
