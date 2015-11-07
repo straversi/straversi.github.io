@@ -11,17 +11,19 @@
     /*#header ul { padding:0; margin:0; }*/
     /*#header ul > li { display:inline-block; width:32%; margin:0; text-align:center; }*/
 
-    h1, h2, p { margin-top:10px; margin-bottom:5px; }
+    h1, h2, p { margin-top:10px; margin-bottom:5px; margin-left:5px; margin-right:5px; }
+    h1 { text-align: center; }
     h2 { padding:0px; }
-    body { margin:0; padding:5px; font-size:4.7vw; font-family:'San Francisco','Roboto','Helvetica',sans-serif; }
+    body { margin:0; padding:0; font-size:4.7vw; font-family:'San Francisco','Roboto','Helvetica',sans-serif; }
     p { line-height:140%; }
-    .header { margin:-5px; margin-bottom:5px; padding:10px 0px 10px 7px; background:#008698; color:white; }
+    .header { margin:0px; padding:10px 0px 10px 7px; background:#008698; color:white; width:100%; position:fixed; z-index:1; }
     .title { display:inline-block; position:relative; margin-left:10px; vertical-align:70%; } /* Vertical align half of line-height */
     .profile-image { border-radius:50%; border:1px solid #cccccc; background:white;}
     .quote { font-size:1.3em; font-family:'Noto Serif',serif; border-left:3px solid #888888; padding:10px; }
     .quote > span { font-size:.8em;  }
     .detail-image { font-family:'Noto Serif',serif; padding:5px; }
     .full-image { width:calc(100% - 60px); margin-left:30px; }
+    .hook-image { width:100%; margin-}
     .caption { margin-top:3px; font-size:.8em; font-family:'Noto Serif',serif; }
 
     .shadow { -webkit-box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.4); }
@@ -43,6 +45,7 @@
     <img width="40" class="profile-image" src="../assets/images/headshot.jpg"/>
     <div class="title">Teaching</div>
   </div>
+  <img class="hook-image" src="../assets/images/teaching.jpg"/>
   <h1>
       Teaching
   </h1>
