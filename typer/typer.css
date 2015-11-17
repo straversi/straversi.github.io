@@ -7,8 +7,8 @@ body, html {
 	height: 100%;
 	margin: 0;
 	position: fixed;
-	font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
-    font-size: 16px;
+	font-family: 'San Francisco', 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-size: 16px;
 }
 h1 {
     /*white-space: nowrap;*/
@@ -81,7 +81,9 @@ a:visited {
     opacity: 0;
     visibility: hidden;
     transition: all .15s linear;
-    z-index: 100;
+    /*z-index: 100;*/
+    background: white;
+    background-color:rgba(255,255,255,0.9);
 }
 .label {
     color: black;
@@ -144,7 +146,7 @@ button:active {
 }
 #settings {
 	text-align: left;
-	background-color: rgba(255,255,255,0.7);
+	background-color: rgba(255,255,255,0.8);
 	border: 1px solid #E8E8E8;
     border-radius: 2px;
     font-size: .9em;
