@@ -1,6 +1,5 @@
 $.ajax({
-  url: "https://www.wikipedia.org/wiki/Science",
-  dataType: 'html'
-}).done(function( data ) {
+  url: "https://en.wikipedia.org/w/api.php?action=parse&page=Science"
+}).done(function(data) {
   console.log(data);
 });
