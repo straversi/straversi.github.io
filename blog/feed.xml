@@ -4,10 +4,10 @@
     <title>steven.codes</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </description>
-    <link>http://steven.codes/</link>
-    <atom:link href="http://steven.codes/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 07 Dec 2015 17:58:52 -0800</pubDate>
-    <lastBuildDate>Mon, 07 Dec 2015 17:58:52 -0800</lastBuildDate>
+    <link>http://steven.codes/blog/</link>
+    <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 07 Dec 2015 18:00:26 -0800</pubDate>
+    <lastBuildDate>Mon, 07 Dec 2015 18:00:26 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -43,8 +43,8 @@
 
 </description>
         <pubDate>Thu, 03 Dec 2015 11:47:36 -0800</pubDate>
-        <link>http://steven.codes/constraint-satisfaction-with-sudoku/</link>
-        <guid isPermaLink="true">http://steven.codes/constraint-satisfaction-with-sudoku/</guid>
+        <link>http://steven.codes/blog/constraint-satisfaction-with-sudoku/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/constraint-satisfaction-with-sudoku/</guid>
         
         
       </item>
@@ -82,8 +82,8 @@
 
 </description>
         <pubDate>Sun, 22 Nov 2015 11:47:36 -0800</pubDate>
-        <link>http://steven.codes/my-jekyll-setup/</link>
-        <guid isPermaLink="true">http://steven.codes/my-jekyll-setup/</guid>
+        <link>http://steven.codes/blog/my-jekyll-setup/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/my-jekyll-setup/</guid>
         
         
       </item>
@@ -92,11 +92,11 @@
         <title>Simulating Gravity With a Linear Transform</title>
         <description>&lt;h1 id=&quot;testing&quot;&gt;TESTING&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/simulating-gravity-with-a-linear-transform/test.png&quot; alt=&quot;Image of Yaktocat&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/simulating-gravity-with-a-linear-transform/test.png&quot; alt=&quot;Image of Yaktocat&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Tue, 17 Nov 2015 17:47:36 -0800</pubDate>
-        <link>http://steven.codes/simulating-gravity-with-a-linear-transform/</link>
-        <guid isPermaLink="true">http://steven.codes/simulating-gravity-with-a-linear-transform/</guid>
+        <link>http://steven.codes/blog/simulating-gravity-with-a-linear-transform/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/simulating-gravity-with-a-linear-transform/</guid>
         
         
       </item>
@@ -105,11 +105,11 @@
         <title>Constant 2048 Solution</title>
         <description>&lt;h1 id=&quot;testing&quot;&gt;TESTING&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/constant-2048-solution/test.png&quot; alt=&quot;Image of Yaktocat&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/constant-2048-solution/test.png&quot; alt=&quot;Image of Yaktocat&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 13 Nov 2015 17:47:36 -0800</pubDate>
-        <link>http://steven.codes/constant-2048-solution/</link>
-        <guid isPermaLink="true">http://steven.codes/constant-2048-solution/</guid>
+        <link>http://steven.codes/blog/constant-2048-solution/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/constant-2048-solution/</guid>
         
         
       </item>
@@ -300,17 +300,17 @@ can get very clever and efficient. &lt;span&gt;&amp;amp;#9632&lt;/span&gt;&lt;/p
 
 &lt;h1 id=&quot;testing&quot;&gt;TESTING&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/posts/cs10/2048-merge/test.png&quot; alt=&quot;Image of Yaktocat&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/cs10/2048-merge/test.png&quot; alt=&quot;Image of Yaktocat&quot; /&gt;&lt;/p&gt;
 
 &lt;script&gt;
   // Run setup method. Find in 2048_board_merge.js from YAML front matter.
-  tileSetup(&quot;/assets/posts/cs10/2048-merge/2048_tiles/&quot;);
+  tileSetup(&quot;/blog/assets/posts/cs10/2048-merge/2048_tiles/&quot;);
 &lt;/script&gt;
 
 </description>
         <pubDate>Thu, 12 Nov 2015 03:47:36 -0800</pubDate>
-        <link>http://steven.codes/cs10/2048-merge/</link>
-        <guid isPermaLink="true">http://steven.codes/cs10/2048-merge/</guid>
+        <link>http://steven.codes/blog/cs10/2048-merge/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/cs10/2048-merge/</guid>
         
         
         <category>cs10</category>
@@ -335,8 +335,8 @@ can get very clever and efficient. &lt;span&gt;&amp;amp;#9632&lt;/span&gt;&lt;/p
 
 </description>
         <pubDate>Wed, 11 Nov 2015 11:47:36 -0800</pubDate>
-        <link>http://steven.codes/jekyll/welcome-to-jekyll/</link>
-        <guid isPermaLink="true">http://steven.codes/jekyll/welcome-to-jekyll/</guid>
+        <link>http://steven.codes/blog/jekyll/welcome-to-jekyll/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/jekyll/welcome-to-jekyll/</guid>
         
         
         <category>jekyll</category>
