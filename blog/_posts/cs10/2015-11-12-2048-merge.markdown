@@ -7,8 +7,8 @@ description: "Explore creating an intuitive algorithm for 2048."
 custom_css: 2048_board
 custom_js: 2048_board_merge
 ---
-<!-- JavaScript and CSS loaded in _includes/head.html.
-     Check front matter. -->
+<!-- JavaScript and CSS loaded in _includes/head.html. Check front matter. -->
+{% capture asset_path %}{{site.baseurl}}/assets/posts{{page.url}}/{% endcapture %}
 
 In the fad game 2048, you press arrow keys to move tiles across a board in
 one of four possible directions. Let's explore an intuitive algorithm for
@@ -154,10 +154,9 @@ There are many other ways to achieve the merge effect, and some solutions
 can get very clever and efficient. <span>&#9632</span>
 
 # TESTING
-
-![Image of Yaktocat]({% asset_path test.png %})
+![Image of Yaktocat]({{asset_path}}test.png)
 
 <script>
   // Run setup method. Find in 2048_board_merge.js from YAML front matter.
-  tileSetup("{% asset_path 2048_tiles/%}");
+  tileSetup("{{asset_path}}2048_tiles/");
 </script>

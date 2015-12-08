@@ -6,4 +6,4 @@ description: "Creating the illusion of a gravity-based simulation without all th
 ---
 # TESTING
 
-![Image of Yaktocat]({% asset_path test.png %})
+![Image of Yaktocat]({{asset_path}}test.png)

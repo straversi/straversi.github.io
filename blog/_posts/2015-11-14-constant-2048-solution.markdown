@@ -6,4 +6,4 @@ description: "Is it possible to merge in constant time?"
 ---
 # TESTING
 
-![Image of Yaktocat]({% asset_path test.png %})
+![Image of Yaktocat]({{asset_path}}test.png)
