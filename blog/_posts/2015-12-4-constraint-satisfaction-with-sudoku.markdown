@@ -16,7 +16,7 @@ I prefer to structure assets similarly to posts. For example, if there is a post
 {% endraw %}
 {% endhighlight %}
 
-Many of my posts require custom JavaScript, and sometimes custom CSS (see [2048 Merge]({% post_url 2015-11-12-2048-merge %})). I don't want these custom resources loading for every post, so I created two front matter variables, `custom_css` and `custom_js`. In `_includes/header.html`, I added the following script:
+Many of my posts require custom JavaScript, and sometimes custom CSS (see [2048 Merge]({% post_url cs10/2015-11-12-2048-merge %})). I don't want these custom resources loading for every post, so I created two front matter variables, `custom_css` and `custom_js`. In `_includes/header.html`, I added the following script:
 
 {% highlight html %}
 {% raw %}
