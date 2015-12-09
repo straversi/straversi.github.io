@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 08 Dec 2015 16:42:59 -0800</pubDate>
-    <lastBuildDate>Tue, 08 Dec 2015 16:42:59 -0800</lastBuildDate>
+    <pubDate>Wed, 09 Dec 2015 00:27:43 -0800</pubDate>
+    <lastBuildDate>Wed, 09 Dec 2015 00:27:43 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -77,6 +77,13 @@
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;nx&quot;&gt;tileSetup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{% asset_path 2048_tiles/%}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;plugins&quot;&gt;Plugins&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/takuti/jekyll-lazy-tweet-embedding&quot;&gt;Lazy Tweet Embedding&lt;/a&gt; automatically converts twitter states urls to twitter cards. For example, if I concatenate &lt;code class=&quot;highlighter-rouge&quot;&gt;https://twitter.com/&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;StevenTraversi/status/558448694731608064&lt;/code&gt;, the plugin will generate this for me:&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Studying machine structures in Soda, &amp;quot;home of top shelf computer scientists&amp;quot;. &lt;a href=&quot;https://twitter.com/hashtag/61C?src=hash&quot;&gt;#61C&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/UCBerkeley?src=hash&quot;&gt;#UCBerkeley&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/twoscomplement?src=hash&quot;&gt;#twoscomplement&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/passbyvalue?src=hash&quot;&gt;#passbyvalue&lt;/a&gt;&lt;/p&gt;&amp;mdash; Steven Traversi (@StevenTraversi) &lt;a href=&quot;https://twitter.com/StevenTraversi/status/558448694731608064&quot;&gt;January 23, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Clean and easy.&lt;/p&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll.&lt;/p&gt;
 
