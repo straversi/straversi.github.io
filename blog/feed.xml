@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 08 Dec 2015 16:32:48 -0800</pubDate>
-    <lastBuildDate>Tue, 08 Dec 2015 16:32:48 -0800</lastBuildDate>
+    <pubDate>Tue, 08 Dec 2015 16:42:59 -0800</pubDate>
+    <lastBuildDate>Tue, 08 Dec 2015 16:42:59 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -54,7 +54,7 @@
         <description>&lt;p&gt;The permalink format for posts on this site is &lt;code class=&quot;highlighter-rouge&quot;&gt;:categories/:title&lt;/code&gt;. That way I can direct students to steven.codes/cs10 for easy access to all cs10 resources.&lt;/p&gt;
 
 &lt;h2 id=&quot;organizing-assets&quot;&gt;Organizing Assets&lt;/h2&gt;
-&lt;p&gt;I prefer to structure assets similarly to posts. For example, if there is a post at &lt;code class=&quot;highlighter-rouge&quot;&gt;site.baseurl/cs10/2048-merge&lt;/code&gt;, then I’d like the corresponding assets to be stored in &lt;code class=&quot;highlighter-rouge&quot;&gt;assets/posts/cs10/2048-merge&lt;/code&gt;. This means I have to go through this path every time I’d like to include a resource. &lt;a href=&quot;https://github.com/samrayner/jekyll-asset-path-plugin&quot;&gt;Asset path tag&lt;/a&gt; is a plugin that I use to manage these relative paths. This is what including an image looks like with asset path:&lt;/p&gt;
+&lt;p&gt;I prefer to structure assets similarly to posts. For example, if there is a post at &lt;code class=&quot;highlighter-rouge&quot;&gt;/cs10/2048-merge&lt;/code&gt;, then I’d like the corresponding assets to be stored in &lt;code class=&quot;highlighter-rouge&quot;&gt;/assets/posts/cs10/2048-merge&lt;/code&gt;. This means I have to go through this path every time I’d like to include a resource. &lt;a href=&quot;https://github.com/samrayner/jekyll-asset-path-plugin&quot;&gt;Asset path tag&lt;/a&gt; is a plugin that I use to manage these relative paths. This is what including an image looks like with asset path:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;asset_path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;cat_of_the_month.png&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 

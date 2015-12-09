@@ -75,7 +75,7 @@
     <p>The permalink format for posts on this site is <code class="highlighter-rouge">:categories/:title</code>. That way I can direct students to steven.codes/cs10 for easy access to all cs10 resources.</p>
 
 <h2 id="organizing-assets">Organizing Assets</h2>
-<p>I prefer to structure assets similarly to posts. For example, if there is a post at <code class="highlighter-rouge">site.baseurl/cs10/2048-merge</code>, then I’d like the corresponding assets to be stored in <code class="highlighter-rouge">assets/posts/cs10/2048-merge</code>. This means I have to go through this path every time I’d like to include a resource. <a href="https://github.com/samrayner/jekyll-asset-path-plugin">Asset path tag</a> is a plugin that I use to manage these relative paths. This is what including an image looks like with asset path:</p>
+<p>I prefer to structure assets similarly to posts. For example, if there is a post at <code class="highlighter-rouge">/cs10/2048-merge</code>, then I’d like the corresponding assets to be stored in <code class="highlighter-rouge">/assets/posts/cs10/2048-merge</code>. This means I have to go through this path every time I’d like to include a resource. <a href="https://github.com/samrayner/jekyll-asset-path-plugin">Asset path tag</a> is a plugin that I use to manage these relative paths. This is what including an image looks like with asset path:</p>
 
 <figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">asset_path</span><span class="w"> </span>cat_of_the_month.png<span class="w"> </span><span class="p">%}</span></code></pre></figure>
 
