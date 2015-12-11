@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Constraint Satisfaction With Sudoku</title>
-  <meta name="description" content="The permalink format for posts on this site is :categories/:title. That way I can direct students to steven.codes/cs10 for easy access to all cs10 resources.">
+  <meta name="description" content="AI: A Modern Approach">
 
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,600' rel='stylesheet' type='text/css'>
@@ -71,40 +71,55 @@
     <p class="post-meta">
       <time datetime="2015-12-03T11:47:36-08:00" itemprop="datePublished">Dec 3, 2015</time>
       
-      <!-- <br>Read in about 1  minute -->
+      <!-- <br>Read in about 3  minutes -->
     </p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>The permalink format for posts on this site is <code class="highlighter-rouge">:categories/:title</code>. That way I can direct students to steven.codes/cs10 for easy access to all cs10 resources.</p>
+    <h2 id="ai-a-modern-approach">AI: A Modern Approach</h2>
 
-<h2 id="organizing-assets">Organizing Assets</h2>
-<p>I prefer to structure assets similarly to posts. For example, if there is a post at <code class="highlighter-rouge">site.baseurl/cs10/2048-merge</code>, then I’d like the corresponding assets to be stored in <code class="highlighter-rouge">assets/posts/cs10/2048-merge</code>. This means I have to go through this path every time I’d like to include a resource. <a href="https://github.com/samrayner/jekyll-asset-path-plugin">Asset path tag</a> is a plugin that I use to manage these relative paths. This is what including an image looks like with asset path:</p>
+<p>This semester, I’ve had the pleasure of taking “Intro to Artificial Intelligence” with Stuart Russell and Pat Virtue. Russell authored the definitive <strong>Artificial Intelligence, A Modern Approach</strong>, used as a foundation of AI curricula across the world.</p>
 
-<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">asset_path</span><span class="w"> </span>cat_of_the_month.png<span class="w"> </span><span class="p">%}</span></code></pre></figure>
+<p>In the first section of the class we covered “search”, including “constraint satisfaction problems” (CSP). Constraint satisfaction is an efficient way to represent a problem as a set of variables and rules for those variables. For example, you could have two variables whose domains are integers in [0, 10] that share a “diff” constraint- in other words, they may not be assigned the same number. A solution to a CSP happens when all variables been assigned a value and no constraints are violated.</p>
 
-<p>Many of my posts require custom JavaScript, and sometimes custom CSS (see <a href="/cs10/2048-merge/">2048 Merge</a>). I don’t want these custom resources loading for every post, so I created two front matter variables, <code class="highlighter-rouge">custom_css</code> and <code class="highlighter-rouge">custom_js</code>. In <code class="highlighter-rouge">_includes/header.html</code>, I added the following script:</p>
+<p>The textbook <strong>AIAMA</strong> defines a search algorithm for solving CSPs that uses “backtracking” (which is really just a fancy term for how common search strategies like DFS work inherently). Essentially, if the search finds itself at a dead end, it will back up and traverse a different branch. In the case of CSPs, a dead end is an assignment from which no more values may be given to variables without constraint violation. If the backtracking algorithm finds itself here, it will un-assign some number of variables and continue the search. The algorithm is laid out below:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">{% if page.custom_css %}
-  {% for stylesheet in page.custom_css %}
-    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{% asset_path {{ stylesheet }}.css %}"</span> <span class="na">media=</span><span class="s">"screen"</span> <span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span>
-  {% endfor %}
-{% endif %}
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">backtrack</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">assignment</span> <span class="ow">is</span> <span class="n">complete</span><span class="p">:</span> <span class="k">return</span> <span class="n">assignment</span>
+  <span class="n">var</span> <span class="o">=</span> <span class="n">select</span><span class="o">-</span><span class="n">unassigned</span><span class="o">-</span><span class="n">variable</span><span class="p">(</span><span class="n">csp</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">each</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">order</span><span class="o">-</span><span class="n">domain</span><span class="o">-</span><span class="n">values</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">consistent</span> <span class="k">with</span> <span class="n">assignment</span><span class="p">:</span>
+      <span class="nb">set</span> <span class="n">var</span> <span class="o">=</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">assignment</span>
+      <span class="n">inferences</span> <span class="o">=</span> <span class="n">inference</span><span class="p">(</span><span class="n">csp</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">inferences</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">fail</span><span class="p">:</span>
+        <span class="n">add</span> <span class="n">inferences</span> <span class="n">to</span> <span class="n">assignment</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">backtrack</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">failure</span><span class="p">:</span>
+          <span class="k">return</span> <span class="n">result</span>
+    <span class="n">remove</span> <span class="n">var</span> <span class="o">=</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">inferences</span> <span class="kn">from</span> <span class="nn">assignment</span><span class="err">
+</span>  <span class="nn">return</span> <span class="nn">failure</span></code></pre></figure>
 
-{% if page.custom_js %}
-  {% for js_file in page.custom_js %}
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'{% asset_path {{ js_file }}.js %}'</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
-  {% endfor %}
-{% endif %}</code></pre></figure>
+<p>Some signatures to talk about:</p>
 
-<p>Some JavaScript snippets need access to the assets of the post. It would be bad practice to include file paths in the JavaScript itself. To allow for better separation of concerns, I pass asset_path to the js from the post. An example:</p>
+<p><em>select-unassigned-variable(csp)</em></p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script&gt;</span>
-  <span class="nx">tileSetup</span><span class="p">(</span><span class="s2">"{% asset_path 2048_tiles/%}"</span><span class="p">);</span>
-<span class="nt">&lt;/script&gt;</span></code></pre></figure>
+<p>At this point, we choose a variable to make an assignment for. We’re not actually assigning a value to anything yet. You may wonder, does the order that we choose variables for assignment matter? The answer is yes. Many problems find useful to always pick the variable that has the smallest remaining domain. This technique is called Minimum Remaining Values (MRV).</p>
 
-<p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll.</p>
+<p><em>order-domain-values(var, assignment, csp)</em></p>
 
+<p>The order in which we check the values in our chosen variable’s domain can make a difference as well. A common approach is to order values by how much they would affect neighboring domains. We’d like to choose the values that cause the LEAST amount of domain-constriction first. This is called Least Constraining Value.</p>
+
+<p><em>“is consistent with assignment”</em></p>
+
+<p>This checks if the assigning the given value to the given variable would violate any constraints. Therefore, it only involves checking the domains of variables that are constrained to the given one.</p>
+
+<p><em>inference(csp, var, value)</em></p>
+
+<p>When we give a variable a value, we have to prune the domains of all variables constrained with it. Sometimes, pruning a domain causes a variable to only have one value left in its domain. We could then make an assignment there, after which we could recursively begin another inference.</p>
+
+<h2 id="sudoku-as-a-csp">Sudoku as a CSP</h2>
+
+<p>Idea: Do inference as just one look ahead in the backtrack…? Not in constrain()? Update: constrain() is inference().</p>
 
   </div>
 

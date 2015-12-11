@@ -6,41 +6,56 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 09 Dec 2015 00:27:43 -0800</pubDate>
-    <lastBuildDate>Wed, 09 Dec 2015 00:27:43 -0800</lastBuildDate>
+    <pubDate>Thu, 10 Dec 2015 21:19:04 -0800</pubDate>
+    <lastBuildDate>Thu, 10 Dec 2015 21:19:04 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
         <title>Constraint Satisfaction With Sudoku</title>
-        <description>&lt;p&gt;The permalink format for posts on this site is &lt;code class=&quot;highlighter-rouge&quot;&gt;:categories/:title&lt;/code&gt;. That way I can direct students to steven.codes/cs10 for easy access to all cs10 resources.&lt;/p&gt;
+        <description>&lt;h2 id=&quot;ai-a-modern-approach&quot;&gt;AI: A Modern Approach&lt;/h2&gt;
 
-&lt;h2 id=&quot;organizing-assets&quot;&gt;Organizing Assets&lt;/h2&gt;
-&lt;p&gt;I prefer to structure assets similarly to posts. For example, if there is a post at &lt;code class=&quot;highlighter-rouge&quot;&gt;site.baseurl/cs10/2048-merge&lt;/code&gt;, then I’d like the corresponding assets to be stored in &lt;code class=&quot;highlighter-rouge&quot;&gt;assets/posts/cs10/2048-merge&lt;/code&gt;. This means I have to go through this path every time I’d like to include a resource. &lt;a href=&quot;https://github.com/samrayner/jekyll-asset-path-plugin&quot;&gt;Asset path tag&lt;/a&gt; is a plugin that I use to manage these relative paths. This is what including an image looks like with asset path:&lt;/p&gt;
+&lt;p&gt;This semester, I’ve had the pleasure of taking “Intro to Artificial Intelligence” with Stuart Russell and Pat Virtue. Russell authored the definitive &lt;strong&gt;Artificial Intelligence, A Modern Approach&lt;/strong&gt;, used as a foundation of AI curricula across the world.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;asset_path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;cat_of_the_month.png&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;In the first section of the class we covered “search”, including “constraint satisfaction problems” (CSP). Constraint satisfaction is an efficient way to represent a problem as a set of variables and rules for those variables. For example, you could have two variables whose domains are integers in [0, 10] that share a “diff” constraint- in other words, they may not be assigned the same number. A solution to a CSP happens when all variables been assigned a value and no constraints are violated.&lt;/p&gt;
 
-&lt;p&gt;Many of my posts require custom JavaScript, and sometimes custom CSS (see &lt;a href=&quot;/cs10/2048-merge/&quot;&gt;2048 Merge&lt;/a&gt;). I don’t want these custom resources loading for every post, so I created two front matter variables, &lt;code class=&quot;highlighter-rouge&quot;&gt;custom_css&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;custom_js&lt;/code&gt;. In &lt;code class=&quot;highlighter-rouge&quot;&gt;_includes/header.html&lt;/code&gt;, I added the following script:&lt;/p&gt;
+&lt;p&gt;The textbook &lt;strong&gt;AIAMA&lt;/strong&gt; defines a search algorithm for solving CSPs that uses “backtracking” (which is really just a fancy term for how common search strategies like DFS work inherently). Essentially, if the search finds itself at a dead end, it will back up and traverse a different branch. In the case of CSPs, a dead end is an assignment from which no more values may be given to variables without constraint violation. If the backtracking algorithm finds itself here, it will un-assign some number of variables and continue the search. The algorithm is laid out below:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;{% if page.custom_css %}
-  {% for stylesheet in page.custom_css %}
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{% asset_path {{ stylesheet }}.css %}&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;media=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;screen&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  {% endfor %}
-{% endif %}
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;backtrack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;complete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unassigned&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;consistent&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;inferences&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inference&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inferences&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inferences&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;backtrack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;failure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inferences&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;  &lt;span class=&quot;nn&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;failure&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-{% if page.custom_js %}
-  {% for js_file in page.custom_js %}
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;{% asset_path {{ js_file }}.js %}&#39;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  {% endfor %}
-{% endif %}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;Some signatures to talk about:&lt;/p&gt;
 
-&lt;p&gt;Some JavaScript snippets need access to the assets of the post. It would be bad practice to include file paths in the JavaScript itself. To allow for better separation of concerns, I pass asset_path to the js from the post. An example:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;select-unassigned-variable(csp)&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;tileSetup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{% asset_path 2048_tiles/%}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;At this point, we choose a variable to make an assignment for. We’re not actually assigning a value to anything yet. You may wonder, does the order that we choose variables for assignment matter? The answer is yes. Many problems find useful to always pick the variable that has the smallest remaining domain. This technique is called Minimum Remaining Values (MRV).&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;order-domain-values(var, assignment, csp)&lt;/em&gt;&lt;/p&gt;
 
+&lt;p&gt;The order in which we check the values in our chosen variable’s domain can make a difference as well. A common approach is to order values by how much they would affect neighboring domains. We’d like to choose the values that cause the LEAST amount of domain-constriction first. This is called Least Constraining Value.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;“is consistent with assignment”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This checks if the assigning the given value to the given variable would violate any constraints. Therefore, it only involves checking the domains of variables that are constrained to the given one.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;inference(csp, var, value)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;When we give a variable a value, we have to prune the domains of all variables constrained with it. Sometimes, pruning a domain causes a variable to only have one value left in its domain. We could then make an assignment there, after which we could recursively begin another inference.&lt;/p&gt;
+
+&lt;h2 id=&quot;sudoku-as-a-csp&quot;&gt;Sudoku as a CSP&lt;/h2&gt;
+
+&lt;p&gt;Idea: Do inference as just one look ahead in the backtrack…? Not in constrain()? Update: constrain() is inference().&lt;/p&gt;
 </description>
         <pubDate>Thu, 03 Dec 2015 11:47:36 -0800</pubDate>
         <link>http://steven.codes/blog/constraint-satisfaction-with-sudoku/</link>
@@ -79,7 +94,7 @@
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;plugins&quot;&gt;Plugins&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/takuti/jekyll-lazy-tweet-embedding&quot;&gt;Lazy Tweet Embedding&lt;/a&gt; automatically converts twitter states urls to twitter cards. For example, if I concatenate &lt;code class=&quot;highlighter-rouge&quot;&gt;https://twitter.com/&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;StevenTraversi/status/558448694731608064&lt;/code&gt;, the plugin will generate this for me:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/takuti/jekyll-lazy-tweet-embedding&quot;&gt;Lazy Tweet Embedding&lt;/a&gt; automatically converts twitter states urls to twitter cards. For example, if I concatenate &lt;code class=&quot;highlighter-rouge&quot;&gt;https://twitter.com/&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;StevenTraversi/status/&lt;/code&gt;, and a tweet id such as &lt;code class=&quot;highlighter-rouge&quot;&gt;558448694731608064&lt;/code&gt;, the plugin will generate this for me:&lt;/p&gt;
 &lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Studying machine structures in Soda, &amp;quot;home of top shelf computer scientists&amp;quot;. &lt;a href=&quot;https://twitter.com/hashtag/61C?src=hash&quot;&gt;#61C&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/UCBerkeley?src=hash&quot;&gt;#UCBerkeley&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/twoscomplement?src=hash&quot;&gt;#twoscomplement&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/passbyvalue?src=hash&quot;&gt;#passbyvalue&lt;/a&gt;&lt;/p&gt;&amp;mdash; Steven Traversi (@StevenTraversi) &lt;a href=&quot;https://twitter.com/StevenTraversi/status/558448694731608064&quot;&gt;January 23, 2015&lt;/a&gt;&lt;/blockquote&gt;
 &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
 
