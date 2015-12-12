@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Life Amateur Tips</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='home.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div id="wrapper">
+    <h1 id="pro-tip-title"></h1>
+    <p id="pro-tip-description"></p>
+  </div>
+  <input type="checkbox" name="cGroup" value="1" id="r1" />
+  <div id="contribute">
+    <label class="checkbox" for="r1" onclick="document.getElementById('firstInput').focus();">
+      <img src="contribute.png"> Contribute
+    </label>
+    <form>
+      <input placeholder="Title" type="text" name="Title" id="firstInput">
+      <input placeholder="Description" type="text" name="Description">
+      <button>Submit</button>
+    </form>
+  </div>
+  <script src='home.js'></script>
+</body>
+</html>
