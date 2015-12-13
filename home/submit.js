@@ -19,7 +19,14 @@ window.addEventListener("load", function () {
 
     // We define what happens in any case (error or not)
     XHR.addEventListener("loadend", function(event) {
+      // Button is usable again
       form.querySelector("button").style.opacity = 1;
+      // Inputs are invalid again
+      var inputs = form.querySelectorAll("input");
+      console.log(inputs);
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].style.borderBottom = "2px solid #F29696";
+      }
       document.getElementById('firstInput').focus();
     });
 
