@@ -16,11 +16,14 @@
     <label class="checkbox" for="r1" onclick="document.getElementById('firstInput').focus();">
       <img src="contribute.png"> <span>Contribute</span>
     </label>
-    <form id="form-contribute">
-      <input placeholder="Title" type="text" name="Title" id="firstInput" required>
-      <input placeholder="Description" type="text" name="Description" required>
-      <button>Submit</button>
-    </form>
+    <div id="form-wrapper">
+      <form id="form-contribute">
+        <input placeholder="Title" type="text" name="Title" id="firstInput" required>
+        <input placeholder="Description" type="text" name="Description" required>
+        <button>Submit</button>
+      </form>
+      <img id="submit-status">
+    </div>
   </div>
   <script src='home.js'></script>
   <script src='submit.js'></script>

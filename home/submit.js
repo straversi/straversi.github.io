@@ -9,24 +9,28 @@ window.addEventListener("load", function () {
     // We define what will happen if the data are successfully sent
     XHR.addEventListener("load", function(event) {
       // alert(event.target.responseText);
+      statusElement.src = "check.png";
+      statusElement.classList.add("animate-appear-and-fade");
+
       form.reset();
+      // Inputs are invalid again
+      var inputs = form.querySelectorAll("input");
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].style.borderBottom = "2px solid #F29696";
+      }
     });
 
     // We define what will happen in case of error
     XHR.addEventListener("error", function(event) {
-      alert('Oops! Something went wrong.');
+      statusElement.src = "x.png";
+      statusElement.classList.add("animate-appear-and-fade");
     });
 
     // We define what happens in any case (error or not)
     XHR.addEventListener("loadend", function(event) {
       // Button is usable again
       form.querySelector("button").style.opacity = 1;
-      // Inputs are invalid again
-      var inputs = form.querySelectorAll("input");
-      console.log(inputs);
-      for (var i = 0; i < inputs.length; i++) {
-        inputs[i].style.borderBottom = "2px solid #F29696";
-      }
+
       document.getElementById('firstInput').focus();
     });
 
@@ -40,10 +44,21 @@ window.addEventListener("load", function () {
     XHR.send(FD);
   }
 
-  // We need to access the form element
+  // We need to access the form element...
   var form = document.getElementById("form-contribute");
 
-  // to takeover its submit event.
+  // Access to the submit image
+  var statusElement = document.getElementById("submit-status");
+  // Animation end handlers for all browsers
+  statusElement.addEventListener('animationend', function(e) { removeAnimationClass(e.target); });
+  statusElement.addEventListener('webkitAnimationEnd', function(e) { removeAnimationClass(e.target); });
+  statusElement.addEventListener('oanimationend', function(e) { removeAnimationClass(e.target); });
+  statusElement.addEventListener('MSAnimationEnd', function(e) { removeAnimationClass(e.target); });
+  function removeAnimationClass(element) {
+    element.classList.remove("animate-appear-and-fade");
+  }
+
+  // ...to takeover its submit event.
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -55,6 +70,8 @@ window.addEventListener("load", function () {
 
 // Form validation handling
 window.addEventListener("load", function () {
+  var form = document.getElementById("form-contribute");
+  var submitButton = form.querySelector("button");
   window.addEventListener("input", function(e) {
     element = e.target;
     if (element.checkValidity()) {
@@ -63,6 +80,13 @@ window.addEventListener("load", function () {
     } else {
       // Red for invalid
       element.style.borderBottom = "2px solid #F29696";
+    }
+    if (form.checkValidity()) {
+      // Solid for OK
+      submitButton.style.opacity = 1;
+    } else {
+      // Opaque for invalid
+      submitButton.style.opacity = 0.5;
     }
   });
 });
