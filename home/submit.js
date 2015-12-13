@@ -39,7 +39,7 @@ window.addEventListener("load", function () {
     });
 
     // We setup our request
-    XHR.open("POST", "https://script.google.com/macros/s/AKfycbwkm80dfFdbHXfjekFxsiK-5v6i-KG0BHngPGGSwwwOXvsSfofg/exec?callback=?");
+    XHR.open("POST", "https://script.google.com/macros/s/AKfycbwkm80dfFdbHXfjekFxsiK-5v6i-KG0BHngPGGSwwwOXvsSfofg/exec");
 
     // We alert the user that the request is processing
     statusButton.disabled = true;
