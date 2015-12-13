@@ -23,6 +23,7 @@ window.addEventListener("load", function () {
 
     // We define what will happen in case of error
     XHR.addEventListener("error", function(event) {
+      console.log(event.target.responseText);
       statusElement.src = "x.png";
       statusElement.classList.add("animate-appear-and-fade");
 
