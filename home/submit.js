@@ -13,24 +13,27 @@ window.addEventListener("load", function () {
       statusElement.classList.add("animate-appear-and-fade");
 
       form.reset();
-      // Inputs are invalid again
+      // Inputs are invalid again, button is disabled again.
       var inputs = form.querySelectorAll("input");
       for (var i = 0; i < inputs.length; i++) {
         inputs[i].style.borderBottom = "2px solid #F29696";
       }
+      statusButton.disabled = true;
     });
 
     // We define what will happen in case of error
     XHR.addEventListener("error", function(event) {
       statusElement.src = "x.png";
       statusElement.classList.add("animate-appear-and-fade");
+
+      // If form is valid, keep button enabled.
+      if (form.checkValidity()) {
+        statusButton.disabled = false;
+      }
     });
 
     // We define what happens in any case (error or not)
     XHR.addEventListener("loadend", function(event) {
-      // Button is usable again
-      form.querySelector("button").style.opacity = 1;
-
       document.getElementById('firstInput').focus();
     });
 
@@ -38,7 +41,7 @@ window.addEventListener("load", function () {
     XHR.open("POST", "https://script.google.com/macros/s/AKfycbwkm80dfFdbHXfjekFxsiK-5v6i-KG0BHngPGGSwwwOXvsSfofg/exec");
 
     // We alert the user that the request is processing
-    form.querySelector("button").style.opacity = 0.5;
+    statusButton.disabled = true;
 
     // The data sent are the one the user provide in the form
     XHR.send(FD);
@@ -47,7 +50,8 @@ window.addEventListener("load", function () {
   // We need to access the form element...
   var form = document.getElementById("form-contribute");
 
-  // Access to the submit image
+  // Access to the submit button, submit image
+  var statusButton = form.querySelector("button");
   var statusElement = document.getElementById("submit-status");
   // Animation end handlers for all browsers
   statusElement.addEventListener('animationend', function(e) { removeAnimationClass(e.target); });
@@ -83,10 +87,10 @@ window.addEventListener("load", function () {
     }
     if (form.checkValidity()) {
       // Solid for OK
-      submitButton.style.opacity = 1;
+      submitButton.disabled = false;
     } else {
       // Opaque for invalid
-      submitButton.style.opacity = 0.5;
+      submitButton.disabled = true;
     }
   });
 });
