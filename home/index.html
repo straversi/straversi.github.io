@@ -14,14 +14,15 @@
   <input type="checkbox" name="cGroup" value="1" id="r1" />
   <div id="contribute">
     <label class="checkbox" for="r1" onclick="document.getElementById('firstInput').focus();">
-      <img src="contribute.png"> Contribute
+      <img src="contribute.png"> <span>Contribute</span>
     </label>
-    <form>
-      <input placeholder="Title" type="text" name="Title" id="firstInput">
-      <input placeholder="Description" type="text" name="Description">
+    <form id="form-contribute">
+      <input placeholder="Title" type="text" name="Title" id="firstInput" required>
+      <input placeholder="Description" type="text" name="Description" required>
       <button>Submit</button>
     </form>
   </div>
   <script src='home.js'></script>
+  <script src='submit.js'></script>
 </body>
 </html>

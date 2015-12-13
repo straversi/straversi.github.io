@@ -11,7 +11,7 @@ body {
 h1 {
   font-size: 48px;
   margin-bottom: 5px;
-  line-height: 100%;
+  line-height: 110%;
 }
 p {
   font-size: 18px;
@@ -29,6 +29,9 @@ p {
 #contribute img {
   height: 25px;
   vertical-align: -5px;
+}
+#contribute label:hover span {
+  text-decoration: underline;
 }
 #contribute form {
   position: relative;
