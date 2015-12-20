@@ -7,8 +7,8 @@ window.addEventListener("load", function () {
     var FD  = new FormData(form);
 
     // We define what will happen if the data are successfully sent
-    XHR.addEventListener("load", function(event) {
-      // alert(event.target.responseText);
+    function handleLoad(event) {
+      alert(event.target.responseText);
       statusElement.src = "check.png";
       statusElement.classList.add("animate-appear-and-fade");
 
@@ -19,12 +19,16 @@ window.addEventListener("load", function () {
         inputs[i].style.borderBottom = "2px solid #F29696";
       }
       statusButton.disabled = true;
-    });
+    };
+    XHR.addEventListener("load", handleLoad);
 
     // We define what will happen in case of error
-    XHR.addEventListener("error", function(event) {
+    function handleError(event) {
+      if (navigator.sayswho.match("Safari")) {
+        handleLoad(event);
+        return;
+      }
       console.log(event);
-
       statusElement.src = "x.png";
       statusElement.classList.add("animate-appear-and-fade");
 
@@ -32,7 +36,8 @@ window.addEventListener("load", function () {
       if (form.checkValidity()) {
         statusButton.disabled = false;
       }
-    });
+    };
+    XHR.addEventListener("error", handleError);
 
     // We define what happens in any case (error or not)
     XHR.addEventListener("loadend", function(event) {
