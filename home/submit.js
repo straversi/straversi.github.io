@@ -8,7 +8,7 @@ window.addEventListener("load", function () {
 
     // We define what will happen if the data are successfully sent
     function handleLoad(event) {
-      alert(event.target.responseText);
+      // alert(event.target.responseText);
       statusElement.src = "check.png";
       statusElement.classList.add("animate-appear-and-fade");
 
