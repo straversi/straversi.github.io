@@ -30,7 +30,7 @@
 
     <a class="site-title" href="/blog/">steven.codes</a>
 
-    <nav class="site-nav">
+    <!-- <nav class="site-nav">
       <a href="#" class="menu-icon">
         <svg viewBox="0 0 18 15">
           <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
@@ -53,8 +53,44 @@
             
           
         
+          
+            
+              <a class="page-link" href="/blog/social/">Social</a>
+            
+          
+        
       </div>
-    </nav>
+    </nav> -->
+    <div class="new-nav">
+      <div class="nav-box">
+      
+        <a href="/blog/">Posts</a>
+      
+      </div>
+      
+        
+      
+        
+      
+        
+      
+        
+          <div class="nav-box">
+            
+              <a href="/blog/resume/">Résumé</a>
+            
+          </div>
+        
+      
+        
+          <div class="nav-box">
+            
+              <a href="/blog/social/">Social</a>
+            
+          </div>
+        
+      
+    </div>
 
   </div>
 
@@ -102,6 +138,14 @@
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script&gt;</span>
   <span class="nx">tileSetup</span><span class="p">(</span><span class="s2">"{% asset_path 2048_tiles/%}"</span><span class="p">);</span>
 <span class="nt">&lt;/script&gt;</span></code></pre></figure>
+
+<p>For the social page, I wanted a column of wide banners, one for each social site. I created the template <code class="highlighter-rouge">_includes/social-banner.html</code>. There’s an image in this template: the banner background. For the <code class="highlighter-rouge">src</code> attribute of the image, I capture the app name in question and use <code class="highlighter-rouge">asset_path</code> to grab the appropriate image:</p>
+
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">asset_path</span><span class="w"> </span>{{<span class="w"> </span>include.appname<span class="w"> </span>}}.png<span class="w"> </span><span class="p">%}</span></code></pre></figure>
+
+<p>To pass the app’s name, specify the <code class="highlighter-rouge">appname</code> attribute in the include:</p>
+
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span><span class="na">social-banner</span><span class="p">.</span><span class="na">html</span><span class="w"> </span><span class="na">appname</span><span class="o">=</span><span class="s2">"facebook"</span><span class="w"> </span><span class="p">%}</span></code></pre></figure>
 
 <h2 id="plugins">Plugins</h2>
 <p><a href="https://github.com/takuti/jekyll-lazy-tweet-embedding">Lazy Tweet Embedding</a> automatically converts twitter states urls to twitter cards. For example, if I concatenate <code class="highlighter-rouge">https://twitter.com/</code>, <code class="highlighter-rouge">StevenTraversi/status/</code>, and a tweet id such as <code class="highlighter-rouge">558448694731608064</code>, the plugin will generate this for me:</p>

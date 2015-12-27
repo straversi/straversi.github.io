@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * Reset some basic elements
  */
@@ -154,7 +155,7 @@ pre {
 
 .site-title {
   font-family: "Monaco", "Consolas", "Courier", serif;
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 300;
   line-height: 56px;
   letter-spacing: -1px;
@@ -163,55 +164,123 @@ pre {
   .site-title, .site-title:visited {
     color: #424242; }
 
-.site-nav {
+.new-nav {
   float: right;
   line-height: 56px; }
-  .site-nav .menu-icon {
-    display: none; }
-  .site-nav .page-link {
-    color: #111;
-    line-height: 1.5;
-    position: relative;
-    padding: 0 0.5em; }
-    .site-nav .page-link:not(:last-child) {
-      margin-right: 20px; }
-  .site-nav .current-page {
-    text-decoration: underline; }
+  .new-nav .nav-box {
+    float: left;
+    padding-left: 0.5em; }
+    .new-nav .nav-box::after {
+      padding-left: 0.5em;
+      content: "•";
+      color: #111; }
+    .new-nav .nav-box:first-child {
+      padding-left: 0; }
+    .new-nav .nav-box:last-child::after {
+      content: ""; }
+    .new-nav .nav-box a {
+      /* Overrides _base a */
+      color: inherit; }
+    .new-nav .nav-box a.current-page {
+      text-decoration: underline; }
+    .new-nav .nav-box:nth-child(1) {
+      color: #D06970; }
+      .new-nav .nav-box:nth-child(1):hover {
+        color: #c03c45; }
+    .new-nav .nav-box:nth-child(2) {
+      color: #578DA7; }
+      .new-nav .nav-box:nth-child(2):hover {
+        color: #426b7f; }
+    .new-nav .nav-box:nth-child(3) {
+      color: #86B855; }
+      .new-nav .nav-box:nth-child(3):hover {
+        color: #67933d; }
+    .new-nav .nav-box:nth-child(4) {
+      color: #C4723E; }
+      .new-nav .nav-box:nth-child(4):hover {
+        color: #97572e; }
   @media screen and (max-width: 600px) {
-    .site-nav {
-      position: absolute;
-      top: 9px;
-      right: 15px;
-      background-color: #fdfdfd;
-      border: 1px solid #e8e8e8;
-      border-radius: 5px;
-      text-align: right; }
-      .site-nav .menu-icon {
-        display: block;
-        float: right;
-        width: 36px;
-        height: 26px;
-        line-height: 0;
-        padding-top: 10px;
-        text-align: center; }
-        .site-nav .menu-icon > svg {
-          width: 18px;
-          height: 15px; }
-          .site-nav .menu-icon > svg path {
-            fill: #424242; }
-      .site-nav .trigger {
-        clear: both;
-        display: none; }
-      .site-nav:hover .trigger {
-        display: block;
-        padding-bottom: 5px; }
-      .site-nav .page-link {
-        display: block;
-        padding: 5px 10px;
-        margin-left: 20px; }
-        .site-nav .page-link:not(:last-child) {
-          margin-right: 0; } }
+    .new-nav {
+      float: left;
+      clear: both;
+      line-height: 1em; } }
 
+/*
+.site-nav {
+    float: right;
+    line-height: 56px;
+
+    .menu-icon {
+        display: none;
+    }
+
+    .page-link {
+        color: $text-color;
+        line-height: $base-line-height;
+        position: relative;
+        padding: 0 0.5em;
+
+
+        // Gaps between nav items, but not on the last one
+        &:not(:last-child) {
+            margin-right: 20px;
+        }
+    }
+
+    .current-page {
+        text-decoration: underline;
+    }
+
+    @include media-query($on-palm) {
+        position: absolute;
+        top: 9px;
+        right: $spacing-unit / 2;
+        background-color: $background-color;
+        border: 1px solid $grey-color-light;
+        border-radius: 5px;
+        text-align: right;
+
+        .menu-icon {
+            display: block;
+            float: right;
+            width: 36px;
+            height: 26px;
+            line-height: 0;
+            padding-top: 10px;
+            text-align: center;
+
+            > svg {
+                width: 18px;
+                height: 15px;
+
+                path {
+                    fill: $grey-color-dark;
+                }
+            }
+        }
+
+        .trigger {
+            clear: both;
+            display: none;
+        }
+
+        &:hover .trigger {
+            display: block;
+            padding-bottom: 5px;
+        }
+
+        .page-link {
+            display: block;
+            padding: 5px 10px;
+
+            &:not(:last-child) {
+                margin-right: 0;
+            }
+            margin-left: 20px;
+        }
+    }
+}
+*/
 /**
  * Site footer
  */
