@@ -232,6 +232,9 @@ pre {
       -moz-box-shadow: -8px -4px 4px -6px #ccc;
       -webkit-box-shadow: -8px -4px 4px -6px #ccc;
       box-shadow: -8px -4px 4px -6px #ccc; }
+  @media screen and (max-width: 600px) {
+    .banner:hover .banner-name .banner-name-reveal {
+      left: 0; } }
 
 .social-youtube {
   background: #D4151F; }
