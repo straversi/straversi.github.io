@@ -179,31 +179,77 @@ pre {
     .new-nav .nav-box:last-child::after {
       content: ""; }
     .new-nav .nav-box a {
-      /* Overrides _base a */
       color: inherit; }
     .new-nav .nav-box a.current-page {
       text-decoration: underline; }
-    .new-nav .nav-box:nth-child(1) {
+    .new-nav .nav-box:nth-child(1) a {
       color: #D06970; }
-      .new-nav .nav-box:nth-child(1):hover {
+      .new-nav .nav-box:nth-child(1) a:hover {
         color: #c03c45; }
-    .new-nav .nav-box:nth-child(2) {
+    .new-nav .nav-box:nth-child(2) a {
       color: #578DA7; }
-      .new-nav .nav-box:nth-child(2):hover {
+      .new-nav .nav-box:nth-child(2) a:hover {
         color: #426b7f; }
-    .new-nav .nav-box:nth-child(3) {
+    .new-nav .nav-box:nth-child(3) a {
       color: #86B855; }
-      .new-nav .nav-box:nth-child(3):hover {
+      .new-nav .nav-box:nth-child(3) a:hover {
         color: #67933d; }
-    .new-nav .nav-box:nth-child(4) {
+    .new-nav .nav-box:nth-child(4) a {
       color: #C4723E; }
-      .new-nav .nav-box:nth-child(4):hover {
+      .new-nav .nav-box:nth-child(4) a:hover {
         color: #97572e; }
   @media screen and (max-width: 600px) {
     .new-nav {
       float: left;
       clear: both;
       line-height: 1em; } }
+
+.banner {
+  position: relative;
+  margin-bottom: calc(30px / 2);
+  height: 70px;
+  overflow-x: hidden; }
+  .banner:hover .banner-name .banner-name-reveal {
+    left: 100%; }
+  .banner .banner-name {
+    position: absolute;
+    background: #fdfdfd;
+    top: 0;
+    left: 0;
+    line-height: 70px;
+    padding: 0 30px; }
+    .banner .banner-name .banner-name-reveal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      line-height: normal;
+      width: 800px;
+      padding: 30px 30px 0;
+      -moz-transition: all 0.2s ease-out;
+      -o-transition: all 0.2s ease-out;
+      -webkit-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out;
+      -moz-box-shadow: -8px -4px 4px -6px #ccc;
+      -webkit-box-shadow: -8px -4px 4px -6px #ccc;
+      box-shadow: -8px -4px 4px -6px #ccc; }
+
+.social-youtube {
+  background: #D4151F; }
+
+.social-facebook {
+  background: #3C5A96; }
+
+.social-vimeo {
+  background: #39ABFE; }
+
+.social-twitter {
+  background: #62AADC; }
+
+.social-soundcloud {
+  background: #F34F0F; }
+
+.social-github {
+  background: #323131; }
 
 /*
 .site-nav {
