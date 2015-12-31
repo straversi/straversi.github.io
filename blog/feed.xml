@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 30 Dec 2015 00:00:06 -0800</pubDate>
-    <lastBuildDate>Wed, 30 Dec 2015 00:00:06 -0800</lastBuildDate>
+    <pubDate>Wed, 30 Dec 2015 17:25:35 -0800</pubDate>
+    <lastBuildDate>Wed, 30 Dec 2015 17:25:35 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -22,6 +22,14 @@
 &lt;script async=&quot;&quot; src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
 
 &lt;p&gt;The concept is focused around a span containing the text in question. A &lt;code class=&quot;highlighter-rouge&quot;&gt;::before&lt;/code&gt; pseudo element is added to have the width of the span. On hover, the pseudo element’s &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; attributes are transitioned to the right by roughly 100%.&lt;/p&gt;
+
+&lt;p&gt;Of course, taking advantage of CSS’s &lt;code class=&quot;highlighter-rouge&quot;&gt;:hover&lt;/code&gt; means we can’t use this method for mobile devices. This fact renders this solution much less practical.&lt;/p&gt;
+
+&lt;p&gt;If you’re on mobile now, here’s a video of the sweet action.&lt;/p&gt;
+
+&lt;video class=&quot;share-video&quot; id=&quot;share-video&quot; poster=&quot;https://thumbs.gfycat.com/DisastrousFlippantBeagle-poster.jpg&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;&lt;source id=&quot;webmSource&quot; src=&quot;https://zippy.gfycat.com/DisastrousFlippantBeagle.webm&quot; type=&quot;video/webm&quot; /&gt;&lt;source id=&quot;mp4Source&quot; src=&quot;https://zippy.gfycat.com/DisastrousFlippantBeagle.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+    Sorry, your browser doesn&#39;t support HTML5 video.
+&lt;/video&gt;
 </description>
         <pubDate>Tue, 29 Dec 2015 01:47:36 -0800</pubDate>
         <link>http://steven.codes/blog/slide-to-reveal-with-css/</link>
