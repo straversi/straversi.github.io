@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 30 Dec 2015 17:25:35 -0800</pubDate>
-    <lastBuildDate>Wed, 30 Dec 2015 17:25:35 -0800</lastBuildDate>
+    <pubDate>Sat, 02 Jan 2016 16:35:26 -0800</pubDate>
+    <lastBuildDate>Sat, 02 Jan 2016 16:35:26 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -21,9 +21,9 @@
 &lt;p data-height=&quot;206&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;VemryE&quot; data-default-tab=&quot;result&quot; data-user=&quot;straversi&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/straversi/pen/VemryE/&quot;&gt;Text Reveal&lt;/a&gt; by Steven Traversi (&lt;a href=&quot;http://codepen.io/straversi&quot;&gt;@straversi&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 &lt;script async=&quot;&quot; src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;The concept is focused around a span containing the text in question. A &lt;code class=&quot;highlighter-rouge&quot;&gt;::before&lt;/code&gt; pseudo element is added to have the width of the span. On hover, the pseudo element’s &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; attributes are transitioned to the right by roughly 100%.&lt;/p&gt;
+&lt;p&gt;The concept is focused around a span containing the text in question. A &lt;code class=&quot;highlighter-rouge&quot;&gt;::before&lt;/code&gt; pseudo element is added to have the width of the span. On hover, the pseudo element is translated right 100%. Initially &lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt; were used, but these attributes are more expensive to animate.&lt;/p&gt;
 
-&lt;p&gt;Of course, taking advantage of CSS’s &lt;code class=&quot;highlighter-rouge&quot;&gt;:hover&lt;/code&gt; means we can’t use this method for mobile devices. This fact renders this solution much less practical.&lt;/p&gt;
+&lt;p&gt;Of course, taking advantage of CSS’s &lt;code class=&quot;highlighter-rouge&quot;&gt;:hover&lt;/code&gt; means we can’t use this method for mobile devices. As a result, this solution much less practical.&lt;/p&gt;
 
 &lt;p&gt;If you’re on mobile now, here’s a video of the sweet action.&lt;/p&gt;
 

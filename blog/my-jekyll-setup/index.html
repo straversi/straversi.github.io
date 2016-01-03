@@ -16,6 +16,8 @@
   <link rel="canonical" href="http://steven.codes/blog/my-jekyll-setup/">
   <link rel="alternate" type="application/rss+xml" title="steven.codes" href="http://steven.codes/blog/feed.xml">
 
+  <script src="/blog/javascript/headroom.min.js"></script>
+
   
 
   
@@ -29,7 +31,7 @@
   <div class="wrapper">
 
     <a class="site-title" href="/blog/">steven.codes</a>
-
+    <a class="site-title-mobile" href="/blog/">steven<br>.codes</a>
     <!-- <nav class="site-nav">
       <a href="#" class="menu-icon">
         <svg viewBox="0 0 18 15">
@@ -96,6 +98,16 @@
   </div>
 
 </header>
+<!-- Spacer -->
+<div class="wrapper"></div>
+
+<script>
+  var headerElement = document.querySelector("header");
+  Headroom.options.offset = headerElement.offsetHeight;
+  Headroom.options.tolerance.down = 7;
+  var headroom = new Headroom(headerElement);
+  headroom.init();
+</script>
 
 
     <div class="page-content">
