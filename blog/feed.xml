@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 03 Jan 2016 21:10:06 -0800</pubDate>
-    <lastBuildDate>Sun, 03 Jan 2016 21:10:06 -0800</lastBuildDate>
+    <pubDate>Sun, 03 Jan 2016 21:55:19 -0800</pubDate>
+    <lastBuildDate>Sun, 03 Jan 2016 21:55:19 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -130,6 +130,16 @@
 &lt;p&gt;To pass the app’s name, specify the &lt;code class=&quot;highlighter-rouge&quot;&gt;appname&lt;/code&gt; attribute in the include:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;social-banner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;facebook&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;post-list&quot;&gt;Post List&lt;/h2&gt;
+
+&lt;p&gt;There is a Posts page that contains a list of written posts. Each post’s display consists of three parts: a thumbnail, a title, and metadata. The metadata consists of a description, possible tags such as “new” or “hot”, and directory location (if applicable).&lt;/p&gt;
+
+&lt;p&gt;Newness is determined by comparing &lt;code class=&quot;highlighter-rouge&quot;&gt;post.date&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;site.time&lt;/code&gt;. If a post is new, then in the metadata section we put:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;icon-gift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt; •&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;icon-gift.html&lt;/code&gt; is a file that contains an include for icon-gift.svg and the word “New”. It also handles colors. The setup is practically identical for &lt;code class=&quot;highlighter-rouge&quot;&gt;icon-hot.html&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;plugins&quot;&gt;Plugins&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/takuti/jekyll-lazy-tweet-embedding&quot;&gt;Lazy Tweet Embedding&lt;/a&gt; automatically converts twitter states urls to twitter cards. For example, if I concatenate &lt;code class=&quot;highlighter-rouge&quot;&gt;https://twitter.com/&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;StevenTraversi/status/&lt;/code&gt;, and a tweet id such as &lt;code class=&quot;highlighter-rouge&quot;&gt;558448694731608064&lt;/code&gt;, the plugin will generate this for me:&lt;/p&gt;

@@ -120,7 +120,7 @@
     <p class="post-meta">
       <time datetime="2015-11-22T11:47:36-08:00" itemprop="datePublished">Nov 22, 2015</time>
       
-      <!-- <br>Read in about 2  minutes -->
+      <!-- <br>Read in about 3  minutes -->
     </p>
   </header>
 
@@ -159,6 +159,16 @@
 <p>To pass the app’s name, specify the <code class="highlighter-rouge">appname</code> attribute in the include:</p>
 
 <figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span><span class="na">social-banner</span><span class="p">.</span><span class="na">html</span><span class="w"> </span><span class="na">appname</span><span class="o">=</span><span class="s2">"facebook"</span><span class="w"> </span><span class="p">%}</span></code></pre></figure>
+
+<h2 id="post-list">Post List</h2>
+
+<p>There is a Posts page that contains a list of written posts. Each post’s display consists of three parts: a thumbnail, a title, and metadata. The metadata consists of a description, possible tags such as “new” or “hot”, and directory location (if applicable).</p>
+
+<p>Newness is determined by comparing <code class="highlighter-rouge">post.date</code> to <code class="highlighter-rouge">site.time</code>. If a post is new, then in the metadata section we put:</p>
+
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span><span class="na">icon-gift</span><span class="p">.</span><span class="na">html</span><span class="w"> </span><span class="p">%}</span> •</code></pre></figure>
+
+<p><code class="highlighter-rouge">icon-gift.html</code> is a file that contains an include for icon-gift.svg and the word “New”. It also handles colors. The setup is practically identical for <code class="highlighter-rouge">icon-hot.html</code>.</p>
 
 <h2 id="plugins">Plugins</h2>
 <p><a href="https://github.com/takuti/jekyll-lazy-tweet-embedding">Lazy Tweet Embedding</a> automatically converts twitter states urls to twitter cards. For example, if I concatenate <code class="highlighter-rouge">https://twitter.com/</code>, <code class="highlighter-rouge">StevenTraversi/status/</code>, and a tweet id such as <code class="highlighter-rouge">558448694731608064</code>, the plugin will generate this for me:</p>
