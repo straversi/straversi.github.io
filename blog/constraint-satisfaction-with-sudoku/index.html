@@ -12,7 +12,8 @@
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,600' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="/blog/css/main.css">
+  <!-- <link rel="stylesheet" href="/blog/css/main.css"> -->
+  <link rel="stylesheet" href="/blog/css/main.css?v=1.0.0">
   <link rel="canonical" href="http://steven.codes/blog/constraint-satisfaction-with-sudoku/">
   <link rel="alternate" type="application/rss+xml" title="steven.codes" href="http://steven.codes/blog/feed.xml">
 
@@ -128,7 +129,7 @@
   <div class="post-content" itemprop="articleBody">
     <h2 id="ai-a-modern-approach">AI: A Modern Approach</h2>
 
-<p>This semester, I’ve had the pleasure of taking “Intro to Artificial Intelligence” with Stuart Russell and Pat Virtue. Russell authored the definitive <strong>Artificial Intelligence, A Modern Approach</strong>, used as a foundation of AI curricula across the world.</p>
+<p>This semester, I’ve had the pleasure of taking “Intro to Artificial Intelligence” with Stuart Russell and Pat Virtue. Russell authored the definitive <strong>Artificial Intelligence, A Modern Approach</strong>, used as a foundation for AI curricula across the world.</p>
 
 <p>In the first section of the class we covered “search”, including “constraint satisfaction problems” (CSP). Constraint satisfaction is an efficient way to represent a problem as a set of variables and rules for those variables. For example, you could have two variables whose domains are integers in [0, 10] that share a “diff” constraint- in other words, they may not be assigned the same number. A solution to a CSP happens when all variables been assigned a value and no constraints are violated.</p>
 
@@ -173,14 +174,7 @@
 
 <p>How should we represent the variables and assignments? I tried two methods. In the first representation I attempted, the assignments of variables to values were kept in a dictionary, mapped as VARIABLE -&gt; VALUE. In the second representation I tried, I represented the assignments as a dictionary mapping VARIABLE -&gt; DOMAIN. I tried this out because I realized that with the first representation, the domain of each variable was being recalculated many times. The results of the switch caused a huge decrease in time taken to solve: from ~850 seconds for ~2,000 puzzles to ~30 seconds.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>For representing the domains of the variables with the second approach, I decided to use strings of values (because the values are strictly 1-9). So as we doing inferencing after making an assignment, some domains will have numbers in them replaced with nothing, e.g. “124589”</td>
-      <td>replace(“4”,””). This means that “4” is no longer a part of this domain.</td>
-    </tr>
-  </tbody>
-</table>
+<p>For representing the domains of the variables with the second approach, I decided to use strings of values (because the values are strictly 1-9). So as we doing inferencing after making an assignment, some domains will have numbers in them replaced with nothing, e.g. “124589” | replace(“4”,””). This means that “4” is no longer a part of this domain.</p>
 
 <p>Right away, we can write two methods: <em>solved</em> and <em>consistent</em>. We can say that an assignment is <em>solved</em> if the length of every variable’s domain is 1. An value for a variable is <em>consistent</em> with an assignment if no other variables are already assigned that value, i.e. if the none of the domains of the constrained variables are equal to the new value. Here are implementations:</p>
 

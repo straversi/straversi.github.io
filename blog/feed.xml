@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 05 Jan 2016 17:38:53 -0800</pubDate>
-    <lastBuildDate>Tue, 05 Jan 2016 17:38:53 -0800</lastBuildDate>
+    <pubDate>Mon, 11 Jan 2016 16:59:10 -0800</pubDate>
+    <lastBuildDate>Mon, 11 Jan 2016 16:59:10 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -42,7 +42,7 @@
         <title>Constraint Satisfaction With Sudoku</title>
         <description>&lt;h2 id=&quot;ai-a-modern-approach&quot;&gt;AI: A Modern Approach&lt;/h2&gt;
 
-&lt;p&gt;This semester, I’ve had the pleasure of taking “Intro to Artificial Intelligence” with Stuart Russell and Pat Virtue. Russell authored the definitive &lt;strong&gt;Artificial Intelligence, A Modern Approach&lt;/strong&gt;, used as a foundation of AI curricula across the world.&lt;/p&gt;
+&lt;p&gt;This semester, I’ve had the pleasure of taking “Intro to Artificial Intelligence” with Stuart Russell and Pat Virtue. Russell authored the definitive &lt;strong&gt;Artificial Intelligence, A Modern Approach&lt;/strong&gt;, used as a foundation for AI curricula across the world.&lt;/p&gt;
 
 &lt;p&gt;In the first section of the class we covered “search”, including “constraint satisfaction problems” (CSP). Constraint satisfaction is an efficient way to represent a problem as a set of variables and rules for those variables. For example, you could have two variables whose domains are integers in [0, 10] that share a “diff” constraint- in other words, they may not be assigned the same number. A solution to a CSP happens when all variables been assigned a value and no constraints are violated.&lt;/p&gt;
 
@@ -87,14 +87,7 @@
 
 &lt;p&gt;How should we represent the variables and assignments? I tried two methods. In the first representation I attempted, the assignments of variables to values were kept in a dictionary, mapped as VARIABLE -&amp;gt; VALUE. In the second representation I tried, I represented the assignments as a dictionary mapping VARIABLE -&amp;gt; DOMAIN. I tried this out because I realized that with the first representation, the domain of each variable was being recalculated many times. The results of the switch caused a huge decrease in time taken to solve: from ~850 seconds for ~2,000 puzzles to ~30 seconds.&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;For representing the domains of the variables with the second approach, I decided to use strings of values (because the values are strictly 1-9). So as we doing inferencing after making an assignment, some domains will have numbers in them replaced with nothing, e.g. “124589”&lt;/td&gt;
-      &lt;td&gt;replace(“4”,””). This means that “4” is no longer a part of this domain.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;For representing the domains of the variables with the second approach, I decided to use strings of values (because the values are strictly 1-9). So as we doing inferencing after making an assignment, some domains will have numbers in them replaced with nothing, e.g. “124589” | replace(“4”,””). This means that “4” is no longer a part of this domain.&lt;/p&gt;
 
 &lt;p&gt;Right away, we can write two methods: &lt;em&gt;solved&lt;/em&gt; and &lt;em&gt;consistent&lt;/em&gt;. We can say that an assignment is &lt;em&gt;solved&lt;/em&gt; if the length of every variable’s domain is 1. An value for a variable is &lt;em&gt;consistent&lt;/em&gt; with an assignment if no other variables are already assigned that value, i.e. if the none of the domains of the constrained variables are equal to the new value. Here are implementations:&lt;/p&gt;
 
