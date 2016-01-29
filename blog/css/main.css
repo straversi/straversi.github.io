@@ -363,6 +363,8 @@ pre {
 .footer-heading {
   font-size: 18px;
   margin-bottom: 15px; }
+  .footer-heading a {
+    color: #111; }
 
 .contact-list,
 .social-media-list {
