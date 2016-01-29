@@ -122,7 +122,7 @@
     <p class="post-meta">
       <time datetime="2015-12-03T11:47:36-08:00" itemprop="datePublished">Dec 3, 2015</time>
       
-      <!-- <br>Read in about 8  minutes -->
+      <!-- <br>Read in about 9  minutes -->
     </p>
   </header>
 
@@ -170,9 +170,9 @@
 
 <h2 id="sudoku-as-a-csp">Sudoku as a CSP</h2>
 
-<p>I represent the various tiles of the sudoku board as A1 … I9, similarly to chess. The only constraints we need in sudoku are binary differences. E.g., “G4” != “G5”. What are the differences we need to enforce in sudoku? Each variable has 20 constraints: 8 in its row, 8 in its column, and 8 in its region; of these 24 constraints, 4 appear twice. I chose to store each variable’s constraints in a dictionary called <code class="highlighter-rouge">csp</code>, mapping VARIABLE -&gt; set(VARIABLE). Lookup is easy: <code class="highlighter-rouge">csp["G4"]</code> returns a set of variables constrained to “G4”.</p>
+<p>I represent the various tiles of the sudoku board as A1 … I9, similarly to chess. The only constraints we need in sudoku are binary differences. E.g., “G4” != “G5”. What are the differences we need to enforce in sudoku? Each variable has 20 constraints: 8 in its row, 8 in its column, and 8 in its region; of these 24 constraints, 4 appear twice. I chose to store each variable’s constraints in a dictionary called <code class="highlighter-rouge">csp</code>, mapping {variable =&gt; set(variable)}. Lookup is easy: <code class="highlighter-rouge">csp["G4"]</code> returns a set of variables constrained to “G4”.</p>
 
-<p>How should we represent the variables and assignments? I tried two methods. In the first representation I attempted, the assignments of variables to values were kept in a dictionary, mapped as VARIABLE -&gt; VALUE. In the second representation I tried, I represented the assignments as a dictionary mapping VARIABLE -&gt; DOMAIN. I tried this out because I realized that with the first representation, the domain of each variable was being recalculated many times. The results of the switch caused a huge decrease in time taken to solve: from ~850 seconds for ~2,000 puzzles to ~30 seconds.</p>
+<p>How should we represent the variables and assignments? I tried two methods. In the first representation I attempted, the assignments of variables to values were kept in a dictionary, mapped as VARIABLE -&gt; VALUE. In the second representation I tried, I represented the assignments as a dictionary mapping VARIABLE -&gt; DOMAIN. I tried this out because I realized that with the first representation, the domain of each variable was being recalculated many times. The results of the switch caused a huge decrease in time taken to solve: from ~850 seconds for ~2,000 puzzles to ~35 seconds.</p>
 
 <p>For representing the domains of the variables with the second approach, I decided to use strings of values (because the values are strictly 1-9). So as we doing inferencing after making an assignment, some domains will have numbers in them replaced with nothing, e.g. “124589” | replace(“4”,””). This means that “4” is no longer a part of this domain.</p>
 
@@ -228,9 +228,11 @@
 			<span class="k">return</span> <span class="bp">False</span>
 	<span class="k">return</span> <span class="bp">True</span></code></pre></figure>
 
+<p>The only thing left to do when setting up your main() is run an initial inference pass when the puzzle is first loaded.</p>
+
 <h2 id="results">Results</h2>
 
-<p>Coming soooon</p>
+<p>I wrote my version of the solver so that it could take puzzles from this large set I found here: <a href="http://magictour.free.fr/top2365">2365 hard sudoku puzzles</a>. On average, my solver takes ~35 seconds to solve this set, with the median time to solve a puzzle being 0.005 seconds. The 35 seconds is dominated by a select few puzzles that take several seconds to solve.</p>
 
   </div>
 
@@ -275,7 +277,7 @@
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+        <p>I post here about some of the things I'm working on.
 </p>
       </div>
     </div>
