@@ -441,6 +441,12 @@ pre {
 .page-heading {
   font-size: 20px; }
 
+.negative-below {
+  margin-bottom: -15px; }
+
+.small-below {
+  margin-bottom: 10px; }
+
 .post-list {
   margin-left: 0;
   list-style: none; }
