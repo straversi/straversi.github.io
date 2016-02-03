@@ -147,8 +147,8 @@
         <span class="n">result</span> <span class="o">=</span> <span class="n">backtrack</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">failure</span><span class="p">:</span>
           <span class="k">return</span> <span class="n">result</span>
-    <span class="n">remove</span> <span class="n">var</span> <span class="o">=</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">inferences</span> <span class="kn">from</span> <span class="nn">assignment</span><span class="err">
-</span>  <span class="nn">return</span> <span class="nn">failure</span></code></pre></figure>
+    <span class="n">remove</span> <span class="n">var</span> <span class="o">=</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">inferences</span> <span class="kn">from</span> <span class="nn">assignment</span>
+  <span class="k">return</span> <span class="n">failure</span></code></pre></figure>
 
 <p>Some signatures to talk about:</p>
 
@@ -170,7 +170,7 @@
 
 <h2 id="sudoku-as-a-csp">Sudoku as a CSP</h2>
 
-<p>I represent the various tiles of the sudoku board as A1 … I9, similarly to chess. The only constraints we need in sudoku are binary differences. E.g., “G4” != “G5”. What are the differences we need to enforce in sudoku? Each variable has 20 constraints: 8 in its row, 8 in its column, and 8 in its region; of these 24 constraints, 4 appear twice. I chose to store each variable’s constraints in a dictionary called <code class="highlighter-rouge">csp</code>, mapping {variable =&gt; set(variable)}. Lookup is easy: <code class="highlighter-rouge">csp["G4"]</code> returns a set of variables constrained to “G4”.</p>
+<p>I represent the various tiles of the sudoku board as A1 … I9, similarly to chess. The only constraints we need in sudoku are binary differences. E.g., “G4” != “G5”. What are the differences we need to enforce in sudoku? Each variable has 20 constraints: 8 in its row, 8 in its column, and 8 in its region; of these 24 constraints, 4 appear twice. I chose to store each variable’s constraints in a dictionary called <code>csp</code>, mapping {variable =&gt; set(variable)}. Lookup is easy: <code>csp["G4"]</code> returns a set of variables constrained to “G4”.</p>
 
 <p>How should we represent the variables and assignments? I tried two methods. In the first representation I attempted, the assignments of variables to values were kept in a dictionary, mapped as VARIABLE -&gt; VALUE. In the second representation I tried, I represented the assignments as a dictionary mapping VARIABLE -&gt; DOMAIN. I tried this out because I realized that with the first representation, the domain of each variable was being recalculated many times. The results of the switch caused a huge decrease in time taken to solve: from ~850 seconds for ~2,000 puzzles to ~35 seconds.</p>
 
@@ -178,30 +178,30 @@
 
 <p>Right away, we can write two methods: <em>solved</em> and <em>consistent</em>. We can say that an assignment is <em>solved</em> if the length of every variable’s domain is 1. An value for a variable is <em>consistent</em> with an assignment if no other variables are already assigned that value, i.e. if the none of the domains of the constrained variables are equal to the new value. Here are implementations:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">solved</span><span class="p">(</span><span class="n">assignment</span><span class="p">):</span>
-	<span class="s">""" Return TRUE if 1 assignment per tile. """</span>
-	<span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">assignment</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">solved</span><span class="p">(</span><span class="n">assignment</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return TRUE if 1 assignment per tile. &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">assignment</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">consistent</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
-  <span class="s">""" Return TRUE if no domain of variables constrained to VARIABLE equals VALUE. """</span>
-	<span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]</span> <span class="o">!=</span> <span class="n">value</span> <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="n">csp</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">consistent</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return TRUE if no domain of variables constrained to VARIABLE equals VALUE. &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]</span> <span class="o">!=</span> <span class="n">value</span> <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="n">csp</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span></code></pre></figure>
 
 <p>Moving on to <em>select-unassigned-variable(csp)</em>, we simply find a variable with the smallest domain length, since each domain is just a string of values. We have to be careful not to select variables with domain lengths == 1, because this means that the variable is already assigned. Here are two implementations:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">unassigned</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
-	<span class="s">""" Return an unassigned variable from CSP. Minimum Remaining Values. """</span>
-	<span class="k">return</span> <span class="nb">min</span><span class="p">([</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">assignment</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">assignment</span><span class="p">[</span><span class="n">var</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="n">assignment</span><span class="o">.</span><span class="n">get</span><span class="p">)</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">unassigned</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return an unassigned variable from CSP. Minimum Remaining Values. &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">([</span><span class="n">var</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">assignment</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">assignment</span><span class="p">[</span><span class="n">var</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="n">assignment</span><span class="o">.</span><span class="n">get</span><span class="p">)</span></code></pre></figure>
 
 <p>Interestingly, the above solution is much slower than the following one:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">unassigned</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
-	<span class="n">bestValue</span> <span class="o">=</span> <span class="mi">10</span>
-	<span class="n">bestVar</span> <span class="o">=</span> <span class="bp">None</span>
-	<span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">assignment</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">bestValue</span><span class="p">:</span>
-			<span class="n">bestValue</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-			<span class="n">bestVar</span> <span class="o">=</span> <span class="n">var</span>
-	<span class="k">return</span> <span class="n">bestVar</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">unassigned</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
+    <span class="n">bestValue</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">bestVar</span> <span class="o">=</span> <span class="k">None</span>
+    <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">assignment</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">bestValue</span><span class="p">:</span>
+            <span class="n">bestValue</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">bestVar</span> <span class="o">=</span> <span class="n">var</span>
+    <span class="k">return</span> <span class="n">bestVar</span></code></pre></figure>
 
 <p>That’s ok with me, because the second version is more readable, I suppose.</p>
 
@@ -209,24 +209,24 @@
 
 <p>This leaves <em>inference(csp, var, value)</em>, where the fun happens. If a variable/value pair makes it to this step, then <em>inference</em>’s job is to make the assignment, then prune the domains of all constrained variables. If any variable’s domain is pruned to length 0, then the assignment has failed. If any variable’s domain is pruned to length 1, we should treat this as an assignment and call inference for that variable and value as well. Here’s my implementation:</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">inference</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">var_to_update</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
-	<span class="s">""" Assign VALUE to VAR_TO_UPDATE in ASSIGNMENT. Update domains of
-		constrained variables from CSP. If any domains are reduced to 1, also
-		inference from them. If any domains are reduced to 0, return False.
-		Recursive forward checking.
-	"""</span>
-	<span class="n">assignment</span><span class="p">[</span><span class="n">var_to_update</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-	<span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="n">csp</span><span class="p">[</span><span class="n">var_to_update</span><span class="p">]:</span>
-		<span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]:</span>
-			<span class="k">continue</span>
-		<span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]</span> <span class="o">=</span> <span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
-		<span class="n">remaining</span> <span class="o">=</span> <span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]</span>
-		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-			<span class="k">if</span> <span class="ow">not</span> <span class="n">inference</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">remaining</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
-				<span class="k">return</span> <span class="bp">False</span>
-		<span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-			<span class="k">return</span> <span class="bp">False</span>
-	<span class="k">return</span> <span class="bp">True</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">inference</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">var_to_update</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Assign VALUE to VAR_TO_UPDATE in ASSIGNMENT. Update domains of</span>
+<span class="sd">       constrained variables from CSP. If any domains are reduced to 1, also</span>
+<span class="sd">       inference from them. If any domains are reduced to 0, return False.</span>
+<span class="sd">       Recursive forward checking.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">assignment</span><span class="p">[</span><span class="n">var_to_update</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="n">csp</span><span class="p">[</span><span class="n">var_to_update</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]</span> <span class="o">=</span> <span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">remaining</span> <span class="o">=</span> <span class="n">assignment</span><span class="p">[</span><span class="n">constraint</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">inference</span><span class="p">(</span><span class="n">assignment</span><span class="p">,</span> <span class="n">constraint</span><span class="p">,</span> <span class="n">remaining</span><span class="p">,</span> <span class="n">csp</span><span class="p">):</span>
+                <span class="k">return</span> <span class="k">False</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">remaining</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="k">False</span>
+    <span class="k">return</span> <span class="k">True</span></code></pre></figure>
 
 <p>The only thing left to do when setting up your main() is run an initial inference pass when the puzzle is first loaded.</p>
 

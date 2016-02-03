@@ -499,6 +499,9 @@ pre {
     .post-content video {
       width: 100%; } }
 
+video {
+  max-width: 100%; }
+
 /* Headroom.js */
 .headroom {
   transition: transform 200ms linear; }

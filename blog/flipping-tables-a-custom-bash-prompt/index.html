@@ -6,15 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Slide to Reveal With CSS</title>
-  <meta name="description" content="The Problem">
+  <title>Flipping Tables: A Custom Bash Prompt</title>
+  <meta name="description" content="? is a value-storing entity. Referencing it with $? yields the exit status of last last-executed command! I thought it’d be fun to use it to power a fun bash...">
 
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,600' rel='stylesheet' type='text/css'>
 
   <!-- <link rel="stylesheet" href="/blog/css/main.css"> -->
   <link rel="stylesheet" href="/blog/css/main.css?v=1.0.0">
-  <link rel="canonical" href="http://steven.codes/blog/slide-to-reveal-with-css/">
+  <link rel="canonical" href="http://steven.codes/blog/flipping-tables-a-custom-bash-prompt/">
   <link rel="alternate" type="application/rss+xml" title="steven.codes" href="http://steven.codes/blog/feed.xml">
 
   <script src="/blog/javascript/headroom.min.js"></script>
@@ -118,31 +118,30 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Slide to Reveal With CSS</h1>
+    <h1 class="post-title" itemprop="name headline">Flipping Tables: A Custom Bash Prompt</h1>
     <p class="post-meta">
-      <time datetime="2015-12-29T01:47:36-08:00" itemprop="datePublished">Dec 29, 2015</time>
+      <time datetime="2016-02-02T01:47:36-08:00" itemprop="datePublished">Feb 2, 2016</time>
       
-      <!-- <br>Read in about 1  minute -->
+      <!-- <br>Read in less than 1 minute -->
     </p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h2 id="the-problem">The Problem</h2>
+    <p><code>?</code> is a value-storing <em>entity</em>. Referencing it with <code>$?</code> yields the exit status of last last-executed command! I thought it’d be fun to use it to power a fun bash prompt.</p>
 
-<p>All I wanted was a div that could hide text and slide out of the way when hovered over. Stack Overflow yielded… disappointing results when I searched for a solution. Some people had thought of transitioning <code>width</code> between some value and <code>auto</code>, but quickly figured out that <a href="https://css-tricks.com/css-animate-fromto-auto/">no browser can successfully do this</a>. Here’s what I came up with.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">[[</span> <span class="nv">$?</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nv">curErr</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="o">||</span> <span class="nv">curErr</span><span class="o">=</span><span class="s1">&#39;1&#39;</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$curErr</span> <span class="o">&amp;&amp;</span> <span class="nv">$lastErr</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span> <span class="c"># Two consecutive errors</span>
+  <span class="nv">table</span><span class="o">=</span><span class="s1">$&#39;(╯ಠ益ಠ)╯彡┻━┻&#39;</span>
+<span class="k">elif</span> <span class="o">[[</span> <span class="nv">$curErr</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span> <span class="c"># One error</span>
+  <span class="nv">table</span><span class="o">=</span><span class="s1">$&#39;(╯°□°)╯︵┻━┻ &#39;</span>
+<span class="k">elif</span> <span class="o">[[</span> <span class="nv">$lastErr</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span> <span class="c"># One success</span>
+  <span class="nv">table</span><span class="o">=</span><span class="s1">$&#39; ┬──┬ ﾉ(°—°ﾉ)&#39;</span>
+<span class="k">else</span> <span class="c"># Two consecutive successes</span>
+  <span class="nv">table</span><span class="o">=</span><span class="s1">$&#39;( °—°)   ┬──┬&#39;</span>
+<span class="k">fi</span>
+  <span class="nv">lastErr</span><span class="o">=</span><span class="nv">$curErr</span></code></pre></figure>
 
-<h2 id="a-solution">A Solution</h2>
-
-<p data-height="206" data-theme-id="0" data-slug-hash="VemryE" data-default-tab="result" data-user="straversi" class="codepen">See the Pen <a href="http://codepen.io/straversi/pen/VemryE/">Text Reveal</a> by Steven Traversi (<a href="http://codepen.io/straversi">@straversi</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async="" src="//assets.codepen.io/assets/embed/ei.js"></script>
-
-<p>The concept is focused around a span containing the text in question. A <code>::before</code> pseudo element is added to have the width of the span. On hover, the pseudo element is translated right 100%. The <code>left</code> and <code>right</code> attributes can be used, but they’re more expensive to animate.</p>
-
-<p>Of course, taking advantage of CSS’s <code>:hover</code> means we can’t use this method for mobile devices. Therefore, this solution is not super practical. Oh well.</p>
-
-<p>If you’re on mobile now, here’s a video of the sweet action.</p>
-
-<video class="share-video" id="share-video" poster="https://thumbs.gfycat.com/DisastrousFlippantBeagle-poster.jpg" autoplay="" muted="" loop=""><source id="webmSource" src="https://zippy.gfycat.com/DisastrousFlippantBeagle.webm" type="video/webm" /><source id="mp4Source" src="https://zippy.gfycat.com/DisastrousFlippantBeagle.mp4" type="video/mp4" />
+<video class="share-video" id="share-video" poster="https://thumbs.gfycat.com/EagerInferiorClingfish-poster.jpg" autoplay="" muted="" loop=""><source id="webmSource" src="https://zippy.gfycat.com/EagerInferiorClingfish.webm" type="video/webm" /><source id="mp4Source" src="https://zippy.gfycat.com/EagerInferiorClingfish.mp4" type="video/mp4" />
     Sorry, your browser doesn't support HTML5 video.
 </video>
 

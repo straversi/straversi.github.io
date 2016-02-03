@@ -127,53 +127,53 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>The permalink format for posts on this site is <code class="highlighter-rouge">:categories/:title</code>. That way I can direct students to steven.codes/cs10 for easy access to all cs10 resources.</p>
+    <p>The permalink format for posts on this site is <code>:categories/:title</code>. That way I can direct students to steven.codes/cs10 for easy access to all cs10 resources.</p>
 
 <h2 id="organizing-assets">Organizing Assets</h2>
-<p>I prefer to structure assets similarly to posts. For example, if there is a post at <code class="highlighter-rouge">/cs10/2048-merge</code>, then I’d like the corresponding assets to be stored in <code class="highlighter-rouge">/assets/posts/cs10/2048-merge</code>. This means I have to go through this path every time I’d like to include a resource. <a href="https://github.com/samrayner/jekyll-asset-path-plugin">Asset path tag</a> is a plugin that I use to manage these relative paths. This is what including an image looks like with asset path:</p>
+<p>I prefer to structure assets similarly to posts. For example, if there is a post at <code>/cs10/2048-merge</code>, then I’d like the corresponding assets to be stored in <code>/assets/posts/cs10/2048-merge</code>. This means I have to go through this path every time I’d like to include a resource. <a href="https://github.com/samrayner/jekyll-asset-path-plugin">Asset path tag</a> is a plugin that I use to manage these relative paths. This is what including an image looks like with asset path:</p>
 
 <figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">asset_path</span><span class="w"> </span>cat_of_the_month.png<span class="w"> </span><span class="p">%}</span></code></pre></figure>
 
-<p>Many of my posts require custom JavaScript, and sometimes custom CSS (see <a href="/cs10/2048-merge/">2048 Merge</a>). I don’t want these custom resources loading for every post, so I created two front matter variables, <code class="highlighter-rouge">custom_css</code> and <code class="highlighter-rouge">custom_js</code>. In <code class="highlighter-rouge">_includes/header.html</code>, I added the following script:</p>
+<p>Many of my posts require custom JavaScript, and sometimes custom CSS (see <a href="/cs10/2048-merge/">2048 Merge</a>). I don’t want these custom resources loading for every post, so I created two front matter variables, <code>custom_css</code> and <code>custom_js</code>. In <code>_includes/header.html</code>, I added the following script:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html">{% if page.custom_css %}
   {% for stylesheet in page.custom_css %}
-    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"{% asset_path {{ stylesheet }}.css %}"</span> <span class="na">media=</span><span class="s">"screen"</span> <span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;{% asset_path {{ stylesheet }}.css %}&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
   {% endfor %}
 {% endif %}
 
 {% if page.custom_js %}
   {% for js_file in page.custom_js %}
-    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'{% asset_path {{ js_file }}.js %}'</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&#39;{% asset_path {{ js_file }}.js %}&#39;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
   {% endfor %}
 {% endif %}</code></pre></figure>
 
 <p>Some JavaScript snippets need access to the assets of the post. It would be bad practice to include file paths in the JavaScript itself. To allow for better separation of concerns, I pass asset_path to the js from the post. An example:</p>
 
 <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script&gt;</span>
-  <span class="nx">tileSetup</span><span class="p">(</span><span class="s2">"{% asset_path 2048_tiles/%}"</span><span class="p">);</span>
+  <span class="nx">tileSetup</span><span class="p">(</span><span class="s2">&quot;{% asset_path 2048_tiles/%}&quot;</span><span class="p">);</span>
 <span class="nt">&lt;/script&gt;</span></code></pre></figure>
 
-<p>For the social page, I wanted a column of wide banners, one for each social site. I created the template <code class="highlighter-rouge">_includes/social-banner.html</code>. There’s an image in this template: the banner background. For the <code class="highlighter-rouge">src</code> attribute of the image, I capture the app name in question and use <code class="highlighter-rouge">asset_path</code> to grab the appropriate image:</p>
+<p>For the social page, I wanted a column of wide banners, one for each social site. I created the template <code>_includes/social-banner.html</code>. There’s an image in this template: the banner background. For the <code>src</code> attribute of the image, I capture the app name in question and use <code>asset_path</code> to grab the appropriate image:</p>
 
 <figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">asset_path</span><span class="w"> </span>{{<span class="w"> </span>include.appname<span class="w"> </span>}}.png<span class="w"> </span><span class="p">%}</span></code></pre></figure>
 
-<p>To pass the app’s name, specify the <code class="highlighter-rouge">appname</code> attribute in the include:</p>
+<p>To pass the app’s name, specify the <code>appname</code> attribute in the include:</p>
 
-<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span><span class="na">social-banner</span><span class="p">.</span><span class="na">html</span><span class="w"> </span><span class="na">appname</span><span class="o">=</span><span class="s2">"facebook"</span><span class="w"> </span><span class="p">%}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>social-banner.html<span class="w"> </span><span class="na">appname</span><span class="o">=</span><span class="s2">&quot;facebook&quot;</span><span class="w"> </span><span class="p">%}</span></code></pre></figure>
 
 <h2 id="post-list">Post List</h2>
 
 <p>There is a Posts page that contains a list of written posts. Each post’s display consists of three parts: a thumbnail, a title, and metadata. The metadata consists of a description, possible tags such as “new” or “hot”, and directory location (if applicable).</p>
 
-<p>Newness is determined by comparing <code class="highlighter-rouge">post.date</code> to <code class="highlighter-rouge">site.time</code>. If a post is new, then in the metadata section we put:</p>
+<p>Newness is determined by comparing <code>post.date</code> to <code>site.time</code>. If a post is new, then in the metadata section we put:</p>
 
-<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span><span class="na">icon-gift</span><span class="p">.</span><span class="na">html</span><span class="w"> </span><span class="p">%}</span> •</code></pre></figure>
+<figure class="highlight"><pre><code class="language-liquid" data-lang="liquid"><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>icon-gift.html<span class="w"> </span><span class="p">%}</span> •</code></pre></figure>
 
-<p><code class="highlighter-rouge">icon-gift.html</code> is a file that contains an include for icon-gift.svg and the word “New”. It also handles colors. The setup is practically identical for <code class="highlighter-rouge">icon-hot.html</code>.</p>
+<p><code>icon-gift.html</code> is a file that contains an include for icon-gift.svg and the word “New”. It also handles colors. The setup is practically identical for <code>icon-hot.html</code>.</p>
 
 <h2 id="plugins">Plugins</h2>
-<p><a href="https://github.com/takuti/jekyll-lazy-tweet-embedding">Lazy Tweet Embedding</a> automatically converts twitter states urls to twitter cards. For example, if I concatenate <code class="highlighter-rouge">https://twitter.com/</code>, <code class="highlighter-rouge">StevenTraversi/status/</code>, and a tweet id such as <code class="highlighter-rouge">558448694731608064</code>, the plugin will generate this for me:</p>
+<p><a href="https://github.com/takuti/jekyll-lazy-tweet-embedding">Lazy Tweet Embedding</a> automatically converts twitter states urls to twitter cards. For example, if I concatenate <code>https://twitter.com/</code>, <code>StevenTraversi/status/</code>, and a tweet id such as <code>558448694731608064</code>, the plugin will generate this for me:</p>
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Studying machine structures in Soda, &quot;home of top shelf computer scientists&quot;. <a href="https://twitter.com/hashtag/61C?src=hash">#61C</a> <a href="https://twitter.com/hashtag/UCBerkeley?src=hash">#UCBerkeley</a> <a href="https://twitter.com/hashtag/twoscomplement?src=hash">#twoscomplement</a> <a href="https://twitter.com/hashtag/passbyvalue?src=hash">#passbyvalue</a></p>&mdash; Steven Traversi (@StevenTraversi) <a href="https://twitter.com/StevenTraversi/status/558448694731608064">January 23, 2015</a></blockquote>
 <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
