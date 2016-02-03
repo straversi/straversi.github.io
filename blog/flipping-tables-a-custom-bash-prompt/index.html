@@ -129,7 +129,7 @@
   <div class="post-content" itemprop="articleBody">
     <p>I’ve been with vanilla Terminal and bash for forever now. I had a brief stint with zsh, but even the extremely slight load delay was too much for me. So I turned to customizing my trusty old bash shell.</p>
 
-<p><code>?</code> is a value-storing <em>entity</em>. Referencing it with <code>$?</code> yields the exit status of last last-executed command! I thought it’d be fun to use it to power a fun bash prompt.</p>
+<p><code>?</code> is a value-storing <em>entity</em>. Referencing it with <code>$?</code> yields the exit status of the last-executed command! I thought it’d be fun to use it to power a fun bash prompt.</p>
 
 <p>I ended up deciding on the table-flipping dude. He would sit there, calmly next to his table. At the first sight of an error, he’d flip it. Then, if I corrected my ways, he’d set the table back down. If I made <em>2 or more errors in a row</em>, he’d go into super-angry mode. To accomplish this, I’d keep track of two variables, <code>curErr</code> and <code>lastErr</code>, updating them according to <code>$?</code>. Here’s the meat of it:</p>
 

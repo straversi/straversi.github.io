@@ -6,15 +6,15 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 03 Feb 2016 01:04:15 -0800</pubDate>
-    <lastBuildDate>Wed, 03 Feb 2016 01:04:15 -0800</lastBuildDate>
+    <pubDate>Wed, 03 Feb 2016 13:24:29 -0800</pubDate>
+    <lastBuildDate>Wed, 03 Feb 2016 13:24:29 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
         <title>Flipping Tables: A Custom Bash Prompt</title>
         <description>&lt;p&gt;I’ve been with vanilla Terminal and bash for forever now. I had a brief stint with zsh, but even the extremely slight load delay was too much for me. So I turned to customizing my trusty old bash shell.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;?&lt;/code&gt; is a value-storing &lt;em&gt;entity&lt;/em&gt;. Referencing it with &lt;code&gt;$?&lt;/code&gt; yields the exit status of last last-executed command! I thought it’d be fun to use it to power a fun bash prompt.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;?&lt;/code&gt; is a value-storing &lt;em&gt;entity&lt;/em&gt;. Referencing it with &lt;code&gt;$?&lt;/code&gt; yields the exit status of the last-executed command! I thought it’d be fun to use it to power a fun bash prompt.&lt;/p&gt;
 
 &lt;p&gt;I ended up deciding on the table-flipping dude. He would sit there, calmly next to his table. At the first sight of an error, he’d flip it. Then, if I corrected my ways, he’d set the table back down. If I made &lt;em&gt;2 or more errors in a row&lt;/em&gt;, he’d go into super-angry mode. To accomplish this, I’d keep track of two variables, &lt;code&gt;curErr&lt;/code&gt; and &lt;code&gt;lastErr&lt;/code&gt;, updating them according to &lt;code&gt;$?&lt;/code&gt;. Here’s the meat of it:&lt;/p&gt;
 
