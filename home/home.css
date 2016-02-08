@@ -26,6 +26,17 @@ p {
   padding: 10px;
   font-size: 18px;
 }
+#contribute label {
+  margin-right: 20px;
+}
+.notice {
+  color: #e04845 !important;
+  font-weight: 700;
+}
+.helper-text {
+  font-size: 14px;
+  color: #999999;
+}
 #contribute > label img {
   height: 25px;
   vertical-align: -5px;
