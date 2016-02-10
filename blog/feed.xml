@@ -6,9 +6,31 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 05 Feb 2016 16:21:41 -0800</pubDate>
-    <lastBuildDate>Fri, 05 Feb 2016 16:21:41 -0800</lastBuildDate>
+    <pubDate>Wed, 10 Feb 2016 11:29:30 -0800</pubDate>
+    <lastBuildDate>Wed, 10 Feb 2016 11:29:30 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Pixel Mapping</title>
+        <description>&lt;p&gt;hello&lt;/p&gt;
+
+&lt;div class=&quot;image-gallery&quot;&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sat, 06 Feb 2016 01:47:36 -0800</pubDate>
+        <link>http://steven.codes/blog/pixel-mapping/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/pixel-mapping/</guid>
+        
+        <category>draft</category>
+        
+        
+      </item>
     
       <item>
         <title>Flipping Tables: A Custom Bash Prompt</title>
@@ -123,6 +145,8 @@
 &lt;p&gt;How should we represent the variables and assignments? I tried two methods. In the first representation I attempted, the assignments of variables to values were kept in a dictionary, mapped as VARIABLE -&amp;gt; VALUE. In the second representation I tried, I represented the assignments as a dictionary mapping VARIABLE -&amp;gt; DOMAIN. I tried this out because I realized that with the first representation, the domain of each variable was being recalculated many times. The results of the switch caused a huge decrease in time taken to solve: from ~850 seconds for ~2,000 puzzles to ~35 seconds.&lt;/p&gt;
 
 &lt;p&gt;For representing the domains of the variables with the second approach, I decided to use strings of values (because the values are strictly 1-9). So as we doing inferencing after making an assignment, some domains will have numbers in them replaced with nothing, e.g. “124589” | replace(“4”,””). This means that “4” is no longer a part of this domain.&lt;/p&gt;
+
+&lt;h2 id=&quot;implementation&quot;&gt;Implementation&lt;/h2&gt;
 
 &lt;p&gt;Right away, we can write two methods: &lt;em&gt;solved&lt;/em&gt; and &lt;em&gt;consistent&lt;/em&gt;. We can say that an assignment is &lt;em&gt;solved&lt;/em&gt; if the length of every variable’s domain is 1. An value for a variable is &lt;em&gt;consistent&lt;/em&gt; with an assignment if no other variables are already assigned that value, i.e. if the none of the domains of the constrained variables are equal to the new value. Here are implementations:&lt;/p&gt;
 
