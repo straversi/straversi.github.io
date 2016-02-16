@@ -30,7 +30,7 @@
 	  XHR.addEventListener("error", function(event) {
 	  	alert(event.target.responseText);
 	  });
-	  XHR.open("GET", "https://script.google.com/macros/s/AKfycbxDGzL3aHSguXkoNtuck3FdoQMpUlJx9S1bs9Zj4ujpiRcXw9Qn/exec");
+	  XHR.open("POST", "https://script.google.com/macros/s/AKfycbxDGzL3aHSguXkoNtuck3FdoQMpUlJx9S1bs9Zj4ujpiRcXw9Qn/exec");
 	  XHR.send(FD);
 	}
 	var form = document.getElementById("example-form");
