@@ -3,6 +3,7 @@
 tiles_path = "";
 
 function tileSetup(path_to_images) {
+  console.log(path_to_images);
   var tiles = document.querySelectorAll(".tile");
   tiles_path = path_to_images.toString()
   for (var i = 0; i < tiles.length; i++) {
@@ -14,8 +15,8 @@ function tileSetup(path_to_images) {
     tile.style.top = fromPercent + "%";
   }
 }
-function mergeBoard(lab) {
-  var tiles = lab.previousElementSibling.children;
+function mergeBoard(lab, boardId) {
+  var tiles = document.getElementById(boardId).children;
   var input = lab.querySelectorAll(":scope > input")[0];
   for (var i = 0; i < tiles.length; i++) {
     tile = tiles[i];
@@ -37,7 +38,11 @@ function mergeBoard(lab) {
   }
 }
 function changeTileSource(tileElement, newValue) {
-  tileElement.src = tiles_path + newValue + ".png";
+  if (newValue == 0) {
+    tileElement.src = "";
+  } else {
+    tileElement.src = tiles_path + newValue + ".png";
+  }
 }
 
 

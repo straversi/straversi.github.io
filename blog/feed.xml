@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 19 Feb 2016 00:05:53 -0800</pubDate>
-    <lastBuildDate>Fri, 19 Feb 2016 00:05:53 -0800</lastBuildDate>
+    <pubDate>Fri, 19 Feb 2016 00:50:49 -0800</pubDate>
+    <lastBuildDate>Fri, 19 Feb 2016 00:50:49 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -404,10 +404,11 @@ comes to merging tiles upward.&lt;/p&gt;
 hits an edge.&lt;/p&gt;
 
 &lt;div class=&quot;board-wrapper&quot;&gt;
-&lt;div class=&quot;board-2048&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
+&lt;div class=&quot;board-2048&quot; id=&quot;board1&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
   &lt;img class=&quot;tile&quot; data-val=&quot;2&quot; data-endval=&quot;2&quot; data-begin=&quot;3&quot; data-end=&quot;0&quot; /&gt;
 &lt;/div&gt;
-&lt;label onclick=&quot;mergeBoard(this)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
+&lt;br /&gt;
+&lt;label onclick=&quot;mergeBoard(this, &#39;board1&#39;)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Let’s start a list of rules that we have to keep in mind. We’ll keep adding
@@ -436,11 +437,12 @@ It starts to move up… and then encounters a new situation. Instead of
 hitting an edge, it hits another tile. What should happen?&lt;/p&gt;
 
 &lt;div class=&quot;board-wrapper&quot;&gt;
-&lt;div class=&quot;board-2048&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
+&lt;div class=&quot;board-2048&quot; id=&quot;board2&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
   &lt;img class=&quot;tile&quot; data-val=&quot;2&quot; data-endval=&quot;2&quot; data-begin=&quot;1&quot; data-end=&quot;0&quot; /&gt;
   &lt;img class=&quot;tile&quot; data-val=&quot;4&quot; data-endval=&quot;4&quot; data-begin=&quot;3&quot; data-end=&quot;1&quot; /&gt;
 &lt;/div&gt;
-&lt;label onclick=&quot;mergeBoard(this)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
+&lt;br /&gt;
+&lt;label onclick=&quot;mergeBoard(this, &#39;board2&#39;)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The tile should stop as if it has hit an edge. It now occupies the spot
@@ -478,11 +480,12 @@ encounters a new situation. It hits another tile with the same value. What
 should happen?&lt;/p&gt;
 
 &lt;div class=&quot;board-wrapper&quot;&gt;
-&lt;div class=&quot;board-2048&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
+&lt;div class=&quot;board-2048&quot; id=&quot;board3&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
   &lt;img class=&quot;tile&quot; data-val=&quot;2&quot; data-endval=&quot;4&quot; data-begin=&quot;1&quot; data-end=&quot;0&quot; /&gt;
   &lt;img class=&quot;tile&quot; data-val=&quot;2&quot; data-endval=&quot;0&quot; data-begin=&quot;3&quot; data-end=&quot;0&quot; /&gt;
 &lt;/div&gt;
-&lt;label onclick=&quot;mergeBoard(this)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
+&lt;br /&gt;
+&lt;label onclick=&quot;mergeBoard(this, &#39;board3&#39;)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The tiles should merge into a new tile of twice their values. Let’s add a
@@ -517,12 +520,13 @@ the bottom tile’s turn. It moves up, and encounters the freshly merged tile
 above it… What should happen?&lt;/p&gt;
 
 &lt;div class=&quot;board-wrapper&quot;&gt;
-&lt;div class=&quot;board-2048&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
+&lt;div class=&quot;board-2048&quot; id=&quot;board4&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
   &lt;img class=&quot;tile&quot; data-val=&quot;4&quot; data-endval=&quot;8&quot; data-begin=&quot;1&quot; data-end=&quot;0&quot; /&gt;
   &lt;img class=&quot;tile&quot; data-val=&quot;4&quot; data-endval=&quot;0&quot; data-begin=&quot;2&quot; data-end=&quot;0&quot; /&gt;
   &lt;img class=&quot;tile&quot; data-val=&quot;8&quot; data-endval=&quot;8&quot; data-begin=&quot;3&quot; data-end=&quot;1&quot; /&gt;
 &lt;/div&gt;
-&lt;label onclick=&quot;mergeBoard(this)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
+&lt;br /&gt;
+&lt;label onclick=&quot;mergeBoard(this, &#39;board4&#39;)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The third tile should stop! One of the rules of 2048 is that a tile cannot
@@ -565,7 +569,7 @@ There are many other ways to achieve the merge effect, and some solutions
 can get very clever and efficient.&lt;/p&gt;
 
 &lt;script&gt;
-  // Run setup method. Find in 2048_board_merge.js from YAML front matter.
+  /* Run setup method. Find in 2048_board_merge.js from YAML front matter. */
   tileSetup(&quot;/blog/assets/posts/cs10/2048-merge/2048_tiles/&quot;);
 &lt;/script&gt;
 
@@ -573,6 +577,8 @@ can get very clever and efficient.&lt;/p&gt;
         <pubDate>Thu, 12 Nov 2015 03:47:36 -0800</pubDate>
         <link>http://steven.codes/blog/cs10/2048-merge/</link>
         <guid isPermaLink="true">http://steven.codes/blog/cs10/2048-merge/</guid>
+        
+        <category>no_compress</category>
         
         
         <category>cs10</category>
