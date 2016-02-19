@@ -1,4 +1,4 @@
-// This is not a merge function. It does simple animations. Sorry.
+/* This is not a merge function. It does simple animations. Sorry. */
 
 tiles_path = "";
 
@@ -42,7 +42,7 @@ function changeTileSource(tileElement, newValue) {
 
 
 
-// Button styles
+/* Button styles */
 function setDownStyle(lab) {
   lab.style.borderBottom = "none";
   lab.style.marginTop = "12px";
