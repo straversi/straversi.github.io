@@ -6,6 +6,8 @@ var nodeCount = 100;
 var nodeColor = "#1B5E20";
 var nodeDestination = "net";
 var edgeColor = "#43A047";
+var edgeColors = ["#43A047", "#26842C", "#6FC074"];
+var useMultipleEdgeColors = false;
 var sensitivity = 75;
 var maxDistance = 100;
                  // 900           // 600         // 900          // 800            // 500
@@ -156,7 +158,11 @@ function drawEdge(x0, y0, x1, y1, id) {
     newElement.setAttribute("x2", x1);
     newElement.setAttribute("y2", y1);
     newElement.setAttribute("id", "svg" + id);
-    newElement.style.stroke = edgeColor;
+    if (useMultipleEdgeColors) {
+      newElement.style.stroke = edgeColors[Math.floor((Math.random() * edgeColors.length) + 1)];
+    } else {
+      newElement.style.stroke = edgeColor;
+    }
     newElement.style.strokeWidth = "2px";
     svg.appendChild(newElement);
 }

@@ -139,7 +139,7 @@ button {
 	transition: border-color .15s linear;
 }
 button:hover {
-	border-color: #455A64;
+	border-color: #455A64 !important;
 }
 button:active {
 	background-color: #43A047;
