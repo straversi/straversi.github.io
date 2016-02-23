@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 20 Feb 2016 19:02:57 -0800</pubDate>
-    <lastBuildDate>Sat, 20 Feb 2016 19:02:57 -0800</lastBuildDate>
+    <pubDate>Tue, 23 Feb 2016 01:30:39 -0800</pubDate>
+    <lastBuildDate>Tue, 23 Feb 2016 01:30:39 -0800</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -38,9 +38,7 @@
 
 &lt;h2 id=&quot;the-google-sheets-part&quot;&gt;The Google Sheets Part&lt;/h2&gt;
 
-&lt;p&gt;The first thing you’ll do is create a new Google Sheet. Head to menu, and click &lt;code&gt;Tools &amp;gt; Script editor...&lt;/code&gt; to launch the IDE. For starters, let’s copy and paste Martin Hawksey’s Apps Script snippet into the editor. Here it is for convenience:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://gist.github.com/straversi/2fd82477504baa0b347c&quot;&gt;https://gist.github.com/straversi/2fd82477504baa0b347c&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The first thing you’ll do is create a new Google Sheet. Head to menu, and click &lt;code&gt;Tools &amp;gt; Script editor...&lt;/code&gt; to launch the IDE. For starters, let’s copy and paste Martin Hawksey’s Apps Script snippet into the editor. Here it is for convenience: &lt;a href=&quot;https://gist.github.com/straversi/2fd82477504baa0b347c&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;At the bottom of the snippet is a function called &lt;code&gt;setup&lt;/code&gt;, reproduced here:&lt;/p&gt;
 
