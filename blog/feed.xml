@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Mar 2016 11:38:52 -0700</pubDate>
-    <lastBuildDate>Tue, 22 Mar 2016 11:38:52 -0700</lastBuildDate>
+    <pubDate>Tue, 22 Mar 2016 11:42:00 -0700</pubDate>
+    <lastBuildDate>Tue, 22 Mar 2016 11:42:00 -0700</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -93,7 +93,7 @@
 
 &lt;h3 id=&quot;the-fix&quot;&gt;The Fix&lt;/h3&gt;
 
-&lt;p&gt;To make a long story short, what we have here is a problem with &lt;a href=&quot;https://en.wikipedia.org/wiki/Cross-origin_resource_sharing&quot;&gt;Cross-Origin Resource Sharing&lt;/a&gt; (CORS). Safari won’t accept Google’s response unless it has a certain header specifying &lt;code&gt;Access-Control-Allow-Origin: *&lt;/code&gt;. This is a result of Safari adhering to W3C spec very closely. To fix this, we’ll have someone else make our requests for us. If we append &lt;code&gt;http://crossorigin.me/&lt;/code&gt; to the beginning of our request URL (https://script.google.com/macros/s/AKfycb…), the folks over at crossorigin will make a nice request from a place that doesn’t care so much about CORS for us. We then receive the reply as Google sent it.&lt;/p&gt;
+&lt;p&gt;To make a long story short, what we have here is a problem with &lt;a href=&quot;https://en.wikipedia.org/wiki/Cross-origin_resource_sharing&quot;&gt;Cross-Origin Resource Sharing&lt;/a&gt; (CORS). Safari won’t accept Google’s response unless it has a certain header specifying &lt;code&gt;Access-Control-Allow-Origin: *&lt;/code&gt;. This is a result of Safari adhering to W3C spec very closely. To fix this, we’ll have someone else make our requests for us. If we append &lt;code&gt;http://crossorigin.me/&lt;/code&gt; to the beginning of our request URL (https://script.google.com/macros/s/AKfycb…), the folks over at crossorigin will make a nice request from a place that doesn’t care so much about CORS for us. We then receive the reply as Google sent it. ◼&lt;/p&gt;
 </description>
         <pubDate>Sat, 06 Feb 2016 01:47:36 -0800</pubDate>
         <link>http://steven.codes/blog/google-sheets-db-tutorial/</link>
@@ -128,7 +128,7 @@
     Sorry, your browser doesn&#39;t support HTML5 video.
 &lt;/video&gt;
 
-&lt;p&gt;All in all, a pretty fun addition to my routine.&lt;/p&gt;
+&lt;p&gt;All in all, a pretty fun addition to my routine. ◼&lt;/p&gt;
 </description>
         <pubDate>Tue, 02 Feb 2016 01:47:36 -0800</pubDate>
         <link>http://steven.codes/blog/flipping-tables-a-custom-bash-prompt/</link>
@@ -274,7 +274,7 @@
 
 &lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
 
-&lt;p&gt;I wrote my version of the solver so that it could take puzzles from this large set I found here: &lt;a href=&quot;http://magictour.free.fr/top2365&quot;&gt;2365 hard sudoku puzzles&lt;/a&gt;. On average, my solver takes ~35 seconds to solve this set, with the median time to solve a puzzle being 0.005 seconds. The 35 seconds is dominated by a select few puzzles that take several seconds to solve.&lt;/p&gt;
+&lt;p&gt;I wrote my version of the solver so that it could take puzzles from this large set I found here: &lt;a href=&quot;http://magictour.free.fr/top2365&quot;&gt;2365 hard sudoku puzzles&lt;/a&gt;. On average, my solver takes ~35 seconds to solve this set, with the median time to solve a puzzle being 0.005 seconds. The 35 seconds is dominated by a select few puzzles that take several seconds to solve. ◼&lt;/p&gt;
 </description>
         <pubDate>Thu, 03 Dec 2015 11:47:36 -0800</pubDate>
         <link>http://steven.codes/blog/constraint-satisfaction-with-sudoku/</link>
@@ -339,7 +339,7 @@
 
 &lt;p&gt;Clean and easy.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/penibelst/jekyll-compress-html&quot;&gt;jekyll-compress-html&lt;/a&gt; is a top-level &lt;em&gt;layout&lt;/em&gt; that I make &lt;code&gt;default.html&lt;/code&gt; conform to. Therefore, every HTML file is compressed before being dumped into &lt;code&gt;_site&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/penibelst/jekyll-compress-html&quot;&gt;jekyll-compress-html&lt;/a&gt; is a top-level &lt;em&gt;layout&lt;/em&gt; that I make &lt;code&gt;default.html&lt;/code&gt; conform to. Therefore, every HTML file is compressed before being dumped into &lt;code&gt;_site&lt;/code&gt;. ◼&lt;/p&gt;
 </description>
         <pubDate>Sun, 22 Nov 2015 11:47:36 -0800</pubDate>
         <link>http://steven.codes/blog/my-jekyll-setup/</link>
@@ -564,7 +564,7 @@ a full 2048 game).&lt;/p&gt;
 &lt;p&gt;You can write this algorithm iteratively or recursively. Explore, and
 write your own improved version now that you understand the basics.
 There are many other ways to achieve the merge effect, and some solutions
-can get very clever and efficient.&lt;/p&gt;
+can get very clever and efficient. ◼&lt;/p&gt;
 
 &lt;script&gt;
   /* Run setup method. Find in 2048_board_merge.js from YAML front matter. */
