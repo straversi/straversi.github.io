@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Mar 2016 11:42:00 -0700</pubDate>
-    <lastBuildDate>Tue, 22 Mar 2016 11:42:00 -0700</lastBuildDate>
+    <pubDate>Tue, 22 Mar 2016 17:10:52 -0700</pubDate>
+    <lastBuildDate>Tue, 22 Mar 2016 17:10:52 -0700</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -68,7 +68,11 @@
 
 &lt;h2 id=&quot;updates-and-handling-gets&quot;&gt;Updates, and Handling GETs&lt;/h2&gt;
 
-&lt;p&gt;Notice something? The current App Script code that we have attached to the spreadsheet doesn’t actually handle GET’s in a useful way. Our GET and POST will end up sharing some code. In &lt;code&gt;handleResponse(e)&lt;/code&gt; we should keep around these bits:&lt;/p&gt;
+&lt;p&gt;Notice something? The current App Script code that we have attached to the spreadsheet doesn’t actually handle GET’s in a useful way. Let’s fix that! We’ll divvy up &lt;code&gt;handleResponse&lt;/code&gt; into two cases.&lt;/p&gt;
+
+&lt;p&gt;App Script lets us define these useful functions &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt;, which are reserved functions. When someone accesses our script with a GET or a POST, the appropriate function is called. We’ll define two new functions, &lt;code&gt;handleGet(e)&lt;/code&gt; and &lt;code&gt;handlePost(e)&lt;/code&gt; (or, feel free to place your response code inside &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt; themselves).&lt;/p&gt;
+
+&lt;p&gt;First notice that our GET and POST will end up sharing some code: we need to keep these snippets from &lt;code&gt;handleResponse(e)&lt;/code&gt; at the beginning and end of our new definitions:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SpreadsheetApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;openById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SCRIPT_PROP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getProperty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sheet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getSheetByName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;POST_SHEET_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
@@ -77,7 +81,7 @@
           &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createTextOutput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resultObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
           &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setMimeType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ContentService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MimeType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;In between, we’ll make an appropriate call to either &lt;code&gt;handleGet&lt;/code&gt; or &lt;code&gt;handlePost&lt;/code&gt;, which we define. We can pass along a parameter to &lt;code&gt;handleResponse&lt;/code&gt; which indicates which of the two to call. Notice how I changed the object in &lt;code&gt;createTextOutput&lt;/code&gt;. &lt;code&gt;resultObject&lt;/code&gt; in my case captures the return value of &lt;code&gt;handlePost&lt;/code&gt; or &lt;code&gt;handleGet&lt;/code&gt;. All of this being said, it may make more sense for you to skip the &lt;code&gt;handleResponse&lt;/code&gt; call all together, especially if your GETs and POSTs will be working with different sheets.&lt;/p&gt;
+&lt;p&gt;You may want to abstract those, as they’ll be the same for each type of response. In between, we’ll do our GET or POST work. I’ve modified the returned ContentService to return &lt;code&gt;resultObject&lt;/code&gt;, which we can set to be whatever we want in both our GET and POST responses.&lt;/p&gt;
 
 &lt;p&gt;&lt;span class=&quot;important&quot;&gt;Note:&lt;/span&gt; If you separate your GET and POST handling, you should remember to move the &lt;code&gt;LockService&lt;/code&gt; portions into your POST handler. We don’t want to be unnecessarily restricting read operations. Furthermore, App Script has changed since the script we began with was written. &lt;code&gt;LockService.getPublicLock&lt;/code&gt; is now &lt;code&gt;LockService.getScriptLock&lt;/code&gt;. Be sure to reflect this change in your code. For more on other types of locks, see &lt;a href=&quot;https://developers.google.com/apps-script/reference/lock/lock-service&quot;&gt;Class LockService&lt;/a&gt;.&lt;/p&gt;
 
