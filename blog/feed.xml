@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 22 Mar 2016 17:10:52 -0700</pubDate>
-    <lastBuildDate>Tue, 22 Mar 2016 17:10:52 -0700</lastBuildDate>
+    <pubDate>Mon, 28 Mar 2016 23:19:18 -0700</pubDate>
+    <lastBuildDate>Mon, 28 Mar 2016 23:19:18 -0700</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -34,22 +34,22 @@
     
       <item>
         <title>Google Sheets DB Tutorial</title>
-        <description>&lt;p&gt;The first part (the Google Sheets part) of this tutorial is first a restatement, then an extension, of &lt;a href=&quot;https://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/&quot;&gt;Martin Hawksey’s Google Sheets as a Database&lt;/a&gt; article, with my own insights interjected. I include commentary from my experiences building &lt;a href=&quot;/home&quot;&gt;a “community” homepage&lt;/a&gt; based on this idea.&lt;/p&gt;
+        <description>&lt;p&gt;The first part (the Google Sheets part) of this tutorial is first a restatement, then an extension, of &lt;a href=&quot;https://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/&quot;&gt;Martin Hawksey’s Google Sheets as a Database&lt;/a&gt; article, with my own insights interjected. I include commentary from my experiences building &lt;a href=&quot;/home&quot;&gt;a “community” homepage&lt;/a&gt; based on this idea. I’ve written this article to shed some light on what’s going on in Martin’s tutorial.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-google-sheets-part&quot;&gt;The Google Sheets Part&lt;/h2&gt;
 
-&lt;p&gt;The first thing you’ll do is create a new Google Sheet. Head to menu, and click &lt;code&gt;Tools &amp;gt; Script editor...&lt;/code&gt; to launch the IDE. For starters, let’s copy and paste Martin Hawksey’s Apps Script snippet into the editor. Here it is for convenience: &lt;a href=&quot;https://gist.github.com/straversi/2fd82477504baa0b347c&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;First, go to &lt;a href=&quot;https://docs.google.com/spreadsheets/&quot;&gt;Google Sheets&lt;/a&gt;, and create a new sheet. Then in the menu, click &lt;code&gt;Tools &amp;gt; Script editor...&lt;/code&gt; to launch the IDE. For starters, let’s copy and paste Martin Hawksey’s Apps Script snippet into the editor. Here it is for convenience: &lt;a href=&quot;https://gist.github.com/straversi/2fd82477504baa0b347c&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;At the bottom of the snippet is a function called &lt;code&gt;setup&lt;/code&gt;, reproduced here:&lt;/p&gt;
+&lt;p&gt;The first part of Martin’s tutorial tells you to run the function &lt;code&gt;setup&lt;/code&gt;, reproduced here:&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SpreadsheetApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getActiveSpreadsheet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;SCRIPT_PROP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setProperty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;We’re about to run it, so what does it do? The first line of the function grabs what’s called the “Active Spreadsheet”, a.k.a. the spreadsheet that you opened this script editor through. (Notice that when you try to close your spreadsheet tab, the script editor leaves along with it). The second line will let this script see the Active Spreadsheet even when your around, by remembering its Id. Now that we know what’s happening…&lt;/p&gt;
+&lt;p&gt;It’d be nice to know what id does first! Line 1 of the function grabs what’s called the “Active Spreadsheet”, a.k.a. the spreadsheet that you opened this script editor through. (You may notice that when you try to close your spreadsheet tab, the script editor leaves along with it). So &lt;code&gt;doc&lt;/code&gt; is an object representing your spreadsheet. But when you don’t have the spreadsheet open, &lt;code&gt;getActiveSpreadsheet&lt;/code&gt; will error. But setting a script property that we call “key”, we can remember the id of our spreadsheet so we can retrieve it whenever we want. Now that we know what’s going on… in the menu, select &lt;code&gt;Run &amp;gt; setup&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;As the snippet instructs, the first thing to do is select &lt;code&gt;Run &amp;gt; setup&lt;/code&gt;. Google may tell you “Authorization required / This app needs authorization to run”. That’s fine, hit “Continue”. Your script needs access to (1) View and manage your spreadsheets and (2) View and manage data associated with the application. Allow both. If you’d like, select &lt;code&gt;File &amp;gt; Project properties&lt;/code&gt;, then select the &lt;code&gt;Script properties&lt;/code&gt; tab. That key wasn’t there before; it’s the same Id that appears at the end of the URL of your spreadsheet. The script and the sheet are now together forever.&lt;/p&gt;
+&lt;p&gt;Google may tell you “Authorization required / This app needs authorization to run”. That’s fine, hit “Continue”. Your script needs access to (1) View and manage your spreadsheets and (2) View and manage data associated with the application. Allow both. Now &lt;code&gt;setup&lt;/code&gt; has run, and if you’d like, select &lt;code&gt;File &amp;gt; Project properties&lt;/code&gt;, then select the &lt;code&gt;Script properties&lt;/code&gt; tab. There’s the key that we just set! FYI, it’s the same id that appears at the end of the URL of your spreadsheet. So, we could have done this manually by inspecting the URL of our spreadsheet and entering the id in this &lt;code&gt;Script properties&lt;/code&gt; tab. Either way, the script and the sheet are now together forever.&lt;/p&gt;
 
 &lt;p&gt;Time to deploy your script: select &lt;code&gt;Publish &amp;gt; Deploy as web app...&lt;/code&gt;. Choose to execute the app as yourself, and make sure to grant everyone access, like this:&lt;/p&gt;
 
@@ -68,9 +68,9 @@
 
 &lt;h2 id=&quot;updates-and-handling-gets&quot;&gt;Updates, and Handling GETs&lt;/h2&gt;
 
-&lt;p&gt;Notice something? The current App Script code that we have attached to the spreadsheet doesn’t actually handle GET’s in a useful way. Let’s fix that! We’ll divvy up &lt;code&gt;handleResponse&lt;/code&gt; into two cases.&lt;/p&gt;
+&lt;p&gt;Notice something? The current App Script code that we have attached to the spreadsheet doesn’t actually handle GETs in a useful way. Let’s fix that! We’ll divvy up &lt;code&gt;handleResponse&lt;/code&gt; into two cases.&lt;/p&gt;
 
-&lt;p&gt;App Script lets us define these useful functions &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt;, which are reserved functions. When someone accesses our script with a GET or a POST, the appropriate function is called. We’ll define two new functions, &lt;code&gt;handleGet(e)&lt;/code&gt; and &lt;code&gt;handlePost(e)&lt;/code&gt; (or, feel free to place your response code inside &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt; themselves).&lt;/p&gt;
+&lt;p&gt;App Script gives us these reserved functions called &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt;. When someone accesses our script with a GET or a POST, the appropriate function is called. We’ll define two new functions, &lt;code&gt;handleGet(e)&lt;/code&gt; and &lt;code&gt;handlePost(e)&lt;/code&gt; (or, feel free to place your response code inside &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt; themselves).&lt;/p&gt;
 
 &lt;p&gt;First notice that our GET and POST will end up sharing some code: we need to keep these snippets from &lt;code&gt;handleResponse(e)&lt;/code&gt; at the beginning and end of our new definitions:&lt;/p&gt;
 
@@ -343,7 +343,9 @@
 
 &lt;p&gt;Clean and easy.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/penibelst/jekyll-compress-html&quot;&gt;jekyll-compress-html&lt;/a&gt; is a top-level &lt;em&gt;layout&lt;/em&gt; that I make &lt;code&gt;default.html&lt;/code&gt; conform to. Therefore, every HTML file is compressed before being dumped into &lt;code&gt;_site&lt;/code&gt;. ◼&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/penibelst/jekyll-compress-html&quot;&gt;jekyll-compress-html&lt;/a&gt; is a top-level &lt;em&gt;layout&lt;/em&gt; that I make &lt;code&gt;default.html&lt;/code&gt; conform to. Therefore, every HTML file is compressed before being dumped into &lt;code&gt;_site&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://disqus.com/home/&quot;&gt;Disqus&lt;/a&gt; is a forum drop-in that I use at the bottom of each article to create a comments section. It’s powered by a script in &lt;code&gt;_layouts/post.html&lt;/code&gt;, but must be explicitly enabled in the yaml of each article with &lt;code&gt;comments: true&lt;/code&gt;. ◼&lt;/p&gt;
 </description>
         <pubDate>Sun, 22 Nov 2015 11:47:36 -0800</pubDate>
         <link>http://steven.codes/blog/my-jekyll-setup/</link>
