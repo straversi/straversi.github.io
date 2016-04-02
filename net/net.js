@@ -52,19 +52,7 @@ function createNode(x, y, id) {
         edgesFrom: []
     }
     nodes.push(nodeObj);
-    var node = "";
-    node += "<div class='node' " ;
-    node += "id='" + id + "' ";
-    node += "data-x='" + x + "' ";
-    node += "data-y='" + y + "' ";
-    node += "style='height:" + diameter + "px;";
-    node += "width:" + diameter + "px;"
-    node += "border-radius:" + diameter + "px;";
-    node += "left:" + x + "px;";
-    node += "top:" + y + "px;";
-    node += "background-color:" + nodeColor + ";";
-    node += "position:absolute;'>";
-    node += "</div>";
+    node = "<div class='node' id='" + id + "' data-x='" + x + "' data-y='" + y + "' style='height:" + diameter + "px;width:" + diameter + "px;border-radius:" + diameter + "px;left:" + x + "px;top:" + y + "px;background-color:" + nodeColor + ";position:absolute;'></div>";
     return node;
 }
 
@@ -211,6 +199,7 @@ function bindAll() {
     $("#toggleSettings").off();
     bindInputs();
     bindSettings();
+    bindWindowResize();
 }
 function bindInputs() {
     $("input[type=range]").on("change mousemove", function() {
@@ -257,6 +246,17 @@ function bindSettings() {
     //     myScheme = parseInt(color);
     // })
 }
+
+function bindWindowResize() {
+  resizeTimer = 0;
+  $(window).on('resize', function(e) {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      redrawAll();
+    }, 250);
+  });
+}
+
 function setColors() {
     // $(".nav").css("color", colors[myScheme].nav);
     $("button").css({"background-color": colors[myScheme].button, "border-color": colors[myScheme].button});
