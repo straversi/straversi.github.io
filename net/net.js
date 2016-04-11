@@ -99,6 +99,7 @@ function force(x0, y0, x1, y1) {
 function oppose(refX, refY, mouseX, mouseY) {
     // Return the point opposite (oppX = mouseX, oppY = mouseY).
     // refX = nodeX, refY = nodeY
+
     var offsetY;
     var offsetX;
     var mXN = parseFloat(refX) - mouseX; // mouseX normalized
@@ -112,6 +113,14 @@ function oppose(refX, refY, mouseX, mouseY) {
         offsetX = -1 * offsetX;
     }
     return { left: offsetX + parseFloat(refX), top: offsetY + parseFloat(refY) };
+
+    // var refX = parseFloat(refX);
+    // var refY = parseFloat(refY);
+    // var mXN = parseFloat(refX) - mouseX; // mouseX normalized
+    // var mYN = parseFloat(refY) - mouseY; // mouseY normalized
+    // var x_new = mXN - 20*Math.sqrt(Math.pow(mXN, 2)/(Math.pow(mYN, 2)+Math.pow(mXN, 2)))
+    // var y_new = (mYN * x_new)/mXN
+    // return { left: x_new + refX, top: y_new + refY };
 }
 
 drawNodes(width, height, nodeCount, nodeDestination);
