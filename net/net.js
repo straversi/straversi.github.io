@@ -9,7 +9,7 @@ var edgeColor = "#43A047";
 var edgeColors = ["#43A047", "#26842C", "#6FC074"];
 var useMultipleEdgeColors = false;
 var sensitivity = 75;
-var maxDistance = 100;
+var maxDistance = 70;
                  // 900           // 600         // 900          // 800            // 500
 colors = [{ nodes:"#1B5E20", edges:"#43A047", nav:"#1B5E20", menu:"#2E7D32", button:"#4CAF50" },
          { nodes:"#0D47A1", edges:"#1E88E5", nav:"#0D47A1", menu:"#1565C0", button:"#2196F3" },
