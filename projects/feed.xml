@@ -2,49 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>steven.codes</title>
-    <description>I post here about some of the things I&#39;m working on.
+    <description>Here you&#39;ll find projects I&#39;m working on or used to work on.
 </description>
     <link>http://steven.codes/projects/</link>
     <atom:link href="http://steven.codes/projects/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 14 Jul 2016 23:10:21 -0700</pubDate>
-    <lastBuildDate>Thu, 14 Jul 2016 23:10:21 -0700</lastBuildDate>
+    <pubDate>Sun, 17 Jul 2016 20:21:45 -0700</pubDate>
+    <lastBuildDate>Sun, 17 Jul 2016 20:21:45 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
-    
-      <item>
-        <title>Hello World in HOtMEfSPRIbNG</title>
-        <description>&lt;h2 id=&quot;program&quot;&gt;Program&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;lol bear the universe hatchery
-fear Hello,.   Hydro. Power pump pump pump pump future
-       powers World!
- never trust the marshy marshy marshy marshy snowmelt
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;structure&quot;&gt;Structure&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;                                               Hello,
-                                              /
-                                         fear - hydro power - pump - pump - pump - pump - future
-                                       /
-lol - bear - the - universe - hatchery - powers - World!
-                                               \
-                                                 never - trust - the - marshy - marshy - marshy - marshy - snowmelt
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;/h2&gt;
-
-&lt;p&gt;Salmon begin spawning in the hatchery on the first tick. The first salmon swims toward Hello, where it spawns and creates a young salmon named Hello,. This salmon makes it back to the hatchery on the tick before the water from the spring named future activates the hydro power, which powers fear. Fear blocks the remaining salmon in the Hello, branch, and redirects the stream of hatchery salmon toward World!. The young salmon named Hello, makes it past the bear to the ocean. The homeless salmon that was with it is eaten by the bear. The first redirected salmon spawns at World!, and the young spawn makes it past the bear to the ocean. At this point, the snowmelt is out of the marsh and destroys the universe, terminating the program.&lt;/p&gt;
-
-&lt;p&gt;◼&lt;/p&gt;
-</description>
-        <pubDate>Wed, 06 Jul 2016 02:47:36 -0700</pubDate>
-        <link>http://steven.codes/projects/hello-world-in-HOtMEfSPRIbNG/</link>
-        <guid isPermaLink="true">http://steven.codes/projects/hello-world-in-HOtMEfSPRIbNG/</guid>
-        
-        <category>hot</category>
-        
-        
-      </item>
     
       <item>
         <title>Typer.js</title>

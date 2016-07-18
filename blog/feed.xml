@@ -6,9 +6,45 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 14 Jul 2016 23:10:19 -0700</pubDate>
-    <lastBuildDate>Thu, 14 Jul 2016 23:10:19 -0700</lastBuildDate>
+    <pubDate>Sun, 17 Jul 2016 20:21:44 -0700</pubDate>
+    <lastBuildDate>Sun, 17 Jul 2016 20:21:44 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Hello World in HOtMEfSPRIbNG</title>
+        <description>&lt;h2 id=&quot;program&quot;&gt;Program&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;lol bear the universe hatchery
+fear Hello,.   Hydro. Power pump pump pump pump future
+       powers World!
+ never trust the marshy marshy marshy marshy snowmelt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;structure&quot;&gt;Structure&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;                                               Hello,
+                                              /
+                                         fear - hydro power - pump - pump - pump - pump - future
+                                       /
+lol - bear - the - universe - hatchery - powers - World!
+                                               \
+                                                 never - trust - the - marshy - marshy - marshy - marshy - snowmelt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;/h2&gt;
+
+&lt;p&gt;Salmon begin spawning in the hatchery on the first tick. The first salmon swims toward Hello, where it spawns and creates a young salmon named Hello,. This salmon makes it back to the hatchery on the tick before the water from the spring named future activates the hydro power, which powers fear. Fear blocks the remaining salmon in the Hello, branch, and redirects the stream of hatchery salmon toward World!. The young salmon named Hello, makes it past the bear to the ocean. The homeless salmon that was with it is eaten by the bear. The first redirected salmon spawns at World!, and the young spawn makes it past the bear to the ocean. At this point, the snowmelt is out of the marsh and destroys the universe, terminating the program.&lt;/p&gt;
+
+&lt;p&gt;◼&lt;/p&gt;
+</description>
+        <pubDate>Wed, 06 Jul 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/hello-world-in-HOtMEfSPRIbNG/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/hello-world-in-HOtMEfSPRIbNG/</guid>
+        
+        <category>hot</category>
+        
+        
+      </item>
     
       <item>
         <title>How to Get 97% on MNIST with KNN</title>
@@ -532,211 +568,6 @@
         
         <category>draft</category>
         
-        
-      </item>
-    
-      <item>
-        <title>2048 Merge</title>
-        <description>&lt;!-- JavaScript and CSS loaded in _includes/head.html.
-     Check front matter. --&gt;
-
-&lt;p&gt;In the fad game 2048, you press arrow keys to move tiles across a board in
-one of four possible directions. Let’s explore an intuitive algorithm for
-accomplishing this.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;##Basic Slide&lt;/p&gt;
-
-&lt;p&gt;Let’s start with the case of a single tile.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;important&quot;&gt;Note:&lt;/span&gt; Throughout this exploration, we will
-only ever be considering a single column. This is because in a true 2048
-board with 4 columns, each column is independent from the rest when it
-comes to merging tiles upward.&lt;/p&gt;
-
-&lt;p&gt;What happens when we press the UP arrow? The tile should move up until it
-hits an edge.&lt;/p&gt;
-
-&lt;div class=&quot;board-wrapper&quot;&gt;
-&lt;div class=&quot;board-2048&quot; id=&quot;board1&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
-  &lt;img class=&quot;tile&quot; data-val=&quot;2&quot; data-endval=&quot;2&quot; data-begin=&quot;3&quot; data-end=&quot;0&quot; /&gt;
-&lt;/div&gt;
-&lt;br /&gt;
-&lt;label onclick=&quot;mergeBoard(this, &#39;board1&#39;)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Let’s start a list of rules that we have to keep in mind. We’ll keep adding
-to it as we go.&lt;/p&gt;
-
-&lt;p&gt;Rules&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;Move up until:
-      &lt;ul&gt;
-        &lt;li&gt;There is an edge&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;##Another Tile&lt;/p&gt;
-
-&lt;p&gt;Now we’ll progress our algorithm by looking at a more complex board. It will
-have two tiles of different values.&lt;/p&gt;
-
-&lt;p&gt;What happens when we press the UP arrow? The top tile, following our rules
-list, will move up until there is an edge. Then it’s the bottom tile’s turn.
-It starts to move up… and then encounters a new situation. Instead of
-hitting an edge, it hits another tile. What should happen?&lt;/p&gt;
-
-&lt;div class=&quot;board-wrapper&quot;&gt;
-&lt;div class=&quot;board-2048&quot; id=&quot;board2&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
-  &lt;img class=&quot;tile&quot; data-val=&quot;2&quot; data-endval=&quot;2&quot; data-begin=&quot;1&quot; data-end=&quot;0&quot; /&gt;
-  &lt;img class=&quot;tile&quot; data-val=&quot;4&quot; data-endval=&quot;4&quot; data-begin=&quot;3&quot; data-end=&quot;1&quot; /&gt;
-&lt;/div&gt;
-&lt;br /&gt;
-&lt;label onclick=&quot;mergeBoard(this, &#39;board2&#39;)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The tile should stop as if it has hit an edge. It now occupies the spot
-directly under the tile above it. Let’s update our rules to reflect
-this:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;Move up until:
-      &lt;ul&gt;
-        &lt;li&gt;There is an edge&lt;/li&gt;
-        &lt;li&gt;There is another tile&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;span class=&quot;important&quot;&gt;Notice:&lt;/span&gt; This brings up a question. Which tile should we move up first? If we move the bottom tile up first, it would stop when it got to the
-tile above it. Then we’d move the tile above it, and it’d stop at the edge.
-What’s left is a gap between the two tiles! This is not what we want.
-Therefore, we’ll make an observation that we should move the tiles up in
-order from top to bottom.&lt;/p&gt;
-
-&lt;p&gt;##Merging Tiles&lt;/p&gt;
-
-&lt;p&gt;If you missed the notice right before this section definitely read it.&lt;/p&gt;
-
-&lt;p&gt;Let’s make things more complex again. In our newest board, there are two
-tiles of the same value.&lt;/p&gt;
-
-&lt;p&gt;What happens when we press the UP arrow? Now things are getting interesting.
-The top tile, following our rules list, will move up until there is an edge.
-Then it’s the bottom tile’s turn. It starts to move up… and then
-encounters a new situation. It hits another tile with the same value. What
-should happen?&lt;/p&gt;
-
-&lt;div class=&quot;board-wrapper&quot;&gt;
-&lt;div class=&quot;board-2048&quot; id=&quot;board3&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
-  &lt;img class=&quot;tile&quot; data-val=&quot;2&quot; data-endval=&quot;4&quot; data-begin=&quot;1&quot; data-end=&quot;0&quot; /&gt;
-  &lt;img class=&quot;tile&quot; data-val=&quot;2&quot; data-endval=&quot;0&quot; data-begin=&quot;3&quot; data-end=&quot;0&quot; /&gt;
-&lt;/div&gt;
-&lt;br /&gt;
-&lt;label onclick=&quot;mergeBoard(this, &#39;board3&#39;)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The tiles should merge into a new tile of twice their values. Let’s add a
-rule:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;Move up until:
-      &lt;ul&gt;
-        &lt;li&gt;There is an edge&lt;/li&gt;
-        &lt;li&gt;There is another tile…
-          &lt;ul&gt;
-            &lt;li&gt;Different value? Do nothing.&lt;/li&gt;
-            &lt;li&gt;Same value? Merge with it.&lt;/li&gt;
-          &lt;/ul&gt;
-        &lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;##Merge Mishaps&lt;/p&gt;
-
-&lt;p&gt;Let’s add one more twist of complexity. Our next board will have three tiles
-on it: Two of the same value and one of twice their value.&lt;/p&gt;
-
-&lt;p&gt;What happens when we press the UP arrow? The top tile, following our rules
-list, will move up until there is an edge. Then it’s the next tile’s turn.
-It moves up and encounters a tile. Does it have the same value? Yes it does,
-so it will merge into it to make a new tile of twice its value. Then it’s
-the bottom tile’s turn. It moves up, and encounters the freshly merged tile
-above it… What should happen?&lt;/p&gt;
-
-&lt;div class=&quot;board-wrapper&quot;&gt;
-&lt;div class=&quot;board-2048&quot; id=&quot;board4&quot; style=&quot;width:62.5px;height:250px;&quot;&gt;
-  &lt;img class=&quot;tile&quot; data-val=&quot;4&quot; data-endval=&quot;8&quot; data-begin=&quot;1&quot; data-end=&quot;0&quot; /&gt;
-  &lt;img class=&quot;tile&quot; data-val=&quot;4&quot; data-endval=&quot;0&quot; data-begin=&quot;2&quot; data-end=&quot;0&quot; /&gt;
-  &lt;img class=&quot;tile&quot; data-val=&quot;8&quot; data-endval=&quot;8&quot; data-begin=&quot;3&quot; data-end=&quot;1&quot; /&gt;
-&lt;/div&gt;
-&lt;br /&gt;
-&lt;label onclick=&quot;mergeBoard(this, &#39;board4&#39;)&quot;&gt;&lt;input type=&quot;checkbox&quot; /&gt;&lt;span&gt;merge up&lt;/span&gt;&lt;/label&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The third tile should stop! One of the rules of 2048 is that a tile cannot
-be merged more than once per key press. Let’s add a rule to take care of
-this:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;Move up until:
-      &lt;ul&gt;
-        &lt;li&gt;There is an edge&lt;/li&gt;
-        &lt;li&gt;There is another tile…
-          &lt;ul&gt;
-            &lt;li&gt;Different value? Do nothing.&lt;/li&gt;
-            &lt;li&gt;Same value?
-              &lt;ul&gt;
-                &lt;li&gt;Already merged that tile? Do nothing.&lt;/li&gt;
-                &lt;li&gt;Haven’t merged that tile yet? Merge with it.&lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/li&gt;
-          &lt;/ul&gt;
-        &lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;We have all of the parts of a perfectly fine 2048 Merging algorithm. These
-simple rules are all it takes to power an addicting and popular game. There
-are more things we could do: perhaps you may find it useful to keep track of
-whether or not a tile has been moved as a result of attempting a merge (this
-could be useful when deciding whether to add a new tile when implementing
-a full 2048 game).&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;You can write this algorithm iteratively or recursively. Explore, and
-write your own improved version now that you understand the basics.
-There are many other ways to achieve the merge effect, and some solutions
-can get very clever and efficient. ◼&lt;/p&gt;
-
-&lt;script&gt;
-  /* Run setup method. Find in 2048_board_merge.js from YAML front matter. */
-  tileSetup(&quot;/blog/assets/posts/cs10/2048-merge/2048_tiles/&quot;);
-&lt;/script&gt;
-
-</description>
-        <pubDate>Thu, 12 Nov 2015 03:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/cs10/2048-merge/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/cs10/2048-merge/</guid>
-        
-        <category>no_compress</category>
-        
-        
-        <category>cs10</category>
         
       </item>
     
