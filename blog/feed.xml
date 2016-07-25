@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 17 Jul 2016 20:21:44 -0700</pubDate>
-    <lastBuildDate>Sun, 17 Jul 2016 20:21:44 -0700</lastBuildDate>
+    <pubDate>Sun, 24 Jul 2016 22:51:23 -0700</pubDate>
+    <lastBuildDate>Sun, 24 Jul 2016 22:51:23 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -48,7 +48,9 @@ lol - bear - the - universe - hatchery - powers - World!
     
       <item>
         <title>How to Get 97% on MNIST with KNN</title>
-        <description>&lt;h2 id=&quot;get-the-data&quot;&gt;Get the data&lt;/h2&gt;
+        <description>&lt;p&gt;This article is currently being fitted with nice math and code formatting. Check back soon for these improvements, along with a final analysis section.&lt;/p&gt;
+
+&lt;h2 id=&quot;get-the-data&quot;&gt;Get the data&lt;/h2&gt;
 
 &lt;p&gt;This &lt;a href=&quot;https://www.kaggle.com/c/digit-recognizer/data&quot;&gt;Kaggle competition&lt;/a&gt; is the source of my training data and test data. I also used it to calculate  the final test score.&lt;/p&gt;
 
@@ -90,6 +92,31 @@ lol - bear - the - universe - hatchery - powers - World!
       &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nearest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;improve-with-pca&quot;&gt;Improve with PCA&lt;/h2&gt;
+
+&lt;p&gt;Our KNN currently considers all 784 features for each image when making its decisions. What if it didn’t need that many? What if 90% of those features don’t &lt;em&gt;really&lt;/em&gt; affect our predictions that much? Or worse, what if KNN is considering feature anomalies that are unique to our training data, and is resulting in overfitting? One way we can deal with this is by removing features that aren’t contributing much. Taking this concept further, we could potentially discover better features that aren’t axis aligned (the given 784 features are axis aligned). By finding better non-axis-aligned features, a new coordinate system for our data can be created composed of axes that run in more important directions (that is, the training data has higher variance along these axes). Consider the following plot of data as purple dots:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/ml/how-to-get-97-percent-on-MNIST-with-KNN/gaussian.png &quot; style=&quot;max-width:400px;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If the data is fit to a Gaussian distribution, it’s easy to see that there are two eigenvectors which, if used as the principal axes when plotting our data, could provide a much higher variance among the data than our x_1 and x_2 axes. In other words, these two directions x_a and x_b tell us &lt;em&gt;more&lt;/em&gt; about the data than x_1 and x_2. Finding x_a and x_b is called Principal Components Analysis (PCA).&lt;/p&gt;
+
+&lt;p&gt;Continuing from this idea of finding the eigenvectors that best describe our data, let’s talk math. Let X be a design matrix, &lt;em&gt;nxd&lt;/em&gt;. If we assume X is centered, then its covariance matrix is X^TX/(n-1), which can be decomposed as V L V^T, where L is a diagonal matrix composed of decreasing eigenvalues of the covariance matrix. V, therefore, is made of their corresponding eigenvectors. The first k eigenvectors are the first k most important directions when it comes to our data. XV, the projection of X onto V, is the collection of &lt;em&gt;principal components&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, computing X^TX is not cheap: it takes O(nd^2) time. Luckily, to the rescue comes the Singular Value Decomposition (SVD). SVD can break our nxd design matrix into X = UDV^T, where U is composed of vertical left singular vectors of X, which are all orthogonal to each other. Similarly, the rows of V are the right singular vectors of X. D is diagonal, and its entries are the nonnegative singular values of X. At any rate, observe that the covariance matrix of X is estimated by X^TX/(n-1)= VDU^TUDV^T/(n-1) = VD^2V^T/(n-1). The principal components are given by XV = USV^TV = US. Taking the first k columns of U and the first k entries of S gives us U_kS_k, the estimation of XV using only the first k principal components. In the end, we can find the k greatest singular values and their corresponding vectors in O(ndk) time. If k is chosen to be something like 40, then that’s a big time saving from 784 original dimensions.&lt;/p&gt;
+
+&lt;p&gt;I used numpy’s linalg package to solve the SVD of the design matrix. Here’s my function for using the SVD to find the PCA of the data (don’t forget to center the data).&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;svd_pca&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;Reduce DATA using its K principal components.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;float64&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linalg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;svd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;full_matrices&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# import pdb; pdb.set_trace()&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# return U[:,:k].dot(np.diag(S)[:k,:k]).dot(V[:k,:])&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;diag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Reducing the dimensionality of the MNIST data with PCA before running KNN can save both time and accuracy. Lower dimensions means less calculations and potentially less overfitting.&lt;/p&gt;
+
+&lt;p&gt;More analysis of finding the best number of principal components for this problem via cross validation coming soon.&lt;/p&gt;
 </description>
         <pubDate>Sat, 07 May 2016 04:53:36 -0700</pubDate>
         <link>http://steven.codes/blog/ml/how-to-get-97-percent-on-MNIST-with-KNN/</link>
