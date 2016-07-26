@@ -4,11 +4,11 @@ all:
 	jekyll build --source ../blog/ --destination blog/
 	jekyll build --source ../projects/ --destination projects/
 
-blog:
+the_blog:
 	rm -rf blog/*
 	jekyll build --source ../blog/ --destination blog/
 
-projects:
+the_projects:
 	rm -rf projects/*
 	jekyll build --source ../projects/ --destination projects/
 
