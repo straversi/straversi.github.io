@@ -6,13 +6,15 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 25 Jul 2016 21:50:46 -0700</pubDate>
-    <lastBuildDate>Mon, 25 Jul 2016 21:50:46 -0700</lastBuildDate>
+    <pubDate>Tue, 26 Jul 2016 00:08:08 -0700</pubDate>
+    <lastBuildDate>Tue, 26 Jul 2016 00:08:08 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
         <title>Hello World in HOtMEfSPRIbNG</title>
-        <description>&lt;h2 id=&quot;program&quot;&gt;Program&lt;/h2&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;http://xeny.net/Homespring&quot;&gt;What is going on&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;program&quot;&gt;Program&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;lol bear the universe hatchery
 fear Hello,.   Hydro. Power pump pump pump pump future
@@ -22,9 +24,9 @@ fear Hello,.   Hydro. Power pump pump pump pump future
 
 &lt;h2 id=&quot;structure&quot;&gt;Structure&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;                                               Hello,
-                                              /
-                                         fear - hydro power - pump - pump - pump - pump - future
+&lt;pre&gt;&lt;code&gt;                                              Hello,
+                                             /
+                                        fear - hydro power - pump - pump - pump - pump - future
                                        /
 lol - bear - the - universe - hatchery - powers - World!
                                                \
@@ -34,6 +36,28 @@ lol - bear - the - universe - hatchery - powers - World!
 &lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;/h2&gt;
 
 &lt;p&gt;Salmon begin spawning in the hatchery on the first tick. The first salmon swims toward Hello, where it spawns and creates a young salmon named Hello,. This salmon makes it back to the hatchery on the tick before the water from the spring named future activates the hydro power, which powers fear. Fear blocks the remaining salmon in the Hello, branch, and redirects the stream of hatchery salmon toward World!. The young salmon named Hello, makes it past the bear to the ocean. The homeless salmon that was with it is eaten by the bear. The first redirected salmon spawns at World!, and the young spawn makes it past the bear to the ocean. At this point, the snowmelt is out of the marsh and destroys the universe, terminating the program.&lt;/p&gt;
+
+&lt;h2 id=&quot;challenge-wait-for-two-inputs&quot;&gt;Challenge: Wait for Two Inputs&lt;/h2&gt;
+
+&lt;p&gt;The following is a program I wrote that waits for two lines of input from stdin, then prints out both lines together.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;lo, inverse. Lock narrows bird
+  hydro. Power insulated evaporates Young. sense powers rapids
+   spring
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;structure-1&quot;&gt;Structure&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;                    narrows - bird
+                   /
+lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers - rapids
+                                                         \
+                                                          spring
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;explanation-1&quot;&gt;Explanation&lt;/h2&gt;
+
+&lt;p&gt;Lo, stdin waits for input. When the first input is received, creating a mature upstream salmon with its name, the mature salmon reaches a fork, and decides to visit the narrows before attempting the hydro power. The salmon makes it to the bird, where it spawns, creating a young fish, which is immediately eaten by the bird. The mature fish switches to traveling downstream, only to find itself blocked from entering the unpowered inverse lock. At this point, a second line of input may have been received, and a new salmon created. This one, however, reaches the inverse lock and must go to hydro power. This is because it cannot fit through the narrows, where the first salmon is waiting patiently. The second salmon swims through the hydro power, past evaporates, which is currently evaporating all watershed from the appropriately named spring. The salmon continues to rapids, where it spawns. The salmon and its young begin to swim downstream, but the young salmon is delayed one tick by the rapids. The young salmon does reach young sense, though, blocking the electricity from powers. Evaporates stops evaporating the spring water for one tick, long enough for the water to get past it. The water gurgles downstream, ultimately powering hydro power, unlocking the inverse lock with just enough time to let both the 1st and 2nd salmon through. By the time the young salmon from rapids get there, though, it is trapped once again, as it has passed young sense, and powers is once again allowing evaporates to evaporate the spring water, which stops the hydro power from keeping the inverse lock activated. The mature salmon whose names are the two lines from stdin reach the ocean, and print their names to stdout.&lt;/p&gt;
 
 &lt;p&gt;◼&lt;/p&gt;
 </description>
