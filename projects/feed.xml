@@ -6,9 +6,44 @@
 </description>
     <link>http://steven.codes/projects/</link>
     <atom:link href="http://steven.codes/projects/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 24 Jul 2016 22:52:10 -0700</pubDate>
-    <lastBuildDate>Sun, 24 Jul 2016 22:52:10 -0700</lastBuildDate>
+    <pubDate>Tue, 26 Jul 2016 23:51:27 -0700</pubDate>
+    <lastBuildDate>Tue, 26 Jul 2016 23:51:27 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Checkaroo</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/assets/languages/html.png&quot; alt=&quot;html icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ Make an account today at: &lt;a href=&quot;http://checkaroo.herokuapp.com/&quot;&gt;heckaroo.herokuapp.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-its-about&quot;&gt;What It’s About&lt;/h2&gt;
+
+&lt;p&gt;Checkaroo solves a problem that we had as TA’s of CS10 at Berkeley. Our lab assistants needed to record their hours without involving the TA and taking up class time, but the hours needed some form of approval. With Checkaroo, lab assistants can check themselves in to their section, but their hours won’t count until their TA approves them at their leisure.&lt;/p&gt;
+
+&lt;p&gt;I wrote the app and a suite of integration tests with Ruby on Rails, jQuery, and Cucumber. I also designed the UI, using elements from &lt;a href=&quot;http://materializecss.com/&quot; target=&quot;_blank&quot;&gt;Materialize&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Currently, the app is undergoing its beta live in two UC Berkeley classes, CS61C and CS10. I’ve been using a feedback-iteration loop to improve the design and function of the application during this time. I plan to use the app to manage lab assistants again in CS10 this fall.&lt;/p&gt;
+
+&lt;p&gt;Here are some sample images taken from the live site:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/assets/posts/checkaroo/assistants.png &quot; style=&quot;max-width:100%;&quot; /&gt;
+&lt;em&gt;The assistants whose hours are being recorded&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/assets/posts/checkaroo/sections.png &quot; style=&quot;max-width:100%;&quot; /&gt;
+&lt;em&gt;The sections that have been created by the TAs&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/assets/posts/checkaroo/home.png &quot; style=&quot;max-width:100%;&quot; /&gt;
+&lt;em&gt;A sample home page for a TA who has taken action on all of their assistants’ checkins.&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 30 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/checkaroo/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/checkaroo/</guid>
+        
+        <category>project</category>
+        
+        
+      </item>
     
       <item>
         <title>Typer.js</title>
@@ -152,30 +187,6 @@ and get this on your page:&lt;/p&gt;
         <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
         <link>http://steven.codes/projects/net.js/</link>
         <guid isPermaLink="true">http://steven.codes/projects/net.js/</guid>
-        
-        <category>project</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Checkaroo</title>
-        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/projects/assets/languages/html.png&quot; alt=&quot;html icon&quot; class=&quot;icon match-base-font&quot; /&gt;
- Make an account today at: &lt;a href=&quot;http://checkaroo.herokuapp.com/&quot;&gt;heckaroo.herokuapp.com&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;what-its-about&quot;&gt;What It’s About&lt;/h2&gt;
-
-&lt;p&gt;Checkaroo solves a problem that we had as TA’s of CS10 at Berkeley. Our lab assistants needed to record their hours without involving the TA and taking up class time, but the hours needed some form of approval. With Checkaroo, lab assistants can check themselves in to their section, but their hours won’t count until their TA approves them at their leisure.&lt;/p&gt;
-
-&lt;p&gt;I wrote the app and a suite of integration tests with Ruby on Rails, jQuery, and Cucumber. I also designed the UI, using elements from &lt;a href=&quot;http://materializecss.com/&quot; target=&quot;_blank&quot;&gt;Materialize&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Currently, the app is undergoing its beta live in two UC Berkeley classes, CS61C and CS10. I’ve been using a feedback-iteration loop to improve the design and function of the application during this time. I plan to use the app to manage lab assistants again in CS10 this fall.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
-        <link>http://steven.codes/projects/checkaroo/</link>
-        <guid isPermaLink="true">http://steven.codes/projects/checkaroo/</guid>
         
         <category>project</category>
         
