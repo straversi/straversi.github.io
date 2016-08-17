@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 27 Jul 2016 20:31:45 -0700</pubDate>
-    <lastBuildDate>Wed, 27 Jul 2016 20:31:45 -0700</lastBuildDate>
+    <pubDate>Tue, 16 Aug 2016 22:21:36 -0700</pubDate>
+    <lastBuildDate>Tue, 16 Aug 2016 22:21:36 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -71,199 +71,71 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
       </item>
     
       <item>
-        <title>How to Get 97% on MNIST with KNN</title>
-        <description>&lt;p&gt;This article is currently being fitted with nice math and code formatting. Check back soon for these improvements, along with a final analysis section.&lt;/p&gt;
+        <title>Checkaroo</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;h2 id=&quot;get-the-data&quot;&gt;Get the data&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/languages/html.png&quot; alt=&quot;html icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ Make an account today at: &lt;a href=&quot;http://checkaroo.herokuapp.com/&quot;&gt;heckaroo.herokuapp.com&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;This &lt;a href=&quot;https://www.kaggle.com/c/digit-recognizer/data&quot;&gt;Kaggle competition&lt;/a&gt; is the source of my training data and test data. I also used it to calculate  the final test score.&lt;/p&gt;
+&lt;h2 id=&quot;what-its-about&quot;&gt;What It’s About&lt;/h2&gt;
 
-&lt;p&gt;Numpy’s &lt;a href=&quot;http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.genfromtxt.html#numpy-genfromtxt&quot;&gt;genfromtxt&lt;/a&gt; function is an easy way to get the .csv data into a matrix:&lt;/p&gt;
+&lt;p&gt;Checkaroo solves a problem that we had as TA’s of CS10 at Berkeley. Our lab assistants needed to record their hours without involving the TA and taking up class time, but the hours needed some form of approval. With Checkaroo, lab assistants can check themselves in to their section, but their hours won’t count until their TA approves them at their leisure.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;genfromtxt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;data/train.csv&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delimiter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                  &lt;span class=&quot;n&quot;&gt;skip_header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;uint8&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;I wrote the app and a suite of integration tests with Ruby on Rails, jQuery, and Cucumber. I also designed the UI, using elements from &lt;a href=&quot;http://materializecss.com/&quot; target=&quot;_blank&quot;&gt;Materialize&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;However, it’s slow, especially if you’ll be rerunning your program and reloading the data a lot. I recommend serializing the numpy matrix with the &lt;code&gt;pickle&lt;/code&gt; module after the first load, and loading the saved pickle object on all subsequent runs of your program.&lt;/p&gt;
+&lt;p&gt;Currently, the app is undergoing its beta live in two UC Berkeley classes, CS61C and CS10. I’ve been using a feedback-iteration loop to improve the design and function of the application during this time. I plan to use the app to manage lab assistants again in CS10 this fall.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pickle&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;data/train_points.p&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;wb&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;pickle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;data/train_points.p&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pickle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;Here are some sample images taken from the live site:&lt;/p&gt;
 
-&lt;h2 id=&quot;write-knn&quot;&gt;Write KNN&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/checkaroo/assistants.png &quot; style=&quot;max-width:100%;&quot; /&gt;
+&lt;em&gt;The assistants whose hours are being recorded&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;KNN is fun to me because it trains in order 0 (zero) time. Here’s the setup for the actual implementation:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/checkaroo/sections.png &quot; style=&quot;max-width:100%;&quot; /&gt;
+&lt;em&gt;The sections that have been created by the TAs&lt;/em&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KNN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Predictions are where we start worrying about time. We’ll worry about that later. For now, let’s implement our own vanilla K-nearest-neighbors classifier. In the predict step, KNN needs to take a test point and find the closest sample to it in our training set. We’ll use the euclidian metric to assign distances between points, for ease.&lt;/p&gt;
-
-&lt;p&gt;Take the difference between all of the data and the incoming sample point at once with numpy’s element-wise subtraction: &lt;code&gt;differences = self.data - sample&lt;/code&gt;. Then, to complete the distance calculation, take a row-wise inner product between &lt;code&gt;differences&lt;/code&gt; and itself. Numpy’s &lt;a href=&quot;http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.einsum.html#numpy-einsum&quot;&gt;einsum&lt;/a&gt; provides a fast execution. Lastly, get the &lt;code&gt;k&lt;/code&gt; smallest distances and their corresponding label values. Here’s the final implementation:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scipy.stats&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mode&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KNN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;differences&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;distances&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;einsum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;ij, ij-&amp;gt;i&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;differences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;differences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;nearest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distances&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[:&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nearest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;improve-with-pca&quot;&gt;Improve with PCA&lt;/h2&gt;
-
-&lt;p&gt;Our KNN currently considers all 784 features for each image when making its decisions. What if it doesn’t need that many? It’s possible that a lot of those features don’t &lt;em&gt;really&lt;/em&gt; affect our predictions that much. Or worse, KNN could be considering feature anomalies that are unique to our training data, resulting in overfitting. One way to deal with this is by removing features that aren’t contributing much. Taking this concept further, &lt;em&gt;better&lt;/em&gt; features, made up of linear combinations of the original features could be discovered. The original features are referred to as “axis aligned”, because our data is plotted against these feature axes. By finding better non-axis-aligned features, a new coordinate system for our data can be created composed of axes that run in more important directions (that is, the training data has higher variance along these axes). For a visual explanation, consider the following picture of a group of data:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/ml/how-to-get-97-percent-on-MNIST-with-KNN/gaussian.png &quot; style=&quot;width:100%;max-width:400px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;If the data is fit to a Gaussian distribution, one can see that there are two eigenvectors which, if used as a basis when plotting the data, could provide a much higher variance among the data than our &lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt; axes. In other words, these two directions &lt;script type=&quot;math/tex&quot;&gt;x_a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_b&lt;/script&gt; tell us &lt;em&gt;more&lt;/em&gt; about the data than &lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt;. Finding &lt;script type=&quot;math/tex&quot;&gt;x_a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_b&lt;/script&gt; and plotting our data in a new coordinate system based on these axes is called Principal Components Analysis (PCA).&lt;/p&gt;
-
-&lt;p&gt;Continuing from this idea of finding the eigenvectors that best describe our data, let’s talk math. Let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be a design matrix, &lt;script type=&quot;math/tex&quot;&gt;nxd&lt;/script&gt;. If we assume &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is centered, then its covariance matrix is &lt;script type=&quot;math/tex&quot;&gt;X^TX/(n-1)&lt;/script&gt;, which can be decomposed as &lt;script type=&quot;math/tex&quot;&gt;V L V^T&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;L&lt;/script&gt; is a diagonal matrix composed of decreasing eigenvalues of the covariance matrix. &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; is made of their corresponding eigenvectors. The first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; eigenvectors are the first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; most important directions when it comes to our data. If we take &lt;script type=&quot;math/tex&quot;&gt;XV&lt;/script&gt;, we get the projection of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; onto &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt;, placing the data in &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; into a basis that maximizes the variance of that data. The new and improved data is now composed of better, linearly uncorrelated variables that we call &lt;em&gt;principal components&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Now, computing &lt;script type=&quot;math/tex&quot;&gt;X^TX&lt;/script&gt; is not cheap: it takes &lt;script type=&quot;math/tex&quot;&gt;O(nd^2)&lt;/script&gt; time. Luckily, to the rescue comes the Singular Value Decomposition (SVD). SVD can break our &lt;script type=&quot;math/tex&quot;&gt;nxd&lt;/script&gt; design matrix into &lt;script type=&quot;math/tex&quot;&gt;X = UDV^T&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;U&lt;/script&gt; is composed of vertical left singular vectors of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;, which are all orthogonal to each other. Similarly, the rows of &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; are the right singular vectors of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; is diagonal, and its entries are the nonnegative singular values of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;. At any rate, observe that the covariance matrix of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is estimated by &lt;script type=&quot;math/tex&quot;&gt;X^TX/(n-1)&lt;/script&gt; &lt;script type=&quot;math/tex&quot;&gt;=VDU^TUDV^T/(n-1)&lt;/script&gt; &lt;script type=&quot;math/tex&quot;&gt;=VD^2V^T/(n-1)&lt;/script&gt;. The principal components are given by &lt;script type=&quot;math/tex&quot;&gt;XV = UDV^TV = UD&lt;/script&gt;. Taking the first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; columns of &lt;script type=&quot;math/tex&quot;&gt;U&lt;/script&gt; and the first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; entries of &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; gives us &lt;script type=&quot;math/tex&quot;&gt;U_kD_k&lt;/script&gt;, the estimation of &lt;script type=&quot;math/tex&quot;&gt;XV&lt;/script&gt; using only the first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; principal components. In the end, we can find the &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; greatest singular values and their corresponding vectors in &lt;script type=&quot;math/tex&quot;&gt;O(ndk)&lt;/script&gt; time. If &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is chosen to be something like 40, then that’s a big time saving from 784 original dimensions.&lt;/p&gt;
-
-&lt;p&gt;I used numpy’s linalg package to solve the SVD of the design matrix. Here’s my function for using the SVD to find the PCA of the data (don’t forget to center the data).&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;svd_pca&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;Reduce DATA using its K principal components.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;float64&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linalg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;svd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;full_matrices&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;diag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Reducing the dimensionality of the MNIST data with PCA before running KNN can save both time and accuracy. Lower dimensions means less calculations and potentially less overfitting.&lt;/p&gt;
-
-&lt;h2 id=&quot;cross-validation&quot;&gt;Cross Validation&lt;/h2&gt;
-
-&lt;p&gt;Now the data can be preprocessed from an original dimension of 784 to some &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; « 784. There are two last questions: How many nearest-neighbors should we use in KNN? And how many dimensions should we reduce our data to through PCA?&lt;/p&gt;
-
-&lt;p&gt;When in doubt, cross validate. I set up a two dimensional cross validation test, and plotted the results:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/ml/how-to-get-97-percent-on-MNIST-with-KNN/cross_validation.png &quot; style=&quot;width:100%;max-width:400px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;On the vertical axis is accuracy obtained via cross validation. On the horizontal axes are &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; for KNN, ranging from 2 to 12, and &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; for PCA, ranging from 5 to 80. The heat map on the lower plane helps illustrate that the best accuracies were achieved around &lt;script type=&quot;math/tex&quot;&gt;k_{NN} = 6&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;k_{PCA} = 45&lt;/script&gt;. So, these are the values I used to predict on the Kaggle test set. Kaggle scored the submission at just over 97%. Not bad for around 12 lines of code (and numpy’s SVD solver)! ◼&lt;/p&gt;
-
-&lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-
+&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/checkaroo/home.png &quot; style=&quot;max-width:100%;&quot; /&gt;
+&lt;em&gt;A sample home page for a TA who has taken action on all of their assistants’ checkins.&lt;/em&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sat, 07 May 2016 04:53:36 -0700</pubDate>
-        <link>http://steven.codes/blog/ml/how-to-get-97-percent-on-MNIST-with-KNN/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/ml/how-to-get-97-percent-on-MNIST-with-KNN/</guid>
+        <pubDate>Thu, 30 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/checkaroo/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/checkaroo/</guid>
         
+        <category>project</category>
         
-        <category>ml</category>
         
       </item>
     
       <item>
-        <title>Repel Nodes with a Linear Transform</title>
-        <description>&lt;p&gt;I got this idea for what I’ll describe as a “net of nodes”. The nodes would be anchored to points, and when a mouse moves across them, the nodes attempt to repel the mouse while staying as anchored as possible to their point. The result acts as a much better explanation of what I wanted though:&lt;/p&gt;
+        <title>Typer.js</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;div style=&quot;position:relative;height:200px;width:100%;&quot;&gt;
-  &lt;svg id=&quot;edges&quot; style=&quot;position:absolute;left:0;top:0;width:100%;height:100%;&quot;&gt;&lt;/svg&gt;
-  &lt;div id=&quot;net&quot; style=&quot;position:absolute;overflow:hidden;left:0;top:0;width:100%;height:100%;&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
+&lt;p&gt;Get the source and documentation:&lt;br /&gt;
+&lt;code&gt;$ git clone https://github.com/straversi/Typer.js.git&lt;/code&gt;&lt;br /&gt;
+&lt;img src=&quot;/blog/assets/languages/html.png&quot; alt=&quot;html icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ Or, visit the &lt;a href=&quot;http://steven.codes/typerjs/&quot;&gt;hosted docs&lt;/a&gt;&lt;br /&gt;
+&lt;img src=&quot;/blog/assets/languages/github.png&quot; alt=&quot;github icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ &lt;a href=&quot;https://github.com/straversi/Typer.js&quot;&gt;Github page&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;I wanted each node’s position to be a function of the mouse’s position. This aspect lead to a lovely and simple design when all was said and done. To start writing this function, I first needed to define the system I was trying to create. I’ll explain how I did this by focusing on the behavior of a single node.&lt;/p&gt;
+&lt;h2 id=&quot;what-its-about&quot;&gt;What It’s About&lt;/h2&gt;
 
-&lt;p&gt;There are three points of interest for a node: the node’s &lt;em&gt;anchor point&lt;/em&gt; (where the node rests when the mouse is far away), the &lt;em&gt;node position&lt;/em&gt;, and the &lt;em&gt;mouse position&lt;/em&gt;. Here’s how I’ll draw them:&lt;/p&gt;
+&lt;p&gt;Typer.js provides an HTML interface for creating a typing effect. For example, enter this in your HTML:&lt;br /&gt;
+&lt;code&gt;Fact: &amp;lt;span class=&quot;typer&quot; id=&quot;t1&quot; data-delay=&quot;120&quot; data-words=&quot;bears,beets,battlestar galactica&quot; data-colors=&quot;#cb4b16,#d33682,#6c71c4&quot;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&quot;cursor&quot; data-owner=&quot;t1&quot;&amp;gt;&amp;lt;/span&amp;gt;&lt;/code&gt;&lt;br /&gt;
+and get this on your page:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/whiteboard_labels.png &quot; alt=&quot;point labels for the system&quot; style=&quot;width:400px;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Fact: &lt;span class=&quot;typer&quot; id=&quot;t1&quot; data-delay=&quot;120&quot; data-words=&quot;bears,beets,battlestar galactica&quot; data-colors=&quot;#cb4b16,#d33682,#6c71c4&quot;&gt;&lt;/span&gt;&lt;span class=&quot;cursor&quot; data-owner=&quot;t1&quot;&gt;&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;The first relationship to enforce between these points is that the distance between the mouse and the node’s actual position should be constant (we’ll actually revise this slightly in a bit, but for now, we’ll say it’s constant). Here’s a visual:&lt;/p&gt;
+&lt;p&gt;&lt;a class=&quot;github-button&quot; href=&quot;https://github.com/straversi&quot; data-style=&quot;mega&quot; data-count-href=&quot;/straversi/followers&quot; data-count-api=&quot;/users/straversi#followers&quot; data-count-aria-label=&quot;# followers on GitHub&quot; aria-label=&quot;Follow @straversi on GitHub&quot;&gt;Follow @straversi&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/whiteboard_equation_1.png &quot; alt=&quot;distance enforcing equation&quot; style=&quot;width:600px;&quot; /&gt;&lt;/p&gt;
+&lt;script async=&quot;&quot; defer=&quot;&quot; src=&quot;https://buttons.github.io/buttons.js&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;The second relationship to enforce is that the tangent of the angle between mouse and anchor should equal the tangent of the angle between anchor and node. This is more easily described as an equivalent ratio between the differences in heights and widths of the same pairs of points (a/b = c/d):&lt;/p&gt;
+&lt;script src=&quot;/blog/assets/posts/typer.js/typer.js&quot;&gt;&lt;/script&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/whiteboard_equation_2.png &quot; alt=&quot;distance enforcing equation&quot; style=&quot;width:400px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Together, we have the linear system of equations (x and y are nodeX and nodeY):&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/equation_1.png &quot; alt=&quot;distance enforcing equation&quot; style=&quot;width:400px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/equation_2.png &quot; alt=&quot;distance enforcing equation&quot; style=&quot;width:300px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I gave these equations to Mathematica and told it to solve for {x, y}. Here’s a snippet of the result:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/mathematica_out_1.png &quot; alt=&quot;huge mathematica output snippet&quot; style=&quot;width:600px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;That’s looking fairly messy. There’s a simple observation we can make though, that will simplify this result greatly. Notice that if we assume that &lt;code&gt;anchorX&lt;/code&gt; and &lt;code&gt;anchorY&lt;/code&gt; are both 0, then the equations in our system become significantly less complex. As a result of this assumption, &lt;code&gt;mouseX&lt;/code&gt;, &lt;code&gt;mouseY&lt;/code&gt;, &lt;code&gt;x&lt;/code&gt;, and &lt;code&gt;y&lt;/code&gt; will have to be normalized accordingly. Here’s the revised equations with &lt;code&gt;anchorX, anchorY = (0, 0)&lt;/code&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/equation_1_normed.png &quot; alt=&quot;equation 1 redone with normed anchor&quot; style=&quot;width:400px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/equation_2_normed.png &quot; alt=&quot;equation 2 redone with normed anchor&quot; style=&quot;width:150px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This is looking much better already. Solving for x and y in Mathematica yields a more manageable result as well. But before I show those Mathematica results, I’ll make one more alteration to the system of equations. Earlier, I mentioned that we’ll revisit this distance &lt;code&gt;d&lt;/code&gt;. Now, I’d like to revise it so that the distance &lt;code&gt;d&lt;/code&gt; reduces as the mouse gets closer to the anchor. This way, there will be a more convincing illusion that the node is fighting between the attracting force of the anchor and the repelling force of the mouse.&lt;/p&gt;
-
-&lt;p&gt;If we assert that (1) when the distance between the mouse and the anchor is d, then the distance between the mouse and the node should be d, and (2) when the distance between the mouse and the anchor is 0, then the distance between the mouse and the node should be d/2, then we end up with this revised equation 1:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/equation_1_distance.png &quot; alt=&quot;equation 1 redone with reducing distance&quot; style=&quot;width:600px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Plugging for the last time into Mathematica and solving for &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt;, we get this output (I’ve highlighted the parts that will be important to us):&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/repel-nodes-with-a-linear-transform/mathematica_final_output.png &quot; alt=&quot;final mathematica output of our system of linear equations&quot; style=&quot;width:800px;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now we’re ready for some JavaScript!&lt;/p&gt;
-
-&lt;p&gt;Here’s a function called &lt;code&gt;oppose&lt;/code&gt;, which takes the values of &lt;code&gt;mouseX&lt;/code&gt;, &lt;code&gt;mouseY&lt;/code&gt;, &lt;code&gt;anchorX&lt;/code&gt;, and &lt;code&gt;anchorY&lt;/code&gt;, and returns the node’s position as &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt;. We can take care of the normalization in this function for now, but it may become apparent later that we should do that elsewhere to save computation. But for now:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oppose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;anchorX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anchorY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anchorX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mYN&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anchorY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mYN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mYN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mYN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mYN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mYN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;offsetX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anchorX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anchorY&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;From this point, there’s freedom to create and maintain the nodes however you’d like. In my implementation, each node is a small, circular &lt;code&gt;div&lt;/code&gt;. When a node is created, I store its &lt;code&gt;anchorX&lt;/code&gt; and &lt;code&gt;anchorY&lt;/code&gt; in its data attributes as &lt;code&gt;x&lt;/code&gt; an &lt;code&gt;y&lt;/code&gt;. This makes it easy to get those values back later, when I have to get each node anyway to adjust its position. I adjust the position of a node whenever the mouse moves, like so&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.node&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mouseX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oppose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;, where &lt;code&gt;d&lt;/code&gt; is the same &lt;code&gt;d&lt;/code&gt; from our mathematica equations.&lt;/p&gt;
-
-&lt;p&gt;The net is complete as far as the nodes are concerned. However, the edges are what complete the feel of the net.&lt;/p&gt;
-
-&lt;p&gt;To build the edges, I chose to draw SVG lines, using the anchor points of the nodes as the start and end points for the lines. I constructed them by iterating over each pair of nodes, drawing a line between them if the distance between them was less than &lt;code&gt;d&lt;/code&gt;. Unfortunately, this runs in terrible O(n^2) time. Luckily, I won’t be drawing any nets big enough to notice. However, one could imagine an algorithm in O(nlog(n) + n) time, in which the nodes are sorted by x position, and then a pass of width &lt;code&gt;2d&lt;/code&gt; is made from left to right, connecting all nodes contained in the pass.&lt;/p&gt;
-
-&lt;p&gt;When building the edges in my implementation, I stored the id’s of the svg elements in arrays, indexed by node connections. I kept two arrays: &lt;code&gt;edgesTo&lt;/code&gt;, and &lt;code&gt;edgesFrom&lt;/code&gt;. To illustrate what I mean, here’s how I would obtain a list of the id’s of all edges connected to node 3: &lt;code&gt;edgesTo[3].concat(edgesFrom[3])&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;With this representation, we can complete the net update pass by adding the following after the &lt;code&gt;oppose&lt;/code&gt; logic from before:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesFromNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesFromNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;#svg&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesFromNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;x2&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                        &lt;span class=&quot;s2&quot;&gt;&amp;quot;y2&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesToNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nodeId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;edgesTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesToNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;#svg&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesToNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;x1&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                    &lt;span class=&quot;s2&quot;&gt;&amp;quot;y1&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Assuming the classes, nodes, and edges have been set up correctly, this update function works properly. On Chrome 50, a net of 200 nodes loads in ~820 milliseconds. The update function runs, on average, in 8ms (125 frames per second). Fine for our purposes!
-◼&lt;/p&gt;
 </description>
-        <pubDate>Tue, 19 Apr 2016 18:47:36 -0700</pubDate>
-        <link>http://steven.codes/blog/repel-nodes-with-a-linear-transform/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/repel-nodes-with-a-linear-transform/</guid>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/typer.js/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/typer.js/</guid>
+        
+        <category>project</category>
         
         <category>no_compress</category>
         
@@ -271,21 +143,20 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
       </item>
     
       <item>
-        <title>Pixel Mapping</title>
-        <description>&lt;p&gt;hello&lt;/p&gt;
+        <title>Project Template</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;div class=&quot;image-gallery&quot;&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;/div&gt;
+&lt;p&gt;Cool image. &lt;a href=&quot;http://github.com/straversi&quot;&gt;link to download&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;Writing about the process.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 06 Feb 2016 01:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/pixel-mapping/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/pixel-mapping/</guid>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/project-template/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/project-template/</guid>
+        
+        <category>project</category>
         
         <category>draft</category>
         
@@ -293,340 +164,149 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
       </item>
     
       <item>
-        <title>Google Sheets DB Tutorial</title>
-        <description>&lt;p&gt;The first part (the Google Sheets part) of this tutorial is first a restatement, then an extension, of &lt;a href=&quot;https://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/&quot;&gt;Martin Hawksey’s Google Sheets as a Database&lt;/a&gt; article, with my own insights interjected. I include commentary from my experiences building &lt;a href=&quot;/home&quot;&gt;a “community” homepage&lt;/a&gt; based on this idea. I’ve written this article to shed some light on what’s going on in Martin’s tutorial.&lt;/p&gt;
+        <title>Packd</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;h2 id=&quot;the-google-sheets-part&quot;&gt;The Google Sheets Part&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/us/app/packd/id1024333170&quot; target=&quot;_blank&quot;&gt;
+  &lt;img src=&quot;/blog/assets/app-store-button.svg&quot; alt=&quot;App store button&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;First, go to &lt;a href=&quot;https://docs.google.com/spreadsheets/&quot;&gt;Google Sheets&lt;/a&gt;, and create a new sheet. Then in the menu, click &lt;code&gt;Tools &amp;gt; Script editor...&lt;/code&gt; to launch the IDE. For starters, let’s copy and paste Martin Hawksey’s Apps Script snippet into the editor. Here it is for convenience: &lt;a href=&quot;https://gist.github.com/straversi/2fd82477504baa0b347c&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
 
-&lt;p&gt;The first part of Martin’s tutorial tells you to run the function &lt;code&gt;setup&lt;/code&gt;, reproduced here:&lt;/p&gt;
+&lt;p&gt;Packd is an app + service that tells you how crowded a location is. We currently serve 6 popular UC Berkeley spots, like the Engineering Library.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SpreadsheetApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getActiveSpreadsheet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;SCRIPT_PROP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setProperty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;How does it work?&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;It’d be nice to know what id does first! Line 1 of the function grabs what’s called the “Active Spreadsheet”, a.k.a. the spreadsheet that you opened this script editor through. (You may notice that when you try to close your spreadsheet tab, the script editor leaves along with it). So &lt;code&gt;doc&lt;/code&gt; is an object representing your spreadsheet. But when you don’t have the spreadsheet open, &lt;code&gt;getActiveSpreadsheet&lt;/code&gt; will error. But setting a script property that we call “key”, we can remember the id of our spreadsheet so we can retrieve it whenever we want. Now that we know what’s going on… in the menu, select &lt;code&gt;Run &amp;gt; setup&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To start counting, a venue plugs in a Raspberry Pi running Packd software. The Pi counts how many phones are communicating with the local wifi network. We use some math to normalize this number, and get a count +/- 5% of the true total.&lt;/p&gt;
 
-&lt;p&gt;Google may tell you “Authorization required / This app needs authorization to run”. That’s fine, hit “Continue”. Your script needs access to (1) View and manage your spreadsheets and (2) View and manage data associated with the application. Allow both. Now &lt;code&gt;setup&lt;/code&gt; has run, and if you’d like, select &lt;code&gt;File &amp;gt; Project properties&lt;/code&gt;, then select the &lt;code&gt;Script properties&lt;/code&gt; tab. There’s the key that we just set! FYI, it’s the same id that appears at the end of the URL of your spreadsheet. So, we could have done this manually by inspecting the URL of our spreadsheet and entering the id in this &lt;code&gt;Script properties&lt;/code&gt; tab. Either way, the script and the sheet are now together forever.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For consumers, an App&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Time to deploy your script: select &lt;code&gt;Publish &amp;gt; Deploy as web app...&lt;/code&gt;. Choose to execute the app as yourself, and make sure to grant everyone access, like this:&lt;/p&gt;
+&lt;p&gt;To see how busy a public location is, we have an app that displays the live count, along with prediction graphs for each day of the week.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/google-sheets-db-tutorial/deploy.png &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;** Screenshots **&lt;/p&gt;
 
-&lt;p&gt;Congrats. Save the “Current web app URL” that you are given, we’ll use it in a second. Don’t worry, you can recover it whenever you want by going back to &lt;code&gt;Publish &amp;gt; Deploy as web app...&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We’re currently working on a scalable solution that is compatible with rapid expansion of Packd locations.&lt;/p&gt;
 
-&lt;h3 id=&quot;in-action&quot;&gt;In Action&lt;/h3&gt;
-
-&lt;p&gt;Let’s make something happen. Go to your Google Sheet, and add “Timestamp” to A1 and “Name” to B1; these will be our example headers. I’ve written two scripts, one jQuery and one plain JavaScript for you to play around with posting to the sheet. Take your pick, and try them out:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/straversi/Google-sheet-interfaces/blob/master/JQuery-post.html&quot;&gt;jQuery version&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/straversi/Google-sheet-interfaces/blob/master/JavaScript-post.html&quot;&gt;Vanilla JS version&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;updates-and-handling-gets&quot;&gt;Updates, and Handling GETs&lt;/h2&gt;
-
-&lt;p&gt;Notice something? The current App Script code that we have attached to the spreadsheet doesn’t actually handle GETs in a useful way. Let’s fix that! We’ll divvy up &lt;code&gt;handleResponse&lt;/code&gt; into two cases.&lt;/p&gt;
-
-&lt;p&gt;App Script gives us these reserved functions called &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt;. When someone accesses our script with a GET or a POST, the appropriate function is called. We’ll define two new functions, &lt;code&gt;handleGet(e)&lt;/code&gt; and &lt;code&gt;handlePost(e)&lt;/code&gt; (or, feel free to place your response code inside &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt; themselves).&lt;/p&gt;
-
-&lt;p&gt;First notice that our GET and POST will end up sharing some code: we need to keep these snippets from &lt;code&gt;handleResponse(e)&lt;/code&gt; at the beginning and end of our new definitions:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SpreadsheetApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;openById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SCRIPT_PROP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getProperty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sheet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getSheetByName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;POST_SHEET_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ContentService&lt;/span&gt;
-          &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createTextOutput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resultObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-          &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setMimeType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ContentService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MimeType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;You may want to abstract those, as they’ll be the same for each type of response. In between, we’ll do our GET or POST work. I’ve modified the returned ContentService to return &lt;code&gt;resultObject&lt;/code&gt;, which we can set to be whatever we want in both our GET and POST responses.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;important&quot;&gt;Note:&lt;/span&gt; If you separate your GET and POST handling, you should remember to move the &lt;code&gt;LockService&lt;/code&gt; portions into your POST handler. We don’t want to be unnecessarily restricting read operations. Furthermore, App Script has changed since the script we began with was written. &lt;code&gt;LockService.getPublicLock&lt;/code&gt; is now &lt;code&gt;LockService.getScriptLock&lt;/code&gt;. Be sure to reflect this change in your code. For more on other types of locks, see &lt;a href=&quot;https://developers.google.com/apps-script/reference/lock/lock-service&quot;&gt;Class LockService&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;safari-and-how-to-trick-it&quot;&gt;Safari, And How to Trick It&lt;/h2&gt;
-
-&lt;p&gt;Our “database” operations should be successful so far. That is, except for this odd corner case: Safari, using HTTP (That is, everything works fine on the  the &lt;code&gt;file:///&lt;/code&gt; protocol, so if you test websites using &lt;code&gt;file:///&lt;/code&gt;, then you may not have noticed!).&lt;/p&gt;
-
-&lt;p&gt;What’s the problem? When we try to do our simple post, we get these errors in the console:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/google-sheets-db-tutorial/safari_http_errors.png &quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Aha, but if I check our spreadsheet database, I see that the &lt;strong&gt;POST still successfully got the correct data to the sheet!&lt;/strong&gt; So it would seem that the problem here is that Safari can tell Google stuff, but Google can’t tell Safari stuff back. Which causes problems: (a) GETs are useless now, and (b) we can’t tell the difference between a successful and unsuccessful POST, because we can’t get our result key back.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-fix&quot;&gt;The Fix&lt;/h3&gt;
-
-&lt;p&gt;To make a long story short, what we have here is a problem with &lt;a href=&quot;https://en.wikipedia.org/wiki/Cross-origin_resource_sharing&quot;&gt;Cross-Origin Resource Sharing&lt;/a&gt; (CORS). Safari won’t accept Google’s response unless it has a certain header specifying &lt;code&gt;Access-Control-Allow-Origin: *&lt;/code&gt;. This is a result of Safari adhering to W3C spec very closely. To fix this, we’ll have someone else make our requests for us. If we append &lt;code&gt;http://crossorigin.me/&lt;/code&gt; to the beginning of our request URL (https://script.google.com/macros/s/AKfycb…), the folks over at crossorigin will make a nice request from a place that doesn’t care so much about CORS for us. We then receive the reply as Google sent it. ◼&lt;/p&gt;
+&lt;p&gt;I wrote the iOS app with Swift 2. I used storyboarding wherever possible.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 06 Feb 2016 01:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/google-sheets-db-tutorial/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/google-sheets-db-tutorial/</guid>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/packd/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/packd/</guid>
         
-        <category>hot</category>
+        <category>project</category>
         
         
       </item>
     
       <item>
-        <title>Flipping Tables: A Custom Bash Prompt</title>
-        <description>&lt;p&gt;I’ve been with vanilla Terminal and bash for forever now. I had a brief stint with zsh, but even the extremely slight load delay was too much for me. So I turned to customizing my trusty old bash shell.&lt;/p&gt;
+        <title>Neural Net</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;?&lt;/code&gt; is a value-storing &lt;em&gt;entity&lt;/em&gt;. Referencing it with &lt;code&gt;$?&lt;/code&gt; yields the exit status of the last-executed command! I thought it’d be fun to use it to power a fun bash prompt.&lt;/p&gt;
+&lt;p&gt;The Neural Net is not downloadable, as it’s based off of a homework assignment. I expanded on the base assignment to allow for arbitrary numbers of hidden units and layers.&lt;/p&gt;
 
-&lt;p&gt;I ended up deciding on the table-flipping dude. He would sit there, calmly next to his table. At the first sight of an error, he’d flip it. Then, if I corrected my ways, he’d set the table back down. If I made &lt;em&gt;2 or more errors in a row&lt;/em&gt;, he’d go into super-angry mode. To accomplish this, I’d keep track of two variables, &lt;code&gt;curErr&lt;/code&gt; and &lt;code&gt;lastErr&lt;/code&gt;, updating them according to &lt;code&gt;$?&lt;/code&gt;. Here’s the meat of it:&lt;/p&gt;
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;curErr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;curErr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;1&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$curErr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lastErr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# Two consecutive errors&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;$&amp;#39;(╯ಠ益ಠ)╯彡┻━┻&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$curErr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# One error&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;$&amp;#39;(╯°□°)╯︵┻━┻ &amp;#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$lastErr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# One success&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;$&amp;#39; ┬──┬ ﾉ(°—°ﾉ)&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# Two consecutive successes&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;$&amp;#39;( °—°)   ┬──┬&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;lastErr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$curErr&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;The assignment was to create a Neural Network from scratch. I chose to implement the net in Python, using the numpy package for matrix manipulations. My net achieved ~98% accuracy on the MNIST dataset, which is composed of images of numbers.&lt;/p&gt;
 
-&lt;p&gt;And the results:&lt;/p&gt;
+&lt;p&gt;For the assignment, I derived the backpropagation calculations for a net with layers of size 784 ➡️ 200 ➡️ 10, with &lt;em&gt;tanh&lt;/em&gt;, then &lt;em&gt;sigmoid&lt;/em&gt; as the activation functions.&lt;/p&gt;
 
-&lt;video class=&quot;share-video&quot; id=&quot;share-video&quot; poster=&quot;https://thumbs.gfycat.com/EagerInferiorClingfish-poster.jpg&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;&lt;source id=&quot;webmSource&quot; src=&quot;https://zippy.gfycat.com/EagerInferiorClingfish.webm&quot; type=&quot;video/webm&quot; /&gt;&lt;source id=&quot;mp4Source&quot; src=&quot;https://zippy.gfycat.com/EagerInferiorClingfish.mp4&quot; type=&quot;video/mp4&quot; /&gt;
-    Sorry, your browser doesn&#39;t support HTML5 video.
-&lt;/video&gt;
+&lt;p&gt;To extend the assignment, I derived and implemented a general backpropagation algorithm that works with any specified number of hidden layers and units. I also implemented gradient checking via finite differences to help check the backprop during debugging.&lt;/p&gt;
 
-&lt;p&gt;All in all, a pretty fun addition to my routine. ◼&lt;/p&gt;
+&lt;p&gt;Here is the &lt;a href=&quot;/blog/hw6.pdf&quot;&gt;hw6 specification&lt;/a&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 02 Feb 2016 01:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/flipping-tables-a-custom-bash-prompt/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/flipping-tables-a-custom-bash-prompt/</guid>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/neural-net/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/neural-net/</guid>
+        
+        <category>project</category>
         
         
       </item>
     
       <item>
-        <title>Slide to Reveal With CSS</title>
-        <description>&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
+        <title>Net.js</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;p&gt;All I wanted was a div that could hide text and slide out of the way when hovered over. Stack Overflow yielded… disappointing results when I searched for a solution. Some people had thought of transitioning &lt;code&gt;width&lt;/code&gt; between some value and &lt;code&gt;auto&lt;/code&gt;, but quickly figured out that &lt;a href=&quot;https://css-tricks.com/css-animate-fromto-auto/&quot;&gt;no browser can successfully do this&lt;/a&gt;. Here’s what I came up with.&lt;/p&gt;
+&lt;p&gt;Get the source:&lt;br /&gt;
+&lt;code&gt;$ git clone https://github.com/straversi/Net.js.git&lt;/code&gt;&lt;br /&gt;
+&lt;img src=&quot;/blog/assets/languages/html.png&quot; alt=&quot;html icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ To see it in action, visit &lt;a href=&quot;http://steven.codes&quot;&gt;steven.codes&lt;/a&gt; &lt;em&gt;on desktop&lt;/em&gt;.&lt;br /&gt;
+&lt;img src=&quot;/blog/assets/languages/github.png&quot; alt=&quot;github icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ &lt;a href=&quot;https://github.com/straversi/Net.js&quot;&gt;Github page&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;a-solution&quot;&gt;A Solution&lt;/h2&gt;
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
 
-&lt;p data-height=&quot;206&quot; data-theme-id=&quot;0&quot; data-slug-hash=&quot;VemryE&quot; data-default-tab=&quot;result&quot; data-user=&quot;straversi&quot; class=&quot;codepen&quot;&gt;See the Pen &lt;a href=&quot;http://codepen.io/straversi/pen/VemryE/&quot;&gt;Text Reveal&lt;/a&gt; by Steven Traversi (&lt;a href=&quot;http://codepen.io/straversi&quot;&gt;@straversi&lt;/a&gt;) on &lt;a href=&quot;http://codepen.io&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
-&lt;script async=&quot;&quot; src=&quot;//assets.codepen.io/assets/embed/ei.js&quot;&gt;&lt;/script&gt;
+&lt;p&gt;Net.js is a fun particle simulation of sorts, in which each particle has an anchor point that it tries to stay close to. The user’s cursor acts as a repelling force on the nodes, and they try to escape it.&lt;/p&gt;
 
-&lt;p&gt;The concept is focused around a span containing the text in question. A &lt;code&gt;::before&lt;/code&gt; pseudo element is added to have the width of the span. On hover, the pseudo element is translated right 100%. The &lt;code&gt;left&lt;/code&gt; and &lt;code&gt;right&lt;/code&gt; attributes can be used, but they’re more expensive to animate.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why is it Interesting?&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Of course, taking advantage of CSS’s &lt;code&gt;:hover&lt;/code&gt; means we can’t use this method for mobile devices. Therefore, this solution is not super practical. Oh well.&lt;/p&gt;
+&lt;p&gt;Instead of a normal particle sim with ticks and momentum, I found a linear transformation that rotationally mirrors point A across point B, forming point C. However, in this transformation, the distance from point A to C is kept nearly constant. Because of the nature of the calculation, updates are only necessary whenever the user’s cursor moves.&lt;/p&gt;
 
-&lt;p&gt;If you’re on mobile now, here’s a video of the sweet action.&lt;/p&gt;
-
-&lt;video class=&quot;share-video&quot; id=&quot;share-video&quot; poster=&quot;https://thumbs.gfycat.com/DisastrousFlippantBeagle-poster.jpg&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot;&gt;&lt;source id=&quot;webmSource&quot; src=&quot;https://zippy.gfycat.com/DisastrousFlippantBeagle.webm&quot; type=&quot;video/webm&quot; /&gt;&lt;source id=&quot;mp4Source&quot; src=&quot;https://zippy.gfycat.com/DisastrousFlippantBeagle.mp4&quot; type=&quot;video/mp4&quot; /&gt;
-    Sorry, your browser doesn&#39;t support HTML5 video.
-&lt;/video&gt;
+&lt;p&gt;Net.js was conceived and completed over the course of several Electrical Engineering 40: Introduction to Microelectronic Circuits sections.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 29 Dec 2015 01:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/slide-to-reveal-with-css/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/slide-to-reveal-with-css/</guid>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/net.js/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/net.js/</guid>
+        
+        <category>project</category>
         
         
       </item>
     
       <item>
-        <title>Constraint Satisfaction With Sudoku</title>
-        <description>&lt;h2 id=&quot;ai-a-modern-approach&quot;&gt;AI: A Modern Approach&lt;/h2&gt;
+        <title>Beacon</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;p&gt;This semester, I’ve had the pleasure of taking “Intro to Artificial Intelligence” with Stuart Russell and Pat Virtue. Russell authored the definitive &lt;strong&gt;Artificial Intelligence, A Modern Approach&lt;/strong&gt;, used as a foundation for AI curricula across the world.&lt;/p&gt;
+&lt;p&gt;Cool image. &lt;a href=&quot;http://github.com/straversi&quot;&gt;link to download&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;In the first section of the class we covered “search”, including “constraint satisfaction problems” (CSP). Constraint satisfaction is an efficient way to represent a problem as a set of variables and rules for those variables. For example, you could have two variables whose domains are integers in [0, 10] that share a “diff” constraint- in other words, they may not be assigned the same number. A solution to a CSP happens when all variables been assigned a value and no constraints are violated.&lt;/p&gt;
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
 
-&lt;p&gt;The textbook &lt;strong&gt;AIAMA&lt;/strong&gt; defines a search algorithm for solving CSPs that uses “backtracking” (which is really just a fancy term for how common search strategies like DFS work inherently). Essentially, if the search finds itself at a dead end, it will back up and traverse a different branch. In the case of CSPs, a dead end is an assignment from which no more values may be given to variables without constraint violation. If the backtracking algorithm finds itself here, it will un-assign some number of variables and continue the search. The algorithm is laid out below:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;backtrack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;complete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unassigned&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;consistent&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;inferences&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inference&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inferences&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inferences&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;backtrack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;failure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inferences&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;assignment&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;failure&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Some signatures to talk about:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;select-unassigned-variable(csp)&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;At this point, we choose a variable to make an assignment for. We’re not actually assigning a value to anything yet. You may wonder, does the order that we choose variables for assignment matter? The answer is yes. Many problems find useful to always pick the variable that has the smallest remaining domain. This technique is called Minimum Remaining Values (MRV).&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;order-domain-values(var, assignment, csp)&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;The order in which we check the values in our chosen variable’s domain can make a difference as well. A common approach is to order values by how much they would affect neighboring domains. We’d like to choose the values that cause the LEAST amount of domain-constriction first. This is called Least Constraining Value (LCV).&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;“is consistent with assignment”&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;This checks if the assigning the given value to the given variable would violate any constraints. Therefore, it only involves checking the domains of variables that are constrained to the given one.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;inference(csp, var, value)&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;When we give a variable a value, we have to prune the domains of all variables constrained with it. Sometimes, pruning a domain causes a variable to only have one value left in its domain. We could then make an assignment there, after which we could recursively begin another inference.&lt;/p&gt;
-
-&lt;h2 id=&quot;sudoku-as-a-csp&quot;&gt;Sudoku as a CSP&lt;/h2&gt;
-
-&lt;p&gt;I represent the various tiles of the sudoku board as A1 … I9, similarly to chess. The only constraints we need in sudoku are binary differences. E.g., “G4” != “G5”. What are the differences we need to enforce in sudoku? Each variable has 20 constraints: 8 in its row, 8 in its column, and 8 in its region; of these 24 constraints, 4 appear twice. I chose to store each variable’s constraints in a dictionary called &lt;code&gt;csp&lt;/code&gt;, mapping {variable =&amp;gt; set(variable)}. Lookup is easy: &lt;code&gt;csp[&quot;G4&quot;]&lt;/code&gt; returns a set of variables constrained to “G4”.&lt;/p&gt;
-
-&lt;p&gt;How should we represent the variables and assignments? I tried two methods. In the first representation I attempted, the assignments of variables to values were kept in a dictionary, mapped as VARIABLE -&amp;gt; VALUE. In the second representation I tried, I represented the assignments as a dictionary mapping VARIABLE -&amp;gt; DOMAIN. I tried this out because I realized that with the first representation, the domain of each variable was being recalculated many times. The results of the switch caused a huge decrease in time taken to solve: from ~850 seconds for ~2,000 puzzles to ~35 seconds.&lt;/p&gt;
-
-&lt;p&gt;For representing the domains of the variables with the second approach, I decided to use strings of values (because the values are strictly 1-9). So as we doing inferencing after making an assignment, some domains will have numbers in them replaced with nothing, e.g. “124589” | replace(“4”,””). This means that “4” is no longer a part of this domain.&lt;/p&gt;
-
-&lt;h2 id=&quot;implementation&quot;&gt;Implementation&lt;/h2&gt;
-
-&lt;p&gt;Right away, we can write two methods: &lt;em&gt;solved&lt;/em&gt; and &lt;em&gt;consistent&lt;/em&gt;. We can say that an assignment is &lt;em&gt;solved&lt;/em&gt; if the length of every variable’s domain is 1. An value for a variable is &lt;em&gt;consistent&lt;/em&gt; with an assignment if no other variables are already assigned that value, i.e. if the none of the domains of the constrained variables are equal to the new value. Here are implementations:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python3&quot; data-lang=&quot;python3&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solved&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot; Return TRUE if 1 assignment per tile. &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python3&quot; data-lang=&quot;python3&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;consistent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot; Return TRUE if no domain of variables constrained to VARIABLE equals VALUE. &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constraint&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Moving on to &lt;em&gt;select-unassigned-variable(csp)&lt;/em&gt;, we simply find a variable with the smallest domain length, since each domain is just a string of values. We have to be careful not to select variables with domain lengths == 1, because this means that the variable is already assigned. Here are two implementations:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python3&quot; data-lang=&quot;python3&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;unassigned&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot; Return an unassigned variable from CSP. Minimum Remaining Values. &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Interestingly, the above solution is much slower than the following one:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python3&quot; data-lang=&quot;python3&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;unassigned&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;bestValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;bestVar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;None&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bestValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;bestValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;bestVar&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bestVar&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;That’s ok with me, because the second version is more readable, I suppose.&lt;/p&gt;
-
-&lt;p&gt;For &lt;em&gt;order-domain-values(var, assignment, csp)&lt;/em&gt;, I did some experimentation. I found that LCV causes a slower search than without it, for my implementation. And that’s okay: In &lt;strong&gt;AIAMA&lt;/strong&gt;, it is mentioned that “least-constraining-value heuristic can be effective in some cases”. (p. 217) Apparently, not this case, with this implementation. Therefore, I simply returned the domain of the input variable with no processing with regards to order.&lt;/p&gt;
-
-&lt;p&gt;This leaves &lt;em&gt;inference(csp, var, value)&lt;/em&gt;, where the fun happens. If a variable/value pair makes it to this step, then &lt;em&gt;inference&lt;/em&gt;’s job is to make the assignment, then prune the domains of all constrained variables. If any variable’s domain is pruned to length 0, then the assignment has failed. If any variable’s domain is pruned to length 1, we should treat this as an assignment and call inference for that variable and value as well. Here’s my implementation:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python3&quot; data-lang=&quot;python3&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inference&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var_to_update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot; Assign VALUE to VAR_TO_UPDATE in ASSIGNMENT. Update domains of&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;       constrained variables from CSP. If any domains are reduced to 1, also&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;       inference from them. If any domains are reduced to 0, return False.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;       Recursive forward checking.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var_to_update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constraint&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var_to_update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;remaining&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remaining&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inference&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;constraint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remaining&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;csp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;False&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remaining&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;False&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;True&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;The only thing left to do when setting up your main() is run an initial inference pass when the puzzle is first loaded.&lt;/p&gt;
-
-&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
-
-&lt;p&gt;I wrote my version of the solver so that it could take puzzles from this large set I found here: &lt;a href=&quot;http://magictour.free.fr/top2365&quot;&gt;2365 hard sudoku puzzles&lt;/a&gt;. On average, my solver takes ~35 seconds to solve this set, with the median time to solve a puzzle being 0.005 seconds. The 35 seconds is dominated by a select few puzzles that take several seconds to solve. ◼&lt;/p&gt;
+&lt;p&gt;Writing about the process.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 03 Dec 2015 11:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/constraint-satisfaction-with-sudoku/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/constraint-satisfaction-with-sudoku/</guid>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/beacon/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/beacon/</guid>
         
-        <category>hot</category>
+        <category>project</category>
         
         
       </item>
     
       <item>
-        <title>My Jekyll Setup</title>
-        <description>&lt;p&gt;The permalink format for posts on this site is &lt;code&gt;:categories/:title&lt;/code&gt;. That way I can direct students to steven.codes/cs10 for easy access to all cs10 resources.&lt;/p&gt;
+        <title>UISwipeView</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;h2 id=&quot;organizing-assets&quot;&gt;Organizing Assets&lt;/h2&gt;
-&lt;p&gt;I prefer to structure assets similarly to posts. For example, if there is a post at &lt;code&gt;/cs10/2048-merge&lt;/code&gt;, then I’d like the corresponding assets to be stored in &lt;code&gt;/assets/posts/cs10/2048-merge&lt;/code&gt;. This means I have to go through this path every time I’d like to include a resource. &lt;a href=&quot;https://github.com/samrayner/jekyll-asset-path-plugin&quot;&gt;Asset path tag&lt;/a&gt; is a plugin that I use to manage these relative paths. This is what including an image looks like with asset path:&lt;/p&gt;
+&lt;p&gt;Github link coming soon.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;asset_path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;cat_of_the_month.png&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
 
-&lt;p&gt;Many of my posts require custom JavaScript, and sometimes custom CSS (see &lt;a href=&quot;/cs10/2048-merge/&quot;&gt;2048 Merge&lt;/a&gt;). I don’t want these custom resources loading for every post, so I created two front matter variables, &lt;code&gt;custom_css&lt;/code&gt; and &lt;code&gt;custom_js&lt;/code&gt;. In &lt;code&gt;_includes/header.html&lt;/code&gt;, I added the following script:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;{% if page.custom_css %}
-  {% for stylesheet in page.custom_css %}
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{% asset_path {{ stylesheet }}.css %}&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;media=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;screen&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  {% endfor %}
-{% endif %}
-
-{% if page.custom_js %}
-  {% for js_file in page.custom_js %}
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;{% asset_path {{ js_file }}.js %}&amp;#39;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
-  {% endfor %}
-{% endif %}&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Some JavaScript snippets need access to the assets of the post. It would be bad practice to include file paths in the JavaScript itself. To allow for better separation of concerns, I pass asset_path to the js from the post. An example:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;tileSetup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;{% asset_path 2048_tiles/%}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;For the social page, I wanted a column of wide banners, one for each social site. I created the template &lt;code&gt;_includes/social-banner.html&lt;/code&gt;. There’s an image in this template: the banner background. For the &lt;code&gt;src&lt;/code&gt; attribute of the image, I capture the app name in question and use &lt;code&gt;asset_path&lt;/code&gt; to grab the appropriate image:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;asset_path&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;{{&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;include.appname&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;}}.png&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;To pass the app’s name, specify the &lt;code&gt;appname&lt;/code&gt; attribute in the include:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;social-banner.html&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;appname&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;facebook&amp;quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;post-list&quot;&gt;Post List&lt;/h2&gt;
-
-&lt;p&gt;There is a Posts page that contains a list of written posts. Each post’s display consists of three parts: a thumbnail, a title, and metadata. The metadata consists of a description, possible tags such as “new” or “hot”, and directory location (if applicable).&lt;/p&gt;
-
-&lt;p&gt;Newness is determined by comparing &lt;code&gt;post.date&lt;/code&gt; to &lt;code&gt;site.time&lt;/code&gt;. If a post is new, then in the metadata section we put:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-liquid&quot; data-lang=&quot;liquid&quot;&gt;&lt;span class=&quot;p&quot;&gt;{%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;icon-gift.html&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;%}&lt;/span&gt; •&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;code&gt;icon-gift.html&lt;/code&gt; is a file that contains an include for icon-gift.svg and the word “New”. It also handles colors. The setup is practically identical for &lt;code&gt;icon-hot.html&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;plugins&quot;&gt;Plugins&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/takuti/jekyll-lazy-tweet-embedding&quot;&gt;Lazy Tweet Embedding&lt;/a&gt; automatically converts twitter states urls to twitter cards. For example, if I concatenate &lt;code&gt;https://twitter.com/&lt;/code&gt;, &lt;code&gt;StevenTraversi/status/&lt;/code&gt;, and a tweet id such as &lt;code&gt;558448694731608064&lt;/code&gt;, the plugin will generate this for me:&lt;/p&gt;
-&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Studying machine structures in Soda, &amp;quot;home of top shelf computer scientists&amp;quot;. &lt;a href=&quot;https://twitter.com/hashtag/61C?src=hash&quot;&gt;#61C&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/UCBerkeley?src=hash&quot;&gt;#UCBerkeley&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/twoscomplement?src=hash&quot;&gt;#twoscomplement&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/passbyvalue?src=hash&quot;&gt;#passbyvalue&lt;/a&gt;&lt;/p&gt;&amp;mdash; Steven Traversi (@StevenTraversi) &lt;a href=&quot;https://twitter.com/StevenTraversi/status/558448694731608064&quot;&gt;January 23, 2015&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;Clean and easy.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/penibelst/jekyll-compress-html&quot;&gt;jekyll-compress-html&lt;/a&gt; is a top-level &lt;em&gt;layout&lt;/em&gt; that I make &lt;code&gt;default.html&lt;/code&gt; conform to. Therefore, every HTML file is compressed before being dumped into &lt;code&gt;_site&lt;/code&gt;. If I want to forgo compression for a particular page, I add &lt;code&gt;tags: no_compress&lt;/code&gt; to that page’s front matter. This can be useful for pages that have lots of &lt;code&gt;//&lt;/code&gt; style javascript comments, as jekyll-compress-html freaks out when it sees those.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://disqus.com/home/&quot;&gt;Disqus&lt;/a&gt; is a forum drop-in that I use at the bottom of each article to create a comments section. It’s powered by a script in &lt;code&gt;_layouts/post.html&lt;/code&gt;, but must be explicitly enabled in the yaml of each article with &lt;code&gt;comments: true&lt;/code&gt;. ◼&lt;/p&gt;
+&lt;p&gt;This project broke of from &lt;a href=&quot;/blog/packd/&quot;&gt;Packd&lt;/a&gt;, where I needed to continuously swipe between graphs. The graphs could be memory hogs, and being there seven graphs, I only wanted to keep the most relevant three active at a time. While writing this new type of view, I realized that it could be useful in plenty of other situations as well. So, I broke it off into its own project.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 22 Nov 2015 11:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/my-jekyll-setup/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/my-jekyll-setup/</guid>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/UISwipeView/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/UISwipeView/</guid>
+        
+        <category>project</category>
         
         
       </item>
     
       <item>
-        <title>Constant 2048 Solution</title>
-        <description>&lt;h1 id=&quot;testing&quot;&gt;TESTING&lt;/h1&gt;
+        <title>2048 Homework</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/constant-2048-solution/test.png&quot; alt=&quot;Image of Yaktocat&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Link to the &lt;em&gt;Snap!&lt;/em&gt; starter file: &lt;a href=&quot;http://snap.berkeley.edu/snapsource/snap.html#present:Username=cs10sp16&amp;amp;ProjectName=2048_starter_sp16&quot;&gt;starter file&lt;/a&gt;
+Link to the CS10 homework spec: &lt;a href=&quot;http://cs10.org/su16/assign.html?//docs.google.com/document/d/13ifT2Ro5sE0d2dkC72aeg0iHlj8Ofif7BwFO67ojcks/pub&quot;&gt;spec&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;While I was a Junior at UC Berkeley and TAing for CS10, I set about rewriting its third and final homework assignment. The assignment hadn’t been updated in years; it was in need of a change. At the time, the fad game 2048 was sweeping the campus, rampantly distracting students everywhere. Its popularity and straightforward gameplay led me to choose it for the update.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 13 Nov 2015 17:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/constant-2048-solution/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/constant-2048-solution/</guid>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/2048-homework/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/2048-homework/</guid>
         
-        <category>draft</category>
+        <category>project</category>
         
         
       </item>
