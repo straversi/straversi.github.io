@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Aug 2016 23:51:14 -0700</pubDate>
-    <lastBuildDate>Tue, 16 Aug 2016 23:51:14 -0700</lastBuildDate>
+    <pubDate>Sat, 20 Aug 2016 19:32:47 -0700</pubDate>
+    <lastBuildDate>Sat, 20 Aug 2016 19:32:47 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -83,7 +83,7 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 
 &lt;p&gt;I wrote the app and a suite of integration tests with Ruby on Rails, jQuery, and Cucumber. I also designed the UI, using elements from &lt;a href=&quot;http://materializecss.com/&quot; target=&quot;_blank&quot;&gt;Materialize&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Currently, the app is undergoing its beta live in two UC Berkeley classes, CS61C and CS10. I’ve been using a feedback-iteration loop to improve the design and function of the application during this time. I plan to use the app to manage lab assistants again in CS10 this fall.&lt;/p&gt;
+&lt;p&gt;The app just finished its beta in two UC Berkeley classes, CS61C and CS10. I’ve been using a feedback-iteration loop to improve the design and function of the application during this time. I plan to use the app to manage lab assistants again in CS10 this fall.&lt;/p&gt;
 
 &lt;p&gt;Here are some sample images taken from the live site:&lt;/p&gt;
 
