@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 26 Aug 2016 00:10:04 -0700</pubDate>
-    <lastBuildDate>Fri, 26 Aug 2016 00:10:04 -0700</lastBuildDate>
+    <pubDate>Fri, 26 Aug 2016 00:12:05 -0700</pubDate>
+    <lastBuildDate>Fri, 26 Aug 2016 00:12:05 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -188,8 +188,6 @@ and get this on your page:&lt;/p&gt;
 
 &lt;p&gt;To see how busy a public location is, we have an app that displays the live count, along with prediction graphs for each day of the week.&lt;/p&gt;
 
-&lt;p&gt;** Screenshots **&lt;/p&gt;
-
 &lt;p&gt;We’re currently working on a scalable solution that is compatible with rapid expansion of Packd locations.&lt;/p&gt;
 
 &lt;p&gt;I wrote the iOS app with Swift 2. I used storyboarding wherever possible.&lt;/p&gt;
@@ -262,11 +260,11 @@ and get this on your page:&lt;/p&gt;
         <title>Beacon</title>
         <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
 
-&lt;p&gt;Cool image. &lt;a href=&quot;http://github.com/straversi&quot;&gt;link to download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Link coming soon.&lt;/p&gt;
 
 &lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
 
-&lt;p&gt;Writing about the process.&lt;/p&gt;
+&lt;p&gt;Also coming soon (sorry).&lt;/p&gt;
 </description>
         <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
         <link>http://steven.codes/blog/beacon/</link>
