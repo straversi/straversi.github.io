@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 25 Aug 2016 22:55:05 -0700</pubDate>
-    <lastBuildDate>Thu, 25 Aug 2016 22:55:05 -0700</lastBuildDate>
+    <pubDate>Fri, 26 Aug 2016 00:08:53 -0700</pubDate>
+    <lastBuildDate>Fri, 26 Aug 2016 00:08:53 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -83,20 +83,23 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 
 &lt;p&gt;Checkaroo solves a problem that we had as TA’s of CS10 at Berkeley. Our lab assistants needed to record their hours without involving the TA and taking up class time, but the hours needed some form of approval. With Checkaroo, lab assistants can check themselves in to their section, but their hours won’t count until their TA approves them at their leisure.&lt;/p&gt;
 
-&lt;p&gt;I wrote the app and a suite of integration tests with Ruby on Rails, jQuery, and Cucumber. I also designed the UI, using elements from &lt;a href=&quot;http://materializecss.com/&quot; target=&quot;_blank&quot;&gt;Materialize&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I wrote the app and a suite of integration tests with Ruby on Rails, jQuery, and Cucumber. I also designed the UI, using elements from &lt;a href=&quot;http://materializecss.com/&quot; target=&quot;_blank&quot;&gt;Materialize&lt;/a&gt;.
+&lt;!-- clear_ --&gt;&lt;/p&gt;
 
 &lt;p&gt;The app just finished its beta in two UC Berkeley classes, CS61C and CS10. I’ve been using a feedback-iteration loop to improve the design and function of the application during this time. I plan to use the app to manage lab assistants again in CS10 this fall.&lt;/p&gt;
 
 &lt;p&gt;Here are some sample images taken from the live site:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/checkaroo/assistants.png &quot; style=&quot;max-width:100%;&quot; /&gt;
-&lt;em&gt;The assistants whose hours are being recorded&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;image-gallery&quot;&gt;
+&lt;img src=&quot;/blog/assets/posts/checkaroo/assistants.png &quot; class=&quot;image-group-1&quot; data-caption=&quot;The assistants whose hours are being recorded&quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/checkaroo/sections.png &quot; class=&quot;image-group-1&quot; data-caption=&quot;The sections that have been created by the TAs&quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/checkaroo/home.png &quot; class=&quot;image-group-1&quot; data-caption=&quot;A sample home page for a TA who has taken action on all of their assistants&#39; checkins.&quot; /&gt;
+&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/checkaroo/sections.png &quot; style=&quot;max-width:100%;&quot; /&gt;
-&lt;em&gt;The sections that have been created by the TAs&lt;/em&gt;&lt;/p&gt;
+&lt;script&gt;
+var firstGallery = new Gallery(&quot;image-group-1&quot;, false, &quot;/blog/assets/posts/checkaroo/svg/&quot;);
+&lt;/script&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/checkaroo/home.png &quot; style=&quot;max-width:100%;&quot; /&gt;
-&lt;em&gt;A sample home page for a TA who has taken action on all of their assistants’ checkins.&lt;/em&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 30 Jun 2016 02:47:36 -0700</pubDate>
         <link>http://steven.codes/blog/checkaroo/</link>
