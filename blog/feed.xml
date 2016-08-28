@@ -6,8 +6,8 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 26 Aug 2016 00:19:30 -0700</pubDate>
-    <lastBuildDate>Fri, 26 Aug 2016 00:19:30 -0700</lastBuildDate>
+    <pubDate>Sun, 28 Aug 2016 11:28:48 -0700</pubDate>
+    <lastBuildDate>Sun, 28 Aug 2016 11:28:48 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -91,9 +91,12 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 &lt;p&gt;Here are some sample images taken from the live site:&lt;/p&gt;
 
 &lt;div class=&quot;image-gallery&quot;&gt;
-&lt;img src=&quot;/blog/assets/posts/checkaroo/assistants.png &quot; class=&quot;image-group-1&quot; data-caption=&quot;The assistants whose hours are being recorded&quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/checkaroo/sections.png &quot; class=&quot;image-group-1&quot; data-caption=&quot;The sections that have been created by the TAs&quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/checkaroo/home.png &quot; class=&quot;image-group-1&quot; data-caption=&quot;A sample home page for a TA who has taken action on all of their assistants&#39; checkins.&quot; /&gt;
+  &lt;div class=&quot;image-container card&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/checkaroo/assistants.png &quot; class=&quot;image-group-1&quot; data-caption=&quot;The assistants whose hours are being recorded&quot; /&gt;&lt;/div&gt;
+  &lt;div class=&quot;image-container card&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/checkaroo/sections.png &quot; class=&quot;image-group-1&quot; data-caption=&quot;The sections that have been created by the TAs&quot; /&gt;&lt;/div&gt;
+  &lt;div class=&quot;image-container card&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/checkaroo/home.png &quot; class=&quot;image-group-1&quot; data-caption=&quot;A sample home page for a TA who has taken action on all of their assistants&#39; checkins.&quot; /&gt;&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;script&gt;

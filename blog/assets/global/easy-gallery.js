@@ -66,6 +66,7 @@ Gallery.prototype.createSelf = function() {
   element.style.top = "0";
   element.style.right = "0";
   element.style.bottom = "0";
+  element.style.zIndex = "10";
   element.style.padding = this.padding;
   var theCSS = "@media screen and (max-width:" + this.smallWidth + ") { .easy-gallery { padding: 0 !important; }}";
   if (document.querySelector('style')) {
