@@ -23,12 +23,12 @@ function mergeBoard(lab, boardId) {
     if (input.checked) {
       var fromNumber = tile.dataset.end;
       var tileValue = tile.dataset.endval;
-      input.nextElementSibling.innerHTML = "un-merge";
+      input.nextElementSibling.innerHTML = input.dataset.undotext;
       setDownStyle(lab);
     } else {
       var fromNumber = tile.dataset.begin;
       var tileValue = tile.dataset.val;
-      input.nextElementSibling.innerHTML = "merge up";
+      input.nextElementSibling.innerHTML = input.dataset.dotext;
       setUpStyle(lab);
     }
     var fromPercent = parseInt(fromNumber) * 25;
