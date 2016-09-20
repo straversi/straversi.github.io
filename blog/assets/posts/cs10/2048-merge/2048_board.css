@@ -9,6 +9,7 @@
   position: absolute;
   width: 90%;
   margin: 5%;
+  -webkit-transition: top .1s linear, opacity .1s linear;
   transition: top .1s linear, opacity .1s linear;
 }
 

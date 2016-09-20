@@ -39,7 +39,7 @@ function mergeBoard(lab, boardId) {
 }
 function changeTileSource(tileElement, newValue) {
   if (newValue == 0) {
-    tileElement.src = "";
+    /* tileElement.src = ""; */
   } else {
     tileElement.src = tiles_path + newValue + ".png";
   }
