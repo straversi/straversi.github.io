@@ -6,9 +6,236 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Oct 2016 21:38:26 -0700</pubDate>
-    <lastBuildDate>Tue, 11 Oct 2016 21:38:26 -0700</lastBuildDate>
+    <pubDate>Tue, 11 Oct 2016 23:54:19 -0700</pubDate>
+    <lastBuildDate>Tue, 11 Oct 2016 23:54:19 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Gradient Domain Fusion</title>
+        <description>&lt;p&gt;This post is a modified version of a site that I submitted for a project in my image manipulation class with &lt;a href=&quot;https://scholar.google.com/citations?user=d97bGd8AAAAJ&quot;&gt;Alexei Efros&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;On this page, I give some quick explanations of some algorithms, but the main focus is to display and compare results. The base technique is called Poisson Blending. Its goal is to blend a &lt;em&gt;source&lt;/em&gt; image into a &lt;em&gt;target&lt;/em&gt; image. It accomplishes this by defining constraints based on the &lt;em&gt;gradients&lt;/em&gt; of the pixels in the result image. These constraints can be grouped to form a least-squares problem, which can be represented in sparse matrices and solved by a library least-squares solver.&lt;/p&gt;
+
+&lt;h2 id=&quot;toy-problem-reconstruction&quot;&gt;Toy Problem: Reconstruction&lt;/h2&gt;
+
+&lt;p&gt;To get used to formulating the pixel constraints as least squares problems in sparse matrices, first I practiced simply reconstructing an image given its gradient constraints and a single pixel intensity value.&lt;/p&gt;
+
+&lt;p&gt;In other words, if we are given a matrix of gradient values between pixels:&lt;/p&gt;
+
+&lt;figure class=&quot;fourth&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/equations/vector_field.png &quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;and a single pixel intensity value, we should be able to reconstruct the original image by expanding intensity values out from the given pixel, using the gradients. The first image below is an example original, the second, the reconstructed version.&lt;/p&gt;
+
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/toy/toy_problem.png &quot; /&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/toy/reconstructed_toy.png &quot; /&gt;
+  &lt;figcaption&gt;sum(|1 - 2|): 0.0305&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I was able to reduce the execution time of this reconstruction significantly (from around 15 seconds to around 4 seconds) by building the sparse constraint matrices via vectorization.&lt;/p&gt;
+
+&lt;h2 id=&quot;poisson-blending&quot;&gt;Poisson Blending&lt;/h2&gt;
+
+&lt;p&gt;
+  One way to blend in image into another is with Poisson blending. There are
+  two images: a source image, and a target image in which we want to place the
+  source image. We create a mask that selects the portion of the source
+  we want to blend into the target. Then, we set up the following constraints:
+  &lt;ul&gt;
+    &lt;li&gt;
+      Pixels in the target image that aren&#39;t in the masked area should be close
+      to the intensity values in the target.
+    &lt;/li&gt;
+    &lt;li&gt;
+      The gradients of pixels in the masked area should be constrained to have
+      close to the gradients of those in the source image.
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/equations/poisson.png &quot; /&gt;
+  &lt;figcaption&gt;v = result, t = target, s = source&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Here are some results of Poisson blending:&lt;/p&gt;
+
+&lt;h3 id=&quot;dirsky&quot;&gt;Dirsky&lt;/h3&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/dirsky/dirsky.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/dirsky/dirks.jpg &quot; /&gt;
+  &lt;figcaption&gt;source&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/dirsky/oski.jpg &quot; /&gt;
+  &lt;figcaption&gt;target&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/dirsky/naive_dirsky.jpg &quot; /&gt;
+  &lt;figcaption&gt;naive overlay&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;mona-steven&quot;&gt;Mona Steven&lt;/h3&gt;
+&lt;figure class=&quot;fourth&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/mona_steven/mona_steven.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;figure class=&quot;really-tiny&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/mona_steven/steven.jpg &quot; /&gt;
+  &lt;figcaption&gt;source&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;really-tiny&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/mona_steven/mona.jpg &quot; /&gt;
+  &lt;figcaption&gt;target&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;really-tiny&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/mona_steven/naive_mona_steven.jpg &quot; /&gt;
+  &lt;figcaption&gt;overlay&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;martian&quot;&gt;Martian&lt;/h3&gt;
+
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/mars/astronaut_result.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/mars/astronaut.jpg &quot; /&gt;
+  &lt;figcaption&gt;source&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/mars/mars.jpg &quot; /&gt;
+  &lt;figcaption&gt;target&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/mars/naive_astronaut.jpg &quot; /&gt;
+  &lt;figcaption&gt;overlay&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;em&gt;Martian&lt;/em&gt; could be considered a failure case. Upon closer inspection, the color palette transferred nicely, but there are weird blur and stretch artifacts surrounding the martian. This is because the background in the source image is not consistent.&lt;/p&gt;
+
+&lt;h2 id=&quot;mixed-gradients&quot;&gt;Mixed Gradients&lt;/h2&gt;
+
+&lt;p&gt;Mixed gradients is just like Poisson blending, except we constrain the gradients of the pixels in the masked area to be the gradient of those in the source image OR target image: whichever has a larger magnitude. Note that this gradient choice is made on a per-gradient basis.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/equations/mixed.png &quot; /&gt;
+  &lt;figcaption&gt;d_ij is the value of the gradient from the source or the target image with a larger magnitude&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 class=&quot;display&quot;&gt;
+  SF Skyline&lt;span&gt; • Notice that the mixed gradients allow the tall buildings and the bridge to appear in front of the galaxy.&lt;/span&gt;
+&lt;/h3&gt;
+
+&lt;figure class=&quot;full&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/skyline2/skyline3.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/skyline2/skyline.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/skyline2/galaxy.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/skyline2/polygon3.png &quot; /&gt;
+&lt;/figure&gt;
+
+&lt;h3 class=&quot;display&quot;&gt;
+  Banksy on Brick&lt;span&gt; • The colors of the original piece are preserved, but toned to match the bricks. The brick texture also prevails because of its larger gradients.&lt;/span&gt;
+&lt;/h3&gt;
+
+&lt;figure class=&quot;full&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/graffiti/graffiti.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/graffiti/bricks.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/graffiti/graffiti.png &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/graffiti/polygon.png &quot; /&gt;
+&lt;/figure&gt;
+
+&lt;h3 class=&quot;display&quot;&gt;
+  That&#39;s No Moon&lt;span&gt; • The Death Star is faded to more match the brightness and color of the sky. Notice how the clouds float in front of the Death Star. Without mixed gradients, the clouds would simply fade out and become blurry when they got to the masked region.
+&lt;/span&gt;&lt;/h3&gt;
+
+&lt;figure class=&quot;full&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/no_moon/no_moon_2_mixed.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/no_moon/campanile.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/no_moon/death_star.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/no_moon/polygon.png &quot; /&gt;
+&lt;/figure&gt;
+
+&lt;h3 class=&quot;display&quot;&gt;
+  Just Dirksy Things&lt;span&gt; • Writing can be applied over images with mixed gradients. Notice how the pink background is completely disregarded because of its virtually zero gradient, while the words stand out due to the high gradient between the pink and letters.
+  &lt;/span&gt;
+&lt;/h3&gt;
+
+&lt;figure class=&quot;full&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/girly_things/dirsky_things.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/girly_things/dirks.jpg &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/girly_things/girly_things.png &quot; /&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/girly_things/polygon.png &quot; /&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;vs-laplacian-pyramid-blending&quot;&gt;Vs. Laplacian Pyramid Blending&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://docs.opencv.org/3.1.0/dc/dff/tutorial_py_pyramids.html&quot;&gt;Laplacian blending&lt;/a&gt; is another cool way to blend images. Here’s a case when Poisson blending is clearly the way to go:&lt;/p&gt;
+
+&lt;figure class=&quot;full&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/baby/sun_baby.jpg &quot; /&gt;
+  &lt;figcaption&gt;Poisson blending&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/baby/sun_baby_laplacian.jpg &quot; /&gt;
+  &lt;figcaption&gt;Laplacian pyramid blending&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/baby/naive_baby.jpg &quot; /&gt;
+  &lt;figcaption&gt;naive overlay&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/baby/baby.jpg &quot; /&gt;
+  &lt;figcaption&gt;source&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/gradient-domain-fusion/baby/sun.jpg &quot; /&gt;
+  &lt;figcaption&gt;target&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Poisson blending was much better than Laplacian blending in this case. This is because Poisson blending was able to make the overall color palette of the baby match that of the sun, which is the intended effect. Laplacian blending can’t and doesn’t achieve that effect. Laplacian blending can be better when Poisson blending would cause an unwanted color shift.&lt;/p&gt;
+
+&lt;p&gt;◼&lt;/p&gt;
+</description>
+        <pubDate>Tue, 11 Oct 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/gradient-domain-fusion/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/gradient-domain-fusion/</guid>
+        
+        <category>hot</category>
+        
+        <category>published</category>
+        
+        
+      </item>
     
       <item>
         <title>Hello World in HOtMEfSPRIbNG</title>
@@ -66,8 +293,6 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
         <pubDate>Wed, 06 Jul 2016 02:47:36 -0700</pubDate>
         <link>http://steven.codes/blog/hello-world-in-HOtMEfSPRIbNG/</link>
         <guid isPermaLink="true">http://steven.codes/blog/hello-world-in-HOtMEfSPRIbNG/</guid>
-        
-        <category>hot</category>
         
         <category>published</category>
         
@@ -294,26 +519,6 @@ and get this on your page:&lt;/p&gt;
         <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
         <link>http://steven.codes/blog/UISwipeView/</link>
         <guid isPermaLink="true">http://steven.codes/blog/UISwipeView/</guid>
-        
-        <category>project</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>2048 Homework</title>
-        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
-
-&lt;p&gt;Link to the &lt;em&gt;Snap!&lt;/em&gt; starter file: &lt;a href=&quot;http://snap.berkeley.edu/snapsource/snap.html#present:Username=cs10sp16&amp;amp;ProjectName=2048_starter_sp16&quot;&gt;starter file&lt;/a&gt;
-Link to the CS10 homework spec: &lt;a href=&quot;http://cs10.org/su16/assign.html?//docs.google.com/document/d/13ifT2Ro5sE0d2dkC72aeg0iHlj8Ofif7BwFO67ojcks/pub&quot;&gt;spec&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
-
-&lt;p&gt;While I was a Junior at UC Berkeley and TAing for CS10, I set about rewriting its third and final homework assignment. The assignment hadn’t been updated in years; it was in need of a change. At the time, the fad game 2048 was sweeping the campus, rampantly distracting students everywhere. Its popularity and straightforward gameplay led me to choose it for the update.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
-        <link>http://steven.codes/blog/2048-homework/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/2048-homework/</guid>
         
         <category>project</category>
         
