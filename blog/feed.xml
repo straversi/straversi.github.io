@@ -6,9 +6,126 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 26 Oct 2016 12:20:42 -0700</pubDate>
-    <lastBuildDate>Wed, 26 Oct 2016 12:20:42 -0700</lastBuildDate>
+    <pubDate>Tue, 01 Nov 2016 10:02:26 -0700</pubDate>
+    <lastBuildDate>Tue, 01 Nov 2016 10:02:26 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Face Morphing</title>
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/kCoy1KtH1Xk&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;A face-morphing music video that I made.&lt;/p&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;basic-morphs&quot;&gt;Basic Morphs&lt;/h2&gt;
+
+&lt;p&gt;To morph two faces together, one can follow this rough outline:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Identify feature points on both images&lt;/li&gt;
+  &lt;li&gt;Create a triangulation from one of the sets of points, and apply it to each image.&lt;/li&gt;
+  &lt;li&gt;For timestep t out of N timesteps, take the weighted average of each pair of points from the two images, with weights t/N and (N-t)/N. Recover the triangulation on this new set of points. (This amounts to performing an affine transform on each triangle.)&lt;/li&gt;
+  &lt;li&gt;Fill the new transformed pixels using the inverse of the affine transform from step 3 to pluck pixel values from the original images. Cross dissolve them proportionally to the timestep.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Below are examples of the feature points used to morph Mozart and Beethoven. The triangulation on Mozart is the version that ended up being used.&lt;/p&gt;
+
+&lt;figure class=&quot;third full align-top&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/music_gifs/lines_1.png &quot; /&gt;
+  &lt;figcaption&gt;Mozart features and triangulation&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third full align-top&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/music_gifs/linegif.gif &quot; /&gt;
+  &lt;figcaption&gt;The triangulation remains intact throughout the morph&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third full align-top&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/music_gifs/lines_2.png &quot; /&gt;
+  &lt;figcaption&gt;Beethoven features with the same triangulation&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Here’s an unmarked version of the morph, and the “halfway” face.&lt;/p&gt;
+
+&lt;figure class=&quot;third align-top&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/music_gifs/mozart.gif &quot; /&gt;
+  &lt;figcaption&gt;Full morph&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third align-top&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/music_gifs/frame_22.jpg &quot; /&gt;
+  &lt;figcaption&gt;Mozthoven&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;I had some fun morphing people, and sometimes things. Here are some examples:&lt;/p&gt;
+
+&lt;figure class=&quot;third align-top&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/obamabush/obamabush.gif &quot; /&gt;
+  &lt;figcaption&gt;Obama to Bush&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third align-top full&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/carloselon/carloselon.gif &quot; /&gt;
+  &lt;figcaption&gt;Flores to Musk&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third align-top&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/campaniles/campaniles.gif &quot; /&gt;
+  &lt;figcaption&gt;Campanile to Campanile&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;average-face&quot;&gt;Average Face&lt;/h2&gt;
+
+&lt;p&gt;Here, we play around with a dataset of Danish faces. First, we try to find the “average Danish face”.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img class=&quot;third&quot; src=&quot;/blog/assets/posts/face-morphing/danes/01-1m.jpg &quot; /&gt;
+  &lt;img class=&quot;third&quot; src=&quot;/blog/assets/posts/face-morphing/danes/05-1m.jpg &quot; /&gt;
+  &lt;img class=&quot;third&quot; src=&quot;/blog/assets/posts/face-morphing/danes/15-1f.jpg &quot; /&gt;
+  &lt;figcaption&gt;Original Danish faces. I then took the average symmetry of their faces.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+  &lt;img class=&quot;third&quot; src=&quot;/blog/assets/posts/face-morphing/danes/dane_0_averaged.jpg &quot; /&gt;
+  &lt;img class=&quot;third&quot; src=&quot;/blog/assets/posts/face-morphing/danes/dane_4_averaged.jpg &quot; /&gt;
+  &lt;img class=&quot;third&quot; src=&quot;/blog/assets/posts/face-morphing/danes/dane_14_averaged.jpg &quot; /&gt;
+  &lt;figcaption&gt;I morphed each Dane into the average symmetry, then took the average color at each pixel to get the Average Dane.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Each of the original Danes’ faces define “Danish space”, as illustrated below. The average of all of the Danish faces is the “Average Dane”.&lt;/p&gt;
+
+&lt;figure class=&quot;full&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/danes/danish_space.png &quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;My (Steven’s) face also exists in space, somewhere. By morphing my face to the geometry of the average Dane, we can push my face further toward the Danish space.&lt;/p&gt;
+
+&lt;figure class=&quot;full&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/danes/danish_swaps.png &quot; /&gt;
+  &lt;figcaption&gt;Steven&#39;s face warped to the average Dane geometry, and the average Dane face warped to Steven&#39;s geometry.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Here are the live action morphs illustrated in the above figure.&lt;/p&gt;
+
+&lt;figure class=&quot;third align-top&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/danes/dane_to_steven/1.gif &quot; /&gt;
+  &lt;figcaption&gt;Average dane morphed to Steven&#39;s face shape&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third align-top&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/danes/steven_to_dane/1.gif &quot; /&gt;
+  &lt;figcaption&gt;Steven morphed to average dane&#39;s face shape&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;caricatures&quot;&gt;Caricatures&lt;/h2&gt;
+
+&lt;p&gt;We can push the concept from the last section even further to create caricatures. What if we morphed Steven’s face &lt;em&gt;past&lt;/em&gt; the average Dane geometry, say, twice as far? That would start to expose how the geometry really compares to Steven’s. We could go the other way too: morphing Steven’s face in the &lt;em&gt;opposite&lt;/em&gt; direction from the average Dane geometry. That process would accentuate the features of Steven that are “not Danish”.&lt;/p&gt;
+
+&lt;figure class=&quot;full&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/face-morphing/danes/danish_vector.png &quot; /&gt;
+  &lt;figcaption&gt;Taking Steven&#39;s face past the average Danish geometry, and in the opposite direction.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;◼&lt;/p&gt;
+</description>
+        <pubDate>Tue, 11 Oct 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/face-morphing/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/face-morphing/</guid>
+        
+        <category>published</category>
+        
+        
+      </item>
     
       <item>
         <title>Gradient Domain Fusion</title>
@@ -499,26 +616,6 @@ and get this on your page:&lt;/p&gt;
         <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
         <link>http://steven.codes/blog/beacon/</link>
         <guid isPermaLink="true">http://steven.codes/blog/beacon/</guid>
-        
-        <category>project</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>UISwipeView</title>
-        <description>&lt;h2 id=&quot;view-project&quot;&gt;View Project&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/languages/github.png&quot; alt=&quot;github icon&quot; class=&quot;icon match-base-font&quot; /&gt;
- &lt;a href=&quot;https://github.com/straversi/UISwipeView&quot;&gt;Github page&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
-
-&lt;p&gt;This project broke of from &lt;a href=&quot;/blog/packd/&quot;&gt;Packd&lt;/a&gt;, where I needed to continuously swipe between graphs. The graphs could be memory hogs, and being there seven graphs, I only wanted to keep the most relevant three active at a time. While writing this new type of view, I realized that it could be useful in plenty of other situations as well. So, I broke it off into its own project.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
-        <link>http://steven.codes/blog/UISwipeView/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/UISwipeView/</guid>
         
         <category>project</category>
         
