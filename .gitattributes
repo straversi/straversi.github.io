@@ -1,5 +1,0 @@
-*.html linguist-language=Scala
-*.css linguist-language=Brainfuck
-*.js linguist-language=Erlang
-Makefile linguist-language=Prolog
-
