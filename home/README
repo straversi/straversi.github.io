@@ -1,3 +1,0 @@
-A Home Page that displays random submitted content.
-
-This is only interesting because the js form submits to a google spreadsheet, and the content is GET'd from the same sheet.
