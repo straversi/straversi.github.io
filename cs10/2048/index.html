@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="Merge_function.css">
+<link rel="stylesheet" href="2048_board.css">
+<meta name="description" content="An interactive walk-through of the rules of the 2048 merge function. Leave with enough understanding to get started on your own version.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="tileSetup()">
+<article>
+<h1>The 2048 Merge</h1>
+
+<p>In the fad game 2048, you press arrow keys to move tiles across a board in
+   one of four possible directions. Let's explore an intuitive algorithm for
+   accomplishing this.</p>
+
+<hr>
+
+<h3>Basic Slide</h3>
+
+<p>Let's start with the case of a single tile.</p>
+<p><span class="important">Note:</span> Throughout this exploration, we will
+   only ever be considering a single column. This is because in a true 2048
+   board with 4 columns, each column is independent from the rest when it
+   comes to merging tiles upward.</p>
+<p>What happens when we press the UP arrow? The tile should move up until it
+   hits an edge.</p>
+
+<div class="board-wrapper">
+<div class="board-2048" style="width:62.5px;height:250px;">
+  <img class="tile" data-val="2" data-endval="2" data-begin="3" data-end="0">
+</div>
+<label onclick="mergeBoard(this)"><input type="checkbox"><span>merge up</span></label>
+</div>
+
+<p>Let's start a list of rules that we have to keep in mind. We'll keep adding
+  to it as we go.</p>
+
+<div class="quote-level">
+<h4>Rules</h4>
+<ol>
+  <li>Move up until:
+    <ul>
+      <li>There is an edge</li>
+    </ul>
+  </li>
+</ol>
+</div>
+
+<h3>Another Tile</h3>
+
+<p>Now we'll progress our algorithm by looking at a more complex board. It will
+   have two tiles of different values.</p>
+<p>What happens when we press the UP arrow? The top tile, following our rules
+   list, will move up until there is an edge. Then it's the bottom tile's turn.
+   It starts to move up... and then encounters a new situation. Instead of
+   hitting an edge, it hits another tile. What should happen?</p>
+
+<div class="board-wrapper">
+<div class="board-2048" style="width:62.5px;height:250px;">
+  <img class="tile" data-val="2" data-endval="2" data-begin="1" data-end="0">
+  <img class="tile" data-val="4" data-endval="4" data-begin="3" data-end="1">
+</div>
+<label onclick="mergeBoard(this)"><input type="checkbox"><span>merge up</span></label>
+</div>
+
+<p>The tile should stop as if it has hit an edge. It now occupies the spot
+   directly under the tile above it. Let's update our rules to reflect
+   this:</p>
+
+<div class="quote-level">
+<h4>Rules</h4>
+<ol>
+  <li>Move up until:
+    <ul>
+      <li>There is an edge</li>
+      <li>There is another tile</li>
+    </ul>
+  </li>
+</ol>
+</div>
+
+<p><span class="important">Notice:</span> This brings up a question. Which tile should we move up
+   first? If we move the bottom tile up first, it would stop when it got to the
+   tile above it. Then we'd move the tile above it, and it'd stop at the edge.
+   What's left is a gap between the two tiles! This is not what we want.
+   Therefore, we'll make an observation that we should move the tiles up in
+   order from top to bottom.</p>
+
+<h3>Merging Tiles</h3>
+
+<p>If you missed the notice right before this section definitely read it.</p>
+<p>Let's make things more complex again. In our newest board, there are two
+   tiles of the same value.</p>
+<p>What happens when we press the UP arrow? Now things are getting interesting.
+   The top tile, following our rules list, will move up until there is an edge.
+   Then it's the bottom tile's turn. It starts to move up... and then
+   encounters a new situation. It hits another tile with the same value. What
+   should happen?</p>
+
+<div class="board-wrapper">
+<div class="board-2048" style="width:62.5px;height:250px;">
+  <img class="tile" data-val="2" data-endval="4" data-begin="1" data-end="0">
+  <img class="tile" data-val="2" data-endval="0" data-begin="3" data-end="0">
+</div>
+<label onclick="mergeBoard(this)"><input type="checkbox"><span>merge up</span></label>
+</div>
+
+<p>The tiles should merge into a new tile of twice their values. Let's add a
+   rule:</p>
+
+<div class="quote-level">
+<h4>Rules</h4>
+<ol>
+  <li>Move up until:
+    <ul>
+      <li>There is an edge</li>
+      <li>There is another tile...
+        <ul>
+          <li>Different value? Do nothing.</li>
+          <li>Same value? Merge with it.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+</div>
+
+<h3>Merge Mishaps</h3>
+
+<p>Let's add one more twist of complexity. Our next board will have three tiles
+   on it: Two of the same value and one of twice their value.</p>
+<p>What happens when we press the UP arrow? The top tile, following our rules
+   list, will move up until there is an edge. Then it's the next tile's turn.
+   It moves up and encounters a tile. Does it have the same value? Yes it does,
+   so it will merge into it to make a new tile of twice its value. Then it's
+   the bottom tile's turn. It moves up, and encounters the freshly merged tile
+   above it... What should happen?</p>
+
+<div class="board-wrapper">
+<div class="board-2048" style="width:62.5px;height:250px;">
+  <img class="tile" data-val="4" data-endval="8" data-begin="1" data-end="0">
+  <img class="tile" data-val="4" data-endval="0" data-begin="2" data-end="0">
+  <img class="tile" data-val="8" data-endval="8" data-begin="3" data-end="1">
+</div>
+<label onclick="mergeBoard(this)"><input type="checkbox"><span>merge up</span></label>
+</div>
+
+<p>The third tile should stop! One of the rules of 2048 is that a tile cannot
+   be merged more than once per key press. Let's add a rule to take care of
+   this:</p>
+
+<div class="quote-level">
+<h4>Rules</h4>
+<ol>
+  <li>Move up until:
+    <ul>
+      <li>There is an edge</li>
+      <li>There is another tile...
+        <ul>
+          <li>Different value? Do nothing.</li>
+          <li>Same value?
+            <ul>
+              <li>Already merged that tile? Do nothing.</li>
+              <li>Haven't merged that tile yet? Merge with it.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+</div>
+
+<p>We have all of the parts of a perfectly fine 2048 Merging algorithm. These
+   simple rules are all it takes to power an addicting and popular game. There
+   are more things we could do: perhaps you may find it useful to keep track of
+   whether or not a tile has been moved as a result of attempting a merge (this
+   could be useful when deciding whether to add a new tile when implementing
+   a full 2048 game).</p>
+
+<br>
+
+<p>You can write this algorithm iteratively or recursively. Explore, and
+   write your own improved version now that you understand the basics.
+   There are many other ways to achieve the merge effect, and some solutions
+   can get very clever and efficient. &#9632</p>
+
+</article>
+<script src="2048_board_merge.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62538019-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

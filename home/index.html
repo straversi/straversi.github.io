@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Life Amateur Tips</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='home.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div id="wrapper">
+    <h1 id="pro-tip-title"></h1>
+    <p id="pro-tip-description"></p>
+    <p class="helper-text">The text above was submitted by a random user. Contribute your own below.</p>
+  </div>
+  <input type="checkbox" name="cGroup" value="1" id="r1" />
+  <div id="contribute">
+    <label class="checkbox" for="r1" onclick="document.getElementById('firstInput').focus();">
+      <img src="contribute.png"> <span>Contribute</span>
+    </label>
+    <span class="helper-text notice"> Note: </span><span class="helper-text">Anything you post becomes public.</span>
+    <div id="form-wrapper">
+      <form id="form-contribute">
+        <input placeholder="Title" type="text" name="Title" id="firstInput" required>
+        <input placeholder="Description" type="text" name="Description" required>
+        <button disabled>Submit</button>
+      </form>
+      <img id="submit-status">
+    </div>
+  </div>
+  <script src='identify_browser.js'></script>
+  <script src='home.js'></script>
+  <script src='submit.js'></script>
+</body>
+</html>
