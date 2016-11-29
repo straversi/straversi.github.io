@@ -1,0 +1,155 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Curses Tutorial • steven.codes</title><meta name="description" content="Last updated: November 29, 2016"><link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,600' rel='stylesheet' type='text/css'> <!--<link rel="stylesheet" href="/blog/css/main.css"> --><link rel="stylesheet" href="/blog/css/main.css?v=1.3.1"><link rel="canonical" href="http://steven.codes/blog/cs10/curses-tutorial/"><link rel="alternate" type="application/rss+xml" title="steven.codes" href="http://steven.codes/blog/feed.xml"></head><body><header class="site-header"><div class="wrapper"> <a class="site-title" href="/blog/">steven.codes</a> <a class="site-title-mobile" href="/blog/">steven<br>.codes</a><div class="new-nav"><div class="nav-box"> <!-- Index is posts --> <a href="/blog/">home</a></div><!-- add allowed header pages here. must do to avoid pagination indices showing --> <!-- add allowed header pages here. must do to avoid pagination indices showing --> <!-- add allowed header pages here. must do to avoid pagination indices showing --> <!-- add allowed header pages here. must do to avoid pagination indices showing --> <!-- add allowed header pages here. must do to avoid pagination indices showing --> <!-- add allowed header pages here. must do to avoid pagination indices showing --><div class="nav-box"> <a href="/blog/resume/">résumé</a></div><!-- add allowed header pages here. must do to avoid pagination indices showing --> <!-- add allowed header pages here. must do to avoid pagination indices showing --></div></div></header><!-- Spacer --><div class="wrapper"></div><div class="page-content"><div class="wrapper"><article class="post" itemscope itemtype="http://schema.org/BlogPosting"><header class="post-header"><h1 class="post-title" itemprop="name headline">Curses Tutorial</h1><p class="post-meta"> <time datetime="2016-11-18T03:47:36-08:00" itemprop="datePublished">Nov 18, 2016</time> <!-- <br>Read in about 6 minutes --></p></header><div class="post-content" itemprop="articleBody"><p><span class="aside">Last updated: November 29, 2016 <br /></span></p><div class="notice"> This tutorial requires a basic knowledge of Python. This tutorial will be expanded into a normal post format.</div><figure class="highlight"><figcaption>python</figcaption><pre><code class="language-python" data-lang="python"><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This is a tutorial for curses. Curses is a Python library that helps you handle</span>
+<span class="sd">keyboard input and control the displayed text on the terminal. The tutorial</span>
+<span class="sd">closely follows https://docs.python.org/3.3/howto/curses.html.</span>
+
+<span class="sd">We&#39;ll jump in with the structure of a basic curses program.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">curses</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c"># create a window object that represents the terminal window</span>
+    <span class="n">stdscr</span> <span class="o">=</span> <span class="n">curses</span><span class="o">.</span><span class="n">initscr</span><span class="p">()</span>
+    <span class="c"># Don&#39;t print what I type on the terminal</span>
+    <span class="n">curses</span><span class="o">.</span><span class="n">noecho</span><span class="p">()</span>
+    <span class="c"># React to every key press, not just when pressing &quot;enter&quot;</span>
+    <span class="n">curses</span><span class="o">.</span><span class="n">cbreak</span><span class="p">()</span>
+    <span class="c"># Enable easy key codes (will come back to this)</span>
+    <span class="n">stdscr</span><span class="o">.</span><span class="n">keypad</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+    <span class="c"># Proceed with your program</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Running some program...&quot;</span><span class="p">)</span>
+    <span class="c"># Clean up after yourself</span>
+    <span class="n">teardown</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">teardown</span><span class="p">():</span>
+    <span class="c"># reverse everything that you changed about the terminal</span>
+    <span class="n">curses</span><span class="o">.</span><span class="n">nocbreak</span><span class="p">()</span>
+    <span class="n">stdscr</span><span class="o">.</span><span class="n">keypad</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">curses</span><span class="o">.</span><span class="n">echo</span><span class="p">()</span>
+    <span class="c"># restore the terminal to its original state</span>
+    <span class="n">curses</span><span class="o">.</span><span class="n">endwin</span><span class="p">()</span>
+
+<span class="n">main</span><span class="p">()</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Unfortunately, if something goes wrong during your part of the program, it can</span>
+<span class="sd">exit without running the teardown function. That could leave your terminal in</span>
+<span class="sd">a weird state because curses messed with it. Curses has an answer to this</span>
+<span class="sd">problem that also happens to make all of the above code a lot easier to write.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">curses</span>
+<span class="kn">from</span> <span class="nn">curses</span> <span class="kn">import</span> <span class="n">wrapper</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">stdscr</span><span class="p">):</span>
+    <span class="c"># Clear screen</span>
+    <span class="n">stdscr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="c"># Proceed with your program</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Running some program&quot;</span><span class="p">)</span>
+
+<span class="c"># wrapper is a function that does all of the setup and teardown, and makes sure</span>
+<span class="c"># your program cleans up properly if it errors!</span>
+<span class="n">wrapper</span><span class="p">(</span><span class="n">main</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Using the wrapper function is much cleaner, as you can see. From now on, we&#39;ll</span>
+<span class="sd">just modify what&#39;s inside the function `main`, and assume we have the import and</span>
+<span class="sd">the wrapper set up as above.</span>
+<span class="sd">Now we can learn how to handle user input.</span>
+
+<span class="sd">When the user presses a key, we want to be able to handle that action. The first</span>
+<span class="sd">step in doing so is discovering which key was pressed. The function `getch` does</span>
+<span class="sd">this for us. It returns a value that we can compare like so:</span>
+<span class="sd">c = stdscr.getch()</span>
+<span class="sd">c == ord(&#39;a&#39;) # Do this to check for a letter key</span>
+<span class="sd">c == curses.KEY_UP # Do this to check for special keys</span>
+<span class="sd">See https://docs.python.org/3.5/library/curses.html#constants for all special</span>
+<span class="sd">key values.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">stdscr</span><span class="p">):</span>
+    <span class="n">stdscr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="c"># Store the key value in the variable `c`</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">stdscr</span><span class="o">.</span><span class="n">getch</span><span class="p">()</span>
+        <span class="c"># Clear the terminal</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">):</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="s">&quot;You pressed the &#39;a&#39; key.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">c</span> <span class="o">==</span> <span class="n">curses</span><span class="o">.</span><span class="n">KEY_UP</span><span class="p">:</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="s">&quot;You pressed the up arrow.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="s">&quot;This program doesn&#39;t know that key.....&quot;</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">What&#39;s stdscr.addstr? That&#39;s curses&#39; way of printing. Later, we&#39;ll see that it</span>
+<span class="sd">can also take arguments like y and x positions, which tell it where to print</span>
+<span class="sd">the string on the terminal. For now, it just prints wherever the cursor is.</span>
+<span class="sd">It&#39;s important to note that stdscr.clear, which is called in the block above,</span>
+<span class="sd">not only clears the terminal, but also moves the cursor back to the top left.</span>
+
+<span class="sd">You may have noticed that the program waits at stdscr.getch for the user to</span>
+<span class="sd">press a key. We call this behavior &quot;blocking&quot;, and would say that stdscr.getch</span>
+<span class="sd">blocks the flow of the program. For some programs, this is useful. For others,</span>
+<span class="sd">often in the case of games, this is not the desired behavior. Thankfully, curses</span>
+<span class="sd">allows non-blocking key input as well.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">stdscr</span><span class="p">):</span>
+    <span class="c"># Make stdscr.getch non-blocking</span>
+    <span class="n">stdscr</span><span class="o">.</span><span class="n">nodelay</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">stdscr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">stdscr</span><span class="o">.</span><span class="n">getch</span><span class="p">()</span>
+        <span class="c"># Clear out anything else the user has typed in</span>
+        <span class="n">curses</span><span class="o">.</span><span class="n">flushinp</span><span class="p">()</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="c"># If the user presses p, increase the width of the springy bar</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s">&#39;p&#39;</span><span class="p">):</span>
+            <span class="n">width</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c"># Draw a springy bar</span>
+        <span class="n">stdscr</span><span class="o">.</span><span class="n">addstr</span><span class="p">(</span><span class="s">&quot;#&quot;</span> <span class="o">*</span> <span class="n">count</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="n">direction</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="n">width</span><span class="p">:</span>
+            <span class="n">direction</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">direction</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c"># Wait 1/10 of a second. Read below to learn about how to avoid</span>
+        <span class="c"># problems with using time.sleep with getch!</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Calling stdscr.nodelay(True) made stdscr.getch() non-blocking. If Python gets to</span>
+<span class="sd">that line and the user hasn&#39;t typed anything since last time, getch will return</span>
+<span class="sd">-1, which doesn&#39;t match any key.</span>
+
+<span class="sd">What if the user managed to type more than one character since the last time</span>
+<span class="sd">getch was called? All of those characters will start to build up, and getch will</span>
+<span class="sd">return the value for each one in the order that they came. This can cause</span>
+<span class="sd">delayed reactions if you&#39;re writing a game. After getch, you can call</span>
+<span class="sd">curses.flushinp to clear out the rest of the characters that the user typed.</span>
+
+<span class="sd">This is a good place to talk more about getch.</span>
+
+<span class="sd">Every time the user presses a key, that key&#39;s value gets stored in a list. When</span>
+<span class="sd">getch is called, it goes to that list and pops that value. If the user manages</span>
+<span class="sd">to press several keys before getch is called, getch will pop the least recently</span>
+<span class="sd">added value (the oldest key pressed). The rest of the keys remain in the list!</span>
+<span class="sd">The process continues like this. So there&#39;s a problem if there is a delay</span>
+<span class="sd">between calls to getch: Key values can build up. If you don&#39;t want this to</span>
+<span class="sd">happen, curses.flushinp() clears the list of inputted values. This ensures that</span>
+<span class="sd">the next key the user presses after curses.flushinp() is what getch will return</span>
+<span class="sd">next time it is called.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">To continue learning about curses, checkout the addstr method to see how you can</span>
+<span class="sd">print strings at certain y, x coordinates. You can start here:</span>
+<span class="sd">https://docs.python.org/3/library/curses.html#window-objects</span>
+<span class="sd">&quot;&quot;&quot;</span></code></pre></figure></div><div id="disqus_thread"></div><script> var disqus_config = function () { this.page.url = "http://steven.codes/blog/cs10/curses-tutorial/"; this.page.identifier = "/cs10/curses-tutorial/"; this.page.title = "Curses Tutorial"; }; (function() { /* DON'T EDIT BELOW THIS LINE */ var d = document, s = d.createElement('script'); s.src = '//stevencodes.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })(); </script> <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></article></div></div><footer class="site-footer"><div class="wrapper"><h3 class="footer-heading"><a href="/blog/">steven.codes</a></h3><div class="footer-col-wrapper"><div class="footer-col footer-col-1"><ul class="contact-list"> <!--<li>Steven Traversi</li>--><li><a href="mailto:straversi@berkeley.edu">straversi@berkeley.edu</a></li><li> <a href="https://github.com/straversi"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg> </span><span class="username">straversi</span></a></li><li><a href="https://github.com/straversi/straversi.github.io/issues">See something wrong?</a></li></ul></div><div class="footer-col footer-col-2"><ul class="social-media-list"> <!--<li> <a href="https://twitter.com/StevenTraversi"><span class="icon icon--twitter"><svg viewBox="0 0 16 16"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg> </span><span class="username">StevenTraversi</span></a></li>--></ul></div><div class="footer-col footer-col-3"><p>I post here about some of the things I'm working on.</p></div></div></div></footer></body></html>

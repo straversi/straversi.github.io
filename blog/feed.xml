@@ -6,9 +6,187 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 11 Nov 2016 16:11:53 -0800</pubDate>
-    <lastBuildDate>Fri, 11 Nov 2016 16:11:53 -0800</lastBuildDate>
+    <pubDate>Tue, 29 Nov 2016 11:53:03 -0800</pubDate>
+    <lastBuildDate>Tue, 29 Nov 2016 11:53:03 -0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Curses Tutorial</title>
+        <description>&lt;p&gt;&lt;span class=&quot;aside&quot;&gt;Last updated: November 29, 2016
+&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;div class=&quot;notice&quot;&gt;
+  This tutorial requires a basic knowledge of Python. This tutorial will be
+  expanded into a normal post format.
+&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;This is a tutorial for curses. Curses is a Python library that helps you handle&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;keyboard input and control the displayed text on the terminal. The tutorial&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;closely follows https://docs.python.org/3.3/howto/curses.html.&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;We&amp;#39;ll jump in with the structure of a basic curses program.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;curses&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# create a window object that represents the terminal window&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Don&amp;#39;t print what I type on the terminal&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;noecho&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# React to every key press, not just when pressing &amp;quot;enter&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cbreak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Enable easy key codes (will come back to this)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keypad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Proceed with your program&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Running some program...&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Clean up after yourself&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;teardown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;teardown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# reverse everything that you changed about the terminal&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nocbreak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keypad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# restore the terminal to its original state&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endwin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;Unfortunately, if something goes wrong during your part of the program, it can&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;exit without running the teardown function. That could leave your terminal in&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;a weird state because curses messed with it. Curses has an answer to this&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;problem that also happens to make all of the above code a lot easier to write.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;curses&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;curses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Clear screen&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Proceed with your program&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Running some program&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# wrapper is a function that does all of the setup and teardown, and makes sure&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# your program cleans up properly if it errors!&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;Using the wrapper function is much cleaner, as you can see. From now on, we&amp;#39;ll&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;just modify what&amp;#39;s inside the function `main`, and assume we have the import and&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;the wrapper set up as above.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;Now we can learn how to handle user input.&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;When the user presses a key, we want to be able to handle that action. The first&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;step in doing so is discovering which key was pressed. The function `getch` does&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;this for us. It returns a value that we can compare like so:&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;c = stdscr.getch()&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;c == ord(&amp;#39;a&amp;#39;) # Do this to check for a letter key&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;c == curses.KEY_UP # Do this to check for special keys&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;See https://docs.python.org/3.5/library/curses.html#constants for all special&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;key values.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# Store the key value in the variable `c`&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# Clear the terminal&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;You pressed the &amp;#39;a&amp;#39; key.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KEY_UP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;You pressed the up arrow.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;This program doesn&amp;#39;t know that key.....&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;What&amp;#39;s stdscr.addstr? That&amp;#39;s curses&amp;#39; way of printing. Later, we&amp;#39;ll see that it&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;can also take arguments like y and x positions, which tell it where to print&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;the string on the terminal. For now, it just prints wherever the cursor is.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;It&amp;#39;s important to note that stdscr.clear, which is called in the block above,&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;not only clears the terminal, but also moves the cursor back to the top left.&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;You may have noticed that the program waits at stdscr.getch for the user to&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;press a key. We call this behavior &amp;quot;blocking&amp;quot;, and would say that stdscr.getch&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;blocks the flow of the program. For some programs, this is useful. For others,&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;often in the case of games, this is not the desired behavior. Thankfully, curses&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;allows non-blocking key input as well.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# Make stdscr.getch non-blocking&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nodelay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# Clear out anything else the user has typed in&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flushinp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# If the user presses p, increase the width of the springy bar&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;p&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# Draw a springy bar&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# Wait 1/10 of a second. Read below to learn about how to avoid&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# problems with using time.sleep with getch!&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;Calling stdscr.nodelay(True) made stdscr.getch() non-blocking. If Python gets to&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;that line and the user hasn&amp;#39;t typed anything since last time, getch will return&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;-1, which doesn&amp;#39;t match any key.&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;What if the user managed to type more than one character since the last time&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;getch was called? All of those characters will start to build up, and getch will&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;return the value for each one in the order that they came. This can cause&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;delayed reactions if you&amp;#39;re writing a game. After getch, you can call&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;curses.flushinp to clear out the rest of the characters that the user typed.&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;This is a good place to talk more about getch.&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;Every time the user presses a key, that key&amp;#39;s value gets stored in a list. When&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;getch is called, it goes to that list and pops that value. If the user manages&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;to press several keys before getch is called, getch will pop the least recently&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;added value (the oldest key pressed). The rest of the keys remain in the list!&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;The process continues like this. So there&amp;#39;s a problem if there is a delay&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;between calls to getch: Key values can build up. If you don&amp;#39;t want this to&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;happen, curses.flushinp() clears the list of inputted values. This ensures that&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;the next key the user presses after curses.flushinp() is what getch will return&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;next time it is called.&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;To continue learning about curses, checkout the addstr method to see how you can&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;print strings at certain y, x coordinates. You can start here:&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;https://docs.python.org/3/library/curses.html#window-objects&lt;/span&gt;
+&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+</description>
+        <pubDate>Fri, 18 Nov 2016 03:47:36 -0800</pubDate>
+        <link>http://steven.codes/blog/cs10/curses-tutorial/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/cs10/curses-tutorial/</guid>
+        
+        <category>published</category>
+        
+        
+        <category>cs10</category>
+        
+      </item>
     
       <item>
         <title>Face Morphing</title>
@@ -597,25 +775,6 @@ and get this on your page:&lt;/p&gt;
         <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
         <link>http://steven.codes/blog/net.js/</link>
         <guid isPermaLink="true">http://steven.codes/blog/net.js/</guid>
-        
-        <category>project</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Beacon</title>
-        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
-
-&lt;p&gt;Link coming soon.&lt;/p&gt;
-
-&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
-
-&lt;p&gt;Also coming soon (sorry).&lt;/p&gt;
-</description>
-        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
-        <link>http://steven.codes/blog/beacon/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/beacon/</guid>
         
         <category>project</category>
         
