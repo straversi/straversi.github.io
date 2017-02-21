@@ -28,6 +28,7 @@ body {
 #everything {
 	position: relative;
 	top: 50%;
+	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
 
@@ -42,6 +43,7 @@ body {
 	height: 600px;
 	top: 50%;
 	left: 0;
+	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
 canvas {
@@ -101,6 +103,7 @@ canvas {
 .gust path {
 	stroke-dasharray: 100 1300; /* bigger disparity => faster */
 	stroke-dashoffset: 0;
+	-webkit-animation: dash 3s linear infinite;
 	animation: dash 3s linear infinite;
 }
 @keyframes dash {
@@ -149,6 +152,7 @@ canvas {
 @media (max-height: 400px) {
 	#everything {
 		top: 0px;
+		-webkit-transform: translateY(-50%);
 		transform: none;
 	}
 }
