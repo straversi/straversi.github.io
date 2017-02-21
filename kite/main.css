@@ -20,6 +20,7 @@ html {
 	height: 100%;
 }
 body {
+	height: 100%;
   background-color: #F85F73;
   padding: 0 30px 40px 30px;
   position: absolute;
@@ -132,13 +133,13 @@ canvas {
 	color: #182D5F;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px), only screen and (max-device-width: 600px) {
 	body {
 		padding-left: 10px;
 		padding-right: 10px;
 	}
 }
-@media (max-width: 517px) {
+@media (max-width: 517px), only screen and (max-device-width: 517px) {
 	#viewport {
 		right: 0;
 		width: 517px;
@@ -149,14 +150,14 @@ canvas {
 		left: auto;
 	}
 }
-@media (max-height: 400px) {
+@media (max-height: 400px), only screen and (max-device-height: 400px) {
 	#everything {
 		top: 0px;
 		-webkit-transform: none;
 		transform: none;
 	}
 }
-@media (max-height: 580px) {
+@media (max-height: 580px), only screen and (max-device-height: 580px) {
 	#viewport {
 		top: 300px;
 	}
