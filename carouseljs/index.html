@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Carousel Testing</title>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
+  <style>
+    body, html { margin:0; padding: 0; }
+    .carousel { height:200px; position: relative; z-index:1; }
+    .carousel-container { height:100%; position:relative; white-space: nowrap; overflow:hidden; z-index: 1; }
+    .carousel-piece {
+      display:inline-block;
+      vertical-align: top;
+      position:relative;
+      height: calc(100% - 16px);
+      width: calc(100% - 16px);
+      padding: 8px 8px 16px 8px;
+      /*border: 1px solid black;*/
+    }
+    .carousel-tracker {
+      text-align: center;
+      background-color: white;
+      overflow: hidden;
+      -webkit-filter: contrast(20) brightness(1);
+      filter: contrast(20) brightness(1);
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      padding: 0;
+      margin: 0;
+    }
+    .carousel-dot {
+      display: inline-block;
+      background-color: black;
+      width: 8px;
+      height: 8px;
+      border-radius: 4px;
+      -webkit-filter: blur(3px);
+      filter: blur(3px);
+      transform: translate3d(0,0,0);
+      -webkit-transform: translate3d(0,0,0);
+    }
+    .carousel-select {
+      display: inline-block;
+      position: relative;
+      top: 1px;
+      background-color: #434343;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+      -webkit-filter: blur(3px);
+      filter: blur(3px);
+      z-index: 1;
+    }
+    .carousel-spacer {
+      display: inline-block;
+      background-color: white;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+    }
+    .bg-image {
+      height: 100%;
+      min-height: 300px;
+      position: absolute;
+      -webkit-transform: translate(0%, -50%);
+      -moz-transform: translate(0%, -50%);
+      -ms-transform: translate(0%, -50%);
+      -o-transform: translate(0%, -50%);
+      transform: translate(0%, -50%);
+      top:50%;
+      right: -20%;
+      opacity: .2;
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel">
+    <div class="carousel-container">
+      <img class="bg-image carousel-parallax" data-z="20" src="../assets/icons/python.svg">
+      <div class="carousel-piece">Hello</div><!--
+   --><div class="carousel-piece">There<br>SDFLKJ</div><!--
+   --><div class="carousel-piece">Neat</div><!--
+   --><div class="carousel-piece">SKDJFLD</div>
+   </div>
+   <ul class="carousel-tracker">
+     <li class="carousel-select"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-spacer"></li>
+   </ul>
+ </div>
+  <div class="carousel">
+    <div class="carousel-container">
+      <div class="carousel-piece">Second</div>
+    </div>
+    <div class="carousel-tracker">
+      <div class="carousel-select"></div>
+      <div class="carousel-dot"></div>
+      <div class="carousel-dot"></div>
+    </div>
+  </div>
+</div>
+  <script src="assets/hammer.min.js"></script>
+  <script src="carousel.js"></script>
+</body>
+</html>

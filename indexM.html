@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Steven Traversi | The Programmer</title>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1" />
+  <style>
+    html, body { margin:0; padding:0; }
+    body { font-size:7vmin; font-family:sans-serif; position: relative; }
+    h1 { font-size: 1.5em; text-align: center; margin: 15px 0px 5px 0px; }
+    h2 { font-size: .8em; text-align: center; font-weight: 400; margin: 5px 0px 5px 0px; }
+    /* Carousel */
+    .carousel-piece, .card { font-size:.9em; }
+    .carousel-piece p, .card p { margin:0; }
+    .carousel-piece ul, .card ul { margin:0; padding:0 0 0 8px; list-style-type:none; color:rgb(50,50,50); font-size:0.95em;}
+    .carousel-piece ul > li::before, .card ul > li::before { content:'- '; }
+    h3 { font-size:1em; margin:0; padding:0; }
+
+    h6 { margin: 0; }
+    .vr { display: inline-block; height:100%; border:1px solid black; vertical-align: top; }
+    .quick-look-image { height:1.1em; vertical-align: top; }
+    .material-shadow {
+      -webkit-box-shadow:rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+      -moz-box-shadow:rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+      -ms-box-shadow:rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+      -o-box-shadow:rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+      box-shadow:rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    }
+    .flat-outline-top {
+      border-top:1px solid rgb(238,238,238);
+    }
+    .card {
+      position: relative;
+      /*overflow: auto;*/ /* uncomment for fun */
+      overflow: hidden;
+      padding: 8px;
+      width: calc(100% - 16px);
+    }
+    .card-bg-image {
+      height: 100%;
+      min-height: 200px;
+      position: absolute;
+      -webkit-transform: translate(0%, -50%);
+      -moz-transform: translate(0%, -50%);
+      -ms-transform: translate(0%, -50%);
+      -o-transform: translate(0%, -50%);
+      transform: translate(0%, -50%);
+      top:50%;
+      right: 0;
+      opacity: .2;
+    }
+    .translucent-bg {
+      background-image:linear-gradient(200deg, rgba(0, 0, 0, .1) 10%, rgba(0, 0, 0, .3) 100%);
+    }
+
+    p { margin: 5px 0px 5px 0px; }
+    .sub-paragraph { font-size: .9em; }
+    table.title { font-size: .67em; font-weight: 700; width:100%; border-spacing: 0; }
+    table.title td { padding: 8px; }
+    table.title td:first-of-type { border-right: 1px solid rgb(238,238,238); white-space: nowrap; }
+    table.title td:last-of-type { width: 100%; } /* This with first-of-type nowrap minimizes first cell spacing */
+    .test-left {
+      left:calc(-100%);
+    }
+    a { text-decoration:none; color:black; }
+
+    /* Drop-down specifics */
+    .drop-down { position:fixed; z-index:10; background-color:white; top:0; left:0; width:100%; -webkit-transform:translate3d(0,-100%,0); transform:translate3d(0,-100%,0); transition:all 0.1s linear;}
+    .close-button { width:20px; }
+  </style>
+  <link href="carouseljs/carousel.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Title -->
+  <div class="center-inline-content">
+    <h1>Steven Traversi</h1>
+    <h2>CS Student and TA at UC Berkeley</h2>
+  </div>
+
+<!-- Languages -->
+  <table class="title material-shadow flat-outline-top">
+    <tr>
+      <td>language experience</td>
+      <td><img src="assets/icons/view.svg" class="quick-look-image"> <a href="StevenTraversiResume.pdf"><span style="text-decoration:underline;">Résumé</span></a></td>
+    </tr>
+  </table>
+  <!-- Python -->
+  <div class="carousel">
+    <div class="carousel-container material-shadow">
+      <img class="bg-image carousel-parallax" data-z="20" src="assets/icons/python.svg">
+      <div class="carousel-piece">
+        <h3>Search Engine Intern</h3>
+        <ul>
+          <li>Python multi-threaded web scrapers</li>
+          <li>Data processing</li>
+        </ul>
+      </div><!--
+   --><div class="carousel-piece">
+        <h3>CS10 Student Instructor</h3>
+        <ul>
+          <li>Teach introductory Python</li>
+          <li>Develop course material</li>
+        </ul>
+      </div>
+    </div>
+    <ul class="carousel-tracker">
+      <li class="carousel-select"></li>
+      <li class="carousel-dot"></li>
+      <li class="carousel-dot"></li>
+      <li class="carousel-spacer"></li>
+    </ul>
+  </div>
+  <!-- Swift -->
+  <div class="carousel">
+    <div class="carousel-container material-shadow">
+      <img class="bg-image carousel-parallax" data-z="20" src="assets/icons/swift.svg">
+      <div class="carousel-piece">
+        <h3>Packd App</h3>
+        <ul>
+          <li>Interface with RESTful API</li>
+          <li>Designed UI</li>
+          <li>
+            <span onclick="if ((/Android/).test(navigator.userAgent)) {
+                document.location = 'https://play.google.com/store/apps/details?id=com.packd.packd';
+              } else {
+                document.location = 'https://itunes.apple.com/us/app/packd/id1024333170?ls=1&mt=8';
+              }" style="text-decoration:underline;" >Available on the App Store</span>
+          </li>
+        </ul>
+      </div><!--
+   --><div class="carousel-piece">
+        <h3>GifGifGif</h3>
+        <ul>
+          <li>Search Google for Gifs</li>
+          <li>Copy them to clipboard easily</li>
+        </ul>
+      </div>
+   </div>
+   <ul class="carousel-tracker">
+     <li class="carousel-select"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-dot"></li>
+     <li class="carousel-spacer"></li>
+   </ul>
+ </div>
+ <!-- JavaScript> -->
+ <div class="carousel">
+   <div class="carousel-container material-shadow">
+     <img class="bg-image carousel-parallax" data-z="20" src="assets/icons/js.svg">
+     <div class="carousel-piece">
+       <h3>Carousel.js</h3>
+       <ul>
+         <li>Exhibited here</li>
+         <li>Object Oriented</li>
+       </ul>
+     </div><!--
+  --><div class="carousel-piece">
+       <h3>Typer.js</h3>
+       <ul>
+         <li><a href="http://steven.codes/typerjs">steven.codes/typerjs</a></li>
+         <li>Interface for typing effect</li>
+       </ul>
+     </div><!--
+  --><div class="carousel-piece">
+       <h3>Net.js</h3>
+       <ul>
+         <li>Small graphics library</li>
+         <li>Reactive nodes and edges</li>
+       </ul>
+     </div>
+  </div>
+  <ul class="carousel-tracker">
+    <li class="carousel-select"></li>
+    <li class="carousel-dot"></li>
+    <li class="carousel-dot"></li>
+    <li class="carousel-dot"></li>
+    <li class="carousel-spacer"></li>
+  </ul>
+</div>
+
+<!-- Experience -->
+  <table class="title material-shadow flat-outline-top">
+    <tr>
+      <td>team experience</td>
+      <!-- <td><img src="assets/icons/view.svg" class="quick-look-image"> QuickLook</td> -->
+    </tr>
+  </table>
+  <!-- BJC -->
+  <div class="card material-shadow">
+    <img class="card-bg-image" src="assets/icons/snap-cs10.svg">
+    <h3>CS10 (BJC)</h3>
+    <ul>
+      <li>TA at Cal</li>
+      <li>Teach discussion + lab and develop curriculum</li>
+    </ul>
+  </div>
+  <!-- Packd -->
+  <div class="card material-shadow">
+    <img class="card-bg-image" src="assets/icons/packd.png">
+    <h3>Packd</h3>
+    <ul>
+      <li>Mobile developer with the startup Packd</li>
+    </ul>
+  </div>
+  <!-- Fanatics -->
+  <div class="card material-shadow">
+    <img class="card-bg-image" src="assets/icons/fanatics.png">
+    <h3>Fanatics</h3>
+    <ul>
+      <li>Intern with the search engine team at the sports retail company Fanatics</li>
+    </ul>
+  </div>
+  <!-- TESTING -->
+  <!-- Drop-down -->
+  <div class="drop-down" id="drop-down-1">
+    <img src="assets/icons/close.svg" alt="Close button" class="close-button" id="drop-down-1-close">
+    <h3>Languages</h3>
+    <ul>
+      <li>Python</li>
+      <li>Swift</li>
+      <li>JavaScript</li>
+      <li>Java</li>
+    </ul>
+    <h3>Familiar Frameworks</h3>
+    <ul>
+      <li>Django</li>
+      <li>Ruby on Rails</li>
+    </ul>
+    <h3>Web extras</h3>
+    <ul>
+      <li>HTML5</li>
+      <li>CSS3</li>
+    </ul>
+  </div>
+  <!-- <p id="drop-down-1-open">Drop down test. Coming soon.</p> -->
+
+  <!-- Footers -->
+  <h5 style="color:rgb(215, 23, 13);text-align:center;margin-bottom:15px;">Under construction! Oct 27</h5>
+  <p style="text-align:center">
+    <a href="https://github.com/straversi"><img src="assets/icons/github.png" width="22%"></a>
+  </p>
+
+  <!-- Scripts -->
+  <script src="assets/scripts/hammer.min.js"></script>
+  <script src="carouseljs/carousel.js"></script>
+  <script>
+    document.getElementById("drop-down-1-open").addEventListener("click", function() {
+      var element = document.getElementById("drop-down-1")
+      element.style.setProperty("-webkit-transform", "translate3d(0,0,0)");
+      element.style.setProperty("transform", "translate3d(0,0,0)");
+    }, false);
+    document.getElementById("drop-down-1-close").addEventListener("click", function() {
+      var element = document.getElementById("drop-down-1")
+      element.style.setProperty("-webkit-transform", "translate3d(0,-100%,0)");
+      element.style.setProperty("transform", "translate3d(0,-100%,0)");
+    }, false);
+  </script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62538019-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+</body>
+</html>
