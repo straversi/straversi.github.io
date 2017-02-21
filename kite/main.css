@@ -95,8 +95,6 @@ canvas {
 }
 
 .gust {
-	width: 350px;
-	height: 350px;
 	position: absolute;
 	left: 200px;
 	top: 75px;

@@ -1,16 +1,18 @@
-all:
-	rm -rf blog/*
-	rm -rf projects/*
-	jekyll _3.1.6_ build --source ../blog/ --destination blog/
-	jekyll _3.1.6_ build --source ../projects/ --destination projects/
+all: blog projects index
 
-the_blog:
+blog:
 	rm -rf blog/*
 	jekyll _3.1.6_ build --source ../blog/ --destination blog/
 
-the_projects:
+projects:
 	rm -rf projects/*
 	jekyll _3.1.6_ build --source ../projects/ --destination projects/
+
+index:
+	rm index.html
+	rm -rf kite/*
+	cp ../kite/index.html .
+	cp -r ../kite/kite/* ./kite
 
 clean:
 	rm -rf blog/*
