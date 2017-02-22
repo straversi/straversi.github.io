@@ -13,6 +13,7 @@ index:
 	rm -rf kite/*
 	cp ../kite/index.html .
 	cp -r ../kite/kite/* ./kite
+	wget --post-data="input=`cat ./kite/main.css`" --output-document=./kite/main.css https://cssminifier.com/raw
 
 clean:
 	rm -rf blog/*
