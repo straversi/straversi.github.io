@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+
+#splash {
+  width: 100%;
+  background-image: url("./images/fireworks.jpg");
+  background-position: 0px -50px ;
+  color: white;
+  height: 300px;
+  background-size: 100%;
+  position: relative;
+}
+#splash #darkener {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: calc(100% - 80px); /* subtract own padding-top */
+  background-color: rgba(100, 100, 100, 0.6);
+  text-align: center;
+  padding-top: 80px;
+}
+
+
+* { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
+html, body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+}
+#content {
+  max-width: 800px;
+  position: relative;
+  margin: 0 auto;
+  padding: 8px;
+  font-size: 15px;
+}
+p {
+  line-height: 1.3em;
+}
+figure {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 10px;
+  position: relative;
+  vertical-align: top;
+}
+figure img, figure video {
+  max-width: 100%;
+  max-height: 100%;
+}
+figcaption {
+  padding: 4px 10px;
+  font-size: 0.9em;
+  font-style: italic;
+}
+.full img {
+  width: 100% !important;
+}
+.half {
+  width: calc(50% - 10px) !important;
+}
+.third {
+  width: calc(33.33% - 3px) !important;
+}
+.fourth {
+  width: calc(25% - 5px) !important;
+}
+.video {
+  text-align: center;
+  iframe {
+    display: inline-block;
+  }
+}
+.align-top {
+  vertical-align: top;
+}
+hr {
+  border: none;
+  border-bottom: 1px solid black;
+}
+code {
+  font-family: 'Menlo', 'Consolas', monospace;
+}
+</style>
+<title>Final Project Proposal</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro" rel="stylesheet">
+</head>
+
+<!-- IMAGE EXAMPLE
+<div>
+  <figure class="half">
+    <img src=""/>
+    <figcaption></figcaption>
+  </figure>
+</div> -->
+
+<body>
+
+<div id="splash">
+  <div id="darkener">
+    <h1>Baby You're a Firework</h1>
+    <h2>by Steven Traversi and Carlos Flores</h2>
+    <p>CS184 Final Project Proposal</p>
+  </div>
+</div>
+
+<div id="content">
+  <h2>Summary</h2>
+  <p>
+    In this project we will try to simulate fireworks in virtual reality. We will be developing on an Oculus Rift with Unity.
+  </p>
+
+  <h2>Problem Description</h2>
+  <p>
+    We will try to develop a model for simulating a realistic exploding firework. Our model will focus on particle physics. The first major component of the project will be creating a particle simulator tailored to simulating fireworks. This will involve gravity, air resistance forces, momentum transfer, and the ability to change particle colors. The second major component will be creating custom behaviors for the particles that will create the image of beautiful fireworks. This may include custom particle trail behaviors, for example.
+  </p>
+
+  <h2>Goals and Deliverables</h2>
+  <h3>What we plan to deliver</h3>
+    <p>
+      We plan to deliver a working firework simulator with the following components implemented:
+      <ul>
+        <li>[1, 3] particle physics (general particle behavior)</li>
+        <li>[2] momentum transfer (explosion)</li>
+        <li>[1, 3] realistic trajectories of particle trails</li>
+        <li>[4] realistic particle decomposition (firework dying)</li>
+      </ul>
+    </p>
+    <div>
+      <figure class="fourth">
+        <img src="./images/goal.png"/>
+        <figcaption>A breakdown of what we imagine to be important for simulating fireworks.</figcaption>
+      </figure>
+    </div>
+    <p>
+      We imagine that it will be difficult to quantitatively analyze the correctness of the simulation. We may have to rely on visual accounts of third parties to collect unbiased opinion of accuracy.
+      <br>
+      With regard to the particle simulator: it should be possible to do an error analysis between the smooth projected path and the actual path our particles take. Simulations are time-step based and therefore produce error in the paths.
+    </p>
+  <h3>What we hope to deliver</h3>
+  <p>
+    We hope to deliver components that will improve the realism of the simulated fireworks. These may include:
+    <ul>
+      <li>more advanced particle trails (twirling behavior, for example)</li>
+      <li>sounds</li>
+      <li>method of toggling live simulation (interaction)</li>
+    </ul>
+  </p>
+  <h2>Schedule</h2>
+  <p>
+    <b>Weekly Tasks</b>
+    <ol>
+      <li>Get objects to appear and move in Unity using controller scripts.</li>
+      <li>Finish the physics simulator and test it on small particles. Try dropping objects, launching objects, exploding objects.</li>
+      <li>Get a basic particle trail working. Get particle decomposition from a probability distribution working.</li>
+      <li>Fine-tune particle trails. Make adjustments in pursuit of realism. Debugging.</li>
+    </ol>
+  </p>
+
+  <h2>Resources</h2>
+  <p>
+    <ul>
+      <li>Class resources for writing itegration strategies for the physics simulator.</li>
+      <li>Oculus Rift DK2 system and Unity 4.</li>
+      <li>Papers on generating particle trails efficiently.</li>
+    </ul>
+  </p>
+  <p>We are so excited to get started on this simulation! Putting on the VR goggles and viewing the beautiful fireworks will be very satisfying.</p>
+</body>
+</div>
+</html>
