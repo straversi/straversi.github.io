@@ -6,9 +6,354 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 20 Jan 2017 13:19:50 -0800</pubDate>
-    <lastBuildDate>Fri, 20 Jan 2017 13:19:50 -0800</lastBuildDate>
+    <pubDate>Thu, 18 May 2017 22:24:21 -0700</pubDate>
+    <lastBuildDate>Thu, 18 May 2017 22:24:21 -0700</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Cloth Simulation</title>
+        <description>&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;How would you approach making a realistic animation of a waving flag? Would you study a video of a real flag and draw each frame? That would take a long time. Would you develop a mathematical model that describes how flag surfaces move? It may be difficult to bridge the last gap between that ‘fake’ look and realism.&lt;/p&gt;
+
+&lt;p&gt;A good way to approach it is to describe the cloth’s physical properties, the world, and physics the best we can, and “press play”. That is to say, create a simulation of the flag. The problem is open ended: How do we model the cloth? What information about the environment is important? I explored these ideas while creating a cloth simulation.&lt;/p&gt;
+
+&lt;h2 id=&quot;masses-and-springs&quot;&gt;Masses and Springs&lt;/h2&gt;
+
+&lt;p&gt;A good model for a cloth is a bunch of small masses and springs. A square cloth is broken up into a grid of points, instead of some continuous representation. This way, we can apply forces to a finite number of objects. Further, this makes modeling a cloth’s elastic properties easier. We can connect the point mass objects with a system of tiny springs that keep the cloth from contorting in an unnatural way. Springs act as a constraint on distance: applying a force to push away objects that are too close, or applying tension between objects that are too far.&lt;/p&gt;
+
+&lt;p&gt;I incorporated three types of springs into the cloth model: structural, shearing, and bending.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Structural&lt;/strong&gt; springs exist between each mass in a row and column fashion. They make sure the overall topology of the cloth remains consistent. They also prevent neighboring masses from being pulled apart or pushed together.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/1_figure_structural.jpg &quot; /&gt;
+  &lt;figcaption&gt;Just structural constraints.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Shearing&lt;/strong&gt; springs reach between diagonal masses. These prevent the entire grid from collapsing to one side, like parallelogram collapsing onto its side.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;figure class=&quot;half align-bot&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/1_figure_shearing_square.jpg &quot; /&gt;
+  &lt;figcaption&gt;Without diagonal distance constraints or angle constraints, a square can collapse sideways.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half align-bot&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/1_figure_shearing.jpg &quot; /&gt;
+  &lt;figcaption&gt;Adding shearing springs that connect masses diagonally prevents this.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Lastly, &lt;strong&gt;bending&lt;/strong&gt; springs span two masses, and prevent the cloth from creasing perfectly in half like an infinitely thin piece of paper, which would be unrealistic. In the following image, the effect of bending constraints can be seen.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/1_figure_bending.jpg &quot; /&gt;
+  &lt;figcaption&gt;Cloth is hanging over a surface, viewed from the side. &lt;b&gt;a&lt;/b&gt; is under high compression. &lt;b&gt;b&lt;/b&gt; is under moderate compression. &lt;b&gt;c&lt;/b&gt; is under low compression.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The following image shows the springs as white lines in an example cloth. A shaded version of this cloth will be used in the simulations.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;figure align=&quot;middle&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/1_cloth.png &quot; /&gt;
+  &lt;figcaption&gt;View of a cloth in the simulator with all springs.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;simulation-via-numerical-integration&quot;&gt;Simulation via numerical integration&lt;/h2&gt;
+
+&lt;p&gt;I implemented verlet integration to simulate the cloth. Verlet integration is a method of updating the point mass positions based on the forces acting on them at the given instant. It scales with the speed of the simulation, and can be damped. At each step of the simulation, verlet integration looks at every point mass in the system, aggregates the forces that are acting on it and moves the point mass to a new position based on these forces. In this case, the important forces are due to gravity and springs.&lt;/p&gt;
+
+&lt;h3&gt;Default parameters&lt;/h3&gt;
+&lt;p&gt;Here is what a &lt;em&gt;4 corners pinned&lt;/em&gt; cloth looks like with the default parameters. You can reset the simulation by pressing the &quot;reset&quot; button.&lt;/p&gt;
+&lt;p&gt;&lt;button class=&quot;reset&quot; id=&quot;default&quot;&gt;reset&lt;/button&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;figure class=&quot;full&quot;&gt;
+  &lt;video class=&quot;default&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/2_default_large.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h3&gt;Varying spring constant&lt;/h3&gt;
+
+&lt;p&gt;A spring’s strength is determined by its &lt;em&gt;spring constant&lt;/em&gt;, denoted as &lt;em&gt;ks&lt;/em&gt;. This number determines how strongly the strings pull on the masses in the cloth. Below, I simulate two cloths: one with a low ks, and one with a high ks. The normal ks is 5000.&lt;/p&gt;
+
+&lt;p&gt;&lt;button class=&quot;reset&quot; id=&quot;ks&quot;&gt;reset both&lt;/button&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;ks&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/2_ks1000.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;ks = 1000&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;ks&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/2_ks25000.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;ks = 25000&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;In the low ks simulation (on the left), the cloth dips much further down than the high ks simulation (on the right). Before it comes to rest, waves in the cloth are also much more pronounced in the low ks simulation. The high ks simulation comes to rest before the low ks simulation.&lt;/p&gt;
+
+&lt;h3&gt;Varying density&lt;/h3&gt;
+&lt;p&gt;The &lt;em&gt;density&lt;/em&gt; of the cloth changes the mass of each point that the cloth is comprised of. Changing the density of the cloth changes the degree to which it is affected by forces. Below, I simulate low and high density cloths. The default density is 15.&lt;/p&gt;
+&lt;p&gt;&lt;button class=&quot;reset&quot; id=&quot;density&quot;&gt;reset both&lt;/button&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;density&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/2_density3.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;density = 3&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;density&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/2_density75.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;density = 75&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;One thing to quickly notice is that the high density cloth behaves like the low ks cloth, and the low density cloth behaves like the high ks cloth. The only difference separating the changes in ks and density is that changes in ks affects the spring force contribution, while changes in density affect both spring and environmental force contributions.&lt;/p&gt;
+
+&lt;h3&gt;Varying damping&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Damping&lt;/em&gt; controls how quickly our simulation loses energy. It is implemented in the verlet integration step of the simulation. Below, we simulate a cloth with low damping and high damping. The default damping value is 0.2.&lt;/p&gt;
+&lt;p&gt;&lt;button class=&quot;reset&quot; id=&quot;damping&quot;&gt;reset both&lt;/button&gt;&lt;/p&gt;
+&lt;div&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;damping&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/2_damping0.4.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;damping = 0.4&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;damping&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/2_damping1.0.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;damping = 1.0&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;The low damping simulation takes a very long time to come to rest. Small changes ripple throughout the length of the cloth well after their inception. In the over-damped simulation, the opposite occurs: the cloth smoothly falls into a resting position, with virtually no waves propagating. Notice, however, that the over-damped simulation does not come to rest in the exactly the same way as the default simulation! (scroll back up to see the default simulation).&lt;/p&gt;
+
+&lt;h2&gt;3: Handling collisions with other objects&lt;/h2&gt;
+
+&lt;p&gt;To create a collision with a sphere, the following steps are taken:
+&lt;ol&gt;
+  &lt;li&gt;If a point mass is inside a sphere object:&lt;/li&gt;
+  &lt;li&gt;Bump it away from the sphere&#39;s origin to the surface.&lt;/li&gt;
+  &lt;li&gt;Correct its distance from its last position by a little bit, influenced by some &lt;em&gt;friction&lt;/em&gt; value of the sphere.&lt;/li&gt;
+&lt;/ol&gt;
+This algorithm allows the cloth to avoid being inside of another object. I implemented the algorithm and simulated a cloth falling over a sphere, varied across &lt;em&gt;ks&lt;/em&gt; values.
+&lt;/p&gt;
+&lt;h3&gt;Collision with a sphere&lt;/h3&gt;
+&lt;div&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/3_ks500.png &quot; /&gt;
+  &lt;figcaption&gt;ks = 500&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/3_ks5000.png &quot; /&gt;
+  &lt;figcaption&gt;ks = 5000&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;third&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/3_ks50000.png &quot; /&gt;
+  &lt;figcaption&gt;ks = 50000&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;The first cloth looks like a very fine material, such as silk. The last cloth looks like a stiff material, such as felt. This is due to the varied spring constant values. For example, the material on the right (felt-like) has a high spring constant, so the cloth is more resistant to shearing and bending.&lt;/p&gt;
+
+&lt;h3&gt;Collision with a plane&lt;/h3&gt;
+&lt;p&gt;A similar process is implemented to detect collisions with planes. The test to see whether a collision occurs involves testing whether a point mass moves to the other side of a plane on a given simulation step. Below is the result of a cloth falling onto a plane and colliding with it.&lt;/p&gt;
+&lt;div&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/3_plane.png &quot; /&gt;
+  &lt;figcaption&gt;This cloth has landed on a plane.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;4: Handling self-collisions&lt;/h2&gt;
+&lt;p&gt;To handle self-collisions, point masses in the cloth need to be tested against each other to see if their positions are smaller than double the thickness of the cloth. The naive solution would test every point against every other point, and this would be O(n^2). We can do better.&lt;/p&gt;
+&lt;p&gt;To get better than quadratic in the number of point masses, we can test point masses only against their spatial neighbors. To do this, we first place all point masses into buckets based on their location in 3D space. This is called &lt;em&gt;Spatial Hashing&lt;/em&gt;. We treat 3D space as a grid of boxes and iterate over every point mass, determining which box each of them lies in. Then, we go through all boxes, and test the all of the points in each against each other. This way, we only test a point against those in the same box, instead of against ALL other points. This saves a lot of time, and for a typical cloth simulation, will be O(n).&lt;/p&gt;
+&lt;p&gt;Spatial hashing involves the ability to uniquely identify each box that we&#39;ve divided the 3D space with. The way I chose to do this is as follows:
+
+&lt;ol&gt;
+  &lt;li&gt;Figure out the coordinates of the position in question in the new &quot;box-space&quot;.&lt;/li&gt;
+  &lt;li&gt;Multiple each component of the new basis position by a large prime and XOR them together.&lt;/li&gt;
+&lt;/ol&gt;
+This is a simple but somewhat common hashing scheme.
+
+&lt;p&gt;Below, I&#39;ve simulated a vertical falling cloth that collides with itself.&lt;/p&gt;
+
+&lt;button class=&quot;reset&quot; id=&quot;4_default_w&quot;&gt;reset&lt;/button&gt;
+&lt;div&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;4_default_w&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/4_default_w.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;As we can see, the cloth folds over itself instead of moving through itself. There are only a couple of frames in which the cloth intersects with itself, and these situations are infrequent. The reason this happens is because of the spatial hashing scheme: Imagine two points that are very close to each other, but fall into separate 3D boxes because their positions are near those boxes&#39; borders. They would not get tested against each other for closeness! I revisit this problem later in part 5.&lt;/p&gt;
+
+&lt;h3&gt;Varying density&lt;/h3&gt;
+&lt;p&gt;Below, I vary the density of the cloth, then simulate the self-collision situation.&lt;/p&gt;
+&lt;button class=&quot;reset&quot; id=&quot;4_density&quot;&gt;reset both&lt;/button&gt;
+&lt;div&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;4_density&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/4_density3.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;density = 3&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;4_density&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/4_density75.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;density = 75&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;With low density, the spring forces keep the cloth very rigid, and it folds neatly. With high density, the cloth folds messily as the point masses quickly succumb to an increased ratio of environmental to spring forces.&lt;/p&gt;
+
+&lt;h3&gt;Varying spring constant ks&lt;/h3&gt;
+&lt;p&gt;Below, I vary the spring constant ks, then simulate the self-collision situation again.&lt;/p&gt;
+&lt;button class=&quot;reset&quot; id=&quot;4_ks&quot;&gt;reset both&lt;/button&gt;
+&lt;div&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;4_ks&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/4_ks1000.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;ks = 1000&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video class=&quot;4_ks&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/4_ks25000.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;ks = 25000&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;Similarly to the &lt;em&gt;4 corners pinned&lt;/em&gt; cloth earlier, it is apparent that density and ks have something of an inverse relationship in how they affect the cloth. This time, the low spring constant allows the cloth on the left to fold over on itself more easily, while the high spring constant in the cloth on the right keeps it more rigid and structured.&lt;/p&gt;
+
+&lt;h2&gt;5.1: Wind&lt;/h2&gt;
+
+&lt;p&gt;Wind is a spatially varying environmental force. I had fun imagining the components of an overall force due to wind. I also got to have fun using the vector field functionality of &lt;em&gt;Grapher&lt;/em&gt;, an OSX utility, to help me visualize my wind construction.&lt;/p&gt;
+&lt;p&gt;I imagined that wind not only varies through space, but also time. To implement this properly, I kept track of the total amount of time since the simulation began. I used this to parameterize my wind force.&lt;/p&gt;
+&lt;p&gt;I built the wind up in three steps:
+&lt;ol&gt;
+  &lt;li&gt;Varying the force over the z axis w/ respect to time&lt;/li&gt;
+  &lt;li&gt;Varying the force over the y axis w/ respect to time&lt;/li&gt;
+  &lt;li&gt;Adding a slight oscillating perturbation in the x axis w/ respect to time&lt;/li&gt;
+&lt;/ol&gt;&lt;/p&gt;
+&lt;p&gt;Below, I show the vector fields animated over time as I add each component above.&lt;/p&gt;
+&lt;div&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video autoplay=&quot;&quot; loop=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/5_wind_z1_better.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;Add &amp;#916; z = 1.5 * abs(sin(z + t * 5))&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video autoplay=&quot;&quot; loop=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/5_wind_z2_better.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;Modify to &amp;#916; z = 1.5 * abs(sin(z + t * 5) + cos(y + t * 5) / 3)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video autoplay=&quot;&quot; loop=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/5_wind_total_better.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;Add &amp;#916; x = 0.1 * sin(t * 5)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/high_wind_faster_compressed.gif &quot; alt=&quot;cloth with wind&quot; /&gt;
+  &lt;figcaption&gt;The final product of applying the wind environmental force to a &lt;em&gt;2 corners pinned&lt;/em&gt; cloth.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;5.2: Accurate self-collisions&lt;/h2&gt;
+&lt;p&gt;Remember the problem addressed at the end of section 4? In that two points may lie very close to one another but lie in separate 3D boxes? One way we can fix this is to not just search the bucket the point in question lies in while checking for closeness, but instead, check in &lt;em&gt;all the neighboring buckets&lt;/em&gt;. This way, we sacrifice some speed for correctness. I&#39;m not sure what this scheme is called, but I&#39;ve nicknamed it &lt;em&gt;Uniform Spatial Hashing&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;To do this, I needed to improve the hashing scheme for a box, because I needed a way to retrieve neighbor boxes once they&#39;ve been hashed. To solve this, I moved from using doubles to identify boxes to using 3D tuples to identify boxes. I had to write a 3D tuple-compatible unordered map in order to do this, but luckily I was able to reuse the idea behind hashing scheme I wrote for the doubles, with XOR.&lt;/p&gt;
+&lt;p&gt;Now that a box&#39;s neighbors were identifiable, I just made sure I included all of the neighboring boxes in the search space when checking for closeness of point masses.&lt;/p&gt;
+&lt;p&gt;Below, I simulate self-collision examples before and after the accuracy-boosting spatial hashing system.&lt;/p&gt;
+
+&lt;button class=&quot;reset&quot; id=&quot;5_collision&quot;&gt;reset both&lt;/button&gt;
+&lt;div&gt;
+  &lt;figure class=&quot;half&quot;&gt;
+    &lt;video class=&quot;5_collision&quot; autoplay=&quot;&quot;&gt;
+      &lt;source src=&quot;/blog/assets/posts/cloth-simulation/4_default.webm &quot; type=&quot;video/webm&quot; /&gt;
+      Please use or update Chrome to view the webm.
+    &lt;/video&gt;
+    &lt;figcaption&gt;Regular spatial hashing&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;video id=&quot;speedup-1&quot; class=&quot;5_collision&quot; autoplay=&quot;&quot;&gt;
+    &lt;source src=&quot;/blog/assets/posts/cloth-simulation/5_uniform_spatial_hashing.webm &quot; type=&quot;video/webm&quot; /&gt;
+    Please use or update Chrome to view the webm.
+  &lt;/video&gt;
+  &lt;figcaption&gt;Improved &quot;uniform&quot; spatial hashing&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;Did you catch the improvement? I&#39;ve captured a screengrab of the cloth in similar positions in each simulation so you can see the difference. The results are below:&lt;/p&gt;
+&lt;div&gt;
+  &lt;figure class=&quot;half&quot;&gt;
+    &lt;img src=&quot;/blog/assets/posts/cloth-simulation/5_ush_no.png &quot; alt=&quot;errors without uniform spatial hashing&quot; /&gt;
+    &lt;figcaption&gt;Regular spatial hashing still allows self-intersections very occasionally, due to its imperfect accuracy.&lt;/figcaption&gt;
+  &lt;/figure&gt;
+&lt;figure class=&quot;half&quot;&gt;
+  &lt;img src=&quot;/blog/assets/posts/cloth-simulation/5_ush_yes.png &quot; alt=&quot;no errors with uniform spatial hashing&quot; /&gt;
+  &lt;figcaption&gt;My improved &quot;Uniform&quot; spatial hashing does not allow such situations.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;/div&gt;
+&lt;p&gt;That&#39;s it for my experiments with cloth simulation. Thanks for reading! &amp;#9724;&lt;/p&gt;
+
+
+&lt;!-- script to restart videos --&gt;
+&lt;script&gt;
+var buttons = document.getElementsByClassName(&quot;reset&quot;);
+for (var i = 0; i &lt; buttons.length; i++) {
+  buttons[i].onclick = function() {
+    var videos = document.getElementsByClassName(this.id);
+    for (var j = 0; j &lt; videos.length; j++) {
+      videos[j].currentTime = 0;
+      videos[j].play();
+    }
+  }
+}
+var s1 = document.getElementById(&quot;speedup-1&quot;);
+s1.playbackRate = 3.3;
+
+&lt;/script&gt;
+
+&lt;/p&gt;
+</description>
+        <pubDate>Thu, 18 May 2017 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/cloth-simulation/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/cloth-simulation/</guid>
+        
+        <category>hot</category>
+        
+        <category>published</category>
+        
+        
+      </item>
     
       <item>
         <title>Curses Tutorial</title>
@@ -696,36 +1041,6 @@ and get this on your page:&lt;/p&gt;
         <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
         <link>http://steven.codes/blog/neural-net/</link>
         <guid isPermaLink="true">http://steven.codes/blog/neural-net/</guid>
-        
-        <category>project</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Net.js</title>
-        <description>&lt;h2 id=&quot;download--view&quot;&gt;Download / View&lt;/h2&gt;
-
-&lt;p&gt;Get the source:&lt;br /&gt;
-&lt;code&gt;$ git clone https://github.com/straversi/Net.js.git&lt;/code&gt;&lt;br /&gt;
-&lt;img src=&quot;/blog/assets/languages/html.png&quot; alt=&quot;html icon&quot; class=&quot;icon match-base-font&quot; /&gt;
- To read more about it, my blog post about it.&lt;br /&gt;
-&lt;img src=&quot;/blog/assets/languages/github.png&quot; alt=&quot;github icon&quot; class=&quot;icon match-base-font&quot; /&gt;
- &lt;a href=&quot;https://github.com/straversi/Net.js&quot;&gt;Github page&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
-
-&lt;p&gt;Net.js is a fun particle simulation of sorts, in which each particle has an anchor point that it tries to stay close to. The user’s cursor acts as a repelling force on the nodes, and they try to escape it.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Why is it Interesting?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Instead of a normal particle sim with ticks and momentum, I found a linear transformation that rotationally mirrors point A across point B, forming point C. However, in this transformation, the distance from point A to C is kept nearly constant. Because of the nature of the calculation, updates are only necessary whenever the user’s cursor moves.&lt;/p&gt;
-
-&lt;p&gt;Net.js was conceived and completed over the course of several Electrical Engineering 40: Introduction to Microelectronic Circuits sections.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
-        <link>http://steven.codes/blog/net.js/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/net.js/</guid>
         
         <category>project</category>
         

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>steven.codes</title>
+    <description>Here you&#39;ll find projects I&#39;m working on or used to work on.
+</description>
+    <link>http://steven.codes/projects/</link>
+    <atom:link href="http://steven.codes/projects/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 18 May 2017 22:22:16 -0700</pubDate>
+    <lastBuildDate>Thu, 18 May 2017 22:22:16 -0700</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Checkaroo</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/assets/languages/html.png&quot; alt=&quot;html icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ Make an account today at: &lt;a href=&quot;http://checkaroo.herokuapp.com/&quot;&gt;heckaroo.herokuapp.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-its-about&quot;&gt;What It’s About&lt;/h2&gt;
+
+&lt;p&gt;Checkaroo solves a problem that we had as TA’s of CS10 at Berkeley. Our lab assistants needed to record their hours without involving the TA and taking up class time, but the hours needed some form of approval. With Checkaroo, lab assistants can check themselves in to their section, but their hours won’t count until their TA approves them at their leisure.&lt;/p&gt;
+
+&lt;p&gt;I wrote the app and a suite of integration tests with Ruby on Rails, jQuery, and Cucumber. I also designed the UI, using elements from &lt;a href=&quot;http://materializecss.com/&quot; target=&quot;_blank&quot;&gt;Materialize&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Currently, the app is undergoing its beta live in two UC Berkeley classes, CS61C and CS10. I’ve been using a feedback-iteration loop to improve the design and function of the application during this time. I plan to use the app to manage lab assistants again in CS10 this fall.&lt;/p&gt;
+
+&lt;p&gt;Here are some sample images taken from the live site:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/assets/posts/checkaroo/assistants.png &quot; style=&quot;max-width:100%;&quot; /&gt;
+&lt;em&gt;The assistants whose hours are being recorded&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/assets/posts/checkaroo/sections.png &quot; style=&quot;max-width:100%;&quot; /&gt;
+&lt;em&gt;The sections that have been created by the TAs&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/projects/assets/posts/checkaroo/home.png &quot; style=&quot;max-width:100%;&quot; /&gt;
+&lt;em&gt;A sample home page for a TA who has taken action on all of their assistants’ checkins.&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 30 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/checkaroo/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/checkaroo/</guid>
+        
+        <category>project</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Typer.js</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;Get the source and documentation:&lt;br /&gt;
+&lt;code&gt;$ git clone https://github.com/straversi/Typer.js.git&lt;/code&gt;&lt;br /&gt;
+&lt;img src=&quot;/projects/assets/languages/html.png&quot; alt=&quot;html icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ Or, visit the &lt;a href=&quot;http://steven.codes/typerjs/&quot;&gt;hosted docs&lt;/a&gt;&lt;br /&gt;
+&lt;img src=&quot;/projects/assets/languages/github.png&quot; alt=&quot;github icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ &lt;a href=&quot;https://github.com/straversi/Typer.js&quot;&gt;Github page&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-its-about&quot;&gt;What It’s About&lt;/h2&gt;
+
+&lt;p&gt;Typer.js provides an HTML interface for creating a typing effect. For example, enter this in your HTML:&lt;br /&gt;
+&lt;code&gt;Fact: &amp;lt;span class=&quot;typer&quot; id=&quot;t1&quot; data-delay=&quot;120&quot; data-words=&quot;bears,beets,battlestar galactica&quot; data-colors=&quot;#cb4b16,#d33682,#6c71c4&quot;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class=&quot;cursor&quot; data-owner=&quot;t1&quot;&amp;gt;&amp;lt;/span&amp;gt;&lt;/code&gt;&lt;br /&gt;
+and get this on your page:&lt;/p&gt;
+
+&lt;p&gt;Fact: &lt;span class=&quot;typer&quot; id=&quot;t1&quot; data-delay=&quot;120&quot; data-words=&quot;bears,beets,battlestar galactica&quot; data-colors=&quot;#cb4b16,#d33682,#6c71c4&quot;&gt;&lt;/span&gt;&lt;span class=&quot;cursor&quot; data-owner=&quot;t1&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class=&quot;github-button&quot; href=&quot;https://github.com/straversi&quot; data-style=&quot;mega&quot; data-count-href=&quot;/straversi/followers&quot; data-count-api=&quot;/users/straversi#followers&quot; data-count-aria-label=&quot;# followers on GitHub&quot; aria-label=&quot;Follow @straversi on GitHub&quot;&gt;Follow @straversi&lt;/a&gt;&lt;/p&gt;
+
+&lt;script async=&quot;&quot; defer=&quot;&quot; src=&quot;https://buttons.github.io/buttons.js&quot;&gt;&lt;/script&gt;
+
+&lt;script src=&quot;/projects/assets/posts/typer.js/typer.js&quot;&gt;&lt;/script&gt;
+
+</description>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/typer.js/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/typer.js/</guid>
+        
+        <category>project</category>
+        
+        <category>no_compress</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Project Template</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;Cool image. &lt;a href=&quot;http://github.com/straversi&quot;&gt;link to download&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;Writing about the process.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/project-template/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/project-template/</guid>
+        
+        <category>project</category>
+        
+        <category>draft</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Packd</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/us/app/packd/id1024333170&quot; target=&quot;_blank&quot;&gt;
+  &lt;img src=&quot;/projects/assets/app-store-button.svg&quot; alt=&quot;App store button&quot; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;Packd is an app + service that tells you how crowded a location is. We currently serve 6 popular UC Berkeley spots, like the Engineering Library.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How does it work?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To start counting, a venue plugs in a Raspberry Pi running Packd software. The Pi counts how many phones are communicating with the local wifi network. We use some math to normalize this number, and get a count +/- 5% of the true total.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;For consumers, an App&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To see how busy a public location is, we have an app that displays the live count, along with prediction graphs for each day of the week.&lt;/p&gt;
+
+&lt;p&gt;** Screenshots **&lt;/p&gt;
+
+&lt;p&gt;We’re currently working on a scalable solution that is compatible with rapid expansion of Packd locations.&lt;/p&gt;
+
+&lt;p&gt;I wrote the iOS app with Swift 2. I used storyboarding wherever possible.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/packd/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/packd/</guid>
+        
+        <category>project</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Neural Net</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;The Neural Net is not downloadable, as it’s based off of a homework assignment. I expanded on the base assignment to allow for arbitrary numbers of hidden units and layers.&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;The assignment was to create a Neural Network from scratch. I chose to implement the net in Python, using the numpy package for matrix manipulations. My net achieved ~98% accuracy on the MNIST dataset, which is composed of images of numbers.&lt;/p&gt;
+
+&lt;p&gt;For the assignment, I derived the backpropagation calculations for a net with layers of size 784 ➡️ 200 ➡️ 10, with &lt;em&gt;tanh&lt;/em&gt;, then &lt;em&gt;sigmoid&lt;/em&gt; as the activation functions.&lt;/p&gt;
+
+&lt;p&gt;To extend the assignment, I derived and implemented a general backpropagation algorithm that works with any specified number of hidden layers and units. I also implemented gradient checking via finite differences to help check the backprop during debugging.&lt;/p&gt;
+
+&lt;p&gt;Here is the &lt;a href=&quot;/projects/hw6.pdf&quot;&gt;hw6 specification&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/neural-net/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/neural-net/</guid>
+        
+        <category>project</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Net.js</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;Get the source:&lt;br /&gt;
+&lt;code&gt;$ git clone https://github.com/straversi/Net.js.git&lt;/code&gt;&lt;br /&gt;
+&lt;img src=&quot;/projects/assets/languages/html.png&quot; alt=&quot;html icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ To see it in action, visit &lt;a href=&quot;http://steven.codes&quot;&gt;steven.codes&lt;/a&gt; &lt;em&gt;on desktop&lt;/em&gt;.&lt;br /&gt;
+&lt;img src=&quot;/projects/assets/languages/github.png&quot; alt=&quot;github icon&quot; class=&quot;icon match-base-font&quot; /&gt;
+ &lt;a href=&quot;https://github.com/straversi/Net.js&quot;&gt;Github page&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;Net.js is a fun particle simulation of sorts, in which each particle has an anchor point that it tries to stay close to. The user’s cursor acts as a repelling force on the nodes, and they try to escape it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why is it Interesting?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Instead of a normal particle sim with ticks and momentum, I found a linear transformation that rotationally mirrors point A across point B, forming point C. However, in this transformation, the distance from point A to C is kept nearly constant. Because of the nature of the calculation, updates are only necessary whenever the user’s cursor moves.&lt;/p&gt;
+
+&lt;p&gt;Net.js was conceived and completed over the course of several Electrical Engineering 40: Introduction to Microelectronic Circuits sections.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/net.js/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/net.js/</guid>
+        
+        <category>project</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Beacon</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;Cool image. &lt;a href=&quot;http://github.com/straversi&quot;&gt;link to download&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;Writing about the process.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/beacon/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/beacon/</guid>
+        
+        <category>project</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>UISwipeView</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;Github link coming soon.&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;This project broke of from &lt;a href=&quot;/projects/packd/&quot;&gt;Packd&lt;/a&gt;, where I needed to continuously swipe between graphs. The graphs could be memory hogs, and being there seven graphs, I only wanted to keep the most relevant three active at a time. While writing this new type of view, I realized that it could be useful in plenty of other situations as well. So, I broke it off into its own project.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/UISwipeView/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/UISwipeView/</guid>
+        
+        <category>project</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>2048 Homework</title>
+        <description>&lt;h2 id=&quot;download--goto&quot;&gt;Download / GOTO&lt;/h2&gt;
+
+&lt;p&gt;Link to the &lt;em&gt;Snap!&lt;/em&gt; starter file: &lt;a href=&quot;http://snap.berkeley.edu/snapsource/snap.html#present:Username=cs10sp16&amp;amp;ProjectName=2048_starter_sp16&quot;&gt;starter file&lt;/a&gt;
+Link to the CS10 homework spec: &lt;a href=&quot;http://cs10.org/su16/assign.html?//docs.google.com/document/d/13ifT2Ro5sE0d2dkC72aeg0iHlj8Ofif7BwFO67ojcks/pub&quot;&gt;spec&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;process&quot;&gt;Process&lt;/h2&gt;
+
+&lt;p&gt;While I was a Junior at UC Berkeley and TAing for CS10, I set about rewriting its third and final homework assignment. The assignment hadn’t been updated in years; it was in need of a change. At the time, the fad game 2048 was sweeping the campus, rampantly distracting students everywhere. Its popularity and straightforward gameplay led me to choose it for the update.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 20 Jun 2016 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/projects/2048-homework/</link>
+        <guid isPermaLink="true">http://steven.codes/projects/2048-homework/</guid>
+        
+        <category>project</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

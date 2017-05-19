@@ -1,0 +1,52 @@
+figure {
+  display: inline-block;
+  width: 100%;
+  margin: 2px;
+  margin-bottom: 10px;
+  position: relative;
+  vertical-align: top;
+}
+figure img, figure video {
+  max-width: 100%;
+  max-height: 100%;
+}
+figcaption {
+  padding: 4px 10px;
+  font-size: 1.0em;
+  font-style: italic;
+}
+.full img {
+  width: 100% !important;
+}
+.two-thirds {
+  width: calc(66.66% - 10px) !important;
+}
+.half {
+  width: calc(50% - 10px) !important;
+}
+.third {
+  width: calc(33.33% - 4px) !important;
+}
+.fourth {
+  width: calc(25% - 5px) !important;
+}
+.video {
+  text-align: center;
+  iframe {
+    display: inline-block;
+  }
+}
+.align-top {
+  vertical-align: top;
+}
+.align-bot {
+  vertical-align: bottom;
+}
+button {
+  font-size: 1.2em;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #e65854;
+  color: white;
+}
