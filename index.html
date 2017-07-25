@@ -18,7 +18,7 @@
 <div id="everything">
   <div class="row hook">
     <div class="medium-8 small-12 columns">
-      <h1>I'm Steven, a TA and programmer out of UC Berkeley.</h1>
+      <h1>I'm Steven, a lecturer and programmer out of UC Berkeley.</h1>
       <p>Welcome to my site. If you're looking for a résumé, click the button below. There's also a link to my code-themed blog, if that sounds interesting to you.</p>
     </div>
   </div>
@@ -107,19 +107,20 @@
     // the "line"
     line = [];
     // precomputed rest values
-    var lineXYs = [];
-    for ( var i = 0; i < 500; i += 15){
+    var lineXYs = [[0,550],[15,543],[32,534],[48,525],[63,516],[79,506],[94,495],[109,485],[123,473],[138,462],[152,450],[166,437],[180,425],[193,412],[206,398],[219,384],[232,370],[244,356],[256,341],[268,326],[280,311],[291,295],[303,280],[314,264],[324,247],[335,231],[345,214],[355,197],[365,179],[375,162],[384,144],[394,126],[403,108],[412,90],];
+    // for ( var i = 0; i < 500; i += 15){
+    for ( var i = 0; i < lineXYs.length; i += 1){
         l = line.push(
             Physics.body('circle', {
-                x: i / Math.sqrt(2)
-                ,y: renderer.height - 50 - (i / Math.sqrt(2))
+                x: lineXYs[i][0] // i / Math.sqrt(2)
+                ,y: lineXYs[i][1] // renderer.height - 50 - (i / Math.sqrt(2))
                 ,radius: 1
                 ,restitution: 0.2
                 ,mass: .5
                 ,hidden: true
             })
         );
-        rigidConstraints.distanceConstraint( line[ l - 1 ], line[ l - 2 ], 1 );
+        rigidConstraints.distanceConstraint( line[ l - 1 ], line[ l - 2 ], 1, 15);
     }
     world.on('render', function( data ){
         var renderer = data.renderer;
@@ -189,6 +190,12 @@
           var newX = Math.random() * 0.003;
           windTail1.setAcceleration(new Physics.vector(newX, 0));
         }
+        // toPrint = "["
+        // line.forEach(function(e) {
+        //   toPrint += "[" + Math.round(e.state.pos.x) + "," + Math.round(e.state.pos.y) + "],";
+        // });
+        // toPrint += "]"
+        // console.log(toPrint);
     });
 
     // start the ticker
