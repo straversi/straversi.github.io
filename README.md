@@ -1,5 +1,7 @@
 # [steven.codes](http://steven.codes)
 
+Now with **💯%** more ✅🔒HTTPS🔒✅
+
 My website. Directory structure:
 
 ```
@@ -11,6 +13,8 @@ My website. Directory structure:
 ```
 
 In the blog is a jekyll site. However, it's in compiled and compressed form. I can't let github build for me because they forbid plugins, which I use.
+
+Yes I'm using git as a deploy tool. It's a personal blog.
 
 (c) Steven Traversi 3000
 
