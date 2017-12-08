@@ -32,7 +32,7 @@ Typer.prototype.doTyping = function() {
   var p = this.progress;
   var w = p.word;
   var c = p.char;
-  var currentChar = this.words[w][c];
+  var currentDisplay = [...this.words[w]].slice(0, c).join("");
   p.atWordEnd = false;
   if (this.cursor) {
     this.cursor.element.style.opacity = "1";
@@ -41,21 +41,24 @@ Typer.prototype.doTyping = function() {
     var itself = this.cursor;
     this.cursor.interval = setInterval(function() {itself.updateBlinkState();}, 400);
   }
+
+  e.innerHTML = currentDisplay;
+
   if (p.building) {
-    e.innerHTML += currentChar;
-    p.char += 1;
-    if (p.char == this.words[w].length) {
+    if (p.char == [...this.words[w]].length) {
       p.building = false;
       p.atWordEnd = true;
+    } else {
+      p.char += 1;
     }
   } else {
-    e.innerHTML = e.innerHTML.slice(0, -1);
-    if (!this.element.innerHTML) {
+    if (p.char == 0) {
       p.building = true;
       p.word = (p.word + 1) % this.words.length;
-      p.char = 0;
       this.colorIndex = (this.colorIndex + 1) % this.colors.length;
       this.element.style.color = this.colors[this.colorIndex];
+    } else {
+      p.char -= 1;
     }
   }
 
@@ -100,18 +103,18 @@ function TyperSetup() {
   }
   var elements = document.getElementsByClassName("typer-stop");
   for (var i = 0, e; e = elements[i++];) {
-    var owner = typers[e.dataset.owner];
+    let owner = typers[e.dataset.owner];
     e.onclick = function(){owner.stop();};
   }
   var elements = document.getElementsByClassName("typer-start");
   for (var i = 0, e; e = elements[i++];) {
-    var owner = typers[e.dataset.owner];
+    let owner = typers[e.dataset.owner];
     e.onclick = function(){owner.start();};
   }
 
   var elements2 = document.getElementsByClassName("cursor");
   for (var i = 0, e; e = elements2[i++];) {
-    var t = new Cursor(e);
+    let t = new Cursor(e);
     t.owner = typers[e.dataset.owner];
     t.owner.cursor = t;
   }
