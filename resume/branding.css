@@ -1,0 +1,33 @@
+span.venmo {
+	display: inline-block;
+	font-weight: 800;
+	font-style: italic;
+	background-color: #3d95ce;
+	color: white;
+}
+span.venmo:before { content: '\00a0'; }
+span.venmo:after { content: '\00a0'; }
+
+span.paypal {
+	display: inline-block;
+	font-weight: 800;
+	font-style: italic;
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-image: linear-gradient(102deg, #253b80, #253b80 54%, #179bd7 54%, #179bd7);
+	background-size: cover;
+	-webkit-text-fill-color: transparent;
+	text-fill-color: transparent;
+	color: black;
+}
+span.paypal:before { content: '\00a0'; }
+span.paypal:after { content: '\00a0'; }
+
+span.braintree {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  font-family: monospace;
+}
+span.braintree:before { content: '\00a0'; font-family: sans-serif; }
+span.braintree:after { content: '\00a0'; font-family: sans-serif; }

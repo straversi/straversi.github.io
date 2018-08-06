@@ -1,0 +1,187 @@
+@font-face{
+	font-family: 'HKGrotesk';
+	src: url('./hkgrotesk/HKGrotesk.eot');
+	src: url('./hkgrotesk/HKGrotesk.eot?iefix') format('eot'),
+	     url('./hkgrotesk/HKGrotesk.woff') format('woff'),
+	     url('./hkgrotesk/HKGrotesk.ttf') format('truetype'),
+	     url('./hkgrotesk/HKGrotesk.svg#webfont') format('svg');
+}
+
+body {
+	line-height: 1.5;
+}
+
+#body {
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'HKGrotesk';
+}
+
+h1 {
+	font-size: 36px;
+	margin: 0px;
+}
+
+h1 > span {
+	display: inline-block;
+}
+
+h1 > span:nth-child(1) { transform: rotate(12deg); }
+h1 > span:nth-child(2) { transform: rotate(-12deg); }
+h1 > span:nth-child(3) { transform: rotate(6deg); }
+h1 > span:nth-child(4) { transform: rotate(25deg); }
+
+h1 > span:nth-child(4) { font-size: 48px; }
+
+h1 > span { animation-duration: 5s; animation-iteration-count: infinite; }
+h1 > span:nth-child(1) { animation-name: heading-one; }
+h1 > span:nth-child(2) { animation-name: heading-two; }
+h1 > span:nth-child(3) { animation-name: heading-three; }
+h1 > span:nth-child(4) { animation-name: heading-four; }
+
+h2 {
+	margin-top: 0px;
+	margin-bottom: 12px;
+	font-size: 28px;
+}
+
+h3 {
+	color: grey;
+	font-size: 26px;
+	margin: 0 0;
+}
+
+p { font-size: 17px; }
+
+h2 + p {
+	padding: 18px;
+	border-left: 5px solid;
+	background: #F2F2F2;
+	border-radius: 3px;
+	box-shadow: rgba(50, 50, 93, 0.1) 0px 15px 35px, rgba(0, 0, 0, 0.07) 0px 5px 15px;
+}
+
+hr {
+	background-image: url('squiggle.svg');
+	height: 50px;
+	background-size: 300px 50px;
+	background-repeat: no-repeat;
+	background-position: center top;
+	border: none;
+	margin: 20px;
+}
+
+.item, #header, #footer {
+	width: calc(100% - 40px); /* 100% - (left pad + right pad) */
+	padding: 20px 20px;
+
+	position: relative;
+	overflow-x: hidden;
+
+	box-sizing: content-box;
+}
+.item > .info {
+	width: 600px;
+	max-width: 100%;
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 48px;
+}
+#header > div:nth-child(1) {
+	width: 600px;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+
+.item > div:nth-child(1) {
+	position: relative;
+	z-index: 2;
+}
+.item > div:nth-child(2), #header > div:nth-child(2), #footer > div:nth-child(2) {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	z-index: 1;
+}
+
+#header > div:nth-child(2) {
+	background-color: #EB5757;
+	transform: skewX(-10deg);
+	left: 60%;
+	box-shadow: 20px 0 10px 20px rgba(50, 50, 93, 0.7);
+}
+
+#item-braintree {
+	background-color: #F2C94C;
+}
+#item-braintree > div:nth-child(2) {
+	background-color: #EB5757;
+	transform: skewX(-10deg);
+	left: 60%;
+	box-shadow: 20px 0 10px 20px rgba(50, 50, 93, 0.7);
+}
+#item-lecturer {
+	background-color: #2D9CDB;
+}
+#item-lecturer > div:nth-child(2) {
+	background-color: #F2C94C;
+	transform: skewX(-10deg);
+	box-shadow: inset 20px 0 10px -20px rgba(50, 50, 93, 0.7);
+}
+#item-ugsi {
+	background-color: #27AE60;
+}
+#item-ugsi > div:nth-child(2) {
+	background-color: #F2C94C;
+	transform: skewX(-10deg);
+	box-shadow: inset 20px 0 10px -20px rgba(50, 50, 93, 0.7);
+}
+#item-volunteer {
+	background-color: #BB6BD9;
+}
+#item-volunteer > div:nth-child(2) {
+	background-color: #9B51E0;
+	transform: skewX(10deg);
+	box-shadow: inset 20px 0 10px -20px rgba(50, 50, 93, 0.7);
+}
+
+#footer {
+	background-color: #BB6BD9;
+
+	color: black;
+	font-family: 'HKGrotesk';
+	font-size: 20px;
+	padding-top: 40px;
+	padding-bottom: 30px;
+}
+#footer > div:nth-child(1) {
+	text-align: right;
+	position: relative;
+	z-index: 3;
+}
+#footer > div:nth-child(2) {
+	background-color: #FFFFFF;
+	transform: skewX(10deg);
+	left: 60%;
+	box-shadow: inset 20px 0 10px -20px rgba(50, 50, 93, 0.7);
+}
+
+#item-braintree > .info > p { border-color: #EB5757; }
+#item-lecturer > .info > p { border-color: #F2C94C; }
+#item-ugsi > .info > p { border-color: #F2C94C; }
+#item-volunteer > .info > p { border-color: #9B51E0; }
+
+#item-braintree > .info > h3 { color: #grey; }
+#item-lecturer > .info > h3 { color: #F2F2F2; }
+#item-ugsi > .info > h3 { color: #F2F2F2; }
+#item-volunteer > .info > h3 { color: #F2F2F2; }
+
+#item-braintree > .info > h2 { color: #222; }
+#item-lecturer > .info > h2 { color: #222; }
+#item-ugsi > .info > h2 { color: #222; }
+#item-volunteer > .info > h2 { color: #F2F2F2; }

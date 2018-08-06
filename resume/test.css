@@ -1,0 +1,24 @@
+#test {
+	width: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+#test > * {
+	border: 3px solid black;
+}
+#test :nth-child(1) {
+  grid-column: span 6;
+	border: 3px solid black;
+}
+
+#test :nth-child(2) {
+	grid-row: 2;
+  grid-area: 2 / span 4 / auto / -1;
+	border: 3px solid black;
+}
+
+#test :nth-child(3) {
+  grid-row: 3;
+  grid-column: span 6;
+	border: 3px solid black;
+}
