@@ -103,7 +103,7 @@ hr {
 }
 .item > div:nth-child(2), #header > div:nth-child(2), #footer > div:nth-child(2) {
 	position: absolute;
-	width: 100%;
+	width: 200%;
 	height: 100%;
 	top: 0px;
 	z-index: 1;
