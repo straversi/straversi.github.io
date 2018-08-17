@@ -298,6 +298,11 @@ function example3() { setAllHz(276, 460, 185); }
 ex = presetsFolder.add(window, 'example3');
 ex.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'example 3';
 
+function example4() { setAllHz(161.8, 122.7, 284.8); }
+ex = presetsFolder.add(window, 'example4');
+ex.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'example 4';
+
+
 animate();
 
 synthX.triggerAttack(xHz);
