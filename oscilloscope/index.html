@@ -5,7 +5,7 @@
 		<title>Three.js powered</title>
 		<style>
 			body { margin: 0; padding: 0; overflow-y: hidden; }
-			canvas { width: 100%; height: 100%; }
+			canvas { width: 100%; height: 100%; cursor: move; }
 			.div-theme {
 				font-family: 'Lucida Grande', 'Helvetica', sans-serif;
 				color: #eee;
@@ -34,16 +34,35 @@
 				display: none;
 			}
 			#more-info {
-				width: 400px; height: 320px;
+				width: 400px;
+				max-width: calc(100% - 24px);
 				position: relative;
-				top: 50%; left: 50%;
-				transform: translate(-50%, -50%);
+				margin: 0 auto;
+				top: 50%;
+				transform: translateY(-50%);
 				border: 1px solid #555555;
 			}
 			#more-info div, #info div {
 				margin: 0;
 				padding: 8px 12px;
 				font-size: 14px;
+			}
+			#no-web-gl-overlay {
+				display: none;
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				background: black;
+			}
+			#no-web-gl-overlay > div {
+				position: relative;
+				width: 300px;
+				max-width: calc(100% - 20px);
+				padding: 10px;
+				margin: 0 auto;
+				top: 50%;
+				transform: translateY(-50%);
+				color: white;
 			}
 		</style>
 	</head>
@@ -58,13 +77,25 @@
 				<span id="more-link">more...</span>
 			</div>
 		</div>
+		<div id="no-web-gl-overlay">
+			<div class="div-theme">
+				<p>
+					Sorry, this page does some special computation that your browser can't do.
+				</p>
+				<p>
+					Try visiting this page on a desktop computer.
+				</p>
+			</div>
+		</div>
 		<div id="more-info-overlay">
 			<div id="more-info" class="div-theme">
 				<div>
-					Information
+					Oscilloscope
 				</div>
 				<hr>
 				<div>
+					Try setting the frequencies to various fractions of each other. Then, add small variations.
+					<br><br>
 					An oscilloscope is a type of electronic test instrument
 					that allows observation of varying signal voltages,
 					usually as a two-dimensional plot of one or more signals

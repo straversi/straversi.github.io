@@ -17,6 +17,22 @@ camera.lookAt(new THREE.Vector3(0, 0, 0));
 var CAM_FACE_3D = camera.quaternion.clone();
 var CAM_POS_3D = camera.position.clone();
 
+function webglAvailable() {
+	try {
+		var canvas = document.createElement( 'canvas' );
+		return !!( window.WebGLRenderingContext && (
+			canvas.getContext( 'webgl' ) ||
+			canvas.getContext( 'experimental-webgl' ) )
+		);
+	} catch ( e ) {
+		return false;
+	}
+}
+
+if (!webglAvailable()) {
+	document.getElementById("no-web-gl-overlay").style.display = "block";
+}
+
 var renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
@@ -45,12 +61,14 @@ a.style.width="1px",a.style.height=Math.random()*30+"px",a.style.cssFloat="left"
 stats = new Stats();
 stats.domElement.style.position = 'absolute';
 stats.domElement.style.top = '0px';
-document.body.appendChild(stats.domElement);
+if (webglAvailable()) {
+	document.body.appendChild(stats.domElement);
+}
 
 // Box
 
 var geometry = new THREE.BoxGeometry( 2, 2, 2 );
-var material = new THREE.MeshBasicMaterial( {color: 0x333333, wireframe: true} );
+var material = new THREE.MeshBasicMaterial( {color: 0x555555, wireframe: true} );
 var cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 
@@ -221,16 +239,20 @@ var synthX = new Tone.Synth().toMaster();
 var synthY = new Tone.Synth().toMaster();
 var synthZ = new Tone.Synth().toMaster();
 
-var gui = new dat.GUI();
+if (webglAvailable()) {
+	var gui = new dat.GUI();
+}
 var controller;
 controller = gui.add(window, 'xHz', 0, 600).onChange(function(hz) {
 	synthX.setNote(hz);
 });
 controller.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'x Hz';
+
 controller = gui.add(window, 'yHz', 0, 600).onChange(function(hz) {
 	synthY.setNote(hz);
 });
 controller.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'y Hz';
+
 controller = gui.add(window, 'zHz', 0, 600).onChange(function(hz) {
 	synthZ.setNote(hz);
 });
@@ -254,6 +276,27 @@ controller = gui.add(window, 'switchTo2d').onFinishChange(function() {
 });
 controller.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = dimensionActionToName[controller.property];
 
+function setAllHz(x, y, z) {
+	xHz = x; synthX.setNote(x);
+	yHz = y; synthY.setNote(y);
+	zHz = z; synthZ.setNote(z);
+	for (var i in gui.__controllers) {
+    gui.__controllers[i].updateDisplay();
+  }
+}
+var presetsFolder = gui.addFolder('Examples');
+
+function example1() { setAllHz(276, 461, 185); }
+var ex = presetsFolder.add(window, 'example1');
+ex.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'example 1';
+
+function example2() { setAllHz(116, 116, 77); }
+ex = presetsFolder.add(window, 'example2');
+ex.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'example 2';
+
+function example3() { setAllHz(276, 460, 185); }
+ex = presetsFolder.add(window, 'example3');
+ex.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'example 3';
 
 animate();
 
