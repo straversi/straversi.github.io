@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>steven.codes</title>
-    <description>I post here about some of the things I&#39;m working on.
+    <description>I post here about some of the things I'm working on.
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 05 Nov 2017 23:58:08 -0800</pubDate>
-    <lastBuildDate>Sun, 05 Nov 2017 23:58:08 -0800</lastBuildDate>
-    <generator>Jekyll v3.1.6</generator>
+    <pubDate>Mon, 22 Apr 2019 21:24:17 -0700</pubDate>
+    <lastBuildDate>Mon, 22 Apr 2019 21:24:17 -0700</lastBuildDate>
+    <generator>Jekyll v3.6.2</generator>
     
       <item>
         <title>Constant 2048 Solution</title>
@@ -168,7 +168,7 @@
 &lt;p&gt;To create a collision with a sphere, the following steps are taken:
 &lt;ol&gt;
   &lt;li&gt;If a point mass is inside a sphere object:&lt;/li&gt;
-  &lt;li&gt;Bump it away from the sphere&#39;s origin to the surface.&lt;/li&gt;
+  &lt;li&gt;Bump it away from the sphere's origin to the surface.&lt;/li&gt;
   &lt;li&gt;Correct its distance from its last position by a little bit, influenced by some &lt;em&gt;friction&lt;/em&gt; value of the sphere.&lt;/li&gt;
 &lt;/ol&gt;
 This algorithm allows the cloth to avoid being inside of another object. I implemented the algorithm and simulated a cloth falling over a sphere, varied across &lt;em&gt;ks&lt;/em&gt; values.
@@ -202,7 +202,7 @@ This algorithm allows the cloth to avoid being inside of another object. I imple
 &lt;h2&gt;4: Handling self-collisions&lt;/h2&gt;
 &lt;p&gt;To handle self-collisions, point masses in the cloth need to be tested against each other to see if their positions are smaller than double the thickness of the cloth. The naive solution would test every point against every other point, and this would be O(n^2). We can do better.&lt;/p&gt;
 &lt;p&gt;To get better than quadratic in the number of point masses, we can test point masses only against their spatial neighbors. To do this, we first place all point masses into buckets based on their location in 3D space. This is called &lt;em&gt;Spatial Hashing&lt;/em&gt;. We treat 3D space as a grid of boxes and iterate over every point mass, determining which box each of them lies in. Then, we go through all boxes, and test the all of the points in each against each other. This way, we only test a point against those in the same box, instead of against ALL other points. This saves a lot of time, and for a typical cloth simulation, will be O(n).&lt;/p&gt;
-&lt;p&gt;Spatial hashing involves the ability to uniquely identify each box that we&#39;ve divided the 3D space with. The way I chose to do this is as follows:
+&lt;p&gt;Spatial hashing involves the ability to uniquely identify each box that we've divided the 3D space with. The way I chose to do this is as follows:
 
 &lt;ol&gt;
   &lt;li&gt;Figure out the coordinates of the position in question in the new &quot;box-space&quot;.&lt;/li&gt;
@@ -210,7 +210,7 @@ This algorithm allows the cloth to avoid being inside of another object. I imple
 &lt;/ol&gt;
 This is a simple but somewhat common hashing scheme.
 
-&lt;p&gt;Below, I&#39;ve simulated a vertical falling cloth that collides with itself.&lt;/p&gt;
+&lt;p&gt;Below, I've simulated a vertical falling cloth that collides with itself.&lt;/p&gt;
 
 &lt;button class=&quot;reset&quot; id=&quot;4_default_w&quot;&gt;reset&lt;/button&gt;
 &lt;div&gt;
@@ -222,7 +222,7 @@ This is a simple but somewhat common hashing scheme.
   &lt;figcaption&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
-&lt;p&gt;As we can see, the cloth folds over itself instead of moving through itself. There are only a couple of frames in which the cloth intersects with itself, and these situations are infrequent. The reason this happens is because of the spatial hashing scheme: Imagine two points that are very close to each other, but fall into separate 3D boxes because their positions are near those boxes&#39; borders. They would not get tested against each other for closeness! I revisit this problem later in part 5.&lt;/p&gt;
+&lt;p&gt;As we can see, the cloth folds over itself instead of moving through itself. There are only a couple of frames in which the cloth intersects with itself, and these situations are infrequent. The reason this happens is because of the spatial hashing scheme: Imagine two points that are very close to each other, but fall into separate 3D boxes because their positions are near those boxes' borders. They would not get tested against each other for closeness! I revisit this problem later in part 5.&lt;/p&gt;
 
 &lt;h3&gt;Varying density&lt;/h3&gt;
 &lt;p&gt;Below, I vary the density of the cloth, then simulate the self-collision situation.&lt;/p&gt;
@@ -306,9 +306,9 @@ This is a simple but somewhat common hashing scheme.
 &lt;/div&gt;
 
 &lt;h2&gt;5.2: Accurate self-collisions&lt;/h2&gt;
-&lt;p&gt;Remember the problem addressed at the end of section 4? In that two points may lie very close to one another but lie in separate 3D boxes? One way we can fix this is to not just search the bucket the point in question lies in while checking for closeness, but instead, check in &lt;em&gt;all the neighboring buckets&lt;/em&gt;. This way, we sacrifice some speed for correctness. I&#39;m not sure what this scheme is called, but I&#39;ve nicknamed it &lt;em&gt;Uniform Spatial Hashing&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;To do this, I needed to improve the hashing scheme for a box, because I needed a way to retrieve neighbor boxes once they&#39;ve been hashed. To solve this, I moved from using doubles to identify boxes to using 3D tuples to identify boxes. I had to write a 3D tuple-compatible unordered map in order to do this, but luckily I was able to reuse the idea behind hashing scheme I wrote for the doubles, with XOR.&lt;/p&gt;
-&lt;p&gt;Now that a box&#39;s neighbors were identifiable, I just made sure I included all of the neighboring boxes in the search space when checking for closeness of point masses.&lt;/p&gt;
+&lt;p&gt;Remember the problem addressed at the end of section 4? In that two points may lie very close to one another but lie in separate 3D boxes? One way we can fix this is to not just search the bucket the point in question lies in while checking for closeness, but instead, check in &lt;em&gt;all the neighboring buckets&lt;/em&gt;. This way, we sacrifice some speed for correctness. I'm not sure what this scheme is called, but I've nicknamed it &lt;em&gt;Uniform Spatial Hashing&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;To do this, I needed to improve the hashing scheme for a box, because I needed a way to retrieve neighbor boxes once they've been hashed. To solve this, I moved from using doubles to identify boxes to using 3D tuples to identify boxes. I had to write a 3D tuple-compatible unordered map in order to do this, but luckily I was able to reuse the idea behind hashing scheme I wrote for the doubles, with XOR.&lt;/p&gt;
+&lt;p&gt;Now that a box's neighbors were identifiable, I just made sure I included all of the neighboring boxes in the search space when checking for closeness of point masses.&lt;/p&gt;
 &lt;p&gt;Below, I simulate self-collision examples before and after the accuracy-boosting spatial hashing system.&lt;/p&gt;
 
 &lt;button class=&quot;reset&quot; id=&quot;5_collision&quot;&gt;reset both&lt;/button&gt;
@@ -328,7 +328,7 @@ This is a simple but somewhat common hashing scheme.
   &lt;figcaption&gt;Improved &quot;uniform&quot; spatial hashing&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
-&lt;p&gt;Did you catch the improvement? I&#39;ve captured a screengrab of the cloth in similar positions in each simulation so you can see the difference. The results are below:&lt;/p&gt;
+&lt;p&gt;Did you catch the improvement? I've captured a screengrab of the cloth in similar positions in each simulation so you can see the difference. The results are below:&lt;/p&gt;
 &lt;div&gt;
   &lt;figure class=&quot;half&quot;&gt;
     &lt;img src=&quot;/blog/assets/posts/cloth-simulation/5_ush_no.png &quot; alt=&quot;errors without uniform spatial hashing&quot; /&gt;
@@ -339,7 +339,7 @@ This is a simple but somewhat common hashing scheme.
   &lt;figcaption&gt;My improved &quot;Uniform&quot; spatial hashing does not allow such situations.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;/div&gt;
-&lt;p&gt;That&#39;s it for my experiments with cloth simulation. Thanks for reading! &amp;#9724;&lt;/p&gt;
+&lt;p&gt;That's it for my experiments with cloth simulation. Thanks for reading! &amp;#9724;&lt;/p&gt;
 
 
 &lt;!-- script to restart videos --&gt;
@@ -376,8 +376,9 @@ s1.playbackRate = 3.3;
     
       <item>
         <title>Face Morphing</title>
-        <description>&lt;div class=&quot;video&quot;&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/kCoy1KtH1Xk&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;A face-morphing music video that I made.&lt;/p&gt;&lt;/div&gt;
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/kCoy1KtH1Xk?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;p&gt;A face-morphing music video that I made.&lt;/p&gt;
 
 &lt;h2 id=&quot;basic-morphs&quot;&gt;Basic Morphs&lt;/h2&gt;
 
@@ -457,18 +458,18 @@ s1.playbackRate = 3.3;
 
 &lt;figure class=&quot;full&quot;&gt;
   &lt;img src=&quot;/blog/assets/posts/face-morphing/danes/danish_swaps.png &quot; /&gt;
-  &lt;figcaption&gt;Steven&#39;s face warped to the average Dane geometry, and the average Dane face warped to Steven&#39;s geometry.&lt;/figcaption&gt;
+  &lt;figcaption&gt;Steven's face warped to the average Dane geometry, and the average Dane face warped to Steven's geometry.&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;Here are the live action morphs illustrated in the above figure.&lt;/p&gt;
 
 &lt;figure class=&quot;third align-top&quot;&gt;
   &lt;img src=&quot;/blog/assets/posts/face-morphing/danes/dane_to_steven/1.gif &quot; /&gt;
-  &lt;figcaption&gt;Average dane morphed to Steven&#39;s face shape&lt;/figcaption&gt;
+  &lt;figcaption&gt;Average dane morphed to Steven's face shape&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;figure class=&quot;third align-top&quot;&gt;
   &lt;img src=&quot;/blog/assets/posts/face-morphing/danes/steven_to_dane/1.gif &quot; /&gt;
-  &lt;figcaption&gt;Steven morphed to average dane&#39;s face shape&lt;/figcaption&gt;
+  &lt;figcaption&gt;Steven morphed to average dane's face shape&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h2 id=&quot;caricatures&quot;&gt;Caricatures&lt;/h2&gt;
@@ -477,7 +478,7 @@ s1.playbackRate = 3.3;
 
 &lt;figure class=&quot;full&quot;&gt;
   &lt;img src=&quot;/blog/assets/posts/face-morphing/danes/danish_vector.png &quot; /&gt;
-  &lt;figcaption&gt;Taking Steven&#39;s face past the average Danish geometry, and in the opposite direction.&lt;/figcaption&gt;
+  &lt;figcaption&gt;Taking Steven's face past the average Danish geometry, and in the opposite direction.&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;◼&lt;/p&gt;
@@ -524,7 +525,7 @@ s1.playbackRate = 3.3;
   we want to blend into the target. Then, we set up the following constraints:
   &lt;ul&gt;
     &lt;li&gt;
-      Pixels in the target image that aren&#39;t in the masked area should be close
+      Pixels in the target image that aren't in the masked area should be close
       to the intensity values in the target.
     &lt;/li&gt;
     &lt;li&gt;
@@ -602,7 +603,7 @@ s1.playbackRate = 3.3;
 &lt;/figure&gt;
 
 &lt;h3 class=&quot;display&quot;&gt;
-  That&#39;s No Moon&lt;span&gt; • The Death Star is faded to more match the brightness and color of the sky. Notice how the clouds float in front of the Death Star. Without mixed gradients, the clouds would simply fade out and become blurry when they got to the masked region.
+  That's No Moon&lt;span&gt; • The Death Star is faded to more match the brightness and color of the sky. Notice how the clouds float in front of the Death Star. Without mixed gradients, the clouds would simply fade out and become blurry when they got to the masked region.
 &lt;/span&gt;&lt;/h3&gt;
 
 &lt;figure class=&quot;full&quot;&gt;
@@ -867,13 +868,16 @@ s1.playbackRate = 3.3;
 
 &lt;h2 id=&quot;program&quot;&gt;Program&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;lol bear the universe hatchery
+&lt;p&gt;The following Homespring program prints “Hello, World!”. Trust me.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;homespring&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;lol bear the universe hatchery
 fear Hello,.   Hydro. Power pump pump pump pump future
        powers World!
- never trust the marshy marshy marshy marshy snowmelt
-&lt;/code&gt;&lt;/pre&gt;
+ never trust the marshy marshy marshy marshy snowmelt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;structure&quot;&gt;Structure&lt;/h2&gt;
+
+&lt;p&gt;I’ve illustrated below how the Homespring interpreter sees the program as a tree.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;                                              Hello,
                                              /
@@ -886,16 +890,17 @@ lol - bear - the - universe - hatchery - powers - World!
 
 &lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;/h2&gt;
 
+&lt;p&gt;Here is a metaphor-laden explanation of how the program works.&lt;/p&gt;
+
 &lt;p&gt;Salmon begin spawning in the hatchery on the first tick. The first salmon swims toward “Hello,” where it spawns and creates a young salmon named “Hello,”. This salmon makes it back to the hatchery on the tick before the water from the spring named future activates the hydro power, which powers fear. Fear blocks the remaining salmon in the “Hello,” branch, and redirects the stream of hatchery salmon toward “World!”. The young salmon named “Hello,” makes it past the bear to the ocean. The homeless salmon that was with it is eaten by the bear. The first redirected salmon spawns at “World!”, and the young spawn makes it past the bear to the ocean. At this point, the snowmelt is out of the marsh and destroys the universe, terminating the program.&lt;/p&gt;
 
 &lt;h2 id=&quot;challenge-wait-for-two-inputs&quot;&gt;Challenge: Wait for Two Inputs&lt;/h2&gt;
 
 &lt;p&gt;The following is a program I wrote that waits for two lines of input from stdin, then prints out both lines together.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;lo, inverse. Lock narrows bird
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;homespring&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;lo, inverse. Lock narrows bird
   hydro. Power insulated evaporates Young. sense powers rapids
-   spring
-&lt;/code&gt;&lt;/pre&gt;
+   spring&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;structure-1&quot;&gt;Structure&lt;/h2&gt;
 
@@ -909,6 +914,8 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 &lt;h2 id=&quot;explanation-1&quot;&gt;Explanation&lt;/h2&gt;
 
 &lt;p&gt;Lo, stdin waits for input. When the first input is received, creating a mature upstream salmon with its name, the mature salmon reaches a fork, and decides to visit the narrows before attempting the hydro power. The salmon makes it to the bird, where it spawns, creating a young fish, which is immediately eaten by the bird. The mature fish switches to traveling downstream, only to find itself blocked from entering the unpowered inverse lock. At this point, a second line of input may have been received, and a new salmon created. This one, however, reaches the inverse lock and must go to hydro power. This is because it cannot fit through the narrows, where the first salmon is waiting patiently. The second salmon swims through the hydro power, past evaporates, which is currently evaporating all watershed from the appropriately named spring. The salmon continues to rapids, where it spawns. The salmon and its young begin to swim downstream, but the young salmon is delayed one tick by the rapids. The young salmon does reach young sense, though, blocking the electricity from powers. Evaporates stops evaporating the spring water for one tick, long enough for the water to get past it. The water gurgles downstream, ultimately powering hydro power, unlocking the inverse lock with just enough time to let both the 1st and 2nd salmon through. By the time the young salmon from rapids get there, though, it is trapped once again, as it has passed young sense, and powers is once again allowing evaporates to evaporate the spring water, which stops the hydro power from keeping the inverse lock activated. The mature salmon whose names are the two lines from stdin reach the ocean, and print their names to stdout.&lt;/p&gt;
+
+&lt;p&gt;Uh, that’ll do.&lt;/p&gt;
 
 &lt;p&gt;◼&lt;/p&gt;
 </description>
