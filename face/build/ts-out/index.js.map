@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,KAAK,MAAM,OAAO,CAAC;AAE/B,IAAI,CAAC,GAAG,KAAK,CAAC,WAAW,CAAC;AAC1B,CAAC,CAAC;AAEF,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC,CAAC","sourcesContent":["import * as THREE from 'three';\n\nlet a = THREE.AddEquation;\na;\n\nconsole.log('byeee');"]}
