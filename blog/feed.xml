@@ -6,9 +6,271 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 22 Apr 2019 21:24:17 -0700</pubDate>
-    <lastBuildDate>Mon, 22 Apr 2019 21:24:17 -0700</lastBuildDate>
-    <generator>Jekyll v3.6.2</generator>
+    <pubDate>Tue, 25 Feb 2020 21:13:18 -0800</pubDate>
+    <lastBuildDate>Tue, 25 Feb 2020 21:13:18 -0800</lastBuildDate>
+    <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Animated Neumorphic Button</title>
+        <description>&lt;p&gt;Neumorphism. Very polarizing. But very satisfying.&lt;/p&gt;
+
+&lt;p&gt;Go ahead, touch this button.&lt;/p&gt;
+
+&lt;div id=&quot;example&quot;&gt;
+  &lt;!-- Mobile Safari won't apply :active without an attached touch event. --&gt;
+  &lt;button ontouchstart=&quot;&quot;&gt;
+    &lt;span&gt;hey&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Nice.&lt;/p&gt;
+
+&lt;p&gt;Whether you like it or not, here’s how to animate a neumorphic button with &lt;em&gt;CSS only&lt;/em&gt;™.&lt;/p&gt;
+
+&lt;h2 id=&quot;neumorphism-breakdown&quot;&gt;Neumorphism breakdown&lt;/h2&gt;
+
+&lt;p&gt;In CSS, neumorphism leans on two box shadows. I’ll call them the &lt;em&gt;raised&lt;/em&gt; shadow and the &lt;em&gt;pressed&lt;/em&gt; shadow.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;css&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;c&quot;&gt;/* raised */&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#c8c8c8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; 
+           &lt;span class=&quot;nt&quot;&gt;-20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ffffff&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/* pressed */&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#c8c8c8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; 
+            &lt;span class=&quot;nt&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ffffff&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;They’re really the same shadow, one of them is just inset. The first provides an element with the appearance of being raised off the page. The second makes things look pressed into the page.&lt;/p&gt;
+
+&lt;p&gt;BUT, you can’t animate between a normal and inset shadow.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-animation&quot;&gt;The animation&lt;/h2&gt;
+
+&lt;p&gt;Instead, apply &lt;em&gt;both&lt;/em&gt; shadows to the target element, one on the &lt;code&gt;:before&lt;/code&gt; pseudo-element, and one on the &lt;code&gt;:after&lt;/code&gt;. Then animate the &lt;em&gt;opacity&lt;/em&gt; of these pseudo-elements.&lt;/p&gt;
+
+&lt;p&gt;The key to realism is to first transition to &lt;em&gt;no&lt;/em&gt; box shadow. When you press a button in real life, the button becomes flush with the surface before it is pressed into it.&lt;/p&gt;
+
+&lt;div id=&quot;breakdown&quot;&gt;
+  &lt;div style=&quot;display: inline-block;&quot;&gt;
+    &lt;button id=&quot;raised&quot;&gt;
+      &lt;span&gt;raised&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div style=&quot;text-align: center; font-size: 13px;&quot;&gt;
+      0%
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div style=&quot;display: inline-block;&quot;&gt;
+    &lt;button id=&quot;halfway&quot;&gt;
+      &lt;span&gt;halfway&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div style=&quot;text-align: center; font-size: 13px;&quot;&gt;
+      50%
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div style=&quot;display: inline-block;&quot;&gt;
+    &lt;button id=&quot;pressed&quot;&gt;
+      &lt;span&gt;pressed&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div style=&quot;text-align: center; font-size: 13px;&quot;&gt;
+      100%
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This transition keyframe can be achieved via a &lt;code&gt;transition-delay&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here’s the full CSS.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;css&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ebebeb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.07s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/* Box shadow */&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#d1d1d1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;light&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ffffff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;18px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;transparent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2px&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;transparent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;/* Neumorphic */&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ebebeb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:focus&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;outline&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;/* Keep buttons accessible! */&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2px&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#bbdefb&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;/* Neumorphic */&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;linear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;light&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;light&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:active&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:active&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;For extra realism, transform the scale of the button’s content to 0.97 while the button is active. This enhances the 3D effect by making it seem like the text of the button is farther from you when pressed.&lt;/p&gt;
+
+&lt;h2 id=&quot;try-it-yourself&quot;&gt;Try it yourself&lt;/h2&gt;
+
+&lt;p&gt;Here’s a Glitch project with this code that you can edit: &lt;a href=&quot;https://neumorphism.glitch.me/&quot; target=&quot;_blank&quot;&gt;neumorphism.glitch.me&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;◼&lt;/p&gt;
+</description>
+        <pubDate>Sun, 23 Feb 2020 01:47:36 -0800</pubDate>
+        <link>http://steven.codes/blog/animated-neumorphic-button/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/animated-neumorphic-button/</guid>
+        
+        <category>published</category>
+        
+        <category>teaser</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Newton's Cradle</title>
+        <description>&lt;p&gt;I made this Newton’s Cradle loading animation.&lt;/p&gt;
+
+&lt;p&gt;You [sarcastically clapping]: Nice job. I bet you used a bulky javascript animation library though.&lt;/p&gt;
+
+&lt;p&gt;Me: Nope, no JavaScript!&lt;/p&gt;
+
+&lt;p&gt;You [raising an eyebrow]: No JavaScript, eh? Fancy CSS keyframing then.&lt;/p&gt;
+
+&lt;p&gt;Me: &lt;em&gt;Wrong again!&lt;/em&gt; No CSS either.&lt;/p&gt;
+
+&lt;div id=&quot;user-choice&quot;&gt;
+  &lt;div&gt;You:&lt;/div&gt;
+  &lt;button&gt;[jaw slamming into floor]: w-w-whaaat?&lt;/button&gt;
+  &lt;button&gt;I don't care at all how you made this, just give me the code.&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;explanation&quot;&gt;
+
+&lt;p&gt;
+  Excellent choice. I did it with SVG animation. It's a thing! And now that Edge is based on Chromium, it _may_ be viable for your project. Probably not though. You'll find full code at the end.
+&lt;/p&gt;
+
+&lt;h2&gt;The Basics&lt;/h2&gt;
+
+&lt;p&gt;First we need some clackers. Here's four of them.&lt;/p&gt;
+
+&lt;div class=&quot;code-snippet&quot;&gt;
+  &lt;div class=&quot;code-snippet__code-area&quot;&gt;
+    
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;html&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;html to make clackers
+    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+    
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;css&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;css&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;clackers&lt;/span&gt;
+    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+  &lt;/div&gt;
+  &lt;div class=&quot;code-snippet__showcase&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Adding Motion&lt;/h2&gt;
+
+&lt;p&gt;
+  SVG provides the `animate` and `animationMotion` tags. With `animationMotion` you can tell an object to follow a path. Let's define that path for the circles to follow.
+&lt;/p&gt;
+
+&lt;pre&gt; DEMO GO HERE &lt;/pre&gt;
+
+&lt;p&gt;
+  Let's get these clackers movin'. Drop those paths into the `path` attribute. We also need to specify which clackers to animate.
+&lt;/p&gt;
+
+&lt;pre&gt; DEMO GO HERE &lt;/pre&gt;
+
+&lt;p&gt;
+  After carefully assessing this animation, I observed that it looks disgusting. I need these clackers to &lt;i&gt;delight&lt;/i&gt;. Let's make this look real.
+&lt;/p&gt;
+
+&lt;h2&gt;Realism&lt;/h2&gt;
+
+&lt;p&gt;
+  I'm pretty sure this looks bad because those clackers don't look like they're obeying the law of gravity. Let's apply some justice. We can leverage the `keyPoints` and `keyTimes` attributes of `animateMotion` to tell our clackers where to be (`keyPoints`) at what time (`keyTimes`). Each number in `keyPoints` specifies how far along the `path` to be at the corresponding key time.
+&lt;/p&gt;
+
+&lt;p&gt;
+  Armed with this knowledge, here's what we'll do: generate twenty evenly spaced values for `keyTimes`. Like this:
+  &lt;pre&gt;SOME EVENLY SPACED KEY TIMES&lt;/pre&gt;
+  Next, let's decide where the clacker should be at each of those times.
+&lt;/p&gt;
+
+&lt;p&gt;
+  Cracking open the ol' physics book, I see the equation for gravity has one of those little floaty 2's. That means quadratic right? Let's roll with it. I'll use a python script to calculate how far along the path I want the clacker to be at each of my evenly spaced times.
+  
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;python&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;magic&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;boi&lt;/span&gt;
+  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;/p&gt;
+
+&lt;p&gt;
+  So what do those points and times look like as `keyPoints` and `keyTimes`?
+&lt;/p&gt;
+
+&lt;pre&gt;DEMO GO HERE&lt;/pre&gt;
+
+&lt;p&gt;
+  It's working. Slight problem. We need the clackers to be in opposition to each other. Each clacker needs to spend half of its time sitting there, just waiting to be clacked. Let's throw in twenty extra key times and make the key points 0 for all of those.
+&lt;/p&gt;
+
+&lt;pre&gt;DEMO GO HERE&lt;/pre&gt;
+
+&lt;p&gt;
+  It's working. Let's offset the right hand clacker by half the duration of the animation now.
+&lt;/p&gt;
+
+&lt;pre&gt;DEMO GO HERE&lt;/pre&gt;
+
+&lt;p&gt;
+  It's working. Here's the full code:
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;pre&gt; FULL CODE GO HERE&lt;/pre&gt;
+
+&lt;p&gt;◼&lt;/p&gt;
+</description>
+        <pubDate>Wed, 24 Apr 2019 02:47:36 -0700</pubDate>
+        <link>http://steven.codes/blog/newtons-cradle/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/newtons-cradle/</guid>
+        
+        <category>draft</category>
+        
+        <category>teaser</category>
+        
+        
+      </item>
     
       <item>
         <title>Constant 2048 Solution</title>
@@ -1130,112 +1392,6 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
         <category>no_compress</category>
         
         <category>draft</category>
-        
-        <category>teaser</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Pixel Mapping</title>
-        <description>&lt;p&gt;hello&lt;/p&gt;
-
-&lt;div class=&quot;image-gallery&quot;&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Sat, 06 Feb 2016 01:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/pixel-mapping/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/pixel-mapping/</guid>
-        
-        <category>draft</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Google Sheets DB Tutorial</title>
-        <description>&lt;div class=&quot;notice&quot;&gt;
-  This article assumes a basic knowledge of JavaScript.
-&lt;/div&gt;
-
-&lt;p&gt;The first part (the Google Sheets part) of this tutorial is first a restatement, then an extension, of &lt;a href=&quot;https://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/&quot;&gt;Martin Hawksey’s Google Sheets as a Database&lt;/a&gt; article, with my own insights interjected. I include commentary from my experiences building &lt;a href=&quot;/home&quot;&gt;a “community” homepage&lt;/a&gt; based on this idea. I’ve written this article to shed some light on what’s going on in Martin’s tutorial.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-google-sheets-part&quot;&gt;The Google Sheets Part&lt;/h2&gt;
-
-&lt;p&gt;First, go to &lt;a href=&quot;https://docs.google.com/spreadsheets/&quot;&gt;Google Sheets&lt;/a&gt;, and create a new sheet. Then in the menu, click &lt;code&gt;Tools &amp;gt; Script editor...&lt;/code&gt; to launch the IDE. For starters, let’s copy and paste Martin Hawksey’s Apps Script snippet into the editor. Here it is for convenience: &lt;a href=&quot;https://gist.github.com/straversi/2fd82477504baa0b347c&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The first part of Martin’s tutorial tells you to run the function &lt;code&gt;setup&lt;/code&gt;, reproduced here:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;javascript&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SpreadsheetApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getActiveSpreadsheet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;SCRIPT_PROP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setProperty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;It’d be nice to know what id does first! Line 1 of the function grabs what’s called the “Active Spreadsheet”, a.k.a. the spreadsheet that you opened this script editor through. (You may notice that when you try to close your spreadsheet tab, the script editor leaves along with it). So &lt;code&gt;doc&lt;/code&gt; is an object representing your spreadsheet. When you don’t have the spreadsheet open, &lt;code&gt;getActiveSpreadsheet&lt;/code&gt; will error. By setting a script property that we call “key”, we can remember the id of our spreadsheet so we can retrieve it whenever we want. Now that we know what’s going on… in the menu, select &lt;code&gt;Run &amp;gt; setup&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Google may tell you “Authorization required / This app needs authorization to run”. That’s fine, hit “Continue”. Your script needs access to (1) View and manage your spreadsheets and (2) View and manage data associated with the application. Allow both. Now &lt;code&gt;setup&lt;/code&gt; has run, and if you’d like, select &lt;code&gt;File &amp;gt; Project properties&lt;/code&gt;, then select the &lt;code&gt;Script properties&lt;/code&gt; tab. There’s the key that we just set! FYI, it’s the same id that appears at the end of the URL of your spreadsheet. So, we could have done this manually by inspecting the URL of our spreadsheet and entering the id in this &lt;code&gt;Script properties&lt;/code&gt; tab. Either way, the script and the sheet are now together forever.&lt;/p&gt;
-
-&lt;p&gt;Time to deploy your script: select &lt;code&gt;Publish &amp;gt; Deploy as web app...&lt;/code&gt;. Choose to execute the app as yourself, and make sure to grant everyone access, like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/google-sheets-db-tutorial/deploy.png &quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Congrats. Save the “Current web app URL” that you are given, we’ll use it in a second. Don’t worry, you can recover it whenever you want by going back to &lt;code&gt;Publish &amp;gt; Deploy as web app...&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;in-action&quot;&gt;In Action&lt;/h3&gt;
-
-&lt;p&gt;Let’s make something happen. Go to your Google Sheet, and add “Timestamp” to A1 and “Name” to B1; these will be our example headers. I’ve written two scripts, one jQuery and one plain JavaScript for you to play around with posting to the sheet. Take your pick, and try them out:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/straversi/Google-sheet-interfaces/blob/master/JQuery-post.html&quot;&gt;jQuery version&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/straversi/Google-sheet-interfaces/blob/master/JavaScript-post.html&quot;&gt;Vanilla JS version&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;updates-and-handling-gets&quot;&gt;Updates, and Handling GETs&lt;/h2&gt;
-
-&lt;p&gt;Notice something? The current App Script code that we have attached to the spreadsheet doesn’t actually handle GETs in a useful way. Let’s fix that! We’ll divvy up &lt;code&gt;handleResponse&lt;/code&gt; into two cases.&lt;/p&gt;
-
-&lt;p&gt;App Script gives us these reserved functions called &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt;. When someone accesses our script with a GET or a POST, the appropriate function is called. We’ll define two new functions, &lt;code&gt;handleGet(e)&lt;/code&gt; and &lt;code&gt;handlePost(e)&lt;/code&gt; (or, feel free to place your response code inside &lt;code&gt;doGet&lt;/code&gt; and &lt;code&gt;doPost&lt;/code&gt; themselves).&lt;/p&gt;
-
-&lt;p&gt;First notice that our GET and POST will end up sharing some code: we need to keep these snippets from &lt;code&gt;handleResponse(e)&lt;/code&gt; at the beginning and end of our new definitions:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;javascript&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SpreadsheetApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;openById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SCRIPT_PROP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getProperty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sheet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getSheetByName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;POST_SHEET_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;javascript&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ContentService&lt;/span&gt;
-          &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createTextOutput&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resultObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-          &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setMimeType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ContentService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MimeType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;You may want to abstract those, as they’ll be the same for each type of response. In between, we’ll do our GET or POST work. I’ve modified the returned ContentService to return &lt;code&gt;resultObject&lt;/code&gt;, which we can set to be whatever we want in both our GET and POST responses.&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&quot;important&quot;&gt;Note:&lt;/span&gt; If you separate your GET and POST handling, you should remember to move the &lt;code&gt;LockService&lt;/code&gt; portions into your POST handler. We don’t want to be unnecessarily restricting read operations. Furthermore, App Script has changed since the script we began with was written. &lt;code&gt;LockService.getPublicLock&lt;/code&gt; is now &lt;code&gt;LockService.getScriptLock&lt;/code&gt;. Be sure to reflect this change in your code. For more on other types of locks, see &lt;a href=&quot;https://developers.google.com/apps-script/reference/lock/lock-service&quot;&gt;Class LockService&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;safari-and-how-to-trick-it&quot;&gt;Safari, And How to Trick It&lt;/h2&gt;
-
-&lt;p&gt;Our “database” operations should be successful so far. That is, except for this odd corner case: Safari.&lt;/p&gt;
-
-&lt;p&gt;What’s the problem? When we try to do our simple post, we get these errors in the console:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/posts/google-sheets-db-tutorial/safari_http_errors.png &quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Aha, but if I check our spreadsheet database, I see that the &lt;strong&gt;POST still successfully got the correct data to the sheet!&lt;/strong&gt; So it would seem that the problem here is that Safari can tell Google stuff, but Google can’t tell Safari stuff back. Which causes problems: (a) GETs are useless now, and (b) we can’t tell the difference between a successful and unsuccessful POST, because we can’t get our result key back.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-fix&quot;&gt;The Fix&lt;/h3&gt;
-
-&lt;p&gt;To make a long story short, what we have here is a problem with &lt;a href=&quot;https://en.wikipedia.org/wiki/Cross-origin_resource_sharing&quot;&gt;Cross-Origin Resource Sharing&lt;/a&gt; (CORS). Safari won’t accept Google’s response unless it has a certain header specifying &lt;code&gt;Access-Control-Allow-Origin: *&lt;/code&gt;. This is a result of Safari adhering to W3C spec very closely. To fix this, we’ll have someone else make our requests for us. If we append &lt;code&gt;http://crossorigin.me/&lt;/code&gt; to the beginning of our request URL (https://script.google.com/macros/s/AKfycb…), the folks over at crossorigin will make a nice request from a place that doesn’t care so much about CORS for us. We then receive the reply as Google sent it. ◼&lt;/p&gt;
-</description>
-        <pubDate>Sat, 06 Feb 2016 01:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/google-sheets-db-tutorial/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/google-sheets-db-tutorial/</guid>
-        
-        <category>hot</category>
-        
-        <category>published</category>
         
         <category>teaser</category>
         
