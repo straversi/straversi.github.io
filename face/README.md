@@ -13,8 +13,8 @@ ps
 kill <thread id>
 ```
 
-# Concept
+# Features on deck
 
-Turn the cursor into a hamburger (or something). The face will look at it.
-
-Allow user to convert cursor to something bad. The face will look away from it.
+* Load screen while glbs download
+* PNG-compress the textures
+* Buttons to (blog|code|art)

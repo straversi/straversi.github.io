@@ -1,13 +1,14 @@
 {
   "name": "face",
   "version": "1.0.0",
-  "description": "A splah page with my face on it.",
+  "description": "A splash page with my face on it.",
   "main": "index.js",
   "scripts": {
     "build": "tsc && rollup --config",
     "watch": "npm run watch-ts & npm run watch-rollup",
     "watch-ts": "tsc --watch",
-    "watch-rollup": "rollup --config --watch"
+    "watch-rollup": "rollup --config --watch",
+    "dev": "serve && npm run watch"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,6 @@
     "rollup": "^1.29.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "three": "^0.109.0",
-    "typescript": "3.6.4"
+    "typescript": "3.7.5"
   }
 }

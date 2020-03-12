@@ -52031,31 +52031,39 @@
 	var renderer = new WebGLRenderer();
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	document.body.appendChild(renderer.domElement);
+	window.addEventListener('resize', () => {
+	    renderer.setSize(window.innerWidth, window.innerHeight);
+	    camera.aspect = window.innerWidth / window.innerHeight;
+	    camera.updateProjectionMatrix();
+	});
 	const makePointLight = (x, y, z) => {
 	    const light = new PointLight(0xffffff, 1, 50);
 	    light.position.set(x, y, z);
 	    scene.add(light);
 	};
-	makePointLight(0, 0, 10);
-	var ambientLight = new AmbientLight(0x404040, 1);
+	makePointLight(0, 10, 10);
+	var ambientLight = new AmbientLight(0x404040, 5);
 	scene.add(ambientLight);
+	const progressBar = document.querySelector('#progress-bar');
 	var loader = new GLTFLoader();
 	let steven;
 	loader.load("assets/steven-mask-6/optimized-face-1.glb", function (gltf) {
-	    steven = gltf;
-	    scene.add(steven.scene);
-	    steven.scene.scale.set(5, 5, -5);
-	    console.log('doneee');
-	}, undefined, function (error) {
-	    console.error(error);
-	});
+	    var _a;
+	    steven = gltf.scene.getObjectByName('texturedMesh');
+	    steven.scale.set(5, 5, 5);
+	    steven.lookAt(0, 0, -10);
+	    scene.add(gltf.scene);
+	    (_a = document.getElementById('loader')) === null || _a === void 0 ? void 0 : _a.remove();
+	}, function (progress) {
+	    progressBar.style.width = `${100 * progress.loaded / progress.total}%`;
+	}, undefined);
 	var loader = new GLTFLoader();
 	let sushi;
-	const sushiScale = 0.05;
-	loader.load("assets/steven-mask-6/sushi.glb", function (gltf) {
-	    sushi = gltf;
-	    sushi.scene.scale.set(sushiScale, sushiScale, sushiScale);
-	    scene.add(sushi.scene);
+	const sushiScale = .05;
+	loader.load("assets/steven-mask-6/sushi-shiny-opt.glb", function (gltf) {
+	    sushi = gltf.scene.children[0];
+	    sushi.scale.set(sushiScale, sushiScale, sushiScale);
+	    scene.add(gltf.scene);
 	}, undefined, function (error) {
 	    console.error(error);
 	});
@@ -52063,19 +52071,30 @@
 	var raycaster = new Raycaster();
 	var mouse = new Vector2();
 	var intersectPoint = new Vector3();
-	window.addEventListener("mousemove", (e) => {
-	    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-	    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+	const moveHandler = (clientX, clientY) => {
+	    mouse.x = (clientX / window.innerWidth) * 2 - 1;
+	    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
 	    raycaster.setFromCamera(mouse, camera);
 	    raycaster.ray.intersectPlane(plane, intersectPoint);
-	    intersectPoint.add(new Vector3(0, -0.4, 0));
+	    intersectPoint.multiply(new Vector3(-1, -1, -1));
 	    if (steven !== undefined) {
-	        steven.scene.lookAt(intersectPoint);
+	        steven.lookAt(intersectPoint);
 	    }
 	    if (sushi !== undefined) {
-	        sushi.scene.position.set(intersectPoint.x, intersectPoint.y + 0.2, intersectPoint.z);
+	        sushi.position.set(-intersectPoint.x, -intersectPoint.y + 0.2, -intersectPoint.z);
 	    }
-	});
+	};
+	const touchHandler = (e) => {
+	    e.preventDefault();
+	    const touch = e.touches[0];
+	    moveHandler(touch.clientX, touch.clientY);
+	};
+	const mouseHandler = (e) => {
+	    moveHandler(e.clientX, e.clientY);
+	};
+	window.addEventListener("touchmove", touchHandler);
+	window.addEventListener("touchstart", touchHandler);
+	window.addEventListener("mousemove", mouseHandler);
 	camera.position.z = 50;
 	camera.zoom = 15;
 	camera.updateProjectionMatrix();
@@ -52085,11 +52104,38 @@
 	};
 	var animate = function () {
 	    requestAnimationFrame(animate);
-	    sushi.scene.rotation.y += 0.015;
-	    sushi.scene.rotation.x = sushiRotX();
+	    if (sushi !== undefined) {
+	        sushi.rotation.y += 0.015;
+	        sushi.rotation.x = sushiRotX();
+	    }
 	    renderer.render(scene, camera);
 	    t += 0.01;
 	};
 	animate();
+
+	const links = document.querySelectorAll('#links > *');
+	for (let i = 0; i < links.length; i++) {
+	    const link = links[i];
+	    const letters = link.children[0].children;
+	    link.addEventListener('mouseenter', () => {
+	        console.log('hi');
+	        let hovered = true;
+	        link.addEventListener('mouseleave', () => {
+	            console.log('bye');
+	            hovered = false;
+	        });
+	        console.log(letters);
+	        const wiggle = (ts) => {
+	            for (let j = 0; j < letters.length; j++) {
+	                const letter = letters[j];
+	                letter.style.top = `${10 * Math.sin(ts / 100 + j)}px`;
+	            }
+	            if (hovered) {
+	                requestAnimationFrame(wiggle);
+	            }
+	        };
+	        requestAnimationFrame(wiggle);
+	    });
+	}
 
 }());

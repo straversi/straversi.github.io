@@ -3,12 +3,63 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Steven Traversi</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<style>
-			body { margin: 0; }
-			canvas { width: 100%; height: 100% }
+			body {
+				margin: 0;
+				background: black;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+				overflow: hidden;
+			}
+			canvas { display: block; /* display prop removes vertical scroll */ }
+			#loader {
+				display: inline-block;
+				text-align: center;
+				position: absolute;
+				width: 100px;
+				max-width: 100%;
+				left: 50%; top: 50%;
+				transform: translate(-50%, -50%);
+				color: white;
+			}
+			#progress-bar {
+				width: 0;
+				background: white;
+				margin-top: 8px;
+				height: 4px;
+			}
+			#links {
+				position: absolute;
+				left: 0px;
+				top: 60%;
+				left: 10%;
+				transform: translateY(-50%);
+				z-index: 1;
+				color: white;
+			}
+			#links > h1 {
+				font-size: 58px;
+				font-weight: 600;
+				margin-top: 0px;
+				margin-bottom: 25px;
+			}
+			#links a { text-decoration: none; color: inherit; }
+			#links > h1:nth-child(1) { color: #FF4646; }
+			#links > h1:nth-child(2) { color: #FFC046; }
+			#links > h1:nth-child(3) { color: #46F4FF; }
+			#links span { position: relative; }
 		</style>
 	</head>
 	<body>
+		<div id="loader">
+			<div>loading</div>
+			<div id="progress-bar"></div>
+		</div>
+		<div id="links">
+			<h1><a href=""><span>a</span><span>r</span><span>t</span></a></h1>
+			<h1><a href=""><span>b</span><span>l</span><span>o</span><span>g</span></a></h1>
+			<h1><a href=""><span>c</span><span>o</span><span>d</span><span>e</span></a></h1>
+		</div>
 		<script src="build/bundle.js"></script>
 	</body>
 </html>
