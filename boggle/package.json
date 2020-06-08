@@ -1,0 +1,22 @@
+{
+  "name": "boggle",
+  "version": "1.0.0",
+  "description": "A Boggle solver",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --watch --config webpack.config.js",
+    "serve": "serve -l 1234 dist"
+  },
+  "author": "Steven Traversi",
+  "license": "ISC",
+  "dependencies": {
+    "lit-element": "^2.0.0-rc.3"
+  },
+  "devDependencies": {
+    "serve": "^10.1.1",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
+  }
+}
