@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Boggle Solver</title>
   <script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
   <link rel="stylesheet" href="./main.css">
 </head>
-<body class="solved">
+<body>
   <div style="position: absolute; z-index: 10;">
     <input type="checkbox" id="show-word-box" name="show-word-box" checked onchange="let op = this.checked ? 'add' : 'remove'; document.body.classList[op]('solved')">
     <label for="show-word-box">Word Box</label>
   </div>
 
   <div id="container">
-    <div id="solved-container">
-      <boggle-board></boggle-board>
+    <boggle-board></boggle-board>
+    <div id="results">
+      <solve-button></solve-button>
       <word-box></word-box>
     </div>
-    <solve-button></solve-button>
   </div>
 
   <script src="./main.js"></script>

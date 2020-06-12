@@ -7,11 +7,11 @@ import {SolveButton} from "./customElements/solve-button.js";
 
 async function solve(board) {
   console.log("sending board:", board);
-  return ["words", "were", "found"];
+  // return ["words", "were", "found", "by", "the", "algorithm", "how", "cool"];
 
-  // let board = [["A","B","C","D"],["E","F","G","H"],["I","J","K","L"],["M","N","O","P"]];
-  let body = {board: board};
-  let request = new Request("/boggle/solve", {
+  // board = [["A","B","C","D"],["E","F","G","H"],["I","J","K","L"],["M","N","O","P"]];
+  const body = {board: board};
+  const request = new Request("https://api.steven.codes/boggle/solve", {
     method: "POST",
     headers: {
       'Accept': 'application/json',
@@ -21,24 +21,28 @@ async function solve(board) {
     // be unreadable by Flask
     body: JSON.stringify(body)
   });
-  let result = await fetch(request);
+  const result = await fetch(request);
   return await result.json();
 }
 
 function displayWords(words) {
-  console.log(words);
+  let wordBox = document.querySelector("WORD-BOX");
+  wordBox.words = words.map(w => ({word: w, points: 2}));
 }
 
-document.getElementsByTagName("solve-button")[0].addEventListener("click", function() {
+function timeout(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+document.getElementsByTagName("solve-button")[0].addEventListener("click", async function() {
   this.classList.add("clicked");
   let board = document.getElementsByTagName("BOGGLE-BOARD")[0];
-  console.log('loaded this');
-  solve(board.board())
-    .then((results) => {
-      displayWords(results);
-      return results;
-    })
-    .then(() => {
-      console.log("promise chain over, bitch")
-    });
+  // const [results] = await Promise.all([
+  //   solve(board.board()),
+  //   timeout(800), // amount of time SOLVE-BUTTON takes to hide itself.
+  // ]);
+  const results = await solve(board.board());
+  displayWords(results);
+  document.body.classList.add('solved');
+  console.log("solved.");
 });

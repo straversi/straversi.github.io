@@ -1,4 +1,4 @@
-import {LitElement, html} from 'lit-element';
+import {LitElement, html, css} from 'lit-element';
 import {Cube} from "./cube.js";
 
 export class BoggleBoard extends LitElement {
@@ -20,13 +20,16 @@ export class BoggleBoard extends LitElement {
     let cube = this.shadowRoot.querySelector("cube-");
     let width = cube.getBoundingClientRect().width;
     board.style.setProperty('--cube-width', width + "px");
+    board.style.setProperty('--cube-font-size', width + "px");
+    board.style.setProperty('--cube-line-height', width + "px");
   }
 
   constructor() {
     super();
     this.addEventListener("boggleCharacterEntered", (e) => {
-      let cubes = Array.from(this.shadowRoot.querySelectorAll("CUBE-"));
-      let cubeIndex = cubes.indexOf(e.originalTarget);
+      const cubes = Array.from(this.shadowRoot.querySelectorAll("CUBE-"));
+      const originalTarget = e.composedPath()[0];
+      const cubeIndex = cubes.indexOf(originalTarget);
       if (cubeIndex !== cubes.length - 1) {
         cubes[cubeIndex + 1].focus();
       } else {
@@ -53,8 +56,8 @@ export class BoggleBoard extends LitElement {
     return board;
   }
 
-  style() {
-    return html`<style>
+  static get styles() {
+    return css`
       :host {
         display: block;
         position: relative;
@@ -81,14 +84,13 @@ export class BoggleBoard extends LitElement {
         padding: 1em;
       }
 
-
       CUBE- {
         transition: transform 0.1s ease-out;
         width: 100%;
         height: 100%;
         z-index: 2;
       }
-      CUBE-:focus {
+      CUBE-[fauxcused] {
         z-index: 3;
         transform: scale(1.1);
       }
@@ -104,11 +106,17 @@ export class BoggleBoard extends LitElement {
         top: 0px;
         right: 0px;
       }
-    </style>`
+    `;
   }
 
   render() {
-    return html`${this.style()}
+    const cubes = [];
+    for (let i = 0; i < 16; i++) {
+      cubes.push(html`
+        <cube-></cube->
+      `);
+    }
+    return html`
       <div id="board">
         <svg id="square" viewBox="0 0 100 100" width="100%" height="100%">
           <rect fill="white" stroke="black" stroke-width="1" stroke-linejoin="round"
@@ -119,25 +127,7 @@ export class BoggleBoard extends LitElement {
           />
         </svg>
 
-          <cube-></cube->
-          <cube-></cube->
-          <cube-></cube->
-          <cube-></cube->
-
-          <cube-></cube->
-          <cube-></cube->
-          <cube-></cube->
-          <cube-></cube->
-
-          <cube-></cube->
-          <cube-></cube->
-          <cube-></cube->
-          <cube-></cube->
-
-          <cube-></cube->
-          <cube-></cube->
-          <cube-></cube->
-          <cube-></cube->
+        ${cubes}
 
         <svg id="cube-thing" viewBox="0 0 500 500" width="500%" height="500%">
           <path d="M 400 0 L 500 100 L 100 500 L 0 500 L 0 400 L 400 0" fill="white" />

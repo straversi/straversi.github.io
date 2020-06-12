@@ -1,4 +1,5 @@
-import {LitElement, html} from 'lit-element';
+import {LitElement, html, css} from 'lit-element';
+import {classMap} from 'lit-html/directives/class-map';
 
 export class Cube extends LitElement {
 
@@ -6,6 +7,7 @@ export class Cube extends LitElement {
     return {
       face: {type: String},
       char: {type: String},
+      fauxcused: {type: Boolean, reflect: true},
     }
   }
 
@@ -28,12 +30,23 @@ export class Cube extends LitElement {
     this.char = "?";
 
     this.addEventListener('keydown', (e) => this._enteredChar(e.key));
+    this.addEventListener('focus', () => {
+      // Immediately change focus to an input element to get the keyboard
+      // to appear on mobile.
+      const input = this.shadowRoot.querySelector('input');
+      this.fauxcused = true;
+      input.focus();
+    });
+    this.addEventListener('blur', () => {
+      this.fauxcused = false;
+    });
   }
 
-  style() {
-    return html`<style>
+  static get styles() {
+    return css`
       :host {
         display: inline-block;
+        position: relative;
         --border-color: black;
         --border-width: 0px;
         --z-multiplier: -0.5;
@@ -46,10 +59,14 @@ export class Cube extends LitElement {
       :host(:focus) {
         outline: none;
       }
-
-      :host(:focus) path {
+      .fauxcused path {
         stroke: #42A5F5;
         stroke-width: 6;
+      }
+      input {
+        font-size: 16px;
+        position: absolute;
+        transform: scale(0);
       }
 
       #scene {
@@ -83,7 +100,7 @@ export class Cube extends LitElement {
         font-weight: 800;
         color: #9E9E9E;
         display: inline-block;
-        line-height: 82px; /* XXX: font size is no longer configurable */
+        line-height: var(--cube-line-height, 82px);
         text-transform: uppercase;
       }
       .cube.with-char > .cube__face > div {
@@ -114,10 +131,12 @@ export class Cube extends LitElement {
       .cube.left   { transform: translateZ(calc(var(--z-multiplier) * var(--cube-width, 80px))) rotateY(  90deg); }
       .cube.top    { transform: translateZ(calc(var(--z-multiplier) * var(--cube-width, 80px))) rotateX( -90deg); }
       .cube.bottom { transform: translateZ(calc(var(--z-multiplier) * var(--cube-width, 80px))) rotateX(  90deg); }
-    </style>`
+    `;
   }
 
   _enteredChar(char) {
+    console.log('entered ', char);
+    char = char.toLowerCase();
     if (!char.match(/^[a-z]$/)) { return; } /* just don't use e.key */
     if (this.char !== char) {
       this.char = char;
@@ -152,9 +171,9 @@ export class Cube extends LitElement {
   }
 
   render() {
-    return html`${this.style()}
-      <input type="text" style="display: none">
-      <div id="scene">
+    return html`
+      <input type="text">
+      <div id="scene" class="${classMap({fauxcused: !!this.fauxcused})}">
         <div class="cube ${this.face} ${this._charWasEntered() ? 'with-char' : ''}">
           <div class="cube__face cube__face--front">${this._face()}<div>${this.text.front}</div></div>
           <div class="cube__face cube__face--back">${this._face()}<div>${this.text.back}</div></div>

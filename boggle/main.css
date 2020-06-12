@@ -6,6 +6,7 @@ body {
   --word-box-width: 293px;
   --word-box-height: 380px;
   margin: 0;
+  --
 }
 
 #container {
@@ -14,10 +15,6 @@ body {
   /* 😫 can't flex wrap because need to change the z-index when wrapped */
   --container-padding: 12px;
   padding: var(--container-padding);
-}
-
-#solved-container {
-  text-align: center; /* Must reset in children */
 }
 
 BOGGLE-BOARD {
@@ -33,13 +30,18 @@ BOGGLE-BOARD {
   max-height: calc(100vmin - 2 * var(--container-padding));
 }
 
-WORD-BOX {
-  display: none;
+#results {
   position: relative;
-  z-index: 2;
+}
+
+WORD-BOX {
+  transform: translate(-500px, 500px);
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  top: 0;
+  z-index: 4;
   line-height: normal; /* reset */
-  margin-left: 35px;
-  /* margin-bottom: 40px; */
 }
 
 SOLVE-BUTTON {
@@ -51,45 +53,48 @@ SOLVE-BUTTON {
 
 /* Screen size */
 
+/* Mobile */
 @media (max-width: 760px) {
   body.solved BOGGLE-BOARD {
-    display: block !important;
-    margin: 0 auto;
   }
   body.solved WORD-BOX {
-    display: block !important;
-    margin: 35px auto 70px auto !important;
-    z-index: 4;
-    --word-box-width: 360px;
   }
 }
 
 /* Solved states */
 
-body.solved #solved-container {
-  line-height: 400px; /* Must reset line-height in children */
-}
-body.solved BOGGLE-BOARD {
+/* body.solved BOGGLE-BOARD {
   display: inline-block;
   vertical-align: top;
-}
+} */
 body.solved WORD-BOX {
-  display: inline-block;
-  vertical-align: middle;
-}
-body.solved SOLVE-BUTTON {
-  /* positioning */
+  animation-name: run-away;
+  animation-duration: 0.8s;
+  animation-iteration-count: 1;
+  animation-direction: reverse;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translate(0px, 0px);
+  /* vertical-align: middle; */
 }
 
-@keyframes button-run-away {
-  0%   { transform: translate(0px, 0px); }
-  20%  { transform: translate(20px, -20px); }
-  100% { transform: translate(-500px, 500px); }
-}
 SOLVE-BUTTON.clicked {
-  animation-name: button-run-away;
+  animation-name: run-away;
   animation-duration: 0.8s;
   animation-iteration-count: 1;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate(-500px, 500px);
 }
+
+@keyframes run-away {
+  0%   { transform: translate(0px, 0px); }
+  20%  { transform: translate(20px, -20px); }
+  100% { transform: translate(-500px, 500px); }
+}
+
+/* This is just run-away in reverse. Can we reverse with
+ * animation API instead? */
+/* @keyframes come-back {
+  0% { transform: translate(-500px, 500px); }
+  80%  { transform: translate(20px, -20px); }
+  100%   { transform: translate(0px, 0px); }
+} */

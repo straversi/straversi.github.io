@@ -1,24 +1,26 @@
-import {LitElement, html} from 'lit-element';
+import {LitElement, html, css} from 'lit-element';
 
 export class WordBox extends LitElement {
 
   static get properties() {
     return {
-
+      words: {type: Array},
     }
   }
 
   constructor() {
     super();
-
+    this.words = [
+      {word: 'hello', points: 2},
+      {word: 'hello', points: 2},
+      {word: 'hello', points: 2},
+    ];
   }
 
-  style() {
-    return html`<style>
+  static get styles() {
+    return css`
       :host {
         display: block;
-        width: var(--word-box-width);
-        height: var(--word-box-height);
       }
       ul {
         font-family: 'Righteous';
@@ -70,26 +72,16 @@ export class WordBox extends LitElement {
         width: 500px;
       }
       #line-1 { right: calc(100% - 1px); top: 0; }
-      #line-2 { right: calc(100% - 2px); top: calc(100% + 2px); }
-      #line-3 { right: 0; top: calc(100% + 2px); }
-    </style>`
+      #line-2 { right: calc(100% - 2px); top: calc(100% - 1px); }
+      #line-3 { right: 0; top: calc(100% - 1px); }
+    `;
   }
 
   render() {
-    return html`${this.style()}
+    return html`
       <div id="words-container">
         <ul>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
-          <li><span class="word">words</span><span class="points">+2</span></li>
+          ${this.words.map(w => html`<li><span class="word">${w.word}</span><span class="points">+${w.points}</span></li>`)}
         </ul>
         <svg
           id="bottom-quad"

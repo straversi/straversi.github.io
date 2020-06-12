@@ -1,4 +1,4 @@
-import {LitElement, html} from 'lit-element';
+import {LitElement, html, css} from 'lit-element';
 
 export class SolveButton extends LitElement {
 
@@ -8,8 +8,8 @@ export class SolveButton extends LitElement {
     }
   }
 
-  style() {
-    return html`<style>
+  static get styles() {
+    return css`
       :host {
         display: block;
         width: 246px; height: 84px;
@@ -48,11 +48,11 @@ export class SolveButton extends LitElement {
         top: -16px; right: -16px;
         width: calc(418px * 4);
       }
-    </style>`
+    `;
   }
 
   render() {
-    return html`${this.style()}
+    return html`
       <div id="solve-button">
         <div id="left-items">
           <span>solve</span>

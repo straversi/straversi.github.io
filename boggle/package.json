@@ -7,12 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch --config webpack.config.js",
-    "serve": "serve -l 1234 dist"
+    "serve": "serve -l 1234"
   },
   "author": "Steven Traversi",
   "license": "ISC",
   "dependencies": {
-    "lit-element": "^2.0.0-rc.3"
+    "lit-element": "^2.3.1",
+    "lit-html": "^1.2.1"
   },
   "devDependencies": {
     "serve": "^10.1.1",
