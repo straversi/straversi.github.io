@@ -136,8 +136,8 @@ export class Cube extends LitElement {
 
   _enteredChar(char) {
     console.log('entered ', char);
-    char = char.toLowerCase();
-    if (!char.match(/^[a-z]$/)) { return; } /* just don't use e.key */
+    char = char.toUpperCase();
+    if (!char.match(/^[A-Z]$/)) { return; } /* just don't use e.key */
     if (this.char !== char) {
       this.char = char;
       let nextFace = this._nextFace();
