@@ -6,12 +6,11 @@ body {
   --word-box-width: 293px;
   --word-box-height: 380px;
   margin: 0;
-  --
 }
 
 #container {
   overflow-y: hidden; /* hides the overflowing svgs in the components */
-  min-height: 100vh;  /*                    ...                       */
+  min-height: 100vh; /*                    ...                       */
   /* 😫 can't flex wrap because need to change the z-index when wrapped */
   --container-padding: 12px;
   padding: var(--container-padding);
@@ -86,9 +85,15 @@ SOLVE-BUTTON.clicked {
 }
 
 @keyframes run-away {
-  0%   { transform: translate(0px, 0px); }
-  20%  { transform: translate(20px, -20px); }
-  100% { transform: translate(-500px, 500px); }
+  0% {
+    transform: translate(0px, 0px);
+  }
+  20% {
+    transform: translate(20px, -20px);
+  }
+  100% {
+    transform: translate(-500px, 500px);
+  }
 }
 
 /* This is just run-away in reverse. Can we reverse with

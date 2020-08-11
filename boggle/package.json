@@ -16,7 +16,11 @@
     "lit-html": "^1.2.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.9.0",
+    "@typescript-eslint/parser": "^3.9.0",
     "serve": "^10.1.1",
+    "ts-loader": "^8.0.2",
+    "typescript": "^3.9.7",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1"
   }
