@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Boggle Solver</title>
-  <script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-  <link rel="stylesheet" href="./main.css">
-</head>
-<body>
-  <div style="position: absolute; z-index: 10; color: grey; font-size: 10px; right: 0;">
-    v1.0
-  </div>
-
-  <div id="container">
-    <boggle-board></boggle-board>
-    <div id="results">
-      <solve-button></solve-button>
-      <word-box></word-box>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>Boggle Solver</title>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Righteous"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <div
+      style="
+        position: absolute;
+        z-index: 10;
+        color: grey;
+        font-size: 10px;
+        right: 0;
+      "
+    >
+      v1.1
     </div>
-  </div>
 
-  <script src="./dist/bundle.js"></script>
-</body>
+    <!-- wrapper div for transforming in and out of the window -->
+    <!-- <div>
+      <q-or-qu></q-or-qu>
+    </div>
+    <div id="overlay"></div> -->
+    <div id="container">
+      <boggle-board></boggle-board>
+      <div id="results">
+        <solve-button></solve-button>
+        <word-box></word-box>
+      </div>
+    </div>
+
+    <script src="./dist/bundle.js"></script>
+  </body>
 </html>

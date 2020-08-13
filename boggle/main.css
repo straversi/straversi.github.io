@@ -35,10 +35,12 @@ BOGGLE-BOARD {
 
 WORD-BOX {
   transform: translate(-500px, 500px);
-  position: absolute;
+  position: relative;
   width: 100%;
+  max-width: 575px;
+  margin: 0 auto;
   height: 200px;
-  top: 0;
+  top: calc(-1 * (84px + 40px)); /* height of solve button + its margin */
   z-index: 4;
   line-height: normal; /* reset */
 }
@@ -103,3 +105,23 @@ SOLVE-BUTTON.clicked {
   80%  { transform: translate(20px, -20px); }
   100%   { transform: translate(0px, 0px); }
 } */
+
+Q-OR-QU {
+  position: absolute;
+  z-index: 6;
+  width: 349px;
+  max-width: calc(100% - 10px);
+  box-sizing: border-box;
+  top: 81px;
+  left: 50%;
+  transform: translate(-50%);
+}
+#overlay {
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

@@ -9,10 +9,6 @@ interface Word {
 export class WordBox extends LitElement {
   @property({attribute: false}) words: Word[] = [];
 
-  constructor() {
-    super();
-  }
-
   static styles = css`
     :host {
       display: block;
@@ -42,6 +38,7 @@ export class WordBox extends LitElement {
     li span.points {
       font-size: 28px;
       color: #a259ff;
+      margin-right: 18px;
     }
     #words-container {
       padding: 0px;
@@ -91,8 +88,8 @@ export class WordBox extends LitElement {
           ${this.words.map(
             (w) =>
               html`<li>
-                <span class="word">${w.word}</span
-                ><span class="points">+${w.points}</span>
+                <span class="points">+${w.points}</span
+                ><span class="word">${w.word}</span>
               </li>`
           )}
         </ul>

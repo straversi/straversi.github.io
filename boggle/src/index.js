@@ -2,11 +2,12 @@ import {Cube} from './customElements/cube';
 import {WordBox} from './customElements/word-box';
 import {BoggleBoard} from './customElements/boggle-board';
 import {SolveButton} from './customElements/solve-button';
+import {QOrQu} from './customElements/q-or-qu';
 
 async function solve(board) {
   console.log('sending board:', board);
-  const solveEndpoint = 'https://api.steven.codes/boggle/solve';
-  // const solveEndpoint = 'http://localhost:5000/boggle/solve';
+  // const solveEndpoint = 'https://api.steven.codes/boggle/solve';
+  const solveEndpoint = 'http://localhost:5000/boggle/solve';
 
   const body = {board: board};
   const request = new Request(solveEndpoint, {
