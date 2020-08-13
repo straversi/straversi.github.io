@@ -13,4 +13,5 @@
 - [x] make the word box fly in when the board is solved. Probably will want to wrap [word box and solve button] in a relatively positioned div, then absolutely position the word box and solve button. That way they can fly in with the same transforms.
 - [x] see if Fetch/Request API actually works on mobile Safari. Try fetching to api.steven.codes. If it doesn't work, may have to switch to XHRblahblahrequest
 - [x] tapping a cube twice makes the keyboard disappear on mobile safari.
-- [ ] Q or Qu? dialog. Must also implement this in the server.
+- [x] Q or Qu? dialog. Must also implement this in the server.
+- [x] Make cube text smaller when text is "QU".

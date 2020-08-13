@@ -1,5 +1,6 @@
 import { LitElement } from 'lit-element';
 import { Cube } from './cube';
+export declare type board = string[][];
 export declare class BoggleBoard extends LitElement {
     boardEl: HTMLElement;
     cube: HTMLElement;
@@ -7,7 +8,7 @@ export declare class BoggleBoard extends LitElement {
     firstUpdated(): void;
     updateCubeWidth(): void;
     constructor();
-    board(): string[][];
+    board(): board;
     static styles: import("lit-element").CSSResult;
     render(): import("lit-element").TemplateResult;
 }

@@ -8,10 +8,13 @@ import {
 } from 'lit-element';
 import {Cube} from './cube';
 
+export type board = string[][];
+
+console.log('yo');
 @customElement('boggle-board')
 export class BoggleBoard extends LitElement {
   @query('#board') boardEl!: HTMLElement;
-  // Just used to esimate cube width.
+  // Just used to estimate cube width.
   @query('cube-') cube!: HTMLElement;
   @queryAll('cube-') cubes!: Cube[];
 
@@ -24,7 +27,7 @@ export class BoggleBoard extends LitElement {
   updateCubeWidth() {
     let width = this.cube.getBoundingClientRect().width;
     this.boardEl.style.setProperty('--cube-width', width + 'px');
-    this.boardEl.style.setProperty('--cube-font-size', width + 'px');
+    this.boardEl.style.setProperty('--cube-font-size', width * 0.9 + 'px');
     this.boardEl.style.setProperty('--cube-line-height', width + 'px');
   }
 
@@ -46,7 +49,7 @@ export class BoggleBoard extends LitElement {
     window.addEventListener('resize', () => this.updateCubeWidth());
   }
 
-  board() {
+  board(): board {
     const cubes = this.cubes;
     let board = [];
     let row = [];

@@ -2,14 +2,66 @@ import {LitElement, html, css, customElement} from 'lit-element';
 
 @customElement('q-or-qu')
 export class QOrQu extends LitElement {
+  static mount(parent: ParentNode = document.body): QOrQu {
+    const qOrQu = document.createElement('q-or-qu') as QOrQu;
+    parent.prepend(qOrQu);
+    return qOrQu;
+  }
+
+  async useQu(): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.addEventListener('qu-decision', (e) => {
+        this.parentNode!.removeChild(this);
+        resolve((e as CustomEvent).detail.useQu);
+      });
+    });
+  }
+
+  quDecided(qu: boolean) {
+    this.dispatchEvent(new CustomEvent('qu-decision', {detail: {useQu: qu}}));
+  }
+
+  render() {
+    return html`
+      <div id="dialog">
+        <div id="buttons">
+          <button id="q" @click=${() => this.quDecided(false)}>Q</button>
+          <span id="or">or</span>
+          <button id="qu" @click=${() => this.quDecided(true)}>Qu</button>
+          <span id="question">?</span>
+        </div>
+        <div id="form">
+          <input checked type="checkbox" id="remember" /><label for="remember"
+            >Remember for future boards</label
+          >
+        </div>
+      </div>
+    `;
+  }
+
   static styles = css`
     :host {
+      background: rgba(0, 0, 0, 0.8);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    #dialog {
       display: block;
       border: 3px solid black;
       background: white;
       padding-top: 26px;
       padding-bottom: 12px;
       --button-size: 100px;
+      position: absolute;
+      width: 349px;
+      max-width: calc(100% - 10px);
+      box-sizing: border-box;
+      top: 81px;
+      left: 50%;
+      transform: translate(-50%);
     }
     #buttons {
       display: flex;
@@ -69,30 +121,4 @@ export class QOrQu extends LitElement {
       text-align: center;
     }
   `;
-
-  qClicked() {
-    this.dispatchEvent(
-      new CustomEvent('qu-decision', {detail: {useQu: false}})
-    );
-  }
-
-  quClicked() {
-    this.dispatchEvent(new CustomEvent('qu-decision', {detail: {useQu: true}}));
-  }
-
-  render() {
-    return html`
-      <div id="buttons">
-        <button id="q" @click=${this.qClicked}>Q</button>
-        <span id="or">or</span>
-        <button id="qu" @click=${this.quClicked}>Qu</button>
-        <span id="question">?</span>
-      </div>
-      <div id="form">
-        <input checked type="checkbox" id="remember" /><label for="remember"
-          >Remember for future boards</label
-        >
-      </div>
-    `;
-  }
 }

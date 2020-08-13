@@ -20,18 +20,18 @@ export class Cube extends LitElement {
   @query('input') input!: HTMLInputElement;
 
   text = {
-    left: 'a',
-    right: 'b',
+    left: 'A',
+    right: 'B',
     top: '?',
-    bottom: 'd',
-    front: 'e',
-    back: 'f',
+    bottom: 'D',
+    front: 'E',
+    back: 'F',
   };
 
   constructor() {
     super();
     this.tabIndex = 0;
-    this.addEventListener('keydown', (e) => this._enteredChar(e.key));
+    this.addEventListener('keydown', (e) => this.enteredChar(e.key));
     this.addEventListener('click', () => {
       console.log('clicked');
       // Keeps the focus on the input if a cube is clicked more than
@@ -114,6 +114,9 @@ export class Cube extends LitElement {
     .cube.with-char > .cube__face > div {
       color: #ff7262;
     }
+    .cube__face > div.qu {
+      font-size: calc(var(--cube-font-size, 190px) / 1.7);
+    }
 
     .cube__face > svg {
       position: absolute;
@@ -186,10 +189,10 @@ export class Cube extends LitElement {
     }
   `;
 
-  _enteredChar(char: string) {
+  enteredChar(char: string) {
     console.log('entered ', char);
     char = char.toUpperCase();
-    if (!char.match(/^[A-Z]$/)) {
+    if (!char.match(/^([A-Z]|QU)$/)) {
       return;
     } /* just don't use e.key */
     if (this.char !== char) {
@@ -229,6 +232,10 @@ export class Cube extends LitElement {
     </svg>`;
   }
 
+  _addQuClass(text: string) {
+    return classMap({qu: text === 'QU'});
+  }
+
   render() {
     return html`
       <input type="text" />
@@ -238,27 +245,37 @@ export class Cube extends LitElement {
         >
           <div class="cube__face cube__face--front">
             ${this._face()}
-            <div>${this.text.front}</div>
+            <div class=${this._addQuClass(this.text.front)}>
+              ${this.text.front}
+            </div>
           </div>
           <div class="cube__face cube__face--back">
             ${this._face()}
-            <div>${this.text.back}</div>
+            <div class=${this._addQuClass(this.text.back)}>
+              ${this.text.back}
+            </div>
           </div>
           <div class="cube__face cube__face--right">
             ${this._face()}
-            <div>${this.text.right}</div>
+            <div class=${this._addQuClass(this.text.right)}>
+              ${this.text.right}
+            </div>
           </div>
           <div class="cube__face cube__face--left">
             ${this._face()}
-            <div>${this.text.left}</div>
+            <div class=${this._addQuClass(this.text.left)}>
+              ${this.text.left}
+            </div>
           </div>
           <div class="cube__face cube__face--top">
             ${this._face()}
-            <div>${this.text.top}</div>
+            <div class=${this._addQuClass(this.text.top)}>${this.text.top}</div>
           </div>
           <div class="cube__face cube__face--bottom">
             ${this._face()}
-            <div>${this.text.bottom}</div>
+            <div class=${this._addQuClass(this.text.bottom)}>
+              ${this.text.bottom}
+            </div>
           </div>
         </div>
       </div>

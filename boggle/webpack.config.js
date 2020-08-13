@@ -1,8 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
-  devtool: 'inline-source-map',
+  entry: './src/boggle-solver.ts',
+  // Remove for production build.
+  // devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -19,5 +20,5 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  mode: 'development',
+  mode: 'production',
 };

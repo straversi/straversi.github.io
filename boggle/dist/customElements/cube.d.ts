@@ -16,10 +16,11 @@ export declare class Cube extends LitElement {
     };
     constructor();
     static styles: import("lit-element").CSSResult;
-    _enteredChar(char: string): void;
+    enteredChar(char: string): void;
     _charWasEntered(): boolean;
     _nextFace(): face;
     _face(): import("lit-element").TemplateResult;
+    _addQuClass(text: string): (part: import("lit-html").Part) => void;
     render(): import("lit-element").TemplateResult;
 }
 export {};
