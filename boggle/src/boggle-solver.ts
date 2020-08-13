@@ -19,7 +19,7 @@ import {
 
 type solvedBoard = [string, number][];
 // These state strings align with class names. Keep them in sync.
-type solvedState = 'unsolved' | 'solving' | 'solved';
+type solvedState = 'unsolved' | 'ready' | 'solving' | 'solved';
 
 @customElement('boggle-solver')
 export class BoggleSolver extends LitElement {
@@ -34,6 +34,10 @@ export class BoggleSolver extends LitElement {
   constructor() {
     super();
     this.addEventListener('keydown', this.handleKeydown, {capture: true});
+    this.addEventListener('boardFilled', () => {
+      this.state = 'ready';
+      this.solveButton.focus();
+    });
   }
 
   async handleKeydown(e: KeyboardEvent) {
@@ -78,6 +82,9 @@ export class BoggleSolver extends LitElement {
   }
 
   async solveButtonClicked() {
+    if (this.state !== 'ready') {
+      return;
+    }
     this.state = 'solving';
     // const [results] = await Promise.all([
     //   solve(board.board()),
@@ -95,6 +102,7 @@ export class BoggleSolver extends LitElement {
       <div id="results">
         <solve-button
           class="${this.state}"
+          ?disabled=${this.state === 'unsolved'}
           @click=${() => this.solveButtonClicked()}
         ></solve-button>
         <word-box class="${this.state}"></word-box>

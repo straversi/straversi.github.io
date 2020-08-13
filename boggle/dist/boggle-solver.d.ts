@@ -8,7 +8,7 @@ import { BoggleBoard, board } from './customElements/boggle-board';
 import { SolveButton } from './customElements/solve-button';
 import { LitElement } from 'lit-element';
 declare type solvedBoard = [string, number][];
-declare type solvedState = 'unsolved' | 'solving' | 'solved';
+declare type solvedState = 'unsolved' | 'ready' | 'solving' | 'solved';
 export declare class BoggleSolver extends LitElement {
     boggleBoard: BoggleBoard;
     wordBox: WordBox;

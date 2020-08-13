@@ -1,7 +1,9 @@
-import {LitElement, html, css, customElement} from 'lit-element';
+import {LitElement, html, css, property, customElement} from 'lit-element';
 
 @customElement('solve-button')
 export class SolveButton extends LitElement {
+  @property({type: Boolean}) disabled = true;
+
   static styles = css`
     :host {
       display: block;
@@ -81,7 +83,7 @@ export class SolveButton extends LitElement {
           />
           <path
             d="M85,0 L100,0 100,5 85,5 85,0"
-            fill="#FF7262"
+            fill="${this.disabled ? '#999' : '#FF7262'}"
             stroke="black"
             stroke-width="0.2"
             stroke-linejoin="miter"

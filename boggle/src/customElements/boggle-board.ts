@@ -44,6 +44,14 @@ export class BoggleBoard extends LitElement {
         (document.activeElement as HTMLElement).blur();
         // TODO: Move focus to the solve button. Why isn't this working?
       }
+      if (!this.board().flat().includes('?')) {
+        this.dispatchEvent(
+          new CustomEvent('boardFilled', {
+            bubbles: true,
+            composed: true,
+          })
+        );
+      }
     });
 
     window.addEventListener('resize', () => this.updateCubeWidth());
