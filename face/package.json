@@ -15,7 +15,7 @@
   "dependencies": {
     "rollup": "^1.29.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "three": "^0.109.0",
+    "three": "^0.125.0",
     "typescript": "3.7.5"
   }
 }
