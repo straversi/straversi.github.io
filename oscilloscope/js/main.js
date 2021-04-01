@@ -244,8 +244,18 @@ controller.domElement.parentElement.getElementsByClassName('property-name')[0].i
 controller = gui.add(window, 'masterOffset', 0.05, 0.2);
 controller.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'Blur';
 
+let synthsBegan = false;
 Tone.Master.mute = true;
-controller = gui.add(Tone.Master, 'mute');
+controller = gui.add(Tone.Master, 'mute').onFinishChange(function() {
+	// Must wait for a user gesture to make an audio context.
+	if (synthsBegan) {
+		return;
+	}
+	synthX.triggerAttack(xHz);
+	synthY.triggerAttack(yHz);
+	synthZ.triggerAttack(zHz);
+	synthsBegan = true;
+});
 controller.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'Mute';
 
 var dimensionActionToName = {
@@ -287,8 +297,4 @@ ex = presetsFolder.add(window, 'example4');
 ex.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'example 4';
 
 animate();
-
-synthX.triggerAttack(xHz);
-synthY.triggerAttack(yHz);
-synthZ.triggerAttack(zHz);
 
