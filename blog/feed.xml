@@ -6,266 +6,19 @@
 </description>
     <link>http://steven.codes/blog/</link>
     <atom:link href="http://steven.codes/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 25 Feb 2020 21:13:18 -0800</pubDate>
-    <lastBuildDate>Tue, 25 Feb 2020 21:13:18 -0800</lastBuildDate>
-    <generator>Jekyll v3.8.5</generator>
+    <pubDate>Wed, 31 Mar 2021 23:05:04 -0700</pubDate>
+    <lastBuildDate>Wed, 31 Mar 2021 23:05:04 -0700</lastBuildDate>
+    <generator>Jekyll v4.2.0</generator>
     
       <item>
-        <title>Animated Neumorphic Button</title>
-        <description>&lt;p&gt;Neumorphism. Very polarizing. But very satisfying.&lt;/p&gt;
-
-&lt;p&gt;Go ahead, touch this button.&lt;/p&gt;
-
-&lt;div id=&quot;example&quot;&gt;
-  &lt;!-- Mobile Safari won't apply :active without an attached touch event. --&gt;
-  &lt;button ontouchstart=&quot;&quot;&gt;
-    &lt;span&gt;hey&lt;/span&gt;
-  &lt;/button&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Nice.&lt;/p&gt;
-
-&lt;p&gt;Whether you like it or not, here’s how to animate a neumorphic button with &lt;em&gt;CSS only&lt;/em&gt;™.&lt;/p&gt;
-
-&lt;h2 id=&quot;neumorphism-breakdown&quot;&gt;Neumorphism breakdown&lt;/h2&gt;
-
-&lt;p&gt;In CSS, neumorphism leans on two box shadows. I’ll call them the &lt;em&gt;raised&lt;/em&gt; shadow and the &lt;em&gt;pressed&lt;/em&gt; shadow.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;css&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;c&quot;&gt;/* raised */&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#c8c8c8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; 
-           &lt;span class=&quot;nt&quot;&gt;-20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ffffff&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;/* pressed */&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#c8c8c8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; 
-            &lt;span class=&quot;nt&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-20px&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;60px&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#ffffff&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;They’re really the same shadow, one of them is just inset. The first provides an element with the appearance of being raised off the page. The second makes things look pressed into the page.&lt;/p&gt;
-
-&lt;p&gt;BUT, you can’t animate between a normal and inset shadow.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-animation&quot;&gt;The animation&lt;/h2&gt;
-
-&lt;p&gt;Instead, apply &lt;em&gt;both&lt;/em&gt; shadows to the target element, one on the &lt;code&gt;:before&lt;/code&gt; pseudo-element, and one on the &lt;code&gt;:after&lt;/code&gt;. Then animate the &lt;em&gt;opacity&lt;/em&gt; of these pseudo-elements.&lt;/p&gt;
-
-&lt;p&gt;The key to realism is to first transition to &lt;em&gt;no&lt;/em&gt; box shadow. When you press a button in real life, the button becomes flush with the surface before it is pressed into it.&lt;/p&gt;
-
-&lt;div id=&quot;breakdown&quot;&gt;
-  &lt;div style=&quot;display: inline-block;&quot;&gt;
-    &lt;button id=&quot;raised&quot;&gt;
-      &lt;span&gt;raised&lt;/span&gt;
-    &lt;/button&gt;
-    &lt;div style=&quot;text-align: center; font-size: 13px;&quot;&gt;
-      0%
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div style=&quot;display: inline-block;&quot;&gt;
-    &lt;button id=&quot;halfway&quot;&gt;
-      &lt;span&gt;halfway&lt;/span&gt;
-    &lt;/button&gt;
-    &lt;div style=&quot;text-align: center; font-size: 13px;&quot;&gt;
-      50%
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div style=&quot;display: inline-block;&quot;&gt;
-    &lt;button id=&quot;pressed&quot;&gt;
-      &lt;span&gt;pressed&lt;/span&gt;
-    &lt;/button&gt;
-    &lt;div style=&quot;text-align: center; font-size: 13px;&quot;&gt;
-      100%
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This transition keyframe can be achieved via a &lt;code&gt;transition-delay&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here’s the full CSS.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;css&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ebebeb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.07s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;6px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;/* Box shadow */&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#d1d1d1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;light&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ffffff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;18px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;transparent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2px&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;transparent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;/* Neumorphic */&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ebebeb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:focus&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;outline&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;/* Keep buttons accessible! */&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2px&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#bbdefb&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;!important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;c&quot;&gt;/* Neumorphic */&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;border&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;linear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;light&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;inset&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;light&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:active&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:before&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:active&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;For extra realism, transform the scale of the button’s content to 0.97 while the button is active. This enhances the 3D effect by making it seem like the text of the button is farther from you when pressed.&lt;/p&gt;
-
-&lt;h2 id=&quot;try-it-yourself&quot;&gt;Try it yourself&lt;/h2&gt;
-
-&lt;p&gt;Here’s a Glitch project with this code that you can edit: &lt;a href=&quot;https://neumorphism.glitch.me/&quot; target=&quot;_blank&quot;&gt;neumorphism.glitch.me&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;◼&lt;/p&gt;
+        <title>Oscilloscope</title>
+        <description>
 </description>
-        <pubDate>Sun, 23 Feb 2020 01:47:36 -0800</pubDate>
-        <link>http://steven.codes/blog/animated-neumorphic-button/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/animated-neumorphic-button/</guid>
+        <pubDate>Mon, 15 Feb 2021 01:47:36 -0800</pubDate>
+        <link>http://steven.codes/blog/oscilloscope/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/oscilloscope/</guid>
         
         <category>published</category>
-        
-        <category>teaser</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Newton's Cradle</title>
-        <description>&lt;p&gt;I made this Newton’s Cradle loading animation.&lt;/p&gt;
-
-&lt;p&gt;You [sarcastically clapping]: Nice job. I bet you used a bulky javascript animation library though.&lt;/p&gt;
-
-&lt;p&gt;Me: Nope, no JavaScript!&lt;/p&gt;
-
-&lt;p&gt;You [raising an eyebrow]: No JavaScript, eh? Fancy CSS keyframing then.&lt;/p&gt;
-
-&lt;p&gt;Me: &lt;em&gt;Wrong again!&lt;/em&gt; No CSS either.&lt;/p&gt;
-
-&lt;div id=&quot;user-choice&quot;&gt;
-  &lt;div&gt;You:&lt;/div&gt;
-  &lt;button&gt;[jaw slamming into floor]: w-w-whaaat?&lt;/button&gt;
-  &lt;button&gt;I don't care at all how you made this, just give me the code.&lt;/button&gt;
-&lt;/div&gt;
-
-&lt;div id=&quot;explanation&quot;&gt;
-
-&lt;p&gt;
-  Excellent choice. I did it with SVG animation. It's a thing! And now that Edge is based on Chromium, it _may_ be viable for your project. Probably not though. You'll find full code at the end.
-&lt;/p&gt;
-
-&lt;h2&gt;The Basics&lt;/h2&gt;
-
-&lt;p&gt;First we need some clackers. Here's four of them.&lt;/p&gt;
-
-&lt;div class=&quot;code-snippet&quot;&gt;
-  &lt;div class=&quot;code-snippet__code-area&quot;&gt;
-    
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;html&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;html to make clackers
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-    
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;css&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;css&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;style&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;clackers&lt;/span&gt;
-    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-  &lt;/div&gt;
-  &lt;div class=&quot;code-snippet__showcase&quot;&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;h2&gt;Adding Motion&lt;/h2&gt;
-
-&lt;p&gt;
-  SVG provides the `animate` and `animationMotion` tags. With `animationMotion` you can tell an object to follow a path. Let's define that path for the circles to follow.
-&lt;/p&gt;
-
-&lt;pre&gt; DEMO GO HERE &lt;/pre&gt;
-
-&lt;p&gt;
-  Let's get these clackers movin'. Drop those paths into the `path` attribute. We also need to specify which clackers to animate.
-&lt;/p&gt;
-
-&lt;pre&gt; DEMO GO HERE &lt;/pre&gt;
-
-&lt;p&gt;
-  After carefully assessing this animation, I observed that it looks disgusting. I need these clackers to &lt;i&gt;delight&lt;/i&gt;. Let's make this look real.
-&lt;/p&gt;
-
-&lt;h2&gt;Realism&lt;/h2&gt;
-
-&lt;p&gt;
-  I'm pretty sure this looks bad because those clackers don't look like they're obeying the law of gravity. Let's apply some justice. We can leverage the `keyPoints` and `keyTimes` attributes of `animateMotion` to tell our clackers where to be (`keyPoints`) at what time (`keyTimes`). Each number in `keyPoints` specifies how far along the `path` to be at the corresponding key time.
-&lt;/p&gt;
-
-&lt;p&gt;
-  Armed with this knowledge, here's what we'll do: generate twenty evenly spaced values for `keyTimes`. Like this:
-  &lt;pre&gt;SOME EVENLY SPACED KEY TIMES&lt;/pre&gt;
-  Next, let's decide where the clacker should be at each of those times.
-&lt;/p&gt;
-
-&lt;p&gt;
-  Cracking open the ol' physics book, I see the equation for gravity has one of those little floaty 2's. That means quadratic right? Let's roll with it. I'll use a python script to calculate how far along the path I want the clacker to be at each of my evenly spaced times.
-  
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;python&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;magic&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;boi&lt;/span&gt;
-  &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;/p&gt;
-
-&lt;p&gt;
-  So what do those points and times look like as `keyPoints` and `keyTimes`?
-&lt;/p&gt;
-
-&lt;pre&gt;DEMO GO HERE&lt;/pre&gt;
-
-&lt;p&gt;
-  It's working. Slight problem. We need the clackers to be in opposition to each other. Each clacker needs to spend half of its time sitting there, just waiting to be clacked. Let's throw in twenty extra key times and make the key points 0 for all of those.
-&lt;/p&gt;
-
-&lt;pre&gt;DEMO GO HERE&lt;/pre&gt;
-
-&lt;p&gt;
-  It's working. Let's offset the right hand clacker by half the duration of the animation now.
-&lt;/p&gt;
-
-&lt;pre&gt;DEMO GO HERE&lt;/pre&gt;
-
-&lt;p&gt;
-  It's working. Here's the full code:
-&lt;/p&gt;
-
-&lt;/div&gt;
-
-&lt;pre&gt; FULL CODE GO HERE&lt;/pre&gt;
-
-&lt;p&gt;◼&lt;/p&gt;
-</description>
-        <pubDate>Wed, 24 Apr 2019 02:47:36 -0700</pubDate>
-        <link>http://steven.codes/blog/newtons-cradle/</link>
-        <guid isPermaLink="true">http://steven.codes/blog/newtons-cradle/</guid>
-        
-        <category>draft</category>
         
         <category>teaser</category>
         
@@ -638,9 +391,8 @@ s1.playbackRate = 3.3;
     
       <item>
         <title>Face Morphing</title>
-        <description>&lt;div class=&quot;video&quot;&gt;&lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/kCoy1KtH1Xk?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-&lt;p&gt;A face-morphing music video that I made.&lt;/p&gt;
+        <description>&lt;div class=&quot;video&quot;&gt;&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/kCoy1KtH1Xk&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;A face-morphing music video that I made.&lt;/p&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;basic-morphs&quot;&gt;Basic Morphs&lt;/h2&gt;
 
@@ -952,161 +704,161 @@ s1.playbackRate = 3.3;
   expanded into a normal post format.
 &lt;/div&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;This is a tutorial for curses. Curses is a Python library that helps you handle&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;keyboard input and control the displayed text on the terminal. The tutorial&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;closely follows https://docs.python.org/3.3/howto/curses.html.&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+This is a tutorial for curses. Curses is a Python library that helps you handle
+keyboard input and control the displayed text on the terminal. The tutorial
+closely follows https://docs.python.org/3.3/howto/curses.html.
 
-&lt;span class=&quot;sd&quot;&gt;We&amp;#39;ll jump in with the structure of a basic curses program.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+We'll jump in with the structure of a basic curses program.
+&quot;&quot;&quot;&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;curses&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# create a window object that represents the terminal window&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# Don&amp;#39;t print what I type on the terminal&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;noecho&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# React to every key press, not just when pressing &amp;quot;enter&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cbreak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# Enable easy key codes (will come back to this)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keypad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# Proceed with your program&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Running some program...&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# Clean up after yourself&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;teardown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# create a window object that represents the terminal window
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Don't print what I type on the terminal
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;noecho&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# React to every key press, not just when pressing &quot;enter&quot;
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cbreak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Enable easy key codes (will come back to this)
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keypad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Proceed with your program
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Running some program...&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Clean up after yourself
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;teardown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;teardown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# reverse everything that you changed about the terminal&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nocbreak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keypad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# restore the terminal to its original state&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endwin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# reverse everything that you changed about the terminal
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nocbreak&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keypad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# restore the terminal to its original state
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endwin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;Unfortunately, if something goes wrong during your part of the program, it can&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;exit without running the teardown function. That could leave your terminal in&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;a weird state because curses messed with it. Curses has an answer to this&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;problem that also happens to make all of the above code a lot easier to write.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Unfortunately, if something goes wrong during your part of the program, it can
+exit without running the teardown function. That could leave your terminal in
+a weird state because curses messed with it. Curses has an answer to this
+problem that also happens to make all of the above code a lot easier to write.
+&quot;&quot;&quot;&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;curses&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;curses&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# Clear screen&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# Proceed with your program&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Running some program&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Clear screen
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Proceed with your program
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Running some program&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;c&quot;&gt;# wrapper is a function that does all of the setup and teardown, and makes sure&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;# your program cleans up properly if it errors!&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# wrapper is a function that does all of the setup and teardown, and makes sure
+# your program cleans up properly if it errors!
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;wrapper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;Using the wrapper function is much cleaner, as you can see. From now on, we&amp;#39;ll&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;just modify what&amp;#39;s inside the function `main`, and assume we have the import and&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;the wrapper set up as above.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;Now we can learn how to handle user input.&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Using the wrapper function is much cleaner, as you can see. From now on, we'll
+just modify what's inside the function `main`, and assume we have the import and
+the wrapper set up as above.
+Now we can learn how to handle user input.
 
-&lt;span class=&quot;sd&quot;&gt;When the user presses a key, we want to be able to handle that action. The first&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;step in doing so is discovering which key was pressed. The function `getch` does&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;this for us. It returns a value that we can compare like so:&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;c = stdscr.getch()&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;c == ord(&amp;#39;a&amp;#39;) # Do this to check for a letter key&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;c == curses.KEY_UP # Do this to check for special keys&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;See https://docs.python.org/3.5/library/curses.html#constants for all special&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;key values.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+When the user presses a key, we want to be able to handle that action. The first
+step in doing so is discovering which key was pressed. The function `getch` does
+this for us. It returns a value that we can compare like so:
+c = stdscr.getch()
+c == ord('a') # Do this to check for a letter key
+c == curses.KEY_UP # Do this to check for special keys
+See https://docs.python.org/3.5/library/curses.html#constants for all special
+key values.
+&quot;&quot;&quot;&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;# Store the key value in the variable `c`&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;# Clear the terminal&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;You pressed the &amp;#39;a&amp;#39; key.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KEY_UP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;You pressed the up arrow.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# Store the key value in the variable `c`
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# Clear the terminal
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'a'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;You pressed the 'a' key.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KEY_UP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;You pressed the up arrow.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;This program doesn&amp;#39;t know that key.....&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;This program doesn't know that key.....&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;What&amp;#39;s stdscr.addstr? That&amp;#39;s curses&amp;#39; way of printing. Later, we&amp;#39;ll see that it&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;can also take arguments like y and x positions, which tell it where to print&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;the string on the terminal. For now, it just prints wherever the cursor is.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;It&amp;#39;s important to note that stdscr.clear, which is called in the block above,&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;not only clears the terminal, but also moves the cursor back to the top left.&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+What's stdscr.addstr? That's curses' way of printing. Later, we'll see that it
+can also take arguments like y and x positions, which tell it where to print
+the string on the terminal. For now, it just prints wherever the cursor is.
+It's important to note that stdscr.clear, which is called in the block above,
+not only clears the terminal, but also moves the cursor back to the top left.
 
-&lt;span class=&quot;sd&quot;&gt;You may have noticed that the program waits at stdscr.getch for the user to&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;press a key. We call this behavior &amp;quot;blocking&amp;quot;, and would say that stdscr.getch&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;blocks the flow of the program. For some programs, this is useful. For others,&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;often in the case of games, this is not the desired behavior. Thankfully, curses&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;allows non-blocking key input as well.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+You may have noticed that the program waits at stdscr.getch for the user to
+press a key. We call this behavior &quot;blocking&quot;, and would say that stdscr.getch
+blocks the flow of the program. For some programs, this is useful. For others,
+often in the case of games, this is not the desired behavior. Thankfully, curses
+allows non-blocking key input as well.
+&quot;&quot;&quot;&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;time&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# Make stdscr.getch non-blocking&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nodelay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# Make stdscr.getch non-blocking
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nodelay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;# Clear out anything else the user has typed in&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flushinp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;# If the user presses p, increase the width of the springy bar&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;p&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# Clear out anything else the user has typed in
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;curses&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flushinp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# If the user presses p, increase the width of the springy bar
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'p'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
             &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;# Draw a springy bar&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# Draw a springy bar
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;stdscr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;addstr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
             &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
             &lt;span class=&quot;n&quot;&gt;direction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;# Wait 1/10 of a second. Read below to learn about how to avoid&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;# problems with using time.sleep with getch!&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# Wait 1/10 of a second. Read below to learn about how to avoid
+&lt;/span&gt;        &lt;span class=&quot;c1&quot;&gt;# problems with using time.sleep with getch!
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;Calling stdscr.nodelay(True) made stdscr.getch() non-blocking. If Python gets to&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;that line and the user hasn&amp;#39;t typed anything since last time, getch will return&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;-1, which doesn&amp;#39;t match any key.&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+Calling stdscr.nodelay(True) made stdscr.getch() non-blocking. If Python gets to
+that line and the user hasn't typed anything since last time, getch will return
+-1, which doesn't match any key.
 
-&lt;span class=&quot;sd&quot;&gt;What if the user managed to type more than one character since the last time&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;getch was called? All of those characters will start to build up, and getch will&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;return the value for each one in the order that they came. This can cause&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;delayed reactions if you&amp;#39;re writing a game. After getch, you can call&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;curses.flushinp to clear out the rest of the characters that the user typed.&lt;/span&gt;
+What if the user managed to type more than one character since the last time
+getch was called? All of those characters will start to build up, and getch will
+return the value for each one in the order that they came. This can cause
+delayed reactions if you're writing a game. After getch, you can call
+curses.flushinp to clear out the rest of the characters that the user typed.
 
-&lt;span class=&quot;sd&quot;&gt;This is a good place to talk more about getch.&lt;/span&gt;
+This is a good place to talk more about getch.
 
-&lt;span class=&quot;sd&quot;&gt;Every time the user presses a key, that key&amp;#39;s value gets stored in a list. When&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;getch is called, it goes to that list and pops that value. If the user manages&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;to press several keys before getch is called, getch will pop the least recently&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;added value (the oldest key pressed). The rest of the keys remain in the list!&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;The process continues like this. So there&amp;#39;s a problem if there is a delay&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;between calls to getch: Key values can build up. If you don&amp;#39;t want this to&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;happen, curses.flushinp() clears the list of inputted values. This ensures that&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;the next key the user presses after curses.flushinp() is what getch will return&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;next time it is called.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+Every time the user presses a key, that key's value gets stored in a list. When
+getch is called, it goes to that list and pops that value. If the user manages
+to press several keys before getch is called, getch will pop the least recently
+added value (the oldest key pressed). The rest of the keys remain in the list!
+The process continues like this. So there's a problem if there is a delay
+between calls to getch: Key values can build up. If you don't want this to
+happen, curses.flushinp() clears the list of inputted values. This ensures that
+the next key the user presses after curses.flushinp() is what getch will return
+next time it is called.
+&quot;&quot;&quot;&lt;/span&gt;
 
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;To continue learning about curses, checkout the addstr method to see how you can&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;print strings at certain y, x coordinates. You can start here:&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;https://docs.python.org/3/library/curses.html#window-objects&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+To continue learning about curses, checkout the addstr method to see how you can
+print strings at certain y, x coordinates. You can start here:
+https://docs.python.org/3/library/curses.html#window-objects
+&quot;&quot;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 </description>
         <pubDate>Mon, 10 Oct 2016 04:47:36 -0700</pubDate>
@@ -1130,16 +882,13 @@ s1.playbackRate = 3.3;
 
 &lt;h2 id=&quot;program&quot;&gt;Program&lt;/h2&gt;
 
-&lt;p&gt;The following Homespring program prints “Hello, World!”. Trust me.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;homespring&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;lol bear the universe hatchery
+&lt;pre&gt;&lt;code&gt;lol bear the universe hatchery
 fear Hello,.   Hydro. Power pump pump pump pump future
        powers World!
- never trust the marshy marshy marshy marshy snowmelt&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+ never trust the marshy marshy marshy marshy snowmelt
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&quot;structure&quot;&gt;Structure&lt;/h2&gt;
-
-&lt;p&gt;I’ve illustrated below how the Homespring interpreter sees the program as a tree.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;                                              Hello,
                                              /
@@ -1152,17 +901,16 @@ lol - bear - the - universe - hatchery - powers - World!
 
 &lt;h2 id=&quot;explanation&quot;&gt;Explanation&lt;/h2&gt;
 
-&lt;p&gt;Here is a metaphor-laden explanation of how the program works.&lt;/p&gt;
-
 &lt;p&gt;Salmon begin spawning in the hatchery on the first tick. The first salmon swims toward “Hello,” where it spawns and creates a young salmon named “Hello,”. This salmon makes it back to the hatchery on the tick before the water from the spring named future activates the hydro power, which powers fear. Fear blocks the remaining salmon in the “Hello,” branch, and redirects the stream of hatchery salmon toward “World!”. The young salmon named “Hello,” makes it past the bear to the ocean. The homeless salmon that was with it is eaten by the bear. The first redirected salmon spawns at “World!”, and the young spawn makes it past the bear to the ocean. At this point, the snowmelt is out of the marsh and destroys the universe, terminating the program.&lt;/p&gt;
 
 &lt;h2 id=&quot;challenge-wait-for-two-inputs&quot;&gt;Challenge: Wait for Two Inputs&lt;/h2&gt;
 
 &lt;p&gt;The following is a program I wrote that waits for two lines of input from stdin, then prints out both lines together.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;homespring&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;lo, inverse. Lock narrows bird
+&lt;pre&gt;&lt;code&gt;lo, inverse. Lock narrows bird
   hydro. Power insulated evaporates Young. sense powers rapids
-   spring&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+   spring
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&quot;structure-1&quot;&gt;Structure&lt;/h2&gt;
 
@@ -1176,8 +924,6 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 &lt;h2 id=&quot;explanation-1&quot;&gt;Explanation&lt;/h2&gt;
 
 &lt;p&gt;Lo, stdin waits for input. When the first input is received, creating a mature upstream salmon with its name, the mature salmon reaches a fork, and decides to visit the narrows before attempting the hydro power. The salmon makes it to the bird, where it spawns, creating a young fish, which is immediately eaten by the bird. The mature fish switches to traveling downstream, only to find itself blocked from entering the unpowered inverse lock. At this point, a second line of input may have been received, and a new salmon created. This one, however, reaches the inverse lock and must go to hydro power. This is because it cannot fit through the narrows, where the first salmon is waiting patiently. The second salmon swims through the hydro power, past evaporates, which is currently evaporating all watershed from the appropriately named spring. The salmon continues to rapids, where it spawns. The salmon and its young begin to swim downstream, but the young salmon is delayed one tick by the rapids. The young salmon does reach young sense, though, blocking the electricity from powers. Evaporates stops evaporating the spring water for one tick, long enough for the water to get past it. The water gurgles downstream, ultimately powering hydro power, unlocking the inverse lock with just enough time to let both the 1st and 2nd salmon through. By the time the young salmon from rapids get there, though, it is trapped once again, as it has passed young sense, and powers is once again allowing evaporates to evaporate the spring water, which stops the hydro power from keeping the inverse lock activated. The mature salmon whose names are the two lines from stdin reach the ocean, and print their names to stdout.&lt;/p&gt;
-
-&lt;p&gt;Uh, that’ll do.&lt;/p&gt;
 
 &lt;p&gt;◼&lt;/p&gt;
 </description>
@@ -1200,18 +946,18 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 
 &lt;p&gt;Numpy’s &lt;a href=&quot;http://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.genfromtxt.html#numpy-genfromtxt&quot;&gt;genfromtxt&lt;/a&gt; function is an easy way to get the .csv data into a matrix:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;genfromtxt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;data/train.csv&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delimiter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                  &lt;span class=&quot;n&quot;&gt;skip_header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;uint8&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;genfromtxt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'data/train.csv'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delimiter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;','&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                  &lt;span class=&quot;n&quot;&gt;skip_header&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dtype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'uint8'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;However, it’s slow, especially if you’ll be rerunning your program and reloading the data a lot. I recommend serializing the numpy matrix with the &lt;code&gt;pickle&lt;/code&gt; module after the first load, and loading the saved pickle object on all subsequent runs of your program.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pickle&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;data/train_points.p&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;wb&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;pickle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;data/train_points.p&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pickle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'data/train_points.p'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'wb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pickle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'data/train_points.p'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'rb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pickle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;write-knn&quot;&gt;Write KNN&lt;/h2&gt;
 
@@ -1219,9 +965,9 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KNN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;
-        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;
+        &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Predictions are where we start worrying about time. We’ll worry about that later. For now, let’s implement our own vanilla K-nearest-neighbors classifier. In the predict step, KNN needs to take a test point and find the closest sample to it in our training set. We’ll use the euclidian metric to assign distances between points, for ease.&lt;/p&gt;
 
@@ -1230,9 +976,9 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 &lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scipy.stats&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mode&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;KNN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;differences&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;distances&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;einsum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;ij, ij-&amp;gt;i&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;differences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;differences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;nearest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distances&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[:&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;differences&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;distances&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;einsum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'ij, ij-&amp;gt;i'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;differences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;differences&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;nearest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argsort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distances&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[:&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nearest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;improve-with-pca&quot;&gt;Improve with PCA&lt;/h2&gt;
@@ -1241,32 +987,32 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/posts/ml/how-to-get-97-percent-on-MNIST-with-KNN/gaussian.png &quot; style=&quot;width:100%;max-width:400px;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;If the data is fit to a Gaussian distribution, one can see that there are two eigenvectors which, if used as a basis when plotting the data, could provide a much higher variance among the data than our &lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt; axes. In other words, these two directions &lt;script type=&quot;math/tex&quot;&gt;x_a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_b&lt;/script&gt; tell us &lt;em&gt;more&lt;/em&gt; about the data than &lt;script type=&quot;math/tex&quot;&gt;x_1&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_2&lt;/script&gt;. Finding &lt;script type=&quot;math/tex&quot;&gt;x_a&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;x_b&lt;/script&gt; and plotting our data in a new coordinate system based on these axes is called Principal Components Analysis (PCA).&lt;/p&gt;
+&lt;p&gt;If the data is fit to a Gaussian distribution, one can see that there are two eigenvectors which, if used as a basis when plotting the data, could provide a much higher variance among the data than our \(x_1\) and \(x_2\) axes. In other words, these two directions \(x_a\) and \(x_b\) tell us &lt;em&gt;more&lt;/em&gt; about the data than \(x_1\) and \(x_2\). Finding \(x_a\) and \(x_b\) and plotting our data in a new coordinate system based on these axes is called Principal Components Analysis (PCA).&lt;/p&gt;
 
-&lt;p&gt;Continuing from this idea of finding the eigenvectors that best describe our data, let’s talk math. Let &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; be a design matrix, &lt;script type=&quot;math/tex&quot;&gt;nxd&lt;/script&gt;. If we assume &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is centered, then its covariance matrix is &lt;script type=&quot;math/tex&quot;&gt;X^TX/(n-1)&lt;/script&gt;, which can be decomposed as &lt;script type=&quot;math/tex&quot;&gt;V L V^T&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;L&lt;/script&gt; is a diagonal matrix composed of decreasing eigenvalues of the covariance matrix. &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; is made of their corresponding eigenvectors. The first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; eigenvectors are the first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; most important directions when it comes to our data. If we take &lt;script type=&quot;math/tex&quot;&gt;XV&lt;/script&gt;, we get the projection of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; onto &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt;, placing the data in &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; into a basis that maximizes the variance of that data. The new and improved data is now composed of better, linearly uncorrelated variables that we call &lt;em&gt;principal components&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Continuing from this idea of finding the eigenvectors that best describe our data, let’s talk math. Let \(X\) be a design matrix, \(nxd\). If we assume \(X\) is centered, then its covariance matrix is \(X^TX/(n-1)\), which can be decomposed as \(V L V^T\), where \(L\) is a diagonal matrix composed of decreasing eigenvalues of the covariance matrix. \(V\) is made of their corresponding eigenvectors. The first \(k\) eigenvectors are the first \(k\) most important directions when it comes to our data. If we take \(XV\), we get the projection of \(X\) onto \(V\), placing the data in \(X\) into a basis that maximizes the variance of that data. The new and improved data is now composed of better, linearly uncorrelated variables that we call &lt;em&gt;principal components&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;Now, computing &lt;script type=&quot;math/tex&quot;&gt;X^TX&lt;/script&gt; is not cheap: it takes &lt;script type=&quot;math/tex&quot;&gt;O(nd^2)&lt;/script&gt; time. Luckily, to the rescue comes the Singular Value Decomposition (SVD). SVD can break our &lt;script type=&quot;math/tex&quot;&gt;nxd&lt;/script&gt; design matrix into &lt;script type=&quot;math/tex&quot;&gt;X = UDV^T&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;U&lt;/script&gt; is composed of vertical left singular vectors of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;, which are all orthogonal to each other. Similarly, the rows of &lt;script type=&quot;math/tex&quot;&gt;V&lt;/script&gt; are the right singular vectors of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;. &lt;script type=&quot;math/tex&quot;&gt;D&lt;/script&gt; is diagonal, and its entries are the nonnegative singular values of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt;. At any rate, observe that the covariance matrix of &lt;script type=&quot;math/tex&quot;&gt;X&lt;/script&gt; is estimated by &lt;script type=&quot;math/tex&quot;&gt;X^TX/(n-1)&lt;/script&gt; &lt;script type=&quot;math/tex&quot;&gt;=VDU^TUDV^T/(n-1)&lt;/script&gt; &lt;script type=&quot;math/tex&quot;&gt;=VD^2V^T/(n-1)&lt;/script&gt;. The principal components are given by &lt;script type=&quot;math/tex&quot;&gt;XV = UDV^TV = UD&lt;/script&gt;. Taking the first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; columns of &lt;script type=&quot;math/tex&quot;&gt;U&lt;/script&gt; and the first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; entries of &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; gives us &lt;script type=&quot;math/tex&quot;&gt;U_kD_k&lt;/script&gt;, the estimation of &lt;script type=&quot;math/tex&quot;&gt;XV&lt;/script&gt; using only the first &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; principal components. In the end, we can find the &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; greatest singular values and their corresponding vectors in &lt;script type=&quot;math/tex&quot;&gt;O(ndk)&lt;/script&gt; time. If &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is chosen to be something like 40, then that’s a big time saving from 784 original dimensions.&lt;/p&gt;
+&lt;p&gt;Now, computing \(X^TX\) is not cheap: it takes \(O(nd^2)\) time. Luckily, to the rescue comes the Singular Value Decomposition (SVD). SVD can break our \(nxd\) design matrix into \(X = UDV^T\), where \(U\) is composed of vertical left singular vectors of \(X\), which are all orthogonal to each other. Similarly, the rows of \(V\) are the right singular vectors of \(X\). \(D\) is diagonal, and its entries are the nonnegative singular values of \(X\). At any rate, observe that the covariance matrix of \(X\) is estimated by \(X^TX/(n-1)\) \(=VDU^TUDV^T/(n-1)\) \(=VD^2V^T/(n-1)\). The principal components are given by \(XV = UDV^TV = UD\). Taking the first \(k\) columns of \(U\) and the first \(k\) entries of \(S\) gives us \(U_kD_k\), the estimation of \(XV\) using only the first \(k\) principal components. In the end, we can find the \(k\) greatest singular values and their corresponding vectors in \(O(ndk)\) time. If \(k\) is chosen to be something like 40, then that’s a big time saving from 784 original dimensions.&lt;/p&gt;
 
 &lt;p&gt;I used numpy’s linalg package to solve the SVD of the design matrix. Here’s my function for using the SVD to find the PCA of the data (don’t forget to center the data).&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;python&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;svd_pca&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;Reduce DATA using its K principal components.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;float64&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linalg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;svd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;full_matrices&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;diag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;Reduce DATA using its K principal components.&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;astype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;float64&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;V&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linalg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;svd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;full_matrices&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;diag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Reducing the dimensionality of the MNIST data with PCA before running KNN can save both time and accuracy. Lower dimensions means less calculations and potentially less overfitting.&lt;/p&gt;
 
 &lt;h2 id=&quot;cross-validation&quot;&gt;Cross Validation&lt;/h2&gt;
 
-&lt;p&gt;Now the data can be preprocessed from an original dimension of 784 to some &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; « 784. There are two last questions: How many nearest-neighbors should we use in KNN? And how many dimensions should we reduce our data to through PCA?&lt;/p&gt;
+&lt;p&gt;Now the data can be preprocessed from an original dimension of 784 to some \(k\) « 784. There are two last questions: How many nearest-neighbors should we use in KNN? And how many dimensions should we reduce our data to through PCA?&lt;/p&gt;
 
 &lt;p&gt;When in doubt, cross validate. I set up a two dimensional cross validation test, and plotted the results:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/posts/ml/how-to-get-97-percent-on-MNIST-with-KNN/cross_validation.png &quot; style=&quot;width:100%;max-width:400px;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;On the vertical axis is accuracy obtained via cross validation. On the horizontal axes are &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; for KNN, ranging from 2 to 12, and &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; for PCA, ranging from 5 to 80. The heat map on the lower plane helps illustrate that the best accuracies were achieved around &lt;script type=&quot;math/tex&quot;&gt;k_{NN} = 6&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;k_{PCA} = 45&lt;/script&gt;. So, these are the values I used to predict on the Kaggle test set. Kaggle scored the submission at just over 97%. Not bad for around 12 lines of code (and numpy’s SVD solver)! ◼&lt;/p&gt;
+&lt;p&gt;On the vertical axis is accuracy obtained via cross validation. On the horizontal axes are \(k\) for KNN, ranging from 2 to 12, and \(k\) for PCA, ranging from 5 to 80. The heat map on the lower plane helps illustrate that the best accuracies were achieved around \(k_{NN} = 6\), \(k_{PCA} = 45\). So, these are the values I used to predict on the Kaggle test set. Kaggle scored the submission at just over 97%. Not bad for around 12 lines of code (and numpy’s SVD solver)! ◼&lt;/p&gt;
 
 &lt;script src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
 
@@ -1346,12 +1092,12 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
       &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mYN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mYN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mYN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;offsetX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mXN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anchorX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anchorY&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anchorX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;offsetY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;anchorY&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;From this point, there’s freedom to create and maintain the nodes however you’d like. In my implementation, each node is a small, circular &lt;code&gt;div&lt;/code&gt;. When a node is created, I store its &lt;code&gt;anchorX&lt;/code&gt; and &lt;code&gt;anchorY&lt;/code&gt; in its data attributes as &lt;code&gt;x&lt;/code&gt; an &lt;code&gt;y&lt;/code&gt;. This makes it easy to get those values back later, when I have to get each node anyway to adjust its position. I adjust the position of a node whenever the mouse moves, like so&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;javascript&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.node&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;javascript&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.node&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;distance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mouseX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;oppose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mouseY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -1373,13 +1119,13 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
 &lt;figure class=&quot;highlight&quot;&gt;&lt;figcaption&gt;javascript&lt;/figcaption&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesFromNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesFrom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesFromNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;#svg&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesFromNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;x2&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                        &lt;span class=&quot;s2&quot;&gt;&amp;quot;y2&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;#svg&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesFromNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;x2&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                                        &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;y2&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesToNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nodes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nodeId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;edgesTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesToNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;#svg&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesToNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;x1&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                                    &lt;span class=&quot;s2&quot;&gt;&amp;quot;y1&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;#svg&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;edgesToNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;x1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                                    &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;y1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Assuming the classes, nodes, and edges have been set up correctly, this update function works properly. On Chrome 50, a net of 200 nodes loads in ~820 milliseconds. The update function runs, on average, in 8ms (125 frames per second). Fine for our purposes!
@@ -1394,6 +1140,28 @@ lo, - inverse lock - hydro power - insulated - evaporates - young sense - powers
         <category>draft</category>
         
         <category>teaser</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Pixel Mapping</title>
+        <description>&lt;p&gt;hello&lt;/p&gt;
+
+&lt;div class=&quot;image-gallery&quot;&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;img src=&quot;/blog/assets/posts/pixel-mapping/test.png &quot; /&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Sat, 06 Feb 2016 01:47:36 -0800</pubDate>
+        <link>http://steven.codes/blog/pixel-mapping/</link>
+        <guid isPermaLink="true">http://steven.codes/blog/pixel-mapping/</guid>
+        
+        <category>draft</category>
         
         
       </item>
