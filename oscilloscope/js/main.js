@@ -244,6 +244,7 @@ controller.domElement.parentElement.getElementsByClassName('property-name')[0].i
 controller = gui.add(window, 'masterOffset', 0.05, 0.2);
 controller.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'Blur';
 
+Tone.Master.mute = true;
 controller = gui.add(Tone.Master, 'mute');
 controller.domElement.parentElement.getElementsByClassName('property-name')[0].innerHTML = 'Mute';
 
