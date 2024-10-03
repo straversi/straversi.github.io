@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Steven Traversi</title>
+  <link rel="stylesheet" href="./kite/foundation.css">
+  <link rel="stylesheet" href="./kite/main.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Description" content="Steven is a TA and programmer out of UC Berkeley. On the site you'll find a code-themed blog and résumé.">
+</head>
+<body>
+<div id="viewport">
+<svg class="gust" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="350.0px" height="350.0px">
+  <path d="M115.45 36.62C115.57 36.71 115.64 36.77 115.67 36.79C123.1 42.76 121.37 54.52 112.53 58.08C109.95 59.12 116.35 56.54 112.37 58.14C104.76 61.21 96.05 59.06 90.73 52.81C88.25 49.88 92.18 54.51 90.32 52.32C83.05 43.76 81.67 31.67 86.83 21.7C88.48 18.49 85.48 24.3 87.27 20.83C92.09 11.5 101.72 5.64 112.22 5.64C120.81 5.64 108.8 5.64 112.22 5.64C136.07 5.64 155.51 24.76 155.91 48.61C155.91 48.81 155.92 49.31 155.93 50.11C155.95 50.96 155.96 51.49 155.96 51.7C156.38 76.72 136.32 97.27 111.31 97.47C97.13 97.58 61.67 97.86 4.94 98.31" opacity="1" fill-opacity="0" stroke="#03A9F4" stroke-width="4" stroke-opacity="1"></path>
+</svg>
+</div>
+<div id="everything">
+  <div class="row hook">
+    <div class="medium-8 small-12 columns">
+      <h1>I'm Steven, a programmer recently out of UC Berkeley.</h1>
+      <p>Welcome to my site. If you're looking for a résumé, click the link below. Or check out my code-themed blog, if that sounds interesting to you.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <a href="/resume/" class="button">résumé</a>
+      <a href="/blog/" class="button">blog</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns footer-icons">
+      <a href="https://www.youtube.com/channel/UCA6486b13Lm612rkzu4TQZA">youtube</a>
+      /
+      <a href="https://github.com/straversi">github</a>
+    </div>
+  </div>
+  <script src="./kite/jquery-3.1.1.min.js"></script>
+  <script src="./kite/physicsjs-full.min.js"></script>
+  <script>
+  Physics(function(world){
+
+    var viewWidth = $('#viewport').width();
+    var viewHeight = $('#viewport').height();
+
+    var renderer = Physics.renderer('canvas', {
+      el: 'viewport',
+      width: viewWidth,
+      height: viewHeight,
+      meta: false, // don't display meta data
+      styles: {
+          // set colors for the circle bodies
+          'circle' : {
+              strokeStyle: '#351024',
+              lineWidth: 1,
+              fillStyle: '#d33682',
+              angleIndicator: '#351024'
+          }
+      }
+    });
+
+    // add the renderer
+    world.add( renderer );
+    // render on each step
+    world.on('step', function(){
+      world.render();
+    });
+
+    kiteStart = {x: 430, y: 50};
+    // add a kite
+    kite = Physics.body('circle', {
+        x: kiteStart.x,
+        y: kiteStart.y,
+        radius: 20,
+        mass: 50,
+        offset: Physics.vector(25,25),
+        styles: {
+          src: "./kite/kite4.svg",
+        }
+    });
+    world.add(kite);
+
+    // add a tail
+    tail1 = Physics.body('circle', {x: kiteStart.x, y: kiteStart.y + 30, radius: 8, offset: Physics.vector(25,30), styles: {
+      src: "./kite/tail2.svg"
+    }});
+    tail2 = Physics.body('circle', {x: kiteStart.x, y: kiteStart.y + 50, radius: 8, offset: Physics.vector(25,30), styles: {
+      src: "./kite/tail2.svg"
+    }});
+    tail3 = Physics.body('circle', {x: kiteStart.x, y: kiteStart.y + 70, radius: 8, offset: Physics.vector(25,30), styles: {
+      src: "./kite/tail2.svg"
+    }});
+    tailLine1 = Physics.behavior('verlet-constraints');
+    tailLine1.distanceConstraint(kite, tail1, 1, 30);
+    var tailLine2 = Physics.behavior('verlet-constraints');
+    tailLine2.distanceConstraint(tail1, tail2, 1, 20);
+    var tailLine3 = Physics.behavior('verlet-constraints');
+    tailLine3.distanceConstraint(tail2, tail3, 1, 20);
+    world.add([tail1, tail2, tail3]);
+    world.add([tailLine1, tailLine2, tailLine3]);
+
+    // add line
+    var rigidConstraints = Physics.behavior('verlet-constraints', {
+        iterations: 3
+    });
+    // the "line"
+    line = [];
+    // precomputed rest values
+    var lineXYs = [[0,550],[15,543],[32,534],[48,525],[63,516],[79,506],[94,495],[109,485],[123,473],[138,462],[152,450],[166,437],[180,425],[193,412],[206,398],[219,384],[232,370],[244,356],[256,341],[268,326],[280,311],[291,295],[303,280],[314,264],[324,247],[335,231],[345,214],[355,197],[365,179],[375,162],[384,144],[394,126],[403,108],[412,90],];
+    // for ( var i = 0; i < 500; i += 15){
+    for ( var i = 0; i < lineXYs.length; i += 1){
+        l = line.push(
+            Physics.body('circle', {
+                x: lineXYs[i][0] // i / Math.sqrt(2)
+                ,y: lineXYs[i][1] // renderer.height - 50 - (i / Math.sqrt(2))
+                ,radius: 1
+                ,restitution: 0.2
+                ,mass: .5
+                ,hidden: true
+            })
+        );
+        rigidConstraints.distanceConstraint( line[ l - 1 ], line[ l - 2 ], 1, 15);
+    }
+    world.on('render', function( data ){
+        var renderer = data.renderer;
+        for ( var i = 1, l = line.length; i < l; ++i ){
+            renderer.drawLine(line[ i - 1 ].state.pos, line[ i ].state.pos, {
+                strokeStyle: '#ffaaaa'
+                ,lineWidth: 1
+            });
+        }
+    });
+    // fix the ends
+    line[ 0 ].treatment = 'static';
+    rigidConstraints.distanceConstraint( line[ l - 1 ], kite, 0.5, 10 );
+    world.add( line );
+    world.add( rigidConstraints );
+
+    // add kite lift
+    lift = Physics.behavior('constant-acceleration',
+                                {acc: { x: 0, y: -0.005 }})
+                      .applyTo([kite]);
+    world.add(lift);
+
+    // add some wind to the kite
+    windKite = Physics.behavior('constant-acceleration',
+                            {acc: { x: 0.001, y: 0 }})
+                      .applyTo([kite].concat(line));
+    world.add( windKite );
+    // add variable wind to the first tail
+    windTail1 = Physics.behavior('constant-acceleration',
+                            {acc: { x: 0.002, y: 0 }})
+                      .applyTo([tail1]);
+    world.add( windTail1 );
+    // add some wind to the tails
+    windTails = Physics.behavior('constant-acceleration',
+                            {acc: { x: 0.002, y: 0 }})
+                      .applyTo([tail1, tail2, tail3]);
+    world.add( windTails );
+
+    // add a frickin' stake for the kite.
+    stake = Physics.body('circle', {
+      x: kiteStart.x - 30, // x-coordinate
+      y: kiteStart.y, // y-coordinate
+      treatment: 'static',
+      radius: 20,
+      hidden: true
+    });
+    world.add(stake);
+    var kiteHolder = Physics.behavior('verlet-constraints');
+    tailLine3.distanceConstraint(stake, kite, 0.01, 30);
+    world.add([kiteHolder]);
+
+    // add some gravity
+    var grav = Physics.behavior('constant-acceleration', {
+      acc: {x: 0, y: 0.0035 }
+    });
+    world.add(grav);
+
+    lastWindChange = 0;
+
+    // subscribe to ticker to advance the simulation
+    Physics.util.ticker.on(function( time, dt ){
+
+        world.step( time );
+        // reset the tail 1 wind x component.
+        if (time > lastWindChange + 500) {
+          lastWindChange = time;
+          var newX = Math.random() * 0.003;
+          windTail1.setAcceleration(new Physics.vector(newX, 0));
+        }
+        // toPrint = "["
+        // line.forEach(function(e) {
+        //   toPrint += "[" + Math.round(e.state.pos.x) + "," + Math.round(e.state.pos.y) + "],";
+        // });
+        // toPrint += "]"
+        // console.log(toPrint);
+    });
+
+    // start the ticker
+    Physics.util.ticker.start();
+
+  });
+  </script>
+  <script>
+    console.log('%c Hello!', 'color: #F85F73; font-weight: bold; font-size: 24px;');
+    console.log('The %ckite%c is a physics simulation in a canvas element. Thanks to http://wellcaffeinated.net/PhysicsJS/.', 'color: #F85F73', 'color: auto');
+    console.log('The %cwind%c is an animated svg element.', 'color: #F85F73', 'color: auto');
+    console.log('The %cicons%c are from http://fontawesome.io/.', 'color: #F85F73', 'color: auto');
+    console.log("See something wrong? I'd be thankful if you opened an issue at https://github.com/straversi/straversi.github.io/issues.");
+  </script>
+</div>
+</body>
+</html>
