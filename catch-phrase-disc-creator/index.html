@@ -1,0 +1,49 @@
+<style>
+  #disc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1000px;
+    height: 1000px;
+  }
+  #disc > div {
+    position: absolute;
+    top: 500px;
+    left: 500px;
+    width: 340px;
+    transform-origin: center left;
+  }
+  #disc > div > div {
+    position: absolute;
+    right: 0;
+    transform: translateX(50%);
+  }
+  #template-disc {
+    opacity: 0.2;
+  }
+</style>
+<img id="template-disc" width="1000" src="/catch-phrase-disc-creator/template-disc.png" />
+
+<div id="disc">
+</div>
+
+<textarea id="phrases" oninput="updateDisc()"></textarea>
+
+<script>
+  // Inserts each phrase in it's own div in the #disc
+  function updateDisc() {
+    const phrases = document.getElementById('phrases').value;
+    const phraseList = phrases.split('\n');
+    const disc = document.getElementById('disc');
+    disc.innerHTML = ''; // Clear existing content
+    phraseList.forEach((phrase, i) => {
+      const containerDiv = document.createElement('div');
+      const phraseDiv = document.createElement('div');
+      phraseDiv.textContent = phrase;
+      containerDiv.appendChild(phraseDiv);
+      disc.appendChild(containerDiv);
+      // Apply a rotation to each div based on its index
+      containerDiv.style.transform = `rotate(${i * 5 + 2}deg)`;
+    });
+  }
+</script>
