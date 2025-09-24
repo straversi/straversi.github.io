@@ -306,9 +306,16 @@ h3 img {
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
   margin-top: 36px;
-  /* height: 100px; */
-  /* margin-left: 250px; */
-  /* padding: 32px; */
+}
+@media screen and (max-width: 700px) {
+  .songs {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media screen and (max-width: 460px) {
+  .songs {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 .song {
   width: 100%;
