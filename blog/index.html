@@ -9,8 +9,8 @@
   <meta name="description" content="I post here about some of the things I'm working on. ">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
-  <!--<link rel="stylesheet" href="/blog/css/main.css"> -->
-  <link rel="stylesheet" href="/blog/css/main.css?v=3.0">
+  <link rel="stylesheet" href="/blog/css/main.css?v=3.1">
+  <link rel="stylesheet" href="/blog/css/garbage.css?v=1.0">
   <link rel="canonical" href="http://steven.codes/blog/">
   <link rel="alternate" type="application/rss+xml" title="steven.codes" href="http://steven.codes/blog/feed.xml">
 </head>
@@ -19,7 +19,7 @@
   <div class="page-content">
     <div class="callout"> <a class="site-title" href="/blog/">steven<br>.codes</a>
       <div style="margin-top:50px;font-family:Roboto Mono;font-weight:400;">
-        <p> I'm Steven. I write about a slice of the things I'm doing and put them here. Feel free to reach out via
+        <p class="site-hook"> I'm Steven. I write about a slice of the things I'm doing and put them here. Feel free to reach out via
           YouTube direct message.</p>
         <p class="links"> <a href="https://github.com/straversi"
             style="text-decoration:none;border-bottom:2px solid #ccc;">github</a> <br> <a
@@ -46,6 +46,7 @@
           <div class="song" style="background-image: url('assets/songs/crawl.jpeg');"></div>
         </a>
       </div>
+      <button onclick="beginTrashPickup()" style="margin-top: 20px;">Garbage time!</button>
     </div>
     <div class="posts"> <!-- condition never true if using paginator w/ 'published' tag --> <a
         href="https://steven.codes/oscilloscope">
@@ -110,4 +111,5 @@
   </div>
 </body>
 
+<script src="/blog/javascript/garbage.js?v=1.0"></script>
 </html>

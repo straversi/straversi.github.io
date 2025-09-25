@@ -338,7 +338,7 @@ h3 img {
   padding: 32px;
   box-sizing: border-box;
   margin-left: 250px;
-  width: calc(100% - 252px);
+  width: calc(100% - 250px);
   position: relative
 }
 
