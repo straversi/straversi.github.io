@@ -3,7 +3,7 @@ async function beginTrashPickup() {
     ...Array.from(document.querySelectorAll('.theme-card')).map(el => el.parentElement),
     ...Array.from(document.querySelectorAll('.song')).map(el => el.parentElement),
     document.querySelector('.links'),
-    document.querySelector('button'),
+    ...document.querySelectorAll('button'),
     document.querySelector('.site-title'),
     document.querySelector('.site-hook'),
   ];
