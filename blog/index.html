@@ -28,9 +28,11 @@
       </div>
       <div class="songs">
       </div>
-      <button onclick="shuffle()" style="margin-top: 20px;">Shuffle</button>
+      <div id="shuffle-button-holder">
+        <button onclick="shuffle()" id="shuffle-button">Shuffle</button>
+      </div>
       <script src="/blog/javascript/songs.js?v=1.2"></script>
-      <button onclick="beginTrashPickup()" style="margin-top: 20px;">Garbage time!</button>
+      <button onclick="beginTrashPickup()" style="margin-top: 10px;">Garbage time!</button>
     </div>
     <div class="posts"> <!-- condition never true if using paginator w/ 'published' tag --> <a
         href="https://steven.codes/oscilloscope">

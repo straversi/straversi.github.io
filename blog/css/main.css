@@ -984,4 +984,12 @@ video {
   }
 }
 
+#shuffle-button-holder {
+  margin-top: 15px;
+}
+
+.callout button {
+  font-size: 14px;
+}
+
 /*# sourceMappingURL=main.css.map */
