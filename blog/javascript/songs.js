@@ -20,16 +20,16 @@ const songs = [
     link: 'https://open.spotify.com/track/6WfL1pwMyFf3IvFWLnre4P?si=81bc4f0a51e54f0b'
   },
   {
+    image: 'assets/songs/wilt.jpg',
+    link: 'https://open.spotify.com/track/4CY8Je3F69ZSwBPU7ragRP?si=f962ed6f48704c5a'
+  },
+  {
     image: 'assets/songs/crawl.jpeg',
     link: 'https://open.spotify.com/track/3ZP4RA6HLfXqkdrSd3tVjP?si=311bff122fb84a90'
   },
   {
     image: 'assets/songs/plastic-beach.jpg',
     link: 'https://open.spotify.com/track/3a6PN6BRB8PP3ms48s7kU1?si=634f7901c6bd4ca3'
-  },
-  {
-    image: 'assets/songs/swerve-city.jpg',
-    link: 'https://open.spotify.com/track/2OUR8g12h5qsGDs1v5lqvp?si=61b8293b0e9448e4'
   },
   {
     image: 'assets/songs/spinners.jpg',
