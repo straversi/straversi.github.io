@@ -782,6 +782,16 @@ video {
   box-shadow: none
 }
 
+#pico-8-2048.theme-card .theme-description {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white
+}
+
+#pico-8-2048.theme-card .theme-title span {
+  background: rgba(0, 0, 0, 0.7);
+  color: white
+}
+
 #oscilloscope.theme-card .theme-description {
   background-color: rgba(0, 0, 0, 0.5);
   color: white

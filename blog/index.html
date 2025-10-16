@@ -9,7 +9,7 @@
   <meta name="description" content="I post here about some of the things I'm working on. ">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
-  <link rel="stylesheet" href="/blog/css/main.css?v=3.1">
+  <link rel="stylesheet" href="/blog/css/main.css?v=3.2">
   <link rel="stylesheet" href="/blog/css/garbage.css?v=1.0">
   <link rel="canonical" href="http://steven.codes/blog/">
   <link rel="alternate" type="application/rss+xml" title="steven.codes" href="http://steven.codes/blog/feed.xml">
@@ -35,6 +35,14 @@
       <button onclick="beginTrashPickup()" style="margin-top: 10px;">System.gc();</button>
     </div>
     <div class="posts"> <!-- condition never true if using paginator w/ 'published' tag --> <a
+        href="/blog/pico-8-2048/">
+        <div class="theme-card" id="pico-8-2048" style="background: url('assets/posts/pico-8-2048/teaser.png'); background-size: cover;">
+          <div class="theme-description">
+            <div class="theme-title"><span>Pico-8 2048</span></div>
+            <p>2048 for the Pico-8 console.</p>
+          </div>
+        </div>
+      </a> <!-- condition never true if using paginator w/ 'published' tag --> <a
         href="https://steven.codes/oscilloscope">
         <div class="theme-card" id="oscilloscope" style="background: url('assets/posts/oscilloscope/teaser.jpg');">
           <div class="theme-description">
@@ -80,17 +88,8 @@
             </div>
           </div>
         </div>
-      </a> <!-- condition never true if using paginator w/ 'published' tag --> <a
-        href="/blog/hello-world-in-HOtMEfSPRIbNG/">
-        <div class="theme-card" id="homespring"
-          style="background:url('assets/posts/hello-world-in-HOtMEfSPRIbNG/alchemy.png');">
-          <div class="theme-description">
-            <div class="theme-title"><span>Hello World in HOtMEfSPRIbNG</span></div>
-            <p> My take on Hello World in this esoteric metaphor-oriented language. <br> <br> This language is really
-              crazy.</p>
-          </div>
-        </div>
-      </a> <!-- pagination buttons -->
+      </a> <!-- condition never true if using paginator w/ 'published' tag --> 
+      <!-- pagination buttons -->
       <div id="paginator-container"> <span class="paginate-button hidden"> </span> <a href="/blog/2/"
           class="paginate-button"> Older posts &gt; </a></div>
     </div>
