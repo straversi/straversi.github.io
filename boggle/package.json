@@ -21,7 +21,7 @@
     "serve": "^10.1.1",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
-    "webpack": "^4.28.4",
+    "webpack": "^5.104.1",
     "webpack-cli": "^3.2.1"
   }
 }
