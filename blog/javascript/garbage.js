@@ -6,6 +6,7 @@ async function beginTrashPickup() {
     ...document.querySelectorAll('button'),
     document.querySelector('.site-title'),
     document.querySelector('.site-hook'),
+    ...document.querySelectorAll('.paginate-button:not(.hidden)')
   ];
   // randomize the trash pile
   trashPile.sort(() => Math.random() - 0.5);

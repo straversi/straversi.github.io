@@ -24,8 +24,17 @@
         <p class="links"> <a href="https://github.com/straversi"
             style="text-decoration:none;border-bottom:2px solid #ccc;">github</a> <br> <a
             href="https://www.youtube.com/channel/UCA6486b13Lm612rkzu4TQZA"
-            style="text-decoration:none;border-bottom:2px solid #ccc;">youtube</a></p>
+            style="text-decoration:none;border-bottom:2px solid #ccc;">youtube</a><br> <a
+            href="https://open.spotify.com/user/d2m15jmcesi65gufs7szzcnxp?si=6e1fe11ad7714a30"
+            style="text-decoration:none;border-bottom:2px solid #ccc;">spotify</a></p>
       </div>
+      <div class="songs">
+      </div>
+      <div id="shuffle-button-holder">
+        <button onclick="shuffle()" id="shuffle-button">Shuffle</button>
+      </div>
+      <script src="/blog/javascript/songs.js?v=1.4"></script>
+      <button onclick="beginTrashPickup()" style="margin-top: 10px;">Run garbage collector</button>
     </div>
     <div class="posts"> 
       <a href="/blog/cs10/2048-merge/">
@@ -43,4 +52,5 @@
   </div>
 </body>
 
+<script src="/blog/javascript/garbage.js?v=1.1"></script>
 </html>
