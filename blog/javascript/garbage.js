@@ -1,7 +1,6 @@
 async function beginTrashPickup() {
   const trashPile = [
     ...Array.from(document.querySelectorAll('.theme-card')).map(el => el.parentElement),
-    ...Array.from(document.querySelectorAll('.song')).map(el => el.parentElement),
     document.querySelector('.links'),
     ...document.querySelectorAll('button'),
     document.querySelector('.site-title'),
