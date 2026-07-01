@@ -9,7 +9,7 @@
   <meta name="description" content="I post here about some of the things I'm working on. ">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
-  <link rel="stylesheet" href="/blog/css/main.css?v=3.3">
+  <link rel="stylesheet" href="/blog/css/main.css?v=4.0">
   <link rel="stylesheet" href="/blog/css/garbage.css?v=1.0">
   <link rel="canonical" href="http://steven.codes/blog/">
   <link rel="alternate" type="application/rss+xml" title="steven.codes" href="http://steven.codes/blog/feed.xml">
@@ -28,7 +28,16 @@
             href="https://open.spotify.com/user/d2m15jmcesi65gufs7szzcnxp?si=6e1fe11ad7714a30"
             style="text-decoration:none;border-bottom:2px solid #ccc;">spotify</a></p>
       </div>
-      <button onclick="beginTrashPickup()" style="margin-top: 10px;">Run garbage collector</button>
+      <div id="currently-playing" class="currently-playing currently-playing--loading" aria-busy="true">
+        <div class="currently-playing-skeleton-art"></div>
+        <div class="currently-playing-info">
+          <div class="currently-playing-skeleton-line currently-playing-skeleton-line--label"></div>
+          <div class="currently-playing-skeleton-line currently-playing-skeleton-line--track"></div>
+          <div class="currently-playing-skeleton-line currently-playing-skeleton-line--artist"></div>
+        </div>
+      </div>
+      <button onclick="beginTrashPickup()">Run garbage collector</button>
+      <script src="/blog/javascript/currently-playing.js?v=1.4"></script>
     </div>
     <div class="posts"> <a
       href="/blog/death-of-a-hacker/">

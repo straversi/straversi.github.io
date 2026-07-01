@@ -301,6 +301,136 @@ h3 img {
   line-height: 1.7em
 }
 
+.currently-playing {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 36px;
+  position: relative;
+}
+
+.currently-playing[hidden] {
+  display: none;
+}
+
+.currently-playing-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.currently-playing-art {
+  width: 48px;
+  height: 48px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.currently-playing-info {
+  min-width: 0;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.currently-playing-label {
+  font-size: 11px;
+  line-height: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #757575;
+  margin-bottom: 2px;
+}
+
+.currently-playing-track {
+  display: block;
+  position: relative;
+  z-index: 2;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 17px;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.currently-playing-track:link,
+.currently-playing-track:visited {
+  color: #424242;
+}
+
+.currently-playing-track:hover {
+  text-decoration: underline;
+}
+
+.currently-playing-artist {
+  display: block;
+  position: relative;
+  z-index: 2;
+  font-size: 12px;
+  line-height: 17px;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.currently-playing-artist:link,
+.currently-playing-artist:visited {
+  color: #616161;
+}
+
+.currently-playing-artist:hover {
+  text-decoration: underline;
+}
+
+.currently-playing-skeleton-art,
+.currently-playing-skeleton-line {
+  background: #e8e8e8;
+  border-radius: 3px;
+}
+
+.currently-playing-skeleton-art {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.currently-playing-skeleton-line {
+  border-radius: 2px;
+}
+
+.currently-playing-skeleton-line--label {
+  width: 72px;
+  height: 16px;
+  margin-bottom: 2px;
+}
+
+.currently-playing-skeleton-line--track {
+  width: 100%;
+  max-width: 140px;
+  height: 17px;
+}
+
+.currently-playing-skeleton-line--artist {
+  width: 100%;
+  max-width: 100px;
+  height: 17px;
+}
+
+.currently-playing--loading .currently-playing-skeleton-art,
+.currently-playing--loading .currently-playing-skeleton-line {
+  animation: currently-playing-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes currently-playing-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
 .posts {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -971,6 +1101,7 @@ video {
 
 .callout button {
   font-size: 14px;
+  margin-top: 34px;
 }
 
 /*# sourceMappingURL=main.css.map */
