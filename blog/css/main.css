@@ -920,6 +920,10 @@ video {
   color: white
 }
 
+#catchphasetimer-com.theme-card .theme-title span {
+  color: white
+}
+
 #pico-8-2048.theme-card .theme-description {
   background-color: rgba(0, 0, 0, 0.7);
   color: white
