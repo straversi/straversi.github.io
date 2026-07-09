@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>City Guesser</title>
+    <link rel="stylesheet" href="./vendor/maplibre-gl.css">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./vendor/maplibre-gl.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="globe-panel" aria-label="Interactive globe">
+        <div id="globe"></div>
+        <div class="loading" id="loading">Loading globe</div>
+
+        <section class="game-hud" aria-label="Game controls">
+          <header class="title-block">
+            <h1 id="prompt">Loading cities...</h1>
+            <p class="country-prompt" id="countryPrompt"></p>
+          </header>
+
+          <div class="result" id="result" aria-live="polite">
+            Rotate the satellite globe and tap where you think the city is.
+          </div>
+
+          <div class="actions">
+            <div class="round-score" id="roundScore" hidden></div>
+            <button type="button" id="nextButton" hidden>Next city</button>
+          </div>
+        </section>
+
+        <details class="settings-drawer">
+          <summary class="settings-button" aria-label="Settings" title="Settings">
+            <svg
+              class="settings-icon"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path>
+              <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.03-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.65 8.9a1.7 1.7 0 0 0-.34-1.88l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.88.34H9a1.7 1.7 0 0 0 1-1.56V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.03 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.88V9a1.7 1.7 0 0 0 1.56 1H21a2 2 0 1 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15z"></path>
+            </svg>
+          </summary>
+
+          <div class="settings-panel" aria-label="Settings">
+            <form class="filters" id="filters">
+              <label>
+                <span>Continent</span>
+                <select id="continentSelect">
+                  <option value="all">All continents</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Country</span>
+                <select id="countrySelect">
+                  <option value="all">All countries</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Minimum population</span>
+                <select id="populationSelect">
+                  <option value="15000">15,000+</option>
+                  <option value="50000">50,000+</option>
+                  <option value="100000">100,000+</option>
+                  <option value="500000">500,000+</option>
+                  <option value="1000000" selected>1,000,000+</option>
+                </select>
+              </label>
+            </form>
+
+            <div class="drawer-metric">
+              <span class="metric-label">Cities</span>
+              <strong id="cityCount">0</strong>
+            </div>
+
+            <p class="source-note">
+              City data: <a href="https://www.geonames.org/" rel="noreferrer">GeoNames</a>,
+              CC BY 4.0.
+            </p>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <script src="./src/main.js"></script>
+  </body>
+</html>
