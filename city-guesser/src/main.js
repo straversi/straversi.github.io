@@ -35,6 +35,7 @@ let canGuess = true;
 let totalScore = 0;
 let round = 1;
 let currentScore = null;
+let selectedCountryHistory = new Set();
 let guessMarker = null;
 let targetMarker = null;
 let answerArc = null;
@@ -129,6 +130,7 @@ if (resetButton) {
     totalScore = 0;
     round = 1;
     currentScore = null;
+    resetCountryHistory();
     updateScoreboard();
     startRound();
   });
@@ -194,6 +196,7 @@ function restartForFilterChange() {
   round = 1;
   totalScore = 0;
   currentScore = null;
+  resetCountryHistory();
   updateScoreboard();
   startRound();
 }
@@ -213,11 +216,44 @@ function startRound() {
     return;
   }
 
-  targetCity = filteredCities[Math.floor(Math.random() * filteredCities.length)];
+  targetCity = getRandomCityFromRandomCountry(filteredCities);
   promptEl.textContent = targetCity.name;
   countryPromptEl.textContent = targetCity.countryName;
   showInstruction("Rotate the globe and tap where you think the city is.");
   updateScoreboard();
+}
+
+function getRandomCityFromRandomCountry(cityOptions) {
+  const citiesByCountry = new Map();
+  for (const city of cityOptions) {
+    if (!citiesByCountry.has(city.country)) {
+      citiesByCountry.set(city.country, []);
+    }
+    citiesByCountry.get(city.country).push(city);
+  }
+
+  let eligibleCountries = [...citiesByCountry.keys()].filter((country) => {
+    return !selectedCountryHistory.has(country);
+  });
+
+  if (!eligibleCountries.length) {
+    resetCountryHistory();
+    eligibleCountries = [...citiesByCountry.keys()];
+  }
+
+  const country = getRandomItem(eligibleCountries);
+  selectedCountryHistory.add(country);
+  const countryCities = citiesByCountry.get(country);
+
+  return getRandomItem(countryCities);
+}
+
+function resetCountryHistory() {
+  selectedCountryHistory = new Set();
+}
+
+function getRandomItem(items) {
+  return items[Math.floor(Math.random() * items.length)];
 }
 
 function handleGuess(event) {

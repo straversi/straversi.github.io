@@ -21,7 +21,16 @@ module loading and `fetch()` are more reliable over HTTP.
 Close-zoom imagery is loaded from Esri's public World Imagery tile service at runtime,
 so the globe needs network access even though the app code and city data are local.
 
+## City selection
+
+Each round uses the currently filtered set of qualifying cities. The game first
+chooses a random country from that set, then chooses a random qualifying city
+within that country.
+
+For the active filters, selected countries are tracked in a history set and are
+not repeated until every qualifying country has been selected once. After that,
+the history is cleared and a new country cycle begins. Changing filters or
+resetting the game also clears the country history.
+
 City data comes from GeoNames `cities15000.zip` and `countryInfo.txt`, licensed under
 Creative Commons Attribution 4.0.
-
-codex resume 019f44ea-502b-7b63-b6dd-5fcd999571be
