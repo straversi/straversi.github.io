@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">
   <!--<link rel="stylesheet" href="/blog/css/main.css"> -->
-  <link rel="stylesheet" href="/blog/css/main.css?v=4.2">
+  <link rel="stylesheet" href="/blog/css/main.css?v=4.3">
   <link rel="canonical" href="http://steven.codes/blog/2/">
   <link rel="alternate" type="application/rss+xml" title="steven.codes" href="http://steven.codes/blog/feed.xml">
 </head>
@@ -99,7 +99,16 @@
         })();
       </script>
     </div>
-    <div class="posts"> <a href="/blog/gradient-domain-fusion/">
+    <div class="posts"> <a href="/blog/face-morphing/">
+      <div class="theme-card" id="face-morphing"
+        style="background:linear-gradient(to right,rgba(33,33,33,1.0),rgba(0,0,0,0.0)),url('../assets/posts/face-morphing/teaser-shot.jpg'); background-size: cover; background-repeat:no-repeat; background-position:right center;">
+        <div class="theme-description">
+          <div class="theme-title"> <span>Face Morphing</span></div>
+          <p> Smoothly morphing images with Python and a bit of linear algebra. <br> <br> You're going to want your
+            face morphed too.</p>
+        </div>
+      </div>
+    </a> <!-- condition never true if using paginator w/ 'published' tag --> <a href="/blog/gradient-domain-fusion/">
       <div class="theme-card" id="gradient-domain"
         style="background:linear-gradient(to right,rgba(33,33,33,1.0),rgba(0,0,0,0.0)),url('../assets/posts/gradient-domain-fusion/graffiti/graffiti.jpg'); background-size: cover; background-repeat:no-repeat; background-position:center center;">
         <div class="theme-description">
@@ -151,17 +160,7 @@
             <p> I walk through how to utilize Google Sheets as a simple backend.</p>
           </div>
         </div>
-      </a> <!-- condition never true if using paginator w/ 'published' tag --> <a
-        href="/blog/flipping-tables-a-custom-bash-prompt/">
-        <div class="theme-card" id="flipping-tables"
-          style="background: url('../assets/posts/flipping-tables-a-custom-bash-prompt/teaser-image.png'), linear-gradient(#2196f3, #2196f3);">
-          <div class="theme-description">
-            <div class="theme-title"><span>Flipping Tables: A Custom Bash Prompt</span></div>
-            <p> Making the prompt text a function of exit status leads to fun results. <br> Use it or come up with your
-              own.</p>
-          </div>
-        </div>
-      </a><!-- pagination buttons -->
+      </a> <!-- condition never true if using paginator w/ 'published' tag --> <!-- pagination buttons -->
       <div id="paginator-container">
         <a href="/blog/" class="paginate-button"> &lt; Newer posts </a>
         <a href="/blog/3/" class="paginate-button"> Older posts &gt; </a>

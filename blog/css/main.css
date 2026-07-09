@@ -934,11 +934,13 @@ video {
   color: white
 }
 
+#city-guesser.theme-card .theme-description,
 #oscilloscope.theme-card .theme-description {
   background-color: rgba(0, 0, 0, 0.5);
   color: white
 }
 
+#city-guesser.theme-card .theme-title span,
 #oscilloscope.theme-card .theme-title span {
   background: rgba(0, 0, 0, 0.5);
   color: white
