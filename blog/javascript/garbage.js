@@ -5,6 +5,7 @@ async function beginTrashPickup() {
     ...document.querySelectorAll('button'),
     document.querySelector('.site-title'),
     document.querySelector('.site-hook'),
+    document.querySelector('#currently-playing'),
     ...document.querySelectorAll('.paginate-button:not(.hidden)')
   ];
   // randomize the trash pile
