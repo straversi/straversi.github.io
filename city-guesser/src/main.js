@@ -12,6 +12,10 @@ const ANSWER_ARC_MAX_PEAK_ALTITUDE_METERS = 375000;
 const ANSWER_ARC_HEIGHT_DISTANCE_RATIO = 0.35;
 const ANSWER_ARC_LOOP_DURATION_MS = 1800;
 const ANSWER_ARC_TRAIL_FRACTION = 0.44;
+const DESIRED_FIT_PADDING_PX = 300;
+const MIN_FIT_VIEWPORT_PX = 120;
+const MOBILE_FIT_WIDTH_PX = 860;
+const MOBILE_FIT_PADDING_SCALE = 0.9;
 
 const loadingEl = document.querySelector("#loading");
 const promptEl = document.querySelector("#prompt");
@@ -352,11 +356,32 @@ function fitGuessAndTarget(guess, target) {
   ];
 
   map.fitBounds(bounds, {
-    padding: 300,
+    padding: getFitBoundsPadding(),
     duration: 1400,
     maxZoom: 3.25,
     essential: true,
   });
+}
+
+function getFitBoundsPadding() {
+  const container = map.getContainer();
+  const isMobileViewport = container.clientWidth <= MOBILE_FIT_WIDTH_PX;
+  const horizontalPadding = getAxisFitPadding(container.clientWidth, isMobileViewport);
+  const verticalPadding = getAxisFitPadding(container.clientHeight, isMobileViewport);
+
+  return {
+    top: verticalPadding,
+    bottom: verticalPadding,
+    left: horizontalPadding,
+    right: horizontalPadding,
+  };
+}
+
+function getAxisFitPadding(axisLength, isMobileViewport) {
+  const maxPadding = Math.max(0, Math.floor((axisLength - MIN_FIT_VIEWPORT_PX) / 2));
+  const padding = Math.min(DESIRED_FIT_PADDING_PX, maxPadding);
+
+  return isMobileViewport ? Math.floor(padding * MOBILE_FIT_PADDING_SCALE) : padding;
 }
 
 function getShortestLngSpan(lngA, lngB) {
