@@ -117,7 +117,6 @@ select {
   line-height: 1.2;
   text-align: center;
   white-space: pre;
-  text-transform: uppercase;
   background: rgba(8, 9, 10, 0.72);
   border: 1px solid rgba(241, 243, 237, 0.2);
   border-radius: 5px;

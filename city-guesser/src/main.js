@@ -156,6 +156,7 @@ nextButton.addEventListener("click", () => {
   round += 1;
   startRound();
 });
+document.addEventListener("keydown", handleKeyboardNextCity, true);
 if (resetButton) {
   resetButton.addEventListener("click", () => {
     totalScore = 0;
@@ -165,6 +166,17 @@ if (resetButton) {
     updateScoreboard();
     startRound();
   });
+}
+
+function handleKeyboardNextCity(event) {
+  if (!["Enter", " ", "Spacebar"].includes(event.key)) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  if (!nextButton.disabled && !nextButton.hidden) {
+    nextButton.click();
+  }
 }
 
 async function loadData() {
@@ -309,13 +321,13 @@ function handleGuess(event) {
     guess.lat,
     guess.lng,
     "guess-marker",
-    `your guess\n${Math.round(distanceKm).toLocaleString()} km away`,
+    `YOUR GUESS\n${Math.round(distanceKm).toLocaleString()} km away`,
   );
   targetMarker = addMarker(
     targetCity.lat,
     targetCity.lng,
     "target-marker",
-    `${targetCity.name}\nPop: ${targetCity.population.toLocaleString()}`,
+    `${targetCity.name.toUpperCase()}\nPop: ${targetCity.population.toLocaleString()}`,
   );
   showCountryOutline(targetCity.country);
   drawAnswerArc(guess, targetCity);
