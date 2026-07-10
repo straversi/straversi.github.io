@@ -1,7 +1,8 @@
 # City Guesser
 
 A static city guessing page. It uses local MapLibre GL files, Esri World Imagery
-raster tiles, and preprocessed GeoNames city data, so there is no build step.
+raster tiles, preprocessed GeoNames city data, and Natural Earth country
+boundaries, so there is no build step.
 
 Run it from the project root with any static server:
 
@@ -33,4 +34,5 @@ the history is cleared and a new country cycle begins. Changing filters or
 resetting the game also clears the country history.
 
 City data comes from GeoNames `cities15000.zip` and `countryInfo.txt`, licensed under
-Creative Commons Attribution 4.0.
+Creative Commons Attribution 4.0. Country boundaries come from Natural Earth
+Admin 0 map units.

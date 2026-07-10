@@ -16,6 +16,13 @@ const DESIRED_FIT_PADDING_PX = 300;
 const MIN_FIT_VIEWPORT_PX = 120;
 const MOBILE_FIT_WIDTH_PX = 860;
 const MOBILE_FIT_PADDING_SCALE = 0.9;
+const COUNTRY_OUTLINE_SOURCE_ID = "country-outline";
+const COUNTRY_OUTLINE_HALO_LAYER_ID = "country-outline-halo";
+const COUNTRY_OUTLINE_LAYER_ID = "country-outline";
+const EMPTY_FEATURE_COLLECTION = {
+  type: "FeatureCollection",
+  features: [],
+};
 
 const loadingEl = document.querySelector("#loading");
 const promptEl = document.querySelector("#prompt");
@@ -43,6 +50,7 @@ let selectedCountryHistory = new Set();
 let guessMarker = null;
 let targetMarker = null;
 let answerArc = null;
+let countryBoundaryFeaturesByCode = new Map();
 
 const map = new maplibregl.Map({
   container: "globe",
@@ -62,6 +70,10 @@ const map = new maplibregl.Map({
         attribution:
           "Tiles &copy; Esri, Maxar, Earthstar Geographics, and the GIS User Community",
       },
+      [COUNTRY_OUTLINE_SOURCE_ID]: {
+        type: "geojson",
+        data: EMPTY_FEATURE_COLLECTION,
+      },
     },
     layers: [
       {
@@ -70,6 +82,32 @@ const map = new maplibregl.Map({
         source: "imagery",
         paint: {
           "raster-fade-duration": 120,
+        },
+      },
+      {
+        id: COUNTRY_OUTLINE_HALO_LAYER_ID,
+        type: "line",
+        source: COUNTRY_OUTLINE_SOURCE_ID,
+        layout: {
+          "line-cap": "round",
+          "line-join": "round",
+        },
+        paint: {
+          "line-color": "rgba(0, 0, 0, 0.72)",
+          "line-width": 6,
+        },
+      },
+      {
+        id: COUNTRY_OUTLINE_LAYER_ID,
+        type: "line",
+        source: COUNTRY_OUTLINE_SOURCE_ID,
+        layout: {
+          "line-cap": "round",
+          "line-join": "round",
+        },
+        paint: {
+          "line-color": "#ffffff",
+          "line-width": 2.5,
         },
       },
     ],
@@ -130,13 +168,17 @@ if (resetButton) {
 }
 
 async function loadData() {
-  const [cityResponse, countryResponse] = await Promise.all([
+  const [cityResponse, countryResponse, countryBoundaryResponse] = await Promise.all([
     fetch("./public/cities.json"),
     fetch("./public/countries.json"),
+    fetch("./public/country-boundaries.geojson"),
   ]);
 
   cities = await cityResponse.json();
   countries = await countryResponse.json();
+  countryBoundaryFeaturesByCode = getCountryBoundaryFeaturesByCode(
+    await countryBoundaryResponse.json(),
+  );
 }
 
 function populateFilters() {
@@ -273,8 +315,9 @@ function handleGuess(event) {
     targetCity.lat,
     targetCity.lng,
     "target-marker",
-    `${targetCity.name}\nPOP: ${targetCity.population.toLocaleString()}`,
+    `${targetCity.name}\nPop: ${targetCity.population.toLocaleString()}`,
   );
+  showCountryOutline(targetCity.country);
   drawAnswerArc(guess, targetCity);
   fitGuessAndTarget(guess, targetCity);
 
@@ -335,6 +378,69 @@ function addMarker(lat, lng, className, label = "") {
   })
     .setLngLat([lng, lat])
     .addTo(map);
+}
+
+function showCountryOutline(countryCode) {
+  const source = map.getSource(COUNTRY_OUTLINE_SOURCE_ID);
+  const country = countries.find((item) => item.iso === countryCode);
+  const features =
+    countryBoundaryFeaturesByCode.get(countryCode) ||
+    countryBoundaryFeaturesByCode.get(country?.iso3);
+
+  if (!source || !features?.length) return;
+
+  source.setData({
+    type: "FeatureCollection",
+    features,
+  });
+}
+
+function clearCountryOutline() {
+  const source = map.getSource(COUNTRY_OUTLINE_SOURCE_ID);
+
+  if (source) {
+    source.setData(EMPTY_FEATURE_COLLECTION);
+  }
+}
+
+function getCountryBoundaryFeaturesByCode(featureCollection) {
+  const featuresByCode = new Map();
+
+  for (const feature of featureCollection.features) {
+    addCountryBoundaryFeatureCodes(featuresByCode, feature);
+  }
+
+  return new Map([...featuresByCode.entries()].map(([code, item]) => [code, item.features]));
+}
+
+function addCountryBoundaryFeatureCodes(featuresByCode, feature) {
+  const properties = feature.properties || {};
+  const codeGroups = [
+    ["ISO_A2", "ISO_A2_EH", "WB_A2"],
+    ["ISO_A3", "ISO_A3_EH", "ADM0_A3", "ADM0_ISO", "WB_A3"],
+    ["POSTAL"],
+  ];
+
+  codeGroups.forEach((keys, priority) => {
+    for (const key of keys) {
+      const code = normalizeBoundaryCode(properties[key]);
+
+      if (!code) continue;
+
+      const current = featuresByCode.get(code);
+      if (!current || priority < current.priority) {
+        featuresByCode.set(code, { features: [feature], priority });
+      } else if (priority === current.priority && !current.features.includes(feature)) {
+        current.features.push(feature);
+      }
+    }
+  });
+}
+
+function normalizeBoundaryCode(value) {
+  if (!value || value === -99 || value === "-99") return null;
+
+  return String(value).toUpperCase();
 }
 
 function fitGuessAndTarget(guess, target) {
@@ -572,6 +678,7 @@ function clearAnswerArc() {
 
 function clearMarkers() {
   clearAnswerArc();
+  clearCountryOutline();
   if (guessMarker) guessMarker.remove();
   if (targetMarker) targetMarker.remove();
   guessMarker = null;
