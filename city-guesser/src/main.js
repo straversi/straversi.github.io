@@ -23,6 +23,23 @@ const EMPTY_FEATURE_COLLECTION = {
   type: "FeatureCollection",
   features: [],
 };
+const SCORE_EMOJIS = [
+  [98, "🎯"],
+  [96, "🔥"],
+  [94, "🏅"],
+  [91, "🏆"],
+  [89, "👑"],
+  [87, "🎉"],
+  [85, "🎓"],
+  [80, "😁"],
+  [70, "🤗"],
+  [60, "😶"],
+  [50, "🤨"],
+  [40, "🫢"],
+  [30, "😂"],
+  [20, "💀"],
+  [0, "🤡"],
+];
 
 const loadingEl = document.querySelector("#loading");
 const promptEl = document.querySelector("#prompt");
@@ -356,8 +373,12 @@ function setNextButtonVisible(isVisible) {
 function setRoundScoreVisible(isVisible, score = 0, distanceKm = 0) {
   roundScoreEl.hidden = !isVisible;
   roundScoreEl.textContent = isVisible
-    ? `${score.toLocaleString()} points (${Math.round(distanceKm).toLocaleString()} km away)`
+    ? `${getScoreEmoji(score)} ${score.toLocaleString()} points (${Math.round(distanceKm).toLocaleString()} km away)`
     : "";
+}
+
+function getScoreEmoji(score) {
+  return SCORE_EMOJIS.find(([minimumScore]) => score >= minimumScore)?.[1] || "🤡";
 }
 
 function showInstruction(message) {
@@ -715,15 +736,5 @@ function degreesToRadians(value) {
 }
 
 function scoreDistance(distanceKm) {
-  const perfectDistanceKm = 50;
-  const antipodeDistanceKm = Math.PI * 6371;
-
-  if (distanceKm <= perfectDistanceKm) return 100;
-
-  const progress = Math.min(
-    1,
-    (distanceKm - perfectDistanceKm) / (antipodeDistanceKm - perfectDistanceKm),
-  );
-
-  return Math.round(100 * (1 - progress) ** 4);
+  return Math.max(0, Math.round(100 - distanceKm / 65));
 }
