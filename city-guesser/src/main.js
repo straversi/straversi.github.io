@@ -81,17 +81,6 @@ const map = new maplibregl.Map({
   attributionControl: false,
 });
 
-map.addControl(new maplibregl.AttributionControl(), "bottom-left");
-
-map.addControl(
-  new maplibregl.NavigationControl({
-    showCompass: true,
-    showZoom: true,
-    visualizePitch: false,
-  }),
-  "top-left",
-);
-
 map.on("load", () => {
   if (typeof map.setProjection === "function") {
     map.setProjection({ type: "globe" });
