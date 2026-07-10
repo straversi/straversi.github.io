@@ -16,7 +16,7 @@ async function loadCurrentlyPlaying() {
     }
 
     const { name, artist, albumArtwork, songUrl, artistUrl } = data.track;
-    const label = data.isPlaying ? 'Now playing' : 'Recently played';
+    const label = data.isPlaying ? 'Now playing' : 'Last played';
     container.classList.remove('currently-playing--loading');
     container.removeAttribute('aria-busy');
     container.hidden = false;
