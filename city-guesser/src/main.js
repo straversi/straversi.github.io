@@ -19,6 +19,7 @@ const MOBILE_FIT_PADDING_SCALE = 0.9;
 const COUNTRY_OUTLINE_SOURCE_ID = "country-outline";
 const COUNTRY_OUTLINE_HALO_LAYER_ID = "country-outline-halo";
 const COUNTRY_OUTLINE_LAYER_ID = "country-outline";
+const CACHE_BUST_VERSION = "2026-07-10-1";
 const EMPTY_FEATURE_COLLECTION = {
   type: "FeatureCollection",
   features: [],
@@ -198,9 +199,9 @@ function handleKeyboardNextCity(event) {
 
 async function loadData() {
   const [cityResponse, countryResponse, countryBoundaryResponse] = await Promise.all([
-    fetch("./public/cities.json"),
-    fetch("./public/countries.json"),
-    fetch("./public/country-boundaries.geojson"),
+    fetch(getCacheBustedUrl("./public/cities.json")),
+    fetch(getCacheBustedUrl("./public/countries.json")),
+    fetch(getCacheBustedUrl("./public/country-boundaries.geojson")),
   ]);
 
   cities = await cityResponse.json();
@@ -208,6 +209,10 @@ async function loadData() {
   countryBoundaryFeaturesByCode = getCountryBoundaryFeaturesByCode(
     await countryBoundaryResponse.json(),
   );
+}
+
+function getCacheBustedUrl(path) {
+  return `${path}?v=${CACHE_BUST_VERSION}`;
 }
 
 function populateFilters() {
