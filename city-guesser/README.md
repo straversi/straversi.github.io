@@ -36,3 +36,5 @@ resetting the game also clears the country history.
 City data comes from GeoNames `cities15000.zip` and `countryInfo.txt`, licensed under
 Creative Commons Attribution 4.0. Country boundaries come from Natural Earth
 Admin 0 map units.
+
+codex resume 019f4a08-3c0a-79f2-855f-37b2e2de5aab
