@@ -16,6 +16,8 @@ const DESIRED_FIT_PADDING_PX = 300;
 const MIN_FIT_VIEWPORT_PX = 120;
 const MOBILE_FIT_WIDTH_PX = 860;
 const MOBILE_FIT_PADDING_SCALE = 0.9;
+const DEFAULT_MAP_CENTER = [0, 18];
+const DEFAULT_MAP_ZOOM = 2;
 const COUNTRY_OUTLINE_SOURCE_ID = "country-outline";
 const COUNTRY_OUTLINE_HALO_LAYER_ID = "country-outline-halo";
 const COUNTRY_OUTLINE_LAYER_ID = "country-outline";
@@ -130,9 +132,9 @@ const map = new maplibregl.Map({
       },
     ],
   },
-  center: [0, 18],
-  zoom: 2,
-  minZoom: 2,
+  center: DEFAULT_MAP_CENTER,
+  zoom: DEFAULT_MAP_ZOOM,
+  minZoom: DEFAULT_MAP_ZOOM,
   maxZoom: 17,
   attributionControl: false,
 });
@@ -173,7 +175,12 @@ populationSelect.addEventListener("change", () => {
 nextButton.addEventListener("click", () => {
   round += 1;
   startRound();
-  map.easeTo({ zoom: 3, duration: 500, essential: true });
+  const isMobileViewport = map.getContainer().clientWidth <= MOBILE_FIT_WIDTH_PX;
+  map.easeTo({
+    zoom: isMobileViewport ? DEFAULT_MAP_ZOOM : 3,
+    duration: 500,
+    essential: true,
+  });
 });
 document.addEventListener("keydown", handleKeyboardNextCity, true);
 if (resetButton) {
