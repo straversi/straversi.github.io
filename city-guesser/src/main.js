@@ -131,8 +131,8 @@ const map = new maplibregl.Map({
     ],
   },
   center: [0, 18],
-  zoom: 1.25,
-  minZoom: 1,
+  zoom: 2,
+  minZoom: 2,
   maxZoom: 17,
   attributionControl: false,
 });
@@ -173,6 +173,7 @@ populationSelect.addEventListener("change", () => {
 nextButton.addEventListener("click", () => {
   round += 1;
   startRound();
+  map.easeTo({ zoom: 3, duration: 500, essential: true });
 });
 document.addEventListener("keydown", handleKeyboardNextCity, true);
 if (resetButton) {
