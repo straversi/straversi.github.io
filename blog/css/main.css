@@ -304,10 +304,10 @@ h3 img {
 .currently-playing {
   display: flex;
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 36px;
   position: relative;
-  margin-left: 18px;
+  margin-left: 14px;
   font-family: "Roboto Mono", monospace;
 }
 
@@ -327,6 +327,37 @@ h3 img {
   border-radius: 3px;
   flex-shrink: 0;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.currently-reading .currently-playing-art {
+  height: auto;
+}
+
+.currently-reading {
+  margin-top: 27px;
+}
+
+@media screen and (max-width: 700px) {
+  .status-modules {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 36px;
+    margin-left: 14px;
+  }
+
+  .status-modules .currently-playing {
+    min-width: 0;
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .status-modules {
+    flex-direction: column;
+  }
 }
 
 .currently-playing-art-wrap {
