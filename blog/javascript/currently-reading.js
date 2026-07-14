@@ -2,6 +2,8 @@ async function loadCurrentlyReading() {
   const container = document.getElementById('currently-reading');
   if (!container) return;
 
+  const goodreadsUrl = 'https://www.goodreads.com/user/show/176655250-steven-traversi';
+
   try {
     const res = await fetch('https://api.steven.codes/currently-reading');
     if (!res.ok) {
@@ -21,11 +23,12 @@ async function loadCurrentlyReading() {
     container.removeAttribute('aria-busy');
     container.hidden = false;
     container.innerHTML = `
+      <a class="currently-playing-link" href="${goodreadsUrl}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escapeReadingAttr(name)} on Goodreads"></a>
       <img class="currently-playing-art" src="${escapeReadingAttr(image)}" alt="" />
       <div class="currently-playing-info">
         <div class="currently-playing-label">${label}</div>
-        <div class="currently-playing-track">${escapeReadingHtml(name)}</div>
-        <div class="currently-playing-artist">${escapeReadingHtml(author)}</div>
+        <a class="currently-playing-track" href="${goodreadsUrl}" target="_blank" rel="noopener noreferrer">${escapeReadingHtml(name)}</a>
+        <a class="currently-playing-artist" href="${goodreadsUrl}" target="_blank" rel="noopener noreferrer">${escapeReadingHtml(author)}</a>
       </div>
     `;
   } catch {
